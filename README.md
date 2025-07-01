@@ -6,6 +6,25 @@ Revolutionary OneFi platform bridging traditional and decentralized finance thro
 
 Visit the live platform: **https://bribeirobr25.github.io/diboas-beta/**
 
+### **Project Structure**
+```
+.
+├── index.html              # www.diboas.com
+├── docs/
+│   └── index.html          # docs.diboas.com
+├── learn/
+│   └── index.html          # learn.diboas.com
+├── investors/
+│   └── index.html          # investors.diboas.com
+├── app/
+│   └── index.html          # app.diboas.com
+├── assets/
+│   ├── icons/              # SVG icons and favicon
+│   └── images/             # Mascot images and graphics
+├── CNAME                   # Custom domain configuration
+└── README.md               # This file
+```
+
 ## 🎯 Platform Overview
 
 diBoaS introduces Progressive Smart Simplicity - a revolutionary approach that starts users with simple crypto investing and evolves complexity based on behavioral readiness, guided by AI-powered mascots.
@@ -21,10 +40,10 @@ diBoaS introduces Progressive Smart Simplicity - a revolutionary approach that s
 
 ### **Complete Website Suite**
 - **[Landing Page](https://bribeirobr25.github.io/diboas-beta/)** - Progressive simplicity introduction
-- **[Documentation](https://bribeirobr25.github.io/diboas-beta/docs.html)** - Comprehensive user guides
-- **[Learning Center](https://bribeirobr25.github.io/diboas-beta/learn.html)** - Interactive education platform
-- **[Investor Portal](https://bribeirobr25.github.io/diboas-beta/investors.html)** - Professional investment presentation
-- **[Main Application](https://bribeirobr25.github.io/diboas-beta/app.html)** - Full OneFi platform simulation
+- **[Documentation](https://bribeirobr25.github.io/diboas-beta/docs/)** - Comprehensive user guides
+- **[Learning Center](https://bribeirobr25.github.io/diboas-beta/learn/)** - Interactive education platform
+- **[Investor Portal](https://bribeirobr25.github.io/diboas-beta/investors/)** - Professional investment presentation
+- **[Main Application](https://bribeirobr25.github.io/diboas-beta/app/)** - Full OneFi platform simulation
 
 ### **Technical Implementation**
 - 📱 **Mobile-first responsive design**
