@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="diBoaS OneFi Platform - Progressive smart simplicity for cryptocurrency investing and wealth building. AI-guided financial journey from beginner to expert.">
+    <meta name="keywords" content="diBoaS app, OneFi platform, crypto investment, progressive complexity, AI financial guidance">
+    <meta name="author" content="diBoaS">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="diBoaS OneFi Platform - Your AI-Guided Wealth Journey">
+    <meta property="og:description" content="Experience progressive smart simplicity with Aqua, Verde, Mystic, and Coral guides. From $10 crypto to advanced DeFi strategies.">
+    <meta property="og:image" content="./assets/images/social_cover.png">
+    <meta property="og:url" content="https://app.diboas.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="diBoaS OneFi Platform">
+    <meta name="twitter:description" content="AI-guided wealth building platform">
+    <meta name="twitter:image" content="./assets/images/social_cover.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#4ECDC4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="diBoaS">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/favicon.png">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="../assets/images/aqua_mascot.png" as="image">
+    
+    <title>diBoaS OneFi Platform - Your AI-Guided Wealth Journey</title>
+    
+    <style>
+        /* CSS Custom Properties - diBoaS OneFi Platform */
+        :root {
+            /* Phase Colors */
+            --aqua-primary: #4ECDC4;
+            --aqua-light: #A8E6CF;
+            --aqua-dark: #26A69A;
+            --aqua-background: #F0FDFC;
+            --aqua-gradient: linear-gradient(135deg, #4ECDC4, #26A69A);
+            
+            --verde-primary: #A8E6CF;
+            --verde-light: #C8F7C5;
+            --verde-dark: #66BB6A;
+            --verde-background: #F1F8E9;
+            --verde-gradient: linear-gradient(135deg, #A8E6CF, #66BB6A);
+            
+            --mystic-primary: #B39DDB;
+            --mystic-light: #D1C4E9;
+            --mystic-dark: #7E57C2;
+            --mystic-background: #F3E5F5;
+            --mystic-gradient: linear-gradient(135deg, #B39DDB, #7E57C2);
+            
+            --coral-primary: #FFB3BA;
+            --coral-light: #FFCDD2;
+            --coral-dark: #E57373;
+            --coral-background: #FFF3E0;
+            --coral-gradient: linear-gradient(135deg, #FFB3BA, #E57373);
+            
+            /* Dynamic Theme Variables */
+            --primary-color: var(--aqua-primary);
+            --primary-gradient: var(--aqua-gradient);
+            --primary-background: var(--aqua-background);
+            --primary-dark: var(--aqua-dark);
+            
+            /* App UI Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #FAFAFA;
+            --bg-tertiary: #F5F5F5;
+            --bg-sidebar: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --bg-modal: rgba(0, 0, 0, 0.6);
+            
+            /* Text Colors */
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-tertiary: #9E9E9E;
+            --text-inverse: #FFFFFF;
+            --text-success: #4CAF50;
+            --text-warning: #FF9800;
+            --text-error: #F44336;
+            
+            /* Border Colors */
+            --border-color: #E0E0E0;
+            --border-hover: #BDBDBD;
+            --border-focus: var(--primary-color);
+            
+            /* Dark Theme Colors */
+            --dark-bg-primary: #121212;
+            --dark-bg-secondary: #1E1E1E;
+            --dark-bg-tertiary: #2D2D2D;
+            --dark-bg-sidebar: #1E1E1E;
+            --dark-bg-card: #1E1E1E;
+            --dark-text-primary: #FFFFFF;
+            --dark-text-secondary: #B0B0B0;
+            --dark-text-tertiary: #888888;
+            --dark-border-color: #404040;
+            --dark-border-hover: #606060;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Poppins', sans-serif;
+            --font-mono: 'JetBrains Mono', Monaco, monospace;
+            
+            /* Font Sizes */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            
+            /* Spacing Scale */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-base: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-3xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Z-Index Scale */
+            --z-sidebar: 100;
+            --z-header: 200;
+            --z-modal: 1000;
+            --z-notification: 1100;
+            --z-tooltip: 1200;
+        }
+        
+        /* Dark Theme Overrides */
+        [data-theme="dark"] {
+            --bg-primary: var(--dark-bg-primary);
+            --bg-secondary: var(--dark-bg-secondary);
+            --bg-tertiary: var(--dark-bg-tertiary);
+            --bg-sidebar: var(--dark-bg-sidebar);
+            --bg-card: var(--dark-bg-card);
+            --text-primary: var(--dark-text-primary);
+            --text-secondary: var(--dark-text-secondary);
+            --text-tertiary: var(--dark-text-tertiary);
+            --border-color: var(--dark-border-color);
+            --border-hover: var(--dark-border-hover);
+        }
+        
+        /* Phase-specific Theme Updates */
+        [data-phase="aqua"] {
+            --primary-color: var(--aqua-primary);
+            --primary-gradient: var(--aqua-gradient);
+            --primary-background: var(--aqua-background);
+            --primary-dark: var(--aqua-dark);
+        }
+        
+        [data-phase="verde"] {
+            --primary-color: var(--verde-primary);
+            --primary-gradient: var(--verde-gradient);
+            --primary-background: var(--verde-background);
+            --primary-dark: var(--verde-dark);
+        }
+        
+        [data-phase="mystic"] {
+            --primary-color: var(--mystic-primary);
+            --primary-gradient: var(--mystic-gradient);
+            --primary-background: var(--mystic-background);
+            --primary-dark: var(--mystic-dark);
+        }
+        
+        [data-phase="coral"] {
+            --primary-color: var(--coral-primary);
+            --primary-gradient: var(--coral-gradient);
+            --primary-background: var(--coral-background);
+            --primary-dark: var(--coral-dark);
+        }
+        
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+        
+        input, select, textarea {
+            font-family: inherit;
+        }
+        
+        /* App Container */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+            background: var(--bg-secondary);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: var(--z-sidebar);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar.collapsed {
+            width: 80px;
+        }
+        
+        .sidebar-header {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-xl);
+            color: var(--text-primary);
+        }
+        
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: var(--space-2);
+            border-radius: var(--radius-base);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-toggle:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+        
+        /* Mascot Section */
+        .mascot-section {
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .current-mascot {
+            background: var(--primary-background);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-4);
+            text-align: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .mascot-avatar {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--space-3);
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+        
+        .mascot-name {
+            font-family: var(--font-display);
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-1);
+        }
+        
+        .mascot-level {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        
+        .mascot-progress {
+            margin-top: var(--space-3);
+        }
+        
+        .progress-label {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-1);
+            text-align: left;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-full);
+            transition: width 0.5s ease;
+        }
+        
+        /* Navigation */
+        .nav-menu {
+            padding: var(--space-4) 0;
+        }
+        
+        .nav-section {
+            margin-bottom: var(--space-6);
+        }
+        
+        .nav-section-title {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0 var(--space-6) var(--space-3);
+        }
+        
+        .nav-items {
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-bottom: var(--space-1);
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-6);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+        
+        .nav-link.active {
+            background: var(--primary-background);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-color);
+        }
+        
+        .nav-icon {
+            font-size: var(--text-lg);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .nav-badge {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-full);
+            margin-left: auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .main-content.sidebar-collapsed {
+            margin-left: 80px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--space-4) var(--space-6);
+            position: sticky;
+            top: 0;
+            z-index: var(--z-header);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .page-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 300px;
+            padding: var(--space-3) var(--space-4) var(--space-3) var(--space-10);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: var(--space-3);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .header-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .header-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .notification-btn {
+            position: relative;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background: var(--text-error);
+            border-radius: var(--radius-full);
+            border: 2px solid var(--bg-primary);
+        }
+        
+        .profile-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--primary-gradient);
+            color: var(--text-inverse);
+            border: none;
+            font-weight: 600;
+        }
+        
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: var(--space-6);
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+        
+        /* Portfolio Overview */
+        .portfolio-overview {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .portfolio-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-6);
+        }
+        
+        .portfolio-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .portfolio-value {
+            text-align: right;
+        }
+        
+        .total-value {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .value-change {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+        
+        .value-change.positive {
+            color: var(--text-success);
+        }
+        
+        .value-change.negative {
+            color: var(--text-error);
+        }
+        
+        .portfolio-chart {
+            height: 200px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-6);
+        }
+        
+        .asset-list {
+            list-style: none;
+        }
+        
+        .asset-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .asset-item:last-child {
+            border-bottom: none;
+        }
+        
+        .asset-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .asset-info {
+            flex: 1;
+        }
+        
+        .asset-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .asset-amount {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        
+        .asset-value {
+            text-align: right;
+        }
+        
+        .asset-price {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .asset-change {
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .actions-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-6);
+        }
+        
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+        }
+        
+        .action-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-4);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .action-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-background);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-base);
+        }
+        
+        .action-icon {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-2);
+        }
+        
+        .action-title {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+        
+        .action-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            text-align: center;
+        }
+        
+        /* Mascot Guidance */
+        .mascot-guidance {
+            grid-column: 1 / -1;
+            background: var(--primary-background);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mascot-guidance::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0.05;
+            z-index: 1;
+        }
+        
+        .guidance-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .guidance-mascot {
+            width: 80px;
+            height: 80px;
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: gentle-bounce 2s ease-in-out infinite;
+        }
+        
+        .guidance-message {
+            flex: 1;
+        }
+        
+        .guidance-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-2);
+        }
+        
+        .guidance-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .guidance-actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        .guidance-btn {
+            background: var(--primary-color);
+            color: var(--text-inverse);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--space-3) var(--space-6);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .guidance-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        
+        .guidance-btn.secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .guidance-btn.secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        /* Recent Activity */
+        .recent-activity {
+            grid-column: 1 / -1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .activity-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-6);
+        }
+        
+        .activity-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .view-all-btn {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--text-sm);
+        }
+        
+        .activity-list {
+            list-style: none;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            background: var(--primary-background);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .activity-details {
+            flex: 1;
+        }
+        
+        .activity-description {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .activity-time {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        
+        .activity-amount {
+            text-align: right;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Modal System */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-modal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: var(--z-modal);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            max-width: 500px;
+            width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            margin-bottom: var(--space-6);
+        }
+        
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: var(--text-xl);
+            color: var(--text-tertiary);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-base);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .search-input {
+                width: 200px;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: var(--space-3) var(--space-4);
+            }
+            
+            .search-box {
+                display: none;
+            }
+            
+            .dashboard-content {
+                padding: var(--space-4);
+            }
+            
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .guidance-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .guidance-actions {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .portfolio-overview,
+            .quick-actions,
+            .mascot-guidance,
+            .recent-activity {
+                padding: var(--space-4);
+            }
+            
+            .modal-content {
+                padding: var(--space-6);
+            }
+        }
+        
+        /* Animations */
+        @keyframes gentle-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slideInRight 0.5s ease-out;
+        }
+        
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: var(--text-secondary);
+        }
+        
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: var(--space-3);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Phase Unlock Notifications */
+        .phase-unlock {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-gradient);
+            color: var(--text-inverse);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            z-index: var(--z-notification);
+            transform: translateX(100%);
+            transition: transform 0.5s ease;
+            max-width: 350px;
+        }
+        
+        .phase-unlock.show {
+            transform: translateX(0);
+        }
+        
+        .unlock-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-2);
+        }
+        
+        .unlock-icon {
+            font-size: var(--text-2xl);
+        }
+        
+        .unlock-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+        }
+        
+        .unlock-message {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Focus Styles */
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus,
+        a:focus,
+        .nav-link:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container" data-phase="aqua">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <a href="../" class="logo">
+                    <img src="../assets/icons/favicon.svg" alt="diBoaS Logo">
+                    <span class="logo-text">diBoaS</span>
+                </a>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12h18m-9-9l9 9-9 9"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Current Mascot -->
+            <div class="mascot-section">
+                <div class="current-mascot">
+                    <div class="mascot-avatar" id="currentMascotAvatar">🌊</div>
+                    <div class="mascot-name" id="currentMascotName">Aqua</div>
+                    <div class="mascot-level" id="currentMascotLevel">Beginner Guide</div>
+                    <div class="mascot-progress">
+                        <div class="progress-label">Phase Progress</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="phaseProgress" style="width: 25%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <ul class="nav-items">
+                        <li class="nav-item">
+                            <a href="#dashboard" class="nav-link active" data-view="dashboard">
+                                <span class="nav-icon">🏠</span>
+                                <span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#portfolio" class="nav-link" data-view="portfolio">
+                                <span class="nav-icon">💼</span>
+                                <span class="nav-text">Portfolio</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#buy" class="nav-link" data-view="buy">
+                                <span class="nav-icon">🛒</span>
+                                <span class="nav-text">Buy Crypto</span>
+                                <span class="nav-badge">New</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#history" class="nav-link" data-view="history">
+                                <span class="nav-icon">📊</span>
+                                <span class="nav-text">History</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section" id="advancedSection" style="display: none;">
+                    <div class="nav-section-title">Advanced</div>
+                    <ul class="nav-items">
+                        <li class="nav-item">
+                            <a href="#analytics" class="nav-link" data-view="analytics">
+                                <span class="nav-icon">📈</span>
+                                <span class="nav-text">Analytics</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#defi" class="nav-link" data-view="defi">
+                                <span class="nav-icon">🔮</span>
+                                <span class="nav-text">DeFi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#community" class="nav-link" data-view="community">
+                                <span class="nav-icon">👥</span>
+                                <span class="nav-text">Community</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <ul class="nav-items">
+                        <li class="nav-item">
+                            <a href="#learn" class="nav-link" data-view="learn">
+                                <span class="nav-icon">📚</span>
+                                <span class="nav-text">Learn</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#security" class="nav-link" data-view="security">
+                                <span class="nav-icon">🔒</span>
+                                <span class="nav-text">Security</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" class="nav-link" data-view="settings">
+                                <span class="nav-icon">⚙️</span>
+                                <span class="nav-text">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                </div>
+
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search transactions, help..." id="searchInput">
+                        <span class="search-icon">🔍</span>
+                    </div>
+
+                    <div class="header-actions">
+                        <button class="header-btn notification-btn" id="notificationBtn" aria-label="Notifications">
+                            🔔
+                            <div class="notification-badge"></div>
+                        </button>
+
+                        <button class="header-btn" id="themeToggle" aria-label="Toggle theme">
+                            🌙
+                        </button>
+
+                        <button class="profile-btn" id="profileBtn" aria-label="Profile menu">
+                            JD
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboardContent">
+                <div class="dashboard-grid">
+                    <!-- Portfolio Overview -->
+                    <div class="portfolio-overview">
+                        <div class="portfolio-header">
+                            <h2 class="portfolio-title">Portfolio Value</h2>
+                            <div class="portfolio-value">
+                                <div class="total-value" id="totalValue">$127.45</div>
+                                <div class="value-change positive" id="valueChange">
+                                    <span>↗</span>
+                                    <span>+$12.34 (+10.7%)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-chart" id="portfolioChart">
+                            📈 Interactive Chart Coming Soon
+                        </div>
+
+                        <ul class="asset-list" id="assetList">
+                            <li class="asset-item">
+                                <div class="asset-icon">₿</div>
+                                <div class="asset-info">
+                                    <div class="asset-name">Bitcoin</div>
+                                    <div class="asset-amount">0.00234 BTC</div>
+                                </div>
+                                <div class="asset-value">
+                                    <div class="asset-price">$97.45</div>
+                                    <div class="asset-change positive">+8.2%</div>
+                                </div>
+                            </li>
+                            <li class="asset-item">
+                                <div class="asset-icon">Ξ</div>
+                                <div class="asset-info">
+                                    <div class="asset-name">Ethereum</div>
+                                    <div class="asset-amount">0.08421 ETH</div>
+                                </div>
+                                <div class="asset-value">
+                                    <div class="asset-price">$30.00</div>
+                                    <div class="asset-change positive">+12.1%</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h2 class="actions-title">Quick Actions</h2>
+                        <div class="action-grid">
+                            <a href="#" class="action-btn" data-action="buy">
+                                <div class="action-icon">💰</div>
+                                <div class="action-title">Buy Crypto</div>
+                                <div class="action-subtitle">Start with $10</div>
+                            </a>
+                            <a href="#" class="action-btn" data-action="learn">
+                                <div class="action-icon">📚</div>
+                                <div class="action-title">Learn More</div>
+                                <div class="action-subtitle">Build knowledge</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mascot Guidance -->
+                    <div class="mascot-guidance">
+                        <div class="guidance-content">
+                            <div class="guidance-mascot">🌊</div>
+                            <div class="guidance-message">
+                                <h3 class="guidance-title" id="guidanceTitle">Welcome to your wealth journey!</h3>
+                                <p class="guidance-text" id="guidanceText">
+                                    I'm Aqua, your gentle guide into crypto investing. Ready to make your first purchase? 
+                                    Start small and build confidence!
+                                </p>
+                                <div class="guidance-actions">
+                                    <button class="guidance-btn" onclick="openBuyModal()">
+                                        Start with $10
+                                    </button>
+                                    <button class="guidance-btn secondary" onclick="openLearnModal()">
+                                        Learn First
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="recent-activity">
+                        <div class="activity-header">
+                            <h2 class="activity-title">Recent Activity</h2>
+                            <a href="#" class="view-all-btn">View All</a>
+                        </div>
+                        <ul class="activity-list" id="activityList">
+                            <li class="activity-item">
+                                <div class="activity-icon">📥</div>
+                                <div class="activity-details">
+                                    <div class="activity-description">Account created</div>
+                                    <div class="activity-time">2 minutes ago</div>
+                                </div>
+                                <div class="activity-amount">Welcome!</div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-icon">✅</div>
+                                <div class="activity-details">
+                                    <div class="activity-description">Email verified</div>
+                                    <div class="activity-time">1 minute ago</div>
+                                </div>
+                                <div class="activity-amount">Verified</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Buy Crypto Modal -->
+    <div class="modal" id="buyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Buy Your First Crypto</h2>
+                <button class="modal-close" onclick="closeModal('buyModal')">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: var(--space-6);">
+                    <div style="font-size: 3rem; margin-bottom: var(--space-3);">🌊</div>
+                    <p style="color: var(--text-secondary);">
+                        "Perfect! Let's start your wealth journey with a small, safe investment."
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: var(--space-6);">
+                    <label style="display: block; font-weight: 600; margin-bottom: var(--space-2);">
+                        Choose Your Crypto
+                    </label>
+                    <select style="width: 100%; padding: var(--space-3); border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
+                        <option value="btc">Bitcoin (BTC) - The Original</option>
+                        <option value="eth">Ethereum (ETH) - Smart Contracts</option>
+                        <option value="sol">Solana (SOL) - Fast & Low Cost</option>
+                        <option value="sui">Sui (SUI) - Next Generation</option>
+                    </select>
+                </div>
+                
+                <div style="margin-bottom: var(--space-6);">
+                    <label style="display: block; font-weight: 600; margin-bottom: var(--space-2);">
+                        Investment Amount
+                    </label>
+                    <input type="number" value="10" min="10" max="1000" 
+                           style="width: 100%; padding: var(--space-3); border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
+                    <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-1);">
+                        Minimum: $10 | Fee: 0.09% (vs Coinbase 1.49%+)
+                    </div>
+                </div>
+                
+                <button class="guidance-btn" style="width: 100%; margin-bottom: var(--space-3);" onclick="simulatePurchase()">
+                    Buy Now - $10.01 Total
+                </button>
+                
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-align: center;">
+                    🔒 Bank-grade security • ⚡ Instant purchase • 📚 Learning included
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learn Modal -->
+    <div class="modal" id="learnModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Learn with Aqua</h2>
+                <button class="modal-close" onclick="closeModal('learnModal')">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: var(--space-6);">
+                    <div style="font-size: 3rem; margin-bottom: var(--space-3);">🌊📚</div>
+                    <p style="color: var(--text-secondary);">
+                        "Smart choice! Understanding comes before investing. Let me teach you."
+                    </p>
+                </div>
+                
+                <div style="display: grid; gap: var(--space-4);">
+                    <a href="../learn/" class="action-btn" style="text-decoration: none;">
+                        <div class="action-icon">📖</div>
+                        <div class="action-title">Crypto Basics</div>
+                        <div class="action-subtitle">5 min read</div>
+                    </a>
+                    
+                    <a href="../learn/" class="action-btn" style="text-decoration: none;">
+                        <div class="action-icon">🎯</div>
+                        <div class="action-title">Investment Strategy</div>
+                        <div class="action-subtitle">10 min course</div>
+                    </a>
+                    
+                    <a href="../learn/" class="action-btn" style="text-decoration: none;">
+                        <div class="action-icon">🛡️</div>
+                        <div class="action-title">Security Basics</div>
+                        <div class="action-subtitle">7 min guide</div>
+                    </a>
+                </div>
+                
+                <div style="margin-top: var(--space-6); text-align: center;">
+                    <button class="guidance-btn secondary" onclick="closeModal('learnModal'); openBuyModal();">
+                        Ready to Buy After Learning
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phase Unlock Notification -->
+    <div class="phase-unlock" id="phaseUnlock">
+        <div class="unlock-header">
+            <div class="unlock-icon">🎉</div>
+            <div class="unlock-title">New Phase Unlocked!</div>
+        </div>
+        <div class="unlock-message" id="unlockMessage">
+            Verde phase activated! Multi-asset investing now available.
+        </div>
+    </div>
+
+    <script>
+        // App State Management
+        class DiBoaSApp {
+            constructor() {
+                this.currentPhase = 'aqua';
+                this.userProgress = {
+                    aqua: 25,
+                    verde: 0,
+                    mystic: 0,
+                    coral: 0
+                };
+                this.portfolio = {
+                    totalValue: 127.45,
+                    change: 12.34,
+                    changePercent: 10.7,
+                    assets: [
+                        {
+                            symbol: 'BTC',
+                            name: 'Bitcoin',
+                            amount: 0.00234,
+                            value: 97.45,
+                            change: 8.2,
+                            icon: '₿'
+                        },
+                        {
+                            symbol: 'ETH',
+                            name: 'Ethereum', 
+                            amount: 0.08421,
+                            value: 30.00,
+                            change: 12.1,
+                            icon: 'Ξ'
+                        }
+                    ]
+                };
+                this.mascots = {
+                    aqua: { name: 'Aqua', level: 'Beginner Guide', icon: '🌊' },
+                    verde: { name: 'Verde', level: 'Growth Coach', icon: '🌱' },
+                    mystic: { name: 'Mystic', level: 'DeFi Oracle', icon: '🔮' },
+                    coral: { name: 'Coral', level: 'Community Leader', icon: '🌸' }
+                };
+                this.transactions = 0;
+                this.investmentTotal = 0;
+                this.daysActive = 1;
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.updateUI();
+                this.simulateRealTimeData();
+                this.checkPhaseProgression();
+            }
+            
+            setupEventListeners() {
+                // Navigation
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.navigateTo(link.dataset.view);
+                    });
+                });
+                
+                // Sidebar toggle
+                document.getElementById('sidebarToggle').addEventListener('click', () => {
+                    this.toggleSidebar();
+                });
+                
+                // Theme toggle
+                document.getElementById('themeToggle').addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+                
+                // Action buttons
+                document.querySelectorAll('.action-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const action = btn.dataset.action;
+                        if (action === 'buy') this.openBuyModal();
+                        if (action === 'learn') this.openLearnModal();
+                    });
+                });
+                
+                // Search functionality
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    this.handleSearch(e.target.value);
+                });
+                
+                // Mascot interactions
+                document.getElementById('currentMascotAvatar').addEventListener('click', () => {
+                    this.showMascotInteraction();
+                });
+            }
+            
+            navigateTo(view) {
+                // Update active nav item
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.querySelector(`[data-view="${view}"]`).classList.add('active');
+                
+                // Update page title
+                const titles = {
+                    dashboard: 'Dashboard',
+                    portfolio: 'Portfolio',
+                    buy: 'Buy Crypto',
+                    history: 'Transaction History',
+                    analytics: 'Analytics',
+                    defi: 'DeFi Strategies',
+                    community: 'Community',
+                    learn: 'Learning Center',
+                    security: 'Security',
+                    settings: 'Settings'
+                };
+                
+                document.getElementById('pageTitle').textContent = titles[view];
+                
+                // Simulate view change (in real app, would load different components)
+                this.trackEvent('navigation', { view, phase: this.currentPhase });
+                
+                // Show phase-specific content
+                if (view === 'defi' && this.currentPhase === 'aqua') {
+                    this.showPhaseLockedMessage('Mystic');
+                } else if (view === 'community' && this.currentPhase !== 'coral') {
+                    this.showPhaseLockedMessage('Coral');
+                }
+            }
+            
+            toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const mainContent = document.getElementById('mainContent');
+                
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('sidebar-collapsed');
+            }
+            
+            toggleTheme() {
+                const html = document.documentElement;
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('diBoaS-app-theme', newTheme);
+                
+                // Update theme toggle icon
+                const themeBtn = document.getElementById('themeToggle');
+                themeBtn.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            }
+            
+            updateUI() {
+                this.updateMascotDisplay();
+                this.updatePortfolioDisplay();
+                this.updateGuidanceMessage();
+                this.updatePhaseProgress();
+            }
+            
+            updateMascotDisplay() {
+                const mascot = this.mascots[this.currentPhase];
+                document.getElementById('currentMascotAvatar').textContent = mascot.icon;
+                document.getElementById('currentMascotName').textContent = mascot.name;
+                document.getElementById('currentMascotLevel').textContent = mascot.level;
+            }
+            
+            updatePortfolioDisplay() {
+                document.getElementById('totalValue').textContent = `$${this.portfolio.totalValue.toFixed(2)}`;
+                
+                const changeElement = document.getElementById('valueChange');
+                const isPositive = this.portfolio.change > 0;
+                changeElement.className = `value-change ${isPositive ? 'positive' : 'negative'}`;
+                changeElement.innerHTML = `
+                    <span>${isPositive ? '↗' : '↘'}</span>
+                    <span>${isPositive ? '+' : ''}$${this.portfolio.change.toFixed(2)} (${this.portfolio.changePercent}%)</span>
+                `;
+            }
+            
+            updateGuidanceMessage() {
+                const messages = {
+                    aqua: {
+                        title: "Welcome to your wealth journey!",
+                        text: "I'm Aqua, your gentle guide into crypto investing. Ready to make your first purchase? Start small and build confidence!"
+                    },
+                    verde: {
+                        title: "Time to grow your wealth!",
+                        text: "Great progress! I'm Verde, and I'll help you expand into multi-asset investing and build a diversified portfolio."
+                    },
+                    mystic: {
+                        title: "Advanced strategies await!",
+                        text: "Welcome to sophisticated investing! I'm Mystic, your guide to DeFi, yield farming, and advanced portfolio strategies."
+                    },
+                    coral: {
+                        title: "Share your wisdom!",
+                        text: "You've mastered the basics! I'm Coral, and together we'll build community and help others on their wealth journeys."
+                    }
+                };
+                
+                const message = messages[this.currentPhase];
+                document.getElementById('guidanceTitle').textContent = message.title;
+                document.getElementById('guidanceText').textContent = message.text;
+            }
+            
+            updatePhaseProgress() {
+                const progress = this.userProgress[this.currentPhase];
+                document.getElementById('phaseProgress').style.width = `${progress}%`;
+            }
+            
+            simulateRealTimeData() {
+                // Simulate live price updates
+                setInterval(() => {
+                    this.portfolio.assets.forEach(asset => {
+                        const change = (Math.random() - 0.5) * 0.02; // ±1% change
+                        asset.change += change;
+                        asset.value *= (1 + change / 100);
+                    });
+                    
+                    // Update total portfolio value
+                    this.portfolio.totalValue = this.portfolio.assets.reduce((sum, asset) => sum + asset.value, 0);
+                    
+                    this.updatePortfolioDisplay();
+                }, 30000); // Update every 30 seconds
+            }
+            
+            checkPhaseProgression() {
+                // Simulate behavioral triggers for phase progression
+                const triggers = {
+                    verde: () => this.transactions >= 3 && this.investmentTotal >= 100 && this.daysActive >= 15,
+                    mystic: () => this.transactions >= 10 && this.investmentTotal >= 500 && this.daysActive >= 45,
+                    coral: () => this.transactions >= 25 && this.investmentTotal >= 2000 && this.daysActive >= 90
+                };
+                
+                for (const [phase, trigger] of Object.entries(triggers)) {
+                    if (this.currentPhase !== phase && trigger()) {
+                        this.unlockPhase(phase);
+                        break;
+                    }
+                }
+            }
+            
+            unlockPhase(newPhase) {
+                this.currentPhase = newPhase;
+                document.querySelector('.app-container').setAttribute('data-phase', newPhase);
+                
+                // Update UI
+                this.updateUI();
+                
+                // Show unlock notification
+                this.showPhaseUnlock(newPhase);
+                
+                // Update navigation visibility
+                this.updateNavigationVisibility();
+                
+                // Track phase unlock
+                this.trackEvent('phase_unlock', { 
+                    phase: newPhase, 
+                    transactions: this.transactions,
+                    investment_total: this.investmentTotal,
+                    days_active: this.daysActive
+                });
+            }
+            
+            showPhaseUnlock(phase) {
+                const mascot = this.mascots[phase];
+                const messages = {
+                    verde: `${mascot.icon} Verde phase activated! Multi-asset investing now available.`,
+                    mystic: `${mascot.icon} Mystic phase unlocked! Advanced DeFi strategies await.`,
+                    coral: `${mascot.icon} Coral phase ready! Community features and social trading activated.`
+                };
+                
+                const notification = document.getElementById('phaseUnlock');
+                document.getElementById('unlockMessage').textContent = messages[phase];
+                
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+            
+            updateNavigationVisibility() {
+                const advancedSection = document.getElementById('advancedSection');
+                if (this.currentPhase !== 'aqua') {
+                    advancedSection.style.display = 'block';
+                }
+            }
+            
+            showPhaseLockedMessage(requiredPhase) {
+                alert(`This feature is available in ${requiredPhase} phase. Keep investing and learning to unlock it!`);
+            }
+            
+            openBuyModal() {
+                document.getElementById('buyModal').classList.add('show');
+                this.trackEvent('buy_modal_opened', { phase: this.currentPhase });
+            }
+            
+            openLearnModal() {
+                document.getElementById('learnModal').classList.add('show');
+                this.trackEvent('learn_modal_opened', { phase: this.currentPhase });
+            }
+            
+            closeModal(modalId) {
+                document.getElementById(modalId).classList.remove('show');
+            }
+            
+            simulatePurchase() {
+                // Simulate purchase process
+                const amount = 10;
+                this.transactions++;
+                this.investmentTotal += amount;
+                
+                // Update portfolio
+                this.portfolio.totalValue += amount;
+                
+                // Update progress
+                this.userProgress[this.currentPhase] = Math.min(100, this.userProgress[this.currentPhase] + 25);
+                
+                // Close modal
+                this.closeModal('buyModal');
+                
+                // Show success message
+                this.showNotification('🎉 Purchase successful! $10 invested in Bitcoin.', 'success');
+                
+                // Update UI
+                this.updateUI();
+                
+                // Check for phase progression
+                this.checkPhaseProgression();
+                
+                // Track purchase
+                this.trackEvent('crypto_purchase', {
+                    amount: amount,
+                    asset: 'BTC',
+                    phase: this.currentPhase,
+                    total_transactions: this.transactions
+                });
+            }
+            
+            showMascotInteraction() {
+                const interactions = {
+                    aqua: ["💙 Keep it simple, keep it safe!", "🌊 Every expert was once a beginner!", "✨ You're doing great!"],
+                    verde: ["🌱 Growth takes time and patience!", "📈 Diversification is key!", "💪 Building wealth step by step!"],
+                    mystic: ["🔮 Advanced strategies unlock new possibilities!", "⚡ DeFi is the future of finance!", "🧙‍♂️ Knowledge is your greatest asset!"],
+                    coral: ["🌸 Community makes us stronger!", "🤝 Share your journey with others!", "💖 Teaching others helps everyone!"]
+                };
+                
+                const messages = interactions[this.currentPhase];
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                this.showNotification(randomMessage, 'info');
+            }
+            
+            showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? 'var(--text-success)' : type === 'error' ? 'var(--text-error)' : 'var(--primary-color)'};
+                    color: var(--text-inverse);
+                    padding: var(--space-4) var(--space-6);
+                    border-radius: var(--radius-xl);
+                    box-shadow: var(--shadow-xl);
+                    z-index: var(--z-notification);
+                    transform: translateX(100%);
+                    transition: transform 0.5s ease;
+                    max-width: 350px;
+                    font-weight: 500;
+                `;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                // Remove after 4 seconds
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 500);
+                }, 4000);
+            }
+            
+            handleSearch(query) {
+                if (query.length < 2) return;
+                
+                // Simulate search functionality
+                const searchResults = [
+                    'How to buy Bitcoin',
+                    'What is DeFi?',
+                    'Portfolio rebalancing',
+                    'Security best practices',
+                    'Transaction history'
+                ].filter(item => item.toLowerCase().includes(query.toLowerCase()));
+                
+                // In real app, would show search dropdown
+                console.log('Search results:', searchResults);
+                this.trackEvent('search', { query, results_count: searchResults.length });
+            }
+            
+            trackEvent(eventName, properties = {}) {
+                // Enhanced analytics tracking
+                const eventData = {
+                    event: eventName,
+                    timestamp: new Date().toISOString(),
+                    phase: this.currentPhase,
+                    user_progress: this.userProgress,
+                    portfolio_value: this.portfolio.totalValue,
+                    transactions_count: this.transactions,
+                    days_active: this.daysActive,
+                    ...properties
+                };
+                
+                console.log('Analytics Event:', eventData);
+                
+                // In real app, would send to analytics service
+                // analytics.track(eventData);
+            }
+        }
+        
+        // Global functions for modal interactions
+        function openBuyModal() {
+            window.diBoaSApp.openBuyModal();
+        }
+        
+        function openLearnModal() {
+            window.diBoaSApp.openLearnModal();
+        }
+        
+        function closeModal(modalId) {
+            window.diBoaSApp.closeModal(modalId);
+        }
+        
+        function simulatePurchase() {
+            window.diBoaSApp.simulatePurchase();
+        }
+        
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for saved theme
+            const savedTheme = localStorage.getItem('diBoaS-app-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Update theme toggle icon
+            document.getElementById('themeToggle').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+            
+            // Initialize app
+            window.diBoaSApp = new DiBoaSApp();
+            
+            console.log('diBoaS OneFi Platform Loaded Successfully');
+        });
+        
+        // Close modals when clicking outside
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                const modalId = e.target.id;
+                closeModal(modalId);
+            }
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const openModal = document.querySelector('.modal.show');
+                if (openModal) {
+                    closeModal(openModal.id);
+                }
+            }
+            
+            // Quick navigation shortcuts
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key) {
+                    case '1':
+                        e.preventDefault();
+                        window.diBoaSApp.navigateTo('dashboard');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        window.diBoaSApp.navigateTo('portfolio');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        window.diBoaSApp.navigateTo('buy');
+                        break;
+                    case '/':
+                        e.preventDefault();
+                        document.getElementById('searchInput').focus();
+                        break;
+                }
+            }
+        });
+        
+        // Service Worker Registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+        
+        // Progressive Enhancement: Add touch gestures for mobile
+        if ('ontouchstart' in window) {
+            let startX = 0;
+            let startY = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                if (!startX || !startY) return;
+                
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+                
+                // Horizontal swipe detection
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        // Swipe left - close sidebar
+                        document.getElementById('sidebar').classList.remove('mobile-open');
+                    } else {
+                        // Swipe right - open sidebar (if near edge)
+                        if (startX < 20) {
+                            document.getElementById('sidebar').classList.add('mobile-open');
+                        }
+                    }
+                }
+                
+                startX = 0;
+                startY = 0;
+            });
+        }
+    </script>
+</body>
+</html>
