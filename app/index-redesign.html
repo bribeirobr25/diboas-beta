@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default" data-phase="aqua" data-persona="application" data-mascot="aqua">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net https://unpkg.com https://api.coingecko.com https://api.diboas.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.diboas.com https://api.coingecko.com wss://ws.diboas.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  
+  <!-- Primary Meta Tags -->
+  <title>diBoaS OneFi Platform - The Only Crypto App That Grows With You | From $10 to Pro in One Platform</title>
+  <meta name="title" content="diBoaS OneFi Platform - The Only Crypto App That Grows With You | From $10 to Pro in One Platform">
+  <meta name="description" content="Stop switching apps as you learn crypto. Start with $10 Bitcoin purchases, unlock advanced DeFi as you grow. AI mascots guide your $400B OneFi journey from complete beginner to sophisticated investor.">
+  <meta name="keywords" content="crypto app that grows with you, beginner to advanced crypto, progressive crypto platform, OneFi investment, AI crypto guidance, all-in-one crypto app, behavioral finance app">
+  <meta name="author" content="diBoaS">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://app.diboas.com/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://app.diboas.com/">
+  <meta property="og:title" content="The Only Crypto App That Grows With You - diBoaS OneFi">
+  <meta property="og:description" content="Why use 5 different crypto apps? Start simple, unlock advanced features as you learn. From your first $10 Bitcoin to sophisticated DeFi - one platform for your entire journey.">
+  <meta property="og:image" content="https://app.diboas.com/assets/images/app-og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="diBoaS OneFi Platform">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://app.diboas.com/">
+  <meta property="twitter:title" content="Stop Using 5 Different Crypto Apps - Try diBoaS OneFi">
+  <meta property="twitter:description" content="The only platform that grows with you. Start with simple $10 purchases, unlock pro features as you learn. AI guides your entire crypto journey.">
+  <meta property="twitter:image" content="https://app.diboas.com/assets/images/app-twitter-card.jpg">
+  
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "diBoaS OneFi Platform",
+    "description": "The only crypto platform that grows with you - from beginner $10 purchases to advanced DeFi strategies, all in one app",
+    "url": "https://app.diboas.com",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web, iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "diBoaS",
+      "url": "https://diboas.com"
+    },
+    "featureList": [
+      "Adaptive Interface - Grows With Your Knowledge",
+      "AI Behavioral Intelligence - Learns Your Style",
+      "Progressive Feature Unlocking - No Overwhelm",
+      "$10 Minimum Start - No Barriers to Entry",
+      "Pro-Level DeFi - When You're Ready",
+      "Real-time Market Intelligence",
+      "Integrated Learning Rewards",
+      "Social Trading Community",
+      "One Platform, Entire Journey"
+    ],
+    "screenshot": "https://app.diboas.com/assets/images/app-screenshot.jpg"
+  }
+  </script>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/icons/android-chrome-512x512.png">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#4ECDC4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="diBoaS OneFi">
+  <meta name="msapplication-TileColor" content="#4ECDC4">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="../assets/css/redesign.css" as="style">
+  <link rel="preload" href="app-redesign.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.coingecko.com">
+  <link rel="preconnect" href="https://api.diboas.com">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/redesign.css">
+  <link rel="stylesheet" href="app-redesign.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  
+  <!-- Skip Links for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#navigation" class="skip-link">Skip to navigation</a>
+  <a href="#portfolio-overview" class="skip-link">Skip to portfolio</a>
+  
+  <!-- Behavioral Intelligence Loading -->
+  <script>
+    window.diBoaSConfig = {
+      apiEndpoint: 'https://api.diboas.com',
+      wsEndpoint: 'wss://ws.diboas.com',
+      analyticsId: 'UA-DIBOAS-APP',
+      featureFlags: {
+        behavioralIntelligence: true,
+        realTimeData: true,
+        advancedFeatures: true,
+        socialTrading: false
+      }
+    };
+  </script>
+</head>
+
+<body class="app-layout" data-behavioral-state="initial" data-confidence-level="beginner">
+  <!-- Loading Screen -->
+  <div class="app-loading" id="appLoading">
+    <div class="loading-content">
+      <div class="loading-mascot">
+        <div class="mascot-avatar-large aqua">🌊</div>
+        <div class="loading-waves">
+          <div class="wave wave-1"></div>
+          <div class="wave wave-2"></div>
+          <div class="wave wave-3"></div>
+        </div>
+      </div>
+      <h2 class="loading-title">Welcome to Your Financial Future</h2>
+      <p class="loading-subtitle">Preparing your personalized OneFi journey - from first $10 to financial freedom...</p>
+      <div class="loading-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="loadingProgress"></div>
+        </div>
+        <div class="progress-text" id="loadingText">Initializing behavioral intelligence...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App Container -->
+  <div class="app-container" id="appContainer">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar" role="navigation" aria-label="Main navigation">
+      <!-- Sidebar Header -->
+      <div class="sidebar-header">
+        <a href="../" class="app-logo" aria-label="diBoaS OneFi Platform Home">
+          <div class="logo-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="url(#logoGradient)"/>
+              <path d="M8 12h16v8H8z" fill="white" opacity="0.9"/>
+              <path d="M8 8h8v4H8z" fill="white" opacity="0.7"/>
+              <path d="M16 8h8v4h-8z" fill="white" opacity="0.5"/>
+              <defs>
+                <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32">
+                  <stop stopColor="#4ECDC4"/>
+                  <stop offset="1" stopColor="#26A69A"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <div class="logo-name">diBoaS</div>
+            <div class="logo-tagline">OneFi</div>
+          </div>
+        </a>
+        
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar" aria-expanded="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Current Mascot Display -->
+      <div class="mascot-section">
+        <div class="current-mascot" id="currentMascot">
+          <div class="mascot-avatar" id="currentMascotAvatar">🌊</div>
+          <div class="mascot-info">
+            <div class="mascot-name" id="currentMascotName">Aqua</div>
+            <div class="mascot-level" id="currentMascotLevel">Beginner Guide</div>
+            <div class="mascot-mood" id="currentMascotMood">Ready to help!</div>
+          </div>
+          <div class="mascot-progress">
+            <div class="progress-header">
+              <span class="progress-label">Phase Progress</span>
+              <span class="progress-percentage" id="progressPercentage">25%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="phaseProgress" style="width: 25%"></div>
+            </div>
+            <div class="progress-milestone" id="progressMilestone">
+              Next: Complete 3 transactions
+            </div>
+          </div>
+        </div>
+        
+        <button class="mascot-chat-btn" id="mascotChatBtn" aria-label="Chat with your mascot guide">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Chat with Aqua</span>
+        </button>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-items-simple">
+          <li class="nav-item">
+            <a href="#dashboard" class="nav-link active" data-view="dashboard">
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#buy" class="nav-link highlighted" data-view="buy">
+              <span class="nav-text">Buy Crypto</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#learn" class="nav-link" data-view="learn">
+              <span class="nav-text">Learn & Earn</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#settings" class="nav-link" data-view="settings">
+              <span class="nav-text">Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="phase-indicator" id="phaseIndicator">
+          <div class="phase-icon">🌊</div>
+          <div class="phase-info">
+            <div class="phase-name">Aqua Phase</div>
+            <div class="phase-description">Learning the basics</div>
+          </div>
+        </div>
+        
+        <div class="sidebar-user">
+          <div class="user-avatar">JD</div>
+          <div class="user-info">
+            <div class="user-name">John Doe</div>
+            <div class="user-status">Beginner Investor</div>
+          </div>
+          <button class="user-menu-btn" id="userMenuBtn" aria-label="User menu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main" id="appMain" role="main">
+      <!-- App Header -->
+      <header class="app-header" role="banner">
+        <div class="header-content">
+          <div class="header-left">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="appSidebar" aria-label="Toggle navigation menu">
+              <span class="hamburger"></span>
+              <span class="hamburger"></span>
+              <span class="hamburger"></span>
+            </button>
+            
+            <div class="page-header">
+              <h1 class="page-title" id="pageTitle">Dashboard</h1>
+              <div class="page-subtitle" id="pageSubtitle">The only platform that grows with you - unlock your OneFi potential</div>
+            </div>
+            
+            <div class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb navigation">
+              <span class="breadcrumb-item">Home</span>
+              <span class="breadcrumb-separator">›</span>
+              <span class="breadcrumb-item current">Dashboard</span>
+            </div>
+          </div>
+
+          <div class="header-center">
+            <div class="search-container">
+              <div class="search-box">
+                <input type="search" 
+                       class="search-input" 
+                       placeholder="Search crypto, help, or ask Aqua..." 
+                       id="globalSearch"
+                       aria-label="Search the platform"
+                       autocomplete="off">
+                <button class="search-btn" aria-label="Search">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                  </svg>
+                </button>
+                <button class="search-voice-btn" id="voiceSearchBtn" aria-label="Voice search">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="search-suggestions" id="searchSuggestions" style="display: none;">
+                <div class="suggestion-section">
+                  <div class="suggestion-header">Quick Actions</div>
+                  <div class="suggestion-item" data-action="buy-btc">
+                    <span class="suggestion-icon">₿</span>
+                    <span>Buy Bitcoin</span>
+                  </div>
+                  <div class="suggestion-item" data-action="check-portfolio">
+                    <span class="suggestion-icon">💼</span>
+                    <span>Check Portfolio</span>
+                  </div>
+                </div>
+                <div class="suggestion-section">
+                  <div class="suggestion-header">Ask Aqua</div>
+                  <div class="suggestion-item" data-action="mascot-help">
+                    <span class="suggestion-icon">🌊</span>
+                    <span>"What should I invest in?"</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="header-right">
+            <div class="header-widgets">
+              <!-- Market Ticker -->
+              <div class="market-ticker" id="marketTicker">
+                <div class="ticker-item">
+                  <span class="ticker-symbol">BTC</span>
+                  <span class="ticker-price" id="btcPrice">$43,250</span>
+                  <span class="ticker-change positive" id="btcChange">+2.3%</span>
+                </div>
+              </div>
+              
+              <!-- Quick Stats -->
+              <div class="quick-stats">
+                <div class="stat-item">
+                  <div class="stat-label">Portfolio</div>
+                  <div class="stat-value" id="quickPortfolioValue">$127.45</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="header-actions">
+              <!-- Notifications -->
+              <div class="notification-container">
+                <button class="header-action-btn notification-btn" id="notificationBtn" aria-label="Notifications">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                  </svg>
+                  <div class="notification-badge" id="notificationBadge">3</div>
+                </button>
+                
+                <div class="notification-dropdown" id="notificationDropdown" style="display: none;">
+                  <div class="notification-header">
+                    <h3>Notifications</h3>
+                    <button class="mark-all-read">Mark all read</button>
+                  </div>
+                  <div class="notification-list" id="notificationList">
+                    <div class="notification-item unread">
+                      <div class="notification-icon">🎉</div>
+                      <div class="notification-content">
+                        <div class="notification-title">Welcome to diBoaS!</div>
+                        <div class="notification-message">Your account is ready. Start with a $10 Bitcoin purchase.</div>
+                        <div class="notification-time">2 minutes ago</div>
+                      </div>
+                    </div>
+                    <div class="notification-item">
+                      <div class="notification-icon">📈</div>
+                      <div class="notification-content">
+                        <div class="notification-title">Bitcoin is up 2.3%</div>
+                        <div class="notification-message">Good time to consider your next investment.</div>
+                        <div class="notification-time">1 hour ago</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Theme Toggle -->
+              <button class="header-action-btn theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="theme-icon theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="5"/>
+                  <line x1="12" y1="1" x2="12" y2="3"/>
+                  <line x1="12" y1="21" x2="12" y2="23"/>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                  <line x1="1" y1="12" x2="3" y2="12"/>
+                  <line x1="21" y1="12" x2="23" y2="12"/>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+              </button>
+
+              <!-- Help Button -->
+              <button class="header-action-btn help-btn" id="helpBtn" aria-label="Get help">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </button>
+
+              <!-- Profile Menu -->
+              <div class="profile-container">
+                <button class="profile-btn" id="profileBtn" aria-label="Profile menu" aria-expanded="false">
+                  <div class="profile-avatar">JD</div>
+                  <div class="profile-info">
+                    <div class="profile-name">John Doe</div>
+                    <div class="profile-level">Beginner</div>
+                  </div>
+                  <svg class="profile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6,9 12,15 18,9"/>
+                  </svg>
+                </button>
+                
+                <div class="profile-dropdown" id="profileDropdown" style="display: none;">
+                  <div class="profile-dropdown-header">
+                    <div class="profile-avatar-large">JD</div>
+                    <div class="profile-details">
+                      <div class="profile-name">John Doe</div>
+                      <div class="profile-email">john@example.com</div>
+                      <div class="profile-level-badge">Beginner Investor</div>
+                    </div>
+                  </div>
+                  <div class="profile-dropdown-body">
+                    <a href="#profile" class="dropdown-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                      </svg>
+                      <span>Profile Settings</span>
+                    </a>
+                    <a href="#billing" class="dropdown-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      <span>Billing & Plans</span>
+                    </a>
+                    <a href="#referrals" class="dropdown-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                      <span>Refer Friends</span>
+                    </a>
+                    <div class="dropdown-separator"></div>
+                    <a href="#logout" class="dropdown-item logout">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16,17 21,12 16,7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                      </svg>
+                      <span>Sign Out</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Views -->
+      <div class="app-content" id="appContent" role="main">
+        <!-- Dashboard View -->
+        <div class="content-view active" id="dashboardView" data-view="dashboard">
+          <div class="dashboard-container" id="main-content">
+            <!-- Welcome Section with Mascot Guidance -->
+            <div class="welcome-section" id="welcomeSection">
+              <div class="mascot-guidance-card">
+                <div class="guidance-content">
+                  <div class="guidance-mascot" id="guidanceMascot">
+                    <div class="mascot-avatar-large aqua">🌊</div>
+                    <div class="mascot-speech-bubble">
+                      <div class="speech-bubble-content" id="mascotSpeech">
+                        Unlike other apps that overwhelm you, I'll guide you at YOUR pace. Ready to start building wealth?
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="guidance-message">
+                    <h2 class="guidance-title" id="guidanceTitle">Start with $10. Grow to Pro.</h2>
+                    <p class="guidance-description" id="guidanceDescription">
+                      One platform for your entire crypto journey.
+                    </p>
+                    
+                    <div class="guidance-actions">
+                      <button class="btn-primary guidance-btn" onclick="openQuickBuyModal()">
+                        <span>Start Now</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                <button class="guidance-close" id="guidanceClose" aria-label="Dismiss guidance">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+              <!-- Portfolio Overview -->
+              <div class="portfolio-overview-card" id="portfolio-overview">
+                <div class="card-header">
+                  <div class="card-title">
+                    <h3>Portfolio</h3>
+                  </div>
+                </div>
+                
+                <div class="portfolio-value">
+                  <div class="total-value">
+                    <div class="value-amount" id="totalPortfolioValue">$127.45</div>
+                    <div class="value-change positive" id="portfolioChange">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                      <span>+$12.34 (10.7%)</span>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+                <div class="portfolio-assets-simple">
+                  <div class="asset-item-simple">
+                    <div class="asset-info">
+                      <span class="asset-name">Bitcoin</span>
+                      <span class="asset-value">$97.45</span>
+                    </div>
+                  </div>
+                  <div class="asset-item-simple">
+                    <div class="asset-info">
+                      <span class="asset-name">Ethereum</span>
+                      <span class="asset-value">$30.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="actions-card-simple">
+                <div class="actions-simple">
+                  <button class="action-simple primary" onclick="openQuickBuyModal()">
+                    <span>Buy Crypto</span>
+                  </button>
+                  <button class="action-simple" onclick="openLearningModal()">
+                    <span>Learn & Earn</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Other views will be loaded dynamically -->
+        <div class="content-view" id="portfolioView" data-view="portfolio" style="display: none;">
+          <div class="portfolio-container">
+            <h2>Portfolio Management</h2>
+            <p>Detailed portfolio view coming soon...</p>
+          </div>
+        </div>
+
+        <div class="content-view" id="buyView" data-view="buy" style="display: none;">
+          <div class="buy-container">
+            <h2>Buy Cryptocurrency</h2>
+            <p>Trading interface coming soon...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modals -->
+  
+  <!-- Quick Buy Modal -->
+  <div class="modal-overlay" id="quickBuyModal" role="dialog" aria-labelledby="quickBuyTitle" aria-hidden="true">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-mascot">
+          <div class="mascot-avatar-medium aqua">🌊</div>
+        </div>
+        <div class="modal-title-section">
+          <h2 id="quickBuyTitle" class="modal-title">Your First Crypto Purchase</h2>
+          <p class="modal-subtitle">Start small, build confidence with Aqua's guidance</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('quickBuyModal')" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="mascot-advice">
+          <div class="advice-bubble">
+            <p>"Perfect! Let's start with Bitcoin - it's the safest first choice. Just $10 to begin your wealth journey safely."</p>
+          </div>
+        </div>
+        
+        <form class="buy-form" id="quickBuyForm">
+          <div class="form-section">
+            <label class="form-label">Choose Your First Crypto</label>
+            <div class="crypto-selector">
+              <div class="crypto-option selected" data-crypto="btc">
+                <div class="crypto-icon btc">₿</div>
+                <div class="crypto-info">
+                  <div class="crypto-name">Bitcoin</div>
+                  <div class="crypto-description">The original & most trusted</div>
+                  <div class="crypto-price">$43,250.00</div>
+                </div>
+                <div class="crypto-change positive">+2.3%</div>
+              </div>
+              
+              <div class="crypto-option" data-crypto="eth">
+                <div class="crypto-icon eth">Ξ</div>
+                <div class="crypto-info">
+                  <div class="crypto-name">Ethereum</div>
+                  <div class="crypto-description">Smart contracts & DeFi</div>
+                  <div class="crypto-price">$2,650.00</div>
+                </div>
+                <div class="crypto-change positive">+1.8%</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-section">
+            <label class="form-label">Investment Amount</label>
+            <div class="amount-selector">
+              <div class="amount-presets">
+                <button type="button" class="amount-preset selected" data-amount="10">$10</button>
+                <button type="button" class="amount-preset" data-amount="25">$25</button>
+                <button type="button" class="amount-preset" data-amount="50">$50</button>
+                <button type="button" class="amount-preset" data-amount="100">$100</button>
+              </div>
+              <div class="amount-input-container">
+                <input type="number" class="amount-input" id="investmentAmount" value="10" min="10" max="1000" step="1">
+                <div class="amount-currency">USD</div>
+              </div>
+            </div>
+            <div class="amount-info">
+              <div class="fee-info">
+                <span>Platform fee: $0.01 (0.09%)</span>
+                <span class="fee-comparison">vs Coinbase 1.49%+</span>
+              </div>
+              <div class="total-cost">
+                <span>Total cost: <strong id="totalCost">$10.01</strong></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-section">
+            <div class="purchase-summary">
+              <div class="summary-row">
+                <span>You'll receive:</span>
+                <span id="cryptoAmount">~0.000231 BTC</span>
+              </div>
+              <div class="summary-row">
+                <span>Estimated value in 1 year:</span>
+                <span class="value-projection">$12.50 - $18.75</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="security-badges">
+          <div class="security-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+            <span>Bank-grade security</span>
+          </div>
+          <div class="security-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12,6 12,12 16,14"/>
+            </svg>
+            <span>Instant purchase</span>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" onclick="closeModal('quickBuyModal')">
+            Not Yet
+          </button>
+          <button type="button" class="btn-primary" onclick="processPurchase()">
+            <span class="btn-icon">💰</span>
+            <span>Buy Now - $10.01</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Learning Modal -->
+  <div class="modal-overlay" id="learningModal" role="dialog" aria-labelledby="learningTitle" aria-hidden="true">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-mascot">
+          <div class="mascot-avatar-medium aqua">🌊📚</div>
+        </div>
+        <div class="modal-title-section">
+          <h2 id="learningTitle" class="modal-title">Learn with Aqua</h2>
+          <p class="modal-subtitle">Smart choice! Understanding comes before investing</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('learningModal')" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="mascot-advice">
+          <div class="advice-bubble">
+            <p>"Excellent choice! Learning first shows real wisdom. These courses will prepare you for confident investing."</p>
+          </div>
+        </div>
+        
+        <div class="learning-modules">
+          <a href="../learn/" class="learning-module" data-behavior-track="learning-click">
+            <div class="module-icon">📖</div>
+            <div class="module-content">
+              <div class="module-title">Crypto Fundamentals</div>
+              <div class="module-description">What is Bitcoin? How does blockchain work?</div>
+              <div class="module-meta">
+                <span class="module-duration">5 min read</span>
+                <span class="module-reward">Earn $2</span>
+              </div>
+            </div>
+            <div class="module-progress">
+              <div class="progress-circle">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#4ECDC4" stroke-width="2" 
+                          stroke-dasharray="87.96" stroke-dashoffset="87.96" 
+                          transform="rotate(-90 16 16)"/>
+                </svg>
+                <span class="progress-text">0%</span>
+              </div>
+            </div>
+          </a>
+          
+          <a href="../learn/" class="learning-module" data-behavior-track="learning-click">
+            <div class="module-icon">🎯</div>
+            <div class="module-content">
+              <div class="module-title">Investment Strategy</div>
+              <div class="module-description">Dollar-cost averaging, risk management, portfolio building</div>
+              <div class="module-meta">
+                <span class="module-duration">10 min course</span>
+                <span class="module-reward">Earn $3</span>
+              </div>
+            </div>
+            <div class="module-progress">
+              <div class="progress-circle">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#4ECDC4" stroke-width="2" 
+                          stroke-dasharray="87.96" stroke-dashoffset="87.96" 
+                          transform="rotate(-90 16 16)"/>
+                </svg>
+                <span class="progress-text">0%</span>
+              </div>
+            </div>
+          </a>
+          
+          <a href="../learn/" class="learning-module" data-behavior-track="learning-click">
+            <div class="module-icon">🛡️</div>
+            <div class="module-content">
+              <div class="module-title">Security Essentials</div>
+              <div class="module-description">Protect your investments with proper security practices</div>
+              <div class="module-meta">
+                <span class="module-duration">7 min guide</span>
+                <span class="module-reward">Unlock 2FA</span>
+              </div>
+            </div>
+            <div class="module-progress">
+              <div class="progress-circle">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#4ECDC4" stroke-width="2" 
+                          stroke-dasharray="87.96" stroke-dashoffset="87.96" 
+                          transform="rotate(-90 16 16)"/>
+                </svg>
+                <span class="progress-text">0%</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="learning-stats">
+          <div class="stat-item">
+            <div class="stat-value">$5</div>
+            <div class="stat-label">Total Earnings</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">22 min</div>
+            <div class="stat-label">Total Time</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Completion Rate</div>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" onclick="closeModal('learningModal'); openQuickBuyModal();">
+            Ready to Invest
+          </button>
+          <a href="../learn/" class="btn-primary">
+            <span class="btn-icon">📚</span>
+            <span>Start Learning</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase Unlock Notification -->
+  <div class="phase-unlock-notification" id="phaseUnlockNotification">
+    <div class="unlock-content">
+      <div class="unlock-mascot" id="unlockMascot">🌱</div>
+      <div class="unlock-message">
+        <div class="unlock-title" id="unlockTitle">Verde Phase Unlocked!</div>
+        <div class="unlock-description" id="unlockDescription">
+          You've shown great progress! Verde is ready to help you grow your wealth with multi-asset investing.
+        </div>
+      </div>
+      <div class="unlock-actions">
+        <button class="unlock-btn" onclick="exploreNewPhase()">Explore Verde</button>
+        <button class="unlock-close" onclick="dismissPhaseUnlock()">×</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <div class="mobile-nav-backdrop" onclick="closeMobileNav()"></div>
+  </div>
+
+  <!-- Loading States -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="loading-spinner">
+      <div class="spinner-mascot">🌊</div>
+      <div class="spinner-text">Processing...</div>
+    </div>
+  </div>
+
+  <!-- Behavioral Intelligence Engine - Clean Implementation -->
+  <script src="app-clean.js"></script>
+  
+  <!-- PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registered: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
