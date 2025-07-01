@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="diBoaS Documentation - Complete guide to the OneFi platform, mascot system, and wealth building features. Learn how to use diBoaS effectively.">
+    <meta name="keywords" content="diBoaS documentation, OneFi platform guide, crypto investment help, AI financial guidance, user manual">
+    <meta name="author" content="diBoaS">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="diBoaS Documentation - Your Complete Platform Guide">
+    <meta property="og:description" content="Complete guide to using diBoaS OneFi platform. Learn about mascots, features, and wealth building strategies.">
+    <meta property="og:image" content="./assets/images/social_cover.png">
+    <meta property="og:url" content="https://docs.diboas.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="diBoaS Documentation">
+    <meta name="twitter:description" content="Complete guide to the OneFi platform">
+    <meta name="twitter:image" content="./assets/images/social_cover.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#4ECDC4">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="./assets/images/aqua_mascot.png" as="image">
+    
+    <title>diBoaS Documentation - Your Complete Platform Guide</title>
+    
+    <style>
+        /* CSS Custom Properties - diBoaS Design System */
+        :root {
+            /* Primary Mascot Colors */
+            --aqua-primary: #4ECDC4;
+            --aqua-light: #A8E6CF;
+            --aqua-dark: #26A69A;
+            --aqua-background: #F0FDFC;
+            
+            --verde-primary: #A8E6CF;
+            --verde-dark: #66BB6A;
+            
+            --mystic-primary: #B39DDB;
+            --mystic-dark: #7E57C2;
+            
+            --coral-primary: #FFB3BA;
+            --coral-dark: #E57373;
+            
+            /* Platform Unity */
+            --platform-accent: #4ECDC4;
+            --journey-progress: linear-gradient(90deg, #4ECDC4, #A8E6CF, #B39DDB, #FFB3BA);
+            
+            /* Light Theme Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #FAFAFA;
+            --bg-tertiary: #F5F5F5;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-tertiary: #9E9E9E;
+            --border-color: #E0E0E0;
+            --border-hover: #BDBDBD;
+            
+            /* Semantic Colors */
+            --success-green: #4CAF50;
+            --warning-orange: #FF9800;
+            --error-red: #F44336;
+            --info-blue: #2196F3;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Poppins', sans-serif;
+            --font-mono: 'JetBrains Mono', Monaco, monospace;
+            
+            /* Font Sizes (Responsive) */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+            --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+            --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+            
+            /* Spacing Scale */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-base: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Layout */
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            --content-max-width: 800px;
+        }
+        
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #404040;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-tertiary: #808080;
+            --border-color: #404040;
+            --border-hover: #595959;
+        }
+        
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Layout Structure */
+        .docs-layout {
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "sidebar content";
+            grid-template-columns: var(--sidebar-width) 1fr;
+            grid-template-rows: var(--header-height) 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .docs-header {
+            grid-area: header;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-6);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .docs-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-lg);
+            color: var(--text-primary);
+        }
+        
+        .docs-logo img {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        
+        .breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--aqua-primary);
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 300px;
+            padding: var(--space-3) var(--space-4) var(--space-3) var(--space-10);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            background: var(--bg-secondary);
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--aqua-primary);
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: var(--space-3);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+            width: 16px;
+            height: 16px;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-base);
+            padding: var(--space-2);
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--aqua-primary);
+            color: var(--aqua-primary);
+        }
+        
+        /* Sidebar */
+        .docs-sidebar {
+            grid-area: sidebar;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            padding: var(--space-6) 0;
+            overflow-y: auto;
+            height: calc(100vh - var(--header-height));
+            position: sticky;
+            top: var(--header-height);
+        }
+        
+        .sidebar-section {
+            margin-bottom: var(--space-6);
+        }
+        
+        .sidebar-title {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0 var(--space-6) var(--space-3);
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: var(--space-1);
+        }
+        
+        .sidebar-nav a {
+            display: block;
+            padding: var(--space-3) var(--space-6);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-nav a:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-left-color: var(--aqua-light);
+        }
+        
+        .sidebar-nav a.active {
+            background: rgba(78, 205, 196, 0.1);
+            color: var(--aqua-dark);
+            border-left-color: var(--aqua-primary);
+            font-weight: 500;
+        }
+        
+        .sidebar-nav .nested {
+            margin-left: var(--space-4);
+            font-size: var(--text-xs);
+        }
+        
+        /* Main Content */
+        .docs-content {
+            grid-area: content;
+            padding: var(--space-8) var(--space-6);
+            overflow-x: hidden;
+        }
+        
+        .content-wrapper {
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+        }
+        
+        .docs-hero {
+            text-align: center;
+            margin-bottom: var(--space-16);
+            padding: var(--space-12) 0;
+            background: linear-gradient(135deg, var(--aqua-background), var(--bg-primary));
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .docs-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--journey-progress);
+            opacity: 0.05;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-mascot {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-4);
+            animation: gentle-bob 3s ease-in-out infinite;
+        }
+        
+        .hero-greeting {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            color: var(--aqua-dark);
+            margin-bottom: var(--space-4);
+            font-weight: 500;
+        }
+        
+        .docs-title {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .docs-subtitle {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+        
+        .quick-action {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: white;
+            color: var(--aqua-dark);
+            text-decoration: none;
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-lg);
+            font-weight: 500;
+            box-shadow: var(--shadow-base);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .quick-action:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--aqua-primary);
+        }
+        
+        .quick-action.primary {
+            background: linear-gradient(135deg, var(--aqua-primary), var(--aqua-dark));
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* Popular Sections */
+        .popular-sections {
+            margin-bottom: var(--space-16);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            padding: var(--space-2);
+            background: linear-gradient(135deg, var(--aqua-light), var(--aqua-primary));
+            border-radius: var(--radius-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .doc-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--journey-progress);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--aqua-light);
+        }
+        
+        .doc-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .card-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--aqua-primary);
+        }
+        
+        .card-title {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+            line-height: 1.5;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+        
+        .difficulty-badge {
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+        
+        .difficulty-beginner {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+        }
+        
+        .difficulty-intermediate {
+            background: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+        }
+        
+        .difficulty-advanced {
+            background: rgba(156, 39, 176, 0.1);
+            color: #9C27B0;
+        }
+        
+        /* Search Results */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .search-result {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-result:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .search-result:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .search-result-snippet {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        
+        .search-highlight {
+            background: rgba(78, 205, 196, 0.2);
+            padding: 0 var(--space-1);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Animations */
+        @keyframes gentle-bob {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .docs-layout {
+                grid-template-areas: 
+                    "header"
+                    "content";
+                grid-template-columns: 1fr;
+                grid-template-rows: var(--header-height) 1fr;
+            }
+            
+            .docs-sidebar {
+                position: fixed;
+                left: -100%;
+                top: var(--header-height);
+                width: var(--sidebar-width);
+                height: calc(100vh - var(--header-height));
+                transition: left 0.3s ease;
+                z-index: 200;
+            }
+            
+            .docs-sidebar.active {
+                left: 0;
+            }
+            
+            .sidebar-overlay {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                display: none;
+                z-index: 150;
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: var(--space-2);
+                color: var(--text-primary);
+            }
+            
+            .search-input {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .docs-header {
+                padding: 0 var(--space-4);
+            }
+            
+            .docs-content {
+                padding: var(--space-6) var(--space-4);
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quick-action {
+                width: 100%;
+                justify-content: center;
+                max-width: 280px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .breadcrumb {
+                display: none;
+            }
+            
+            .header-right {
+                gap: var(--space-2);
+            }
+            
+            .search-input {
+                width: 120px;
+                font-size: var(--text-xs);
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .docs-header,
+            .docs-sidebar,
+            .theme-toggle,
+            .search-container {
+                display: none;
+            }
+            
+            .docs-layout {
+                grid-template-areas: "content";
+                grid-template-columns: 1fr;
+            }
+            
+            .docs-content {
+                padding: 0;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-mascot {
+                animation: none;
+            }
+            
+            .doc-card,
+            .quick-action,
+            .sidebar-nav a {
+                transition: none;
+            }
+        }
+        
+        /* Focus styles */
+        .search-input:focus,
+        .theme-toggle:focus,
+        .quick-action:focus,
+        .doc-card:focus,
+        .sidebar-nav a:focus {
+            outline: 2px solid var(--aqua-primary);
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-color: #000000;
+                --text-secondary: #000000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Documentation Layout -->
+    <div class="docs-layout">
+        <!-- Header -->
+        <header class="docs-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" aria-label="Toggle navigation menu" style="display: none;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                
+                <a href="/" class="docs-logo">
+                    <img src="./assets/icons/favicon.svg" alt="diBoaS Logo">
+                    <span>diBoaS Docs</span>
+                </a>
+                
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    <span>→</span>
+                    <span>Documentation</span>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-container">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="search" class="search-input" placeholder="Search documentation..." aria-label="Search documentation">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+                
+                <button class="theme-toggle" aria-label="Toggle dark mode" id="themeToggle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Getting Started</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#overview" class="active">Platform Overview</a></li>
+                    <li><a href="#what-is-diboas">What is diBoaS</a></li>
+                    <li><a href="#getting-started">Getting Started Guide</a></li>
+                    <li><a href="#first-purchase">Your First Purchase</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Mascot System</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#mascot-overview">Mascot Overview</a></li>
+                    <li><a href="#aqua-guide">Aqua - Your Guide</a></li>
+                    <li><a href="#verde-growth">Verde - Growth</a></li>
+                    <li><a href="#mystic-advanced">Mystic - Advanced</a></li>
+                    <li><a href="#coral-community">Coral - Community</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Platform Features</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#crypto-purchase">1-Click Crypto</a></li>
+                    <li><a href="#portfolio-management">Portfolio Management</a></li>
+                    <li><a href="#ai-guidance">AI Guidance (DeFAi)</a></li>
+                    <li><a href="#security-features">Security Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">User Guides</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#buying-crypto">Buying Your First Crypto</a></li>
+                    <li><a href="#understanding-prices">Understanding Prices</a></li>
+                    <li><a href="#portfolio-diversification">Portfolio Diversification</a></li>
+                    <li><a href="#security-setup">Setting Up Security</a></li>
+                    <li><a href="#price-alerts">Price Alerts</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Educational Resources</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#crypto-basics">Crypto Basics</a></li>
+                    <li><a href="#investment-principles">Investment Principles</a></li>
+                    <li><a href="#market-movements">Market Movements</a></li>
+                    <li><a href="#wealth-strategies">Wealth Strategies</a></li>
+                    <li><a href="/learn">Learning Center →</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Security & Safety</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#platform-security">Platform Security</a></li>
+                    <li><a href="#user-security">User Best Practices</a></li>
+                    <li><a href="#fund-protection">Fund Protection</a></li>
+                    <li><a href="#regulatory-compliance">Compliance</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Support</h3>
+                <ul class="sidebar-nav">
+                    <li><a href="#fees-pricing">Fees & Pricing</a></li>
+                    <li><a href="#community-support">Community</a></li>
+                    <li><a href="#contact">Contact Support</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="docs-content">
+            <div class="content-wrapper">
+                <!-- Hero Section -->
+                <section class="docs-hero">
+                    <div class="hero-content">
+                        <img src="./assets/images/aqua_mascot.png" alt="Aqua Mascot" class="hero-mascot">
+                        <p class="hero-greeting">"Welcome to your diBoaS journey!"</p>
+                        <h1 class="docs-title">diBoaS Documentation</h1>
+                        <p class="docs-subtitle">Your complete guide to the OneFi platform. Learn how to build wealth with AI-powered guides, understand the progressive mascot system, and master crypto investing.</p>
+                        
+                        <div class="quick-actions">
+                            <a href="#getting-started" class="quick-action primary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                </svg>
+                                Quick Start Guide
+                            </a>
+                            <a href="#mascot-overview" class="quick-action">
+                                <span>🌊</span>
+                                Meet Your Guides
+                            </a>
+                            <a href="/app" class="quick-action">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15,3 21,3 21,9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                                Start Investing
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Popular Sections -->
+                <section class="popular-sections">
+                    <div class="section-header">
+                        <div class="section-icon">🔥</div>
+                        <h2>Popular Help Topics</h2>
+                    </div>
+                    
+                    <div class="cards-grid">
+                        <a href="#getting-started" class="doc-card">
+                            <div class="card-header">
+                                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                                <h3 class="card-title">Getting Started Guide</h3>
+                            </div>
+                            <p class="card-description">Complete walkthrough for new users. From account creation to your first crypto purchase with Aqua's guidance.</p>
+                            <div class="card-meta">
+                                <span class="read-time">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                    5 min read
+                                </span>
+                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            </div>
+                        </a>
+                        
+                        <a href="#mascot-overview" class="doc-card">
+                            <div class="card-header">
+                                <span class="card-icon">🌊</span>
+                                <h3 class="card-title">Understanding Mascot Guides</h3>
+                            </div>
+                            <p class="card-description">Learn how Aqua, Verde, Mystic, and Coral guides evolve with your expertise to provide personalized wealth guidance.</p>
+                            <div class="card-meta">
+                                <span class="read-time">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                    7 min read
+                                </span>
+                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            </div>
+                        </a>
+                        
+                        <a href="#crypto-purchase" class="doc-card">
+                            <div class="card-header">
+                                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                <h3 class="card-title">1-Click Crypto Purchase</h3>
+                            </div>
+                            <p class="card-description">How to buy Bitcoin, Ethereum, Solana, or Sui in under 2 minutes with just $10 minimum investment.</p>
+                            <div class="card-meta">
+                                <span class="read-time">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                    3 min read
+                                </span>
+                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            </div>
+                        </a>
+                        
+                        <a href="#security-setup" class="doc-card">
+                            <div class="card-header">
+                                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                                <h3 class="card-title">Security Setup</h3>
+                            </div>
+                            <p class="card-description">Step-by-step guide to setting up 2FA and securing your wealth for future investments beyond your first purchase.</p>
+                            <div class="card-meta">
+                                <span class="read-time">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                    4 min read
+                                </span>
+                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            </div>
+                        </a>
+                        
+                        <a href="#fees-pricing" class="doc-card">
+                            <div class="card-header">
+                                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                </svg>
+                                <h3 class="card-title">Fees & Pricing</h3>
+                            </div>
+                            <p class="card-description">Transparent fee structure: 0.09% trading, 0.9% transfers. No hidden fees, no monthly charges, no surprises.</p>
+                            <div class="card-meta">
+                                <span class="read-time">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                    2 min read
+                                </span>
+                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            </div>
+                        </a>
+                        
+                        <a href="#ai-guidance" class="doc-card">
+                            <div class="card-header">
+                                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                                <h3 class="card-title">AI-Powered Guidance</h3>
+                            </div>
+                            <p class="card-description">How DeFAi (your collective AI) works through mascot guides to provide personalized investment recommendations.</p>
+                            <div class="card-meta">
+                                <span class="read-time">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                    6 min read
+                                </span>
+                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- Additional Resources -->
+                <section class="popular-sections">
+                    <div class="section-header">
+                        <div class="section-icon">📚</div>
+                        <h2>Additional Resources</h2>
+                    </div>
+                    
+                    <div class="cards-grid">
+                        <a href="/learn" class="doc-card">
+                            <div class="card-header">
+                                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <h3 class="card-title">Learning Center</h3>
+                            </div>
+                            <p class="card-description">Interactive courses, video tutorials, and educational content from the diBoaS YouTube channel.</p>
+                            <div class="card-meta">
+                                <span class="read-time">External Link</span>
+                                <span class="difficulty-badge difficulty-beginner">All Levels</span>
+                            </div>
+                        </a>
+                        
+                        <a href="#community-support" class="doc-card">
+                            <div class="card-header">
+                                <span class="card-icon">👥</span>
+                                <h3 class="card-title">Community Support</h3>
+                            </div>
+                            <p class="card-description">Connect with 50,000+ wealth builders, get help from experienced users, and share your journey.</p>
+                            <div class="card-meta">
+                                <span class="read-time">Community</span>
+                                <span class="difficulty-badge difficulty-beginner">All Levels</span>
+                            </div>
+                        </a>
+                        
+                        <a href="/app" class="doc-card">
+                            <div class="card-header">
+                                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                                <h3 class="card-title">Start Building Wealth</h3>
+                            </div>
+                            <p class="card-description">Ready to begin? Start your wealth journey with Aqua as your guide. Just $10 minimum to get started.</p>
+                            <div class="card-meta">
+                                <span class="read-time">Get Started</span>
+                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <script>
+        // Documentation functionality
+        class DocsApp {
+            constructor() {
+                this.initializeComponents();
+                this.setupEventListeners();
+                this.loadUserPreferences();
+            }
+            
+            initializeComponents() {
+                this.searchInput = document.querySelector('.search-input');
+                this.searchResults = document.getElementById('searchResults');
+                this.themeToggle = document.getElementById('themeToggle');
+                this.mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                this.sidebar = document.getElementById('sidebar');
+                this.sidebarOverlay = document.getElementById('sidebarOverlay');
+                this.sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+                
+                // Mock documentation data for search
+                this.docData = [
+                    {
+                        title: "Getting Started Guide",
+                        url: "#getting-started",
+                        content: "Complete walkthrough for new users account creation first crypto purchase Aqua guidance",
+                        category: "Getting Started"
+                    },
+                    {
+                        title: "What is diBoaS",
+                        url: "#what-is-diboas",
+                        content: "OneFi platform introduction progressive complexity explanation different from other platforms",
+                        category: "Overview"
+                    },
+                    {
+                        title: "Mascot System Overview",
+                        url: "#mascot-overview",
+                        content: "Aqua Verde Mystic Coral guides evolve expertise personalized wealth guidance",
+                        category: "Mascot System"
+                    },
+                    {
+                        title: "1-Click Crypto Purchase",
+                        url: "#crypto-purchase",
+                        content: "Bitcoin Ethereum Solana Sui 2 minutes 10 dollars minimum investment",
+                        category: "Features"
+                    },
+                    {
+                        title: "Security Setup",
+                        url: "#security-setup",
+                        content: "2FA two factor authentication secure wealth future investments setup guide",
+                        category: "Security"
+                    },
+                    {
+                        title: "Fees and Pricing",
+                        url: "#fees-pricing",
+                        content: "0.09% trading 0.9% transfers transparent no hidden fees monthly charges",
+                        category: "Pricing"
+                    },
+                    {
+                        title: "AI-Powered Guidance",
+                        url: "#ai-guidance",
+                        content: "DeFAi artificial intelligence mascot guides personalized investment recommendations",
+                        category: "Features"
+                    },
+                    {
+                        title: "Platform Security",
+                        url: "#platform-security",
+                        content: "bank grade security military encryption independently audited fund protection",
+                        category: "Security"
+                    }
+                ];
+            }
+            
+            setupEventListeners() {
+                // Search functionality
+                if (this.searchInput) {
+                    this.searchInput.addEventListener('input', this.handleSearch.bind(this));
+                    this.searchInput.addEventListener('focus', this.showSearchResults.bind(this));
+                    document.addEventListener('click', this.hideSearchResults.bind(this));
+                }
+                
+                // Theme toggle
+                if (this.themeToggle) {
+                    this.themeToggle.addEventListener('click', this.toggleTheme.bind(this));
+                }
+                
+                // Mobile menu
+                if (this.mobileMenuBtn) {
+                    this.mobileMenuBtn.addEventListener('click', this.toggleMobileMenu.bind(this));
+                }
+                
+                if (this.sidebarOverlay) {
+                    this.sidebarOverlay.addEventListener('click', this.closeMobileMenu.bind(this));
+                }
+                
+                // Sidebar navigation
+                this.sidebarLinks.forEach(link => {
+                    link.addEventListener('click', this.handleNavigation.bind(this));
+                });
+                
+                // Smooth scrolling for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', this.smoothScroll.bind(this));
+                });
+                
+                // Keyboard shortcuts
+                document.addEventListener('keydown', this.handleKeyboardShortcuts.bind(this));
+            }
+            
+            handleSearch(event) {
+                const query = event.target.value.toLowerCase().trim();
+                
+                if (query.length < 2) {
+                    this.hideSearchResults();
+                    return;
+                }
+                
+                const results = this.docData.filter(doc => 
+                    doc.title.toLowerCase().includes(query) ||
+                    doc.content.toLowerCase().includes(query) ||
+                    doc.category.toLowerCase().includes(query)
+                );
+                
+                this.displaySearchResults(results, query);
+                this.trackAnalytics('search', { query, resultCount: results.length });
+            }
+            
+            displaySearchResults(results, query) {
+                if (results.length === 0) {
+                    this.searchResults.innerHTML = `
+                        <div class="search-result">
+                            <div class="search-result-title">No results found</div>
+                            <div class="search-result-snippet">Try searching for "getting started", "mascot", or "security"</div>
+                        </div>
+                    `;
+                } else {
+                    this.searchResults.innerHTML = results.map(result => {
+                        const highlightedTitle = this.highlightText(result.title, query);
+                        const highlightedContent = this.highlightText(result.content, query);
+                        
+                        return `
+                            <div class="search-result" onclick="window.location.href='${result.url}'">
+                                <div class="search-result-title">${highlightedTitle}</div>
+                                <div class="search-result-snippet">${highlightedContent}</div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+                
+                this.showSearchResults();
+            }
+            
+            highlightText(text, query) {
+                if (!query) return text;
+                const regex = new RegExp(`(${query})`, 'gi');
+                return text.replace(regex, '<span class="search-highlight">$1</span>');
+            }
+            
+            showSearchResults() {
+                if (this.searchResults) {
+                    this.searchResults.classList.add('active');
+                }
+            }
+            
+            hideSearchResults(event) {
+                if (event && this.searchInput && this.searchInput.contains(event.target)) {
+                    return;
+                }
+                if (this.searchResults) {
+                    this.searchResults.classList.remove('active');
+                }
+            }
+            
+            toggleTheme() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('diboas-docs-theme', newTheme);
+                
+                // Update theme toggle icon
+                this.updateThemeIcon(newTheme);
+                this.trackAnalytics('theme_toggle', { theme: newTheme });
+            }
+            
+            updateThemeIcon(theme) {
+                const icon = this.themeToggle.querySelector('svg');
+                if (theme === 'dark') {
+                    icon.innerHTML = `
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    `;
+                } else {
+                    icon.innerHTML = `
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                    `;
+                }
+            }
+            
+            toggleMobileMenu() {
+                this.sidebar.classList.toggle('active');
+                this.sidebarOverlay.classList.toggle('active');
+                document.body.style.overflow = this.sidebar.classList.contains('active') ? 'hidden' : '';
+            }
+            
+            closeMobileMenu() {
+                this.sidebar.classList.remove('active');
+                this.sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            handleNavigation(event) {
+                // Update active state
+                this.sidebarLinks.forEach(link => link.classList.remove('active'));
+                event.target.classList.add('active');
+                
+                // Close mobile menu if open
+                if (window.innerWidth <= 1024) {
+                    this.closeMobileMenu();
+                }
+                
+                this.trackAnalytics('navigation', { section: event.target.textContent.trim() });
+            }
+            
+            smoothScroll(event) {
+                const href = event.currentTarget.getAttribute('href');
+                if (href.startsWith('#')) {
+                    event.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            }
+            
+            handleKeyboardShortcuts(event) {
+                // Ctrl/Cmd + K for search focus
+                if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                    event.preventDefault();
+                    this.searchInput.focus();
+                }
+                
+                // Escape to close search or mobile menu
+                if (event.key === 'Escape') {
+                    this.hideSearchResults();
+                    this.closeMobileMenu();
+                }
+            }
+            
+            loadUserPreferences() {
+                // Load saved theme
+                const savedTheme = localStorage.getItem('diboas-docs-theme') || 'light';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                this.updateThemeIcon(savedTheme);
+                
+                // Load reading progress (placeholder)
+                this.loadReadingProgress();
+            }
+            
+            loadReadingProgress() {
+                // Placeholder for reading progress tracking
+                const progress = localStorage.getItem('diboas-docs-progress');
+                if (progress) {
+                    // Restore user's reading progress
+                    console.log('Reading progress loaded:', progress);
+                }
+            }
+            
+            trackAnalytics(event, properties = {}) {
+                // Analytics tracking (placeholder implementation)
+                console.log('Analytics Event:', event, properties);
+                
+                // In a real implementation, this would send data to your analytics service
+                // Example: analytics.track(event, properties);
+                
+                // Store user behavior for documentation optimization
+                const behaviorData = {
+                    timestamp: Date.now(),
+                    event,
+                    properties,
+                    url: window.location.href,
+                    userAgent: navigator.userAgent
+                };
+                
+                // Save to local storage for now (in production, send to server)
+                const existingData = JSON.parse(localStorage.getItem('diboas-docs-analytics') || '[]');
+                existingData.push(behaviorData);
+                
+                // Keep only last 100 events
+                if (existingData.length > 100) {
+                    existingData.splice(0, existingData.length - 100);
+                }
+                
+                localStorage.setItem('diboas-docs-analytics', JSON.stringify(existingData));
+            }
+        }
+        
+        // Initialize the documentation app
+        document.addEventListener('DOMContentLoaded', () => {
+            new DocsApp();
+            
+            // Track page load
+            console.log('diBoaS Documentation loaded successfully');
+            
+            // Performance monitoring
+            window.addEventListener('load', () => {
+                // Track performance metrics
+                if ('performance' in window) {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    console.log('Documentation load time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
+                }
+            });
+        });
+        
+        // Service Worker registration for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/docs-sw.js')
+                    .then(registration => {
+                        console.log('Docs SW registered:', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('Docs SW registration failed:', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

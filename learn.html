@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="diBoaS Learning Center - Master crypto investing and wealth building through AI-guided education. Interactive courses with Aqua, Verde, Mystic, and Coral mascots.">
+    <meta name="keywords" content="crypto education, investment learning, DeFi courses, wealth building guide, financial literacy, blockchain education">
+    <meta name="author" content="diBoaS">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="diBoaS Learning Center - Master Crypto & Wealth Building">
+    <meta property="og:description" content="Interactive learning platform with AI guides. From crypto basics to advanced DeFi strategies.">
+    <meta property="og:image" content="./assets/images/social_cover.png">
+    <meta property="og:url" content="https://learn.diboas.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="diBoaS Learning Center">
+    <meta name="twitter:description" content="Master crypto investing with AI-guided education">
+    <meta name="twitter:image" content="./assets/images/social_cover.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#4ECDC4">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="./assets/images/aqua_mascot.png" as="image">
+    
+    <title>diBoaS Learning Center - Master Crypto & Wealth Building</title>
+    
+    <style>
+        /* CSS Custom Properties - diBoaS Design System */
+        :root {
+            /* Primary Mascot Colors */
+            --aqua-primary: #4ECDC4;
+            --aqua-light: #A8E6CF;
+            --aqua-dark: #26A69A;
+            --aqua-background: #F0FDFC;
+            
+            --verde-primary: #A8E6CF;
+            --verde-dark: #66BB6A;
+            --verde-background: #F1F8E9;
+            
+            --mystic-primary: #B39DDB;
+            --mystic-dark: #7E57C2;
+            --mystic-background: #F3E5F5;
+            
+            --coral-primary: #FFB3BA;
+            --coral-dark: #E57373;
+            --coral-background: #FFF3E0;
+            
+            /* Platform Unity */
+            --platform-accent: #4ECDC4;
+            --journey-progress: linear-gradient(90deg, #4ECDC4, #A8E6CF, #B39DDB, #FFB3BA);
+            
+            /* Light Theme Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #FAFAFA;
+            --bg-tertiary: #F5F5F5;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-tertiary: #9E9E9E;
+            --border-color: #E0E0E0;
+            --border-hover: #BDBDBD;
+            
+            /* Dark Theme Colors */
+            --dark-bg-primary: #121212;
+            --dark-bg-secondary: #1E1E1E;
+            --dark-bg-tertiary: #2D2D2D;
+            --dark-text-primary: #FFFFFF;
+            --dark-text-secondary: #B0B0B0;
+            --dark-text-tertiary: #888888;
+            --dark-border-color: #404040;
+            --dark-border-hover: #606060;
+            
+            /* Semantic Colors */
+            --success-green: #4CAF50;
+            --warning-orange: #FF9800;
+            --error-red: #F44336;
+            --info-blue: #2196F3;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Poppins', sans-serif;
+            --font-mono: 'JetBrains Mono', Monaco, monospace;
+            
+            /* Font Sizes (Responsive) */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+            --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+            --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+            
+            /* Spacing Scale */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-base: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            
+            /* Elevation Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Dark Theme Overrides */
+        [data-theme="dark"] {
+            --bg-primary: var(--dark-bg-primary);
+            --bg-secondary: var(--dark-bg-secondary);
+            --bg-tertiary: var(--dark-bg-tertiary);
+            --text-primary: var(--dark-text-primary);
+            --text-secondary: var(--dark-text-secondary);
+            --text-tertiary: var(--dark-text-tertiary);
+            --border-color: var(--dark-border-color);
+            --border-hover: var(--dark-border-hover);
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: var(--space-4) 0;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .header {
+            background: rgba(18, 18, 18, 0.95);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: var(--text-xl);
+            color: var(--text-primary);
+        }
+        
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--aqua-primary);
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-full);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--aqua-primary);
+            color: var(--aqua-primary);
+        }
+        
+        /* Main Content */
+        .main {
+            margin-top: 88px;
+            min-height: calc(100vh - 88px);
+        }
+        
+        /* Learning Dashboard */
+        .learning-dashboard {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: calc(100vh - 88px);
+        }
+        
+        .sidebar {
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            padding: var(--space-6);
+            overflow-y: auto;
+            height: calc(100vh - 88px);
+            position: sticky;
+            top: 88px;
+        }
+        
+        .mascot-selector {
+            margin-bottom: var(--space-8);
+        }
+        
+        .mascot-selector h3 {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .mascot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+        }
+        
+        .mascot-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mascot-card.active {
+            border-color: var(--aqua-primary);
+            background: var(--aqua-background);
+        }
+        
+        .mascot-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+        
+        .mascot-card.active:hover {
+            border-color: var(--aqua-primary);
+        }
+        
+        .mascot-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .mascot-name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .mascot-level {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        
+        .learning-nav {
+            margin-top: var(--space-6);
+        }
+        
+        .nav-section {
+            margin-bottom: var(--space-6);
+        }
+        
+        .nav-section h4 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .nav-items {
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-bottom: var(--space-2);
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-base);
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            font-size: var(--text-sm);
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--aqua-background);
+            color: var(--aqua-dark);
+        }
+        
+        .progress-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: var(--radius-full);
+            background: var(--border-color);
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .progress-indicator.completed {
+            background: var(--success-green);
+        }
+        
+        .progress-indicator.in-progress {
+            background: var(--warning-orange);
+        }
+        
+        .progress-indicator.completed::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        /* Main Content Area */
+        .content-area {
+            padding: var(--space-6);
+            overflow-y: auto;
+            height: calc(100vh - 88px);
+        }
+        
+        .learning-header {
+            margin-bottom: var(--space-8);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .breadcrumb a {
+            color: var(--aqua-primary);
+            text-decoration: none;
+        }
+        
+        .content-title {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .content-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: var(--space-8);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--journey-progress);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+        
+        /* Video Player */
+        .video-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-8);
+            box-shadow: var(--shadow-base);
+        }
+        
+        .video-player {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            background: linear-gradient(135deg, var(--aqua-background), var(--verde-background));
+            color: var(--text-secondary);
+            font-size: var(--text-lg);
+            border-radius: var(--radius-lg);
+        }
+        
+        .video-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .control-btn {
+            background: var(--aqua-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-base);
+            padding: var(--space-2) var(--space-4);
+            cursor: pointer;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: var(--aqua-dark);
+            transform: translateY(-1px);
+        }
+        
+        .video-progress {
+            flex: 1;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+        }
+        
+        .video-progress-fill {
+            height: 100%;
+            background: var(--aqua-primary);
+            border-radius: var(--radius-full);
+            transition: width 0.1s ease;
+        }
+        
+        /* Learning Content */
+        .learning-content {
+            max-width: 800px;
+        }
+        
+        .content-section {
+            margin-bottom: var(--space-8);
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .content-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-4);
+        }
+        
+        .content-text h3 {
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            font-weight: 600;
+            margin: var(--space-6) 0 var(--space-3);
+        }
+        
+        .content-text ul {
+            margin-left: var(--space-5);
+            margin-bottom: var(--space-4);
+        }
+        
+        .content-text li {
+            margin-bottom: var(--space-2);
+        }
+        
+        .highlight-box {
+            background: var(--aqua-background);
+            border-left: 4px solid var(--aqua-primary);
+            padding: var(--space-4);
+            border-radius: var(--radius-base);
+            margin: var(--space-4) 0;
+        }
+        
+        .mascot-tip {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin: var(--space-6) 0;
+            position: relative;
+        }
+        
+        .mascot-tip::before {
+            content: '🌊';
+            font-size: 1.5rem;
+            position: absolute;
+            top: var(--space-3);
+            left: var(--space-4);
+        }
+        
+        .mascot-tip-content {
+            margin-left: var(--space-10);
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: var(--aqua-dark);
+            margin-bottom: var(--space-2);
+        }
+        
+        /* Quiz Section */
+        .quiz-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .quiz-question {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .quiz-options {
+            list-style: none;
+        }
+        
+        .quiz-option {
+            margin-bottom: var(--space-3);
+        }
+        
+        .quiz-option label {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option label:hover {
+            border-color: var(--aqua-primary);
+            background: var(--aqua-background);
+        }
+        
+        .quiz-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--aqua-primary);
+        }
+        
+        .quiz-submit {
+            background: var(--aqua-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-base);
+            padding: var(--space-3) var(--space-6);
+            font-size: var(--text-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: var(--space-4);
+        }
+        
+        .quiz-submit:hover {
+            background: var(--aqua-dark);
+            transform: translateY(-1px);
+        }
+        
+        /* Navigation Buttons */
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-base);
+            padding: var(--space-3) var(--space-5);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            border-color: var(--aqua-primary);
+            background: var(--aqua-background);
+        }
+        
+        .nav-btn.primary {
+            background: var(--aqua-primary);
+            border-color: var(--aqua-primary);
+            color: white;
+        }
+        
+        .nav-btn.primary:hover {
+            background: var(--aqua-dark);
+            border-color: var(--aqua-dark);
+        }
+        
+        /* Achievement System */
+        .achievement-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--bg-primary);
+            border: 2px solid var(--aqua-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            text-align: center;
+            z-index: 2000;
+            box-shadow: var(--shadow-xl);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+            width: 90vw;
+        }
+        
+        .achievement-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .achievement-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-4);
+        }
+        
+        .achievement-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .achievement-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+        }
+        
+        .achievement-close {
+            background: var(--aqua-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-base);
+            padding: var(--space-2) var(--space-4);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .learning-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: relative;
+                height: auto;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .content-area {
+                height: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .sidebar {
+                padding: var(--space-4);
+            }
+            
+            .mascot-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-area {
+                padding: var(--space-4);
+            }
+            
+            .video-container {
+                padding: var(--space-4);
+            }
+            
+            .lesson-navigation {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            .mascot-tip-content {
+                margin-left: 0;
+                margin-top: var(--space-4);
+            }
+        }
+        
+        /* Focus styles for accessibility */
+        .nav-link:focus,
+        .control-btn:focus,
+        .quiz-submit:focus,
+        .nav-btn:focus {
+            outline: 2px solid var(--aqua-primary);
+            outline-offset: 2px;
+        }
+        
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: var(--text-secondary);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--aqua-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: var(--space-3);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="./assets/icons/favicon.svg" alt="diBoaS Logo">
+                <span>diBoaS Learn</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="/docs">Docs</a></li>
+                <li><a href="/investors">Investors</a></li>
+                <li><a href="/app">App</a></li>
+            </ul>
+            
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="learning-dashboard">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Mascot Selector -->
+                <div class="mascot-selector">
+                    <h3>Choose Your Guide</h3>
+                    <div class="mascot-grid">
+                        <div class="mascot-card active" data-mascot="aqua">
+                            <div class="mascot-icon">🌊</div>
+                            <div class="mascot-name">Aqua</div>
+                            <div class="mascot-level">Beginner</div>
+                        </div>
+                        <div class="mascot-card" data-mascot="verde">
+                            <div class="mascot-icon">🌱</div>
+                            <div class="mascot-name">Verde</div>
+                            <div class="mascot-level">Growth</div>
+                        </div>
+                        <div class="mascot-card" data-mascot="mystic">
+                            <div class="mascot-icon">🔮</div>
+                            <div class="mascot-name">Mystic</div>
+                            <div class="mascot-level">Advanced</div>
+                        </div>
+                        <div class="mascot-card" data-mascot="coral">
+                            <div class="mascot-icon">🌸</div>
+                            <div class="mascot-name">Coral</div>
+                            <div class="mascot-level">Community</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Navigation -->
+                <nav class="learning-nav">
+                    <div class="nav-section">
+                        <h4>🌊 Aqua Phase</h4>
+                        <ul class="nav-items">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active" data-lesson="crypto-basics">
+                                    <div class="progress-indicator completed"></div>
+                                    Crypto Basics
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="first-purchase">
+                                    <div class="progress-indicator in-progress"></div>
+                                    Your First Purchase
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="wallet-security">
+                                    <div class="progress-indicator"></div>
+                                    Wallet Security
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="reading-charts">
+                                    <div class="progress-indicator"></div>
+                                    Reading Charts
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>🌱 Verde Phase</h4>
+                        <ul class="nav-items">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="portfolio-building">
+                                    <div class="progress-indicator"></div>
+                                    Portfolio Building
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="dollar-cost-averaging">
+                                    <div class="progress-indicator"></div>
+                                    Dollar-Cost Averaging
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="risk-management">
+                                    <div class="progress-indicator"></div>
+                                    Risk Management
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>🔮 Mystic Phase</h4>
+                        <ul class="nav-items">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="defi-introduction">
+                                    <div class="progress-indicator"></div>
+                                    DeFi Introduction
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="yield-farming">
+                                    <div class="progress-indicator"></div>
+                                    Yield Farming
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="smart-contracts">
+                                    <div class="progress-indicator"></div>
+                                    Smart Contracts
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>🌸 Coral Phase</h4>
+                        <ul class="nav-items">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="community-investing">
+                                    <div class="progress-indicator"></div>
+                                    Community Investing
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="teaching-others">
+                                    <div class="progress-indicator"></div>
+                                    Teaching Others
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-lesson="building-wealth">
+                                    <div class="progress-indicator"></div>
+                                    Building Wealth
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div class="learning-header">
+                    <div class="breadcrumb">
+                        <a href="/">Learn</a>
+                        <span>→</span>
+                        <span>Aqua Phase</span>
+                        <span>→</span>
+                        <span>Crypto Basics</span>
+                    </div>
+                    
+                    <h1 class="content-title">Understanding Cryptocurrency Basics</h1>
+                    
+                    <div class="content-meta">
+                        <div class="meta-item">
+                            <span>⏱️</span>
+                            <span>15 min read</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>📺</span>
+                            <span>3 videos</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>🎯</span>
+                            <span>Beginner</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>🌊</span>
+                            <span>Aqua Guide</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%"></div>
+                    </div>
+                </div>
+
+                <!-- Video Section -->
+                <div class="video-container">
+                    <div class="video-player">
+                        <div class="video-embed">
+                            <iframe src="https://www.youtube.com/embed/VYWc9dFqROI" 
+                                    title="What is Cryptocurrency?" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="video-controls">
+                        <button class="control-btn" id="playPause">⏸️ Pause</button>
+                        <div class="video-progress" id="videoProgress">
+                            <div class="video-progress-fill" id="videoProgressFill"></div>
+                        </div>
+                        <span id="videoTime">5:23 / 12:45</span>
+                    </div>
+                </div>
+
+                <!-- Learning Content -->
+                <div class="learning-content">
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            🌊 Welcome to Your Crypto Journey
+                        </h2>
+                        
+                        <div class="mascot-tip">
+                            <div class="mascot-tip-content">
+                                <div class="tip-title">Aqua says:</div>
+                                <p>"Hi there! I'm Aqua, your gentle guide into the world of cryptocurrency. Think of me as your financial training wheels - I'm here to make everything simple and safe as you take your first steps into crypto investing."</p>
+                            </div>
+                        </div>
+                        
+                        <div class="content-text">
+                            <p>Cryptocurrency might seem complicated, but it's actually quite simple once you understand the basics. Let's start with what you need to know to make your first investment confidently.</p>
+                            
+                            <h3>What is Cryptocurrency?</h3>
+                            <p>Think of cryptocurrency as digital money that exists only on computers. Just like you can send an email instantly to anyone in the world, you can send cryptocurrency to anyone, anywhere, at any time.</p>
+                            
+                            <div class="highlight-box">
+                                <strong>Key Point:</strong> Cryptocurrency is just digital money that isn't controlled by any bank or government. It's like having cash, but digital.
+                            </div>
+                            
+                            <h3>The Big Four: Your Starting Options</h3>
+                            <p>While there are thousands of cryptocurrencies, we recommend starting with these four proven options:</p>
+                            
+                            <ul>
+                                <li><strong>Bitcoin (BTC)</strong> - The original and most trusted cryptocurrency</li>
+                                <li><strong>Ethereum (ETH)</strong> - The platform for smart contracts and applications</li>
+                                <li><strong>Solana (SOL)</strong> - Fast and low-cost transactions</li>
+                                <li><strong>Sui (SUI)</strong> - Next-generation blockchain technology</li>
+                            </ul>
+                            
+                            <h3>Why Start with Just $10?</h3>
+                            <p>You don't need thousands of dollars to begin. Starting small helps you:</p>
+                            <ul>
+                                <li>Learn without risking significant money</li>
+                                <li>Build confidence gradually</li>
+                                <li>Understand how the market works</li>
+                                <li>Develop good investment habits</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Section -->
+                    <div class="quiz-container">
+                        <h3 class="quiz-question">Quick Knowledge Check</h3>
+                        <p>What's the minimum amount recommended to start investing in cryptocurrency?</p>
+                        
+                        <ul class="quiz-options">
+                            <li class="quiz-option">
+                                <label>
+                                    <input type="radio" name="quiz1" value="a">
+                                    <span>$1,000 minimum to see any returns</span>
+                                </label>
+                            </li>
+                            <li class="quiz-option">
+                                <label>
+                                    <input type="radio" name="quiz1" value="b">
+                                    <span>$10 is enough to start learning</span>
+                                </label>
+                            </li>
+                            <li class="quiz-option">
+                                <label>
+                                    <input type="radio" name="quiz1" value="c">
+                                    <span>$100 minimum for most platforms</span>
+                                </label>
+                            </li>
+                            <li class="quiz-option">
+                                <label>
+                                    <input type="radio" name="quiz1" value="d">
+                                    <span>You need at least $500 to diversify</span>
+                                </label>
+                            </li>
+                        </ul>
+                        
+                        <button class="quiz-submit" onclick="checkQuiz()">Check Answer</button>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="mascot-tip">
+                            <div class="mascot-tip-content">
+                                <div class="tip-title">Aqua's First Step:</div>
+                                <p>"Ready for your first purchase? I'll be with you every step of the way. Remember, this is about learning and growing your confidence, not getting rich quick. Small, consistent steps build lasting wealth."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="lesson-navigation">
+                    <a href="#" class="nav-btn">
+                        <span>←</span>
+                        <span>Welcome</span>
+                    </a>
+                    
+                    <a href="#" class="nav-btn primary">
+                        <span>Your First Purchase</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Achievement Popup -->
+    <div class="achievement-popup" id="achievementPopup">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-title">Lesson Complete!</div>
+        <div class="achievement-description">You've mastered the basics of cryptocurrency. Aqua is proud of your progress!</div>
+        <button class="achievement-close" onclick="closeAchievement()">Continue Learning</button>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme or default to light
+        const savedTheme = localStorage.getItem('diBoaS-theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('diBoaS-theme', newTheme);
+        });
+
+        // Mascot Selection
+        const mascotCards = document.querySelectorAll('.mascot-card');
+        mascotCards.forEach(card => {
+            card.addEventListener('click', () => {
+                mascotCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                
+                const mascot = card.dataset.mascot;
+                updateMascotContent(mascot);
+            });
+        });
+
+        function updateMascotContent(mascot) {
+            // Update mascot-specific content
+            const mascotData = {
+                aqua: {
+                    color: '#4ECDC4',
+                    icon: '🌊',
+                    name: 'Aqua',
+                    message: "Let's start with the basics and build your confidence!"
+                },
+                verde: {
+                    color: '#A8E6CF',
+                    icon: '🌱',
+                    name: 'Verde',
+                    message: "Time to grow your portfolio and expand your horizons!"
+                },
+                mystic: {
+                    color: '#B39DDB',
+                    icon: '🔮',
+                    name: 'Mystic',
+                    message: "Ready to explore advanced strategies and DeFi?"
+                },
+                coral: {
+                    color: '#FFB3BA',
+                    icon: '🌸',
+                    name: 'Coral',
+                    message: "Let's build community and share knowledge together!"
+                }
+            };
+            
+            const data = mascotData[mascot];
+            document.documentElement.style.setProperty('--platform-accent', data.color);
+            
+            // Update mascot tips
+            const mascotTips = document.querySelectorAll('.mascot-tip');
+            mascotTips.forEach(tip => {
+                const icon = tip.querySelector('::before') || tip;
+                tip.style.setProperty('--mascot-icon', `"${data.icon}"`);
+                
+                const titleElement = tip.querySelector('.tip-title');
+                if (titleElement) {
+                    titleElement.textContent = `${data.name} says:`;
+                }
+            });
+        }
+
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                const lesson = link.dataset.lesson;
+                loadLesson(lesson);
+            });
+        });
+
+        function loadLesson(lessonId) {
+            // Show loading state
+            const contentArea = document.querySelector('.content-area');
+            contentArea.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <span>Loading lesson...</span>
+                </div>
+            `;
+            
+            // Simulate loading
+            setTimeout(() => {
+                // In a real app, this would load actual lesson content
+                console.log(`Loading lesson: ${lessonId}`);
+                // Reload current content for now
+                location.reload();
+            }, 1000);
+        }
+
+        // Video Controls (Mock functionality)
+        let isPlaying = true;
+        let currentTime = 323; // 5:23
+        let duration = 765; // 12:45
+
+        const playPauseBtn = document.getElementById('playPause');
+        const videoProgress = document.getElementById('videoProgress');
+        const videoProgressFill = document.getElementById('videoProgressFill');
+        const videoTime = document.getElementById('videoTime');
+
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+                playPauseBtn.textContent = isPlaying ? '⏸️ Pause' : '▶️ Play';
+            });
+        }
+
+        if (videoProgress) {
+            videoProgress.addEventListener('click', (e) => {
+                const rect = videoProgress.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                currentTime = Math.floor(duration * percent);
+                updateVideoProgress();
+            });
+        }
+
+        function updateVideoProgress() {
+            const percent = (currentTime / duration) * 100;
+            if (videoProgressFill) {
+                videoProgressFill.style.width = `${percent}%`;
+            }
+            
+            if (videoTime) {
+                const formatTime = (seconds) => {
+                    const mins = Math.floor(seconds / 60);
+                    const secs = seconds % 60;
+                    return `${mins}:${secs.toString().padStart(2, '0')}`;
+                };
+                
+                videoTime.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+            }
+        }
+
+        // Simulate video progress
+        setInterval(() => {
+            if (isPlaying && currentTime < duration) {
+                currentTime++;
+                updateVideoProgress();
+            }
+        }, 1000);
+
+        // Quiz Functionality
+        function checkQuiz() {
+            const selectedAnswer = document.querySelector('input[name="quiz1"]:checked');
+            if (!selectedAnswer) {
+                alert('Please select an answer first!');
+                return;
+            }
+            
+            const isCorrect = selectedAnswer.value === 'b';
+            
+            if (isCorrect) {
+                showAchievement();
+                // Mark progress
+                updateProgress();
+            } else {
+                alert('Not quite right. Remember, you can start with just $10 to learn the basics!');
+            }
+        }
+
+        function showAchievement() {
+            const popup = document.getElementById('achievementPopup');
+            popup.classList.add('show');
+        }
+
+        function closeAchievement() {
+            const popup = document.getElementById('achievementPopup');
+            popup.classList.remove('show');
+        }
+
+        function updateProgress() {
+            // Update progress indicators
+            const progressIndicators = document.querySelectorAll('.progress-indicator');
+            // Mark first lesson as completed
+            if (progressIndicators[0]) {
+                progressIndicators[0].classList.add('completed');
+            }
+            
+            // Update progress bar
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = '50%';
+            }
+        }
+
+        // Analytics tracking
+        function trackEvent(eventName, properties = {}) {
+            console.log('Learning Analytics:', eventName, properties);
+            // TODO: Implement actual analytics tracking
+        }
+
+        // Track lesson interactions
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.nav-link')) {
+                trackEvent('lesson_navigation', {
+                    lesson: e.target.dataset.lesson,
+                    from: document.querySelector('.nav-link.active')?.dataset.lesson
+                });
+            }
+            
+            if (e.target.matches('.mascot-card')) {
+                trackEvent('mascot_selection', {
+                    mascot: e.target.dataset.mascot
+                });
+            }
+            
+            if (e.target.matches('.quiz-submit')) {
+                trackEvent('quiz_attempted', {
+                    lesson: 'crypto-basics'
+                });
+            }
+        });
+
+        // Track video engagement
+        let videoStartTime = Date.now();
+        let hasWatchedHalfway = false;
+
+        setInterval(() => {
+            const watchPercent = (currentTime / duration) * 100;
+            
+            if (watchPercent >= 50 && !hasWatchedHalfway) {
+                hasWatchedHalfway = true;
+                trackEvent('video_halfway', {
+                    lesson: 'crypto-basics',
+                    watchTime: Date.now() - videoStartTime
+                });
+            }
+        }, 5000);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('diBoaS Learning Center Loaded');
+            updateVideoProgress();
+            
+            // Track page load
+            trackEvent('lesson_loaded', {
+                lesson: 'crypto-basics',
+                mascot: 'aqua'
+            });
+        });
+
+        // Service Worker Registration (for PWA)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

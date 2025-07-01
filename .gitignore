@@ -1,0 +1,89 @@
+# System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+Icon?
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Documentation Files (internal only)
+assets/documents/
+CLAUDE.md
+
+# Node modules (if we add them later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build files (if we add build process)
+dist/
+build/
+*.tgz
+*.tar.gz
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+.tmp/
+temp/
+*.tmp
+
+# Package manager files
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# PWA files that will be auto-generated
+manifest.json
+sw.js
+
+# Any secrets or keys
+*.key
+*.pem
+secrets/
+.secrets

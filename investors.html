@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="diBoaS Investment Opportunity - Professional investor portal for the $400+ billion OneFi platform. Executive summaries, financial projections, and secure document access.">
+    <meta name="keywords" content="diBoaS investment, OneFi opportunity, fintech funding, progressive disclosure platform, cryptocurrency investment">
+    <meta name="author" content="diBoaS">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="diBoaS Investor Portal - $400+ Billion OneFi Opportunity">
+    <meta property="og:description" content="Professional investment opportunity in the progressive smart simplicity platform bridging traditional and decentralized finance.">
+    <meta property="og:image" content="./assets/images/social_cover.png">
+    <meta property="og:url" content="https://investors.diboas.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="diBoaS Investor Portal">
+    <meta name="twitter:description" content="Professional investment opportunity in OneFi platform">
+    <meta name="twitter:image" content="./assets/images/social_cover.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1E3A8A">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="./assets/images/aqua_mascot.png" as="image">
+    
+    <title>diBoaS Investor Portal - Professional Investment Opportunity</title>
+    
+    <style>
+        /* CSS Custom Properties - Professional Investor Theme */
+        :root {
+            /* Professional Color Palette */
+            --investor-primary: #1E3A8A;
+            --investor-secondary: #3B82F6;
+            --investor-accent: #60A5FA;
+            --investor-light: #DBEAFE;
+            --investor-dark: #0F172A;
+            
+            /* Mascot Colors (Subtle Integration) */
+            --aqua-primary: #4ECDC4;
+            --verde-primary: #A8E6CF;
+            --mystic-primary: #B39DDB;
+            --coral-primary: #FFB3BA;
+            
+            /* Professional Backgrounds */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --bg-card: #FFFFFF;
+            
+            /* Professional Text */
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-tertiary: #64748B;
+            --text-inverse: #FFFFFF;
+            
+            /* Professional Borders */
+            --border-color: #E2E8F0;
+            --border-hover: #CBD5E1;
+            --border-focus: #3B82F6;
+            
+            /* Dark Theme Colors */
+            --dark-bg-primary: #0F172A;
+            --dark-bg-secondary: #1E293B;
+            --dark-bg-tertiary: #334155;
+            --dark-bg-card: #1E293B;
+            --dark-text-primary: #F8FAFC;
+            --dark-text-secondary: #CBD5E1;
+            --dark-text-tertiary: #94A3B8;
+            --dark-border-color: #334155;
+            --dark-border-hover: #475569;
+            
+            /* Status Colors */
+            --success-green: #059669;
+            --warning-orange: #D97706;
+            --error-red: #DC2626;
+            --info-blue: #0284C7;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Poppins', sans-serif;
+            --font-mono: 'JetBrains Mono', Monaco, monospace;
+            
+            /* Font Sizes (Professional) */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            
+            /* Spacing Scale */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-base: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+            
+            /* Elevation Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+        
+        /* Dark Theme Overrides */
+        [data-theme="dark"] {
+            --bg-primary: var(--dark-bg-primary);
+            --bg-secondary: var(--dark-bg-secondary);
+            --bg-tertiary: var(--dark-bg-tertiary);
+            --bg-card: var(--dark-bg-card);
+            --text-primary: var(--dark-text-primary);
+            --text-secondary: var(--dark-text-secondary);
+            --text-tertiary: var(--dark-text-tertiary);
+            --border-color: var(--dark-border-color);
+            --border-hover: var(--dark-border-hover);
+        }
+        
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: var(--space-4) 0;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .header {
+            background: rgba(15, 23, 42, 0.95);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-xl);
+            color: var(--investor-primary);
+        }
+        
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--investor-primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--investor-primary);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--investor-primary);
+            border-radius: var(--radius-full);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--investor-primary);
+            color: var(--investor-primary);
+        }
+        
+        .contact-btn {
+            background: var(--investor-primary);
+            color: var(--text-inverse);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--space-3) var(--space-6);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contact-btn:hover {
+            background: var(--investor-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+            color: var(--text-inverse);
+        }
+        
+        /* Main Content */
+        .main {
+            margin-top: 88px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: var(--space-24) 0 var(--space-20);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--investor-light), transparent, var(--aqua-primary));
+            opacity: 0.03;
+            z-index: 1;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--investor-light);
+            color: var(--investor-primary);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: var(--text-5xl);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--space-6);
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: var(--text-xl);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-8);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-8);
+            max-width: 800px;
+            margin: 0 auto var(--space-12);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--investor-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .stat-label {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+        
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            background: var(--investor-primary);
+            color: var(--text-inverse);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--space-4) var(--space-8);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .cta-primary:hover {
+            background: var(--investor-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: var(--text-inverse);
+        }
+        
+        .cta-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4) var(--space-8);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .cta-secondary:hover {
+            border-color: var(--investor-primary);
+            color: var(--investor-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: var(--space-20) 0;
+        }
+        
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-16);
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .section-subtitle {
+            font-size: var(--text-xl);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Investment Highlights */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+        }
+        
+        .highlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--investor-light);
+        }
+        
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--aqua-primary), var(--verde-primary), var(--mystic-primary), var(--coral-primary));
+        }
+        
+        .highlight-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--investor-light);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: var(--space-6);
+        }
+        
+        .highlight-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .highlight-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Financial Projections */
+        .projections-section {
+            background: var(--bg-secondary);
+        }
+        
+        .projections-table {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-12);
+        }
+        
+        .table-header {
+            background: var(--investor-primary);
+            color: var(--text-inverse);
+            padding: var(--space-6);
+        }
+        
+        .table-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+        
+        .table-subtitle {
+            opacity: 0.9;
+        }
+        
+        .table-content {
+            overflow-x: auto;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: var(--space-4) var(--space-6);
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .data-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .data-table td {
+            color: var(--text-secondary);
+        }
+        
+        .data-table .metric {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .data-table .value {
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+        
+        .data-table .positive {
+            color: var(--success-green);
+        }
+        
+        .data-table .negative {
+            color: var(--error-red);
+        }
+        
+        .redacted {
+            background: var(--text-tertiary);
+            color: transparent;
+            border-radius: var(--radius-sm);
+            position: relative;
+        }
+        
+        .redacted::after {
+            content: '[REDACTED]';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-inverse);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Document Access */
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .document-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .document-card:hover {
+            border-color: var(--investor-primary);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .document-card.restricted {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .document-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .document-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--investor-light);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .document-info h3 {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .document-meta {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .document-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+            line-height: 1.6;
+        }
+        
+        .document-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .access-level {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .access-level.public {
+            background: var(--success-green);
+            color: var(--text-inverse);
+        }
+        
+        .access-level.restricted {
+            background: var(--warning-orange);
+            color: var(--text-inverse);
+        }
+        
+        .access-level.confidential {
+            background: var(--error-red);
+            color: var(--text-inverse);
+        }
+        
+        .download-btn {
+            background: none;
+            border: 1px solid var(--investor-primary);
+            color: var(--investor-primary);
+            border-radius: var(--radius-base);
+            padding: var(--space-2) var(--space-3);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: var(--investor-primary);
+            color: var(--text-inverse);
+        }
+        
+        .download-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Contact Form */
+        .contact-section {
+            background: var(--bg-secondary);
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .contact-form {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-10);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-6);
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-3);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-base);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--investor-primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .form-checkbox input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--investor-primary);
+        }
+        
+        .form-submit {
+            width: 100%;
+            background: var(--investor-primary);
+            color: var(--text-inverse);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--space-4) var(--space-6);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .form-submit:hover {
+            background: var(--investor-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--investor-dark);
+            color: var(--text-inverse);
+            padding: var(--space-16) 0 var(--space-8);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-8);
+        }
+        
+        .footer-section h3 {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-2);
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--investor-accent);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-6);
+            text-align: center;
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            max-width: 500px;
+            width: 90vw;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-6);
+        }
+        
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: var(--text-xl);
+            cursor: pointer;
+            color: var(--text-tertiary);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-base);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: var(--text-3xl);
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .section-title {
+                font-size: var(--text-3xl);
+            }
+            
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .document-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-table {
+                font-size: var(--text-sm);
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: var(--space-2) var(--space-3);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 var(--space-4);
+            }
+            
+            .hero {
+                padding: var(--space-16) 0 var(--space-12);
+            }
+            
+            .content-container {
+                padding: 0 var(--space-4);
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: var(--space-6);
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: var(--text-secondary);
+        }
+        
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--investor-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: var(--space-3);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="./assets/icons/favicon.svg" alt="diBoaS Logo">
+                <span>diBoaS Investors</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#opportunity" class="active">Opportunity</a></li>
+                <li><a href="#projections">Financials</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <a href="mailto:hello@diboas.com" class="contact-btn">
+                    Schedule Meeting
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-badge">
+                    <span>💎</span>
+                    <span>Series Seed • Accredited Investors Only</span>
+                </div>
+                
+                <h1 class="hero-title">The $400+ Billion OneFi Opportunity</h1>
+                
+                <p class="hero-subtitle">
+                    diBoaS bridges traditional and decentralized finance through Progressive Smart Simplicity, 
+                    capturing the massive wave of mainstream crypto adoption with AI-powered mascot guides.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">$400B+</div>
+                        <div class="stat-label">Total Addressable Market</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value redacted">$750M</div>
+                        <div class="stat-label">Year 5 Revenue Target</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">89.6%</div>
+                        <div class="stat-label">Market Penetration Gap</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value redacted">5M</div>
+                        <div class="stat-label">Target Users by 2029</div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="#contact" class="cta-primary">
+                        <span>📊</span>
+                        <span>Request Full Deck</span>
+                    </a>
+                    <a href="mailto:hello@diboas.com" class="cta-secondary">
+                        <span>📞</span>
+                        <span>Schedule Call</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Highlights -->
+        <section class="content-section" id="opportunity">
+            <div class="content-container">
+                <div class="section-header">
+                    <h2 class="section-title">Investment Highlights</h2>
+                    <p class="section-subtitle">
+                        First platform solving OneFi complexity through behavioral intelligence and emotional attachment
+                    </p>
+                </div>
+                
+                <div class="highlights-grid">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🎯</div>
+                        <h3 class="highlight-title">Massive Market Opportunity</h3>
+                        <p class="highlight-description">
+                            $400+ billion addressable market across converging fintech sectors with 5.4B traditional finance users 
+                            and only 560M in crypto (89.6% penetration gap).
+                        </p>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🧠</div>
+                        <h3 class="highlight-title">Progressive Smart Simplicity</h3>
+                        <p class="highlight-description">
+                            Revolutionary approach starting simple (1-click Bitcoin) and evolving complexity through 
+                            AI-powered mascot guides based on behavioral readiness.
+                        </p>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🚀</div>
+                        <h3 class="highlight-title">First-Mover Advantage</h3>
+                        <p class="highlight-description">
+                            Patent-pending behavioral intelligence creates uncopyable competitive advantage in timing 
+                            feature revelation and building emotional user attachment.
+                        </p>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">💰</div>
+                        <h3 class="highlight-title">Proven Revenue Model</h3>
+                        <p class="highlight-description">
+                            Multiple revenue streams including transaction fees (65%), creator economy (20%), 
+                            AI services (10%), and platform services (5%).
+                        </p>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">⚡</div>
+                        <h3 class="highlight-title">Superior Unit Economics</h3>
+                        <p class="highlight-description">
+                            Target 15:1 LTV/CAC ratio through emotional attachment, with fee advantage 
+                            (0.09% vs Coinbase 1.49%+) driving acquisition.
+                        </p>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🌐</div>
+                        <h3 class="highlight-title">Global Scalability</h3>
+                        <p class="highlight-description">
+                            Regulatory-first architecture with MiCA compliance enabling rapid international 
+                            expansion across multiple jurisdictions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Financial Projections -->
+        <section class="content-section projections-section" id="projections">
+            <div class="content-container">
+                <div class="section-header">
+                    <h2 class="section-title">Financial Projections</h2>
+                    <p class="section-subtitle">
+                        Conservative growth model with multiple validation checkpoints and risk mitigation
+                    </p>
+                </div>
+                
+                <div class="projections-table">
+                    <div class="table-header">
+                        <h3 class="table-title">5-Year Growth Trajectory</h3>
+                        <p class="table-subtitle">Revenue and user growth through progressive mascot evolution</p>
+                    </div>
+                    <div class="table-content">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Year 1</th>
+                                    <th>Year 2</th>
+                                    <th>Year 3</th>
+                                    <th>Year 4</th>
+                                    <th>Year 5</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="metric">Total Users</td>
+                                    <td class="value redacted">100K</td>
+                                    <td class="value redacted">400K</td>
+                                    <td class="value redacted">1.2M</td>
+                                    <td class="value redacted">2.8M</td>
+                                    <td class="value redacted">5M</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Revenue</td>
+                                    <td class="value redacted">$12M</td>
+                                    <td class="value redacted">$42M</td>
+                                    <td class="value redacted">$95M</td>
+                                    <td class="value redacted">$280M</td>
+                                    <td class="value redacted">$750M</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Assets Under Management</td>
+                                    <td class="value redacted">$180M</td>
+                                    <td class="value redacted">$720M</td>
+                                    <td class="value redacted">$2.16B</td>
+                                    <td class="value redacted">$5.04B</td>
+                                    <td class="value redacted">$9B</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Gross Margin</td>
+                                    <td class="value positive">75%</td>
+                                    <td class="value positive">80%</td>
+                                    <td class="value positive">85%</td>
+                                    <td class="value positive">87%</td>
+                                    <td class="value positive">89%</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">EBITDA Margin</td>
+                                    <td class="value negative">-75%</td>
+                                    <td class="value positive">19%</td>
+                                    <td class="value positive">36%</td>
+                                    <td class="value positive">44%</td>
+                                    <td class="value positive">48%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="projections-table">
+                    <div class="table-header">
+                        <h3 class="table-title">Funding Strategy</h3>
+                        <p class="table-subtitle">Strategic investment timeline and use of funds</p>
+                    </div>
+                    <div class="table-content">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Round</th>
+                                    <th>Timing</th>
+                                    <th>Amount</th>
+                                    <th>Valuation</th>
+                                    <th>Key Milestone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="metric">Seed</td>
+                                    <td>Month 6</td>
+                                    <td class="value redacted">$4.5M</td>
+                                    <td class="value redacted">$20M pre</td>
+                                    <td>100K Aqua users</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Series A</td>
+                                    <td>Month 18</td>
+                                    <td class="value redacted">$18M</td>
+                                    <td class="value redacted">$82M pre</td>
+                                    <td>400K users, Verde active</td>
+                                </tr>
+                                <tr>
+                                    <td class="metric">Series B</td>
+                                    <td>Month 30</td>
+                                    <td class="value redacted">$45M</td>
+                                    <td class="value redacted">$400M pre</td>
+                                    <td>1.2M users, all mascots</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document Access -->
+        <section class="content-section" id="documents">
+            <div class="content-container">
+                <div class="section-header">
+                    <h2 class="section-title">Investor Documents</h2>
+                    <p class="section-subtitle">
+                        Comprehensive due diligence materials and financial documentation
+                    </p>
+                </div>
+                
+                <div class="document-grid">
+                    <div class="document-card" onclick="downloadDocument('pitch-deck')">
+                        <div class="document-header">
+                            <div class="document-icon">📊</div>
+                            <div class="document-info">
+                                <h3>Executive Pitch Deck</h3>
+                                <div class="document-meta">32 slides • Updated Dec 2024</div>
+                            </div>
+                        </div>
+                        <p class="document-description">
+                            Comprehensive overview of market opportunity, business model, and financial projections.
+                        </p>
+                        <div class="document-actions">
+                            <span class="access-level public">Public</span>
+                            <button class="download-btn">Download PDF</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card restricted">
+                        <div class="document-header">
+                            <div class="document-icon">💰</div>
+                            <div class="document-info">
+                                <h3>Financial Model</h3>
+                                <div class="document-meta">Excel Model • Updated Dec 2024</div>
+                            </div>
+                        </div>
+                        <p class="document-description">
+                            Detailed 5-year financial projections with sensitivity analysis and scenario modeling.
+                        </p>
+                        <div class="document-actions">
+                            <span class="access-level restricted">Restricted</span>
+                            <button class="download-btn" disabled>Request Access</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card" onclick="downloadDocument('market-research')">
+                        <div class="document-header">
+                            <div class="document-icon">📈</div>
+                            <div class="document-info">
+                                <h3>Market Research</h3>
+                                <div class="document-meta">45 pages • Updated Nov 2024</div>
+                            </div>
+                        </div>
+                        <p class="document-description">
+                            Comprehensive analysis of TAM, competitive landscape, and user behavior insights.
+                        </p>
+                        <div class="document-actions">
+                            <span class="access-level public">Public</span>
+                            <button class="download-btn">Download PDF</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card restricted">
+                        <div class="document-header">
+                            <div class="document-icon">🔧</div>
+                            <div class="document-info">
+                                <h3>Technical Architecture</h3>
+                                <div class="document-meta">28 pages • Updated Dec 2024</div>
+                            </div>
+                        </div>
+                        <p class="document-description">
+                            Detailed technical specifications, scalability analysis, and security framework.
+                        </p>
+                        <div class="document-actions">
+                            <span class="access-level restricted">Restricted</span>
+                            <button class="download-btn" disabled>Request Access</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card restricted">
+                        <div class="document-header">
+                            <div class="document-icon">⚖️</div>
+                            <div class="document-info">
+                                <h3>Legal Documents</h3>
+                                <div class="document-meta">Multiple files • Updated Dec 2024</div>
+                            </div>
+                        </div>
+                        <p class="document-description">
+                            Term sheets, incorporation docs, IP portfolio, and regulatory compliance documentation.
+                        </p>
+                        <div class="document-actions">
+                            <span class="access-level confidential">Confidential</span>
+                            <button class="download-btn" disabled>NDA Required</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card" onclick="downloadDocument('demo-video')">
+                        <div class="document-header">
+                            <div class="document-icon">🎥</div>
+                            <div class="document-info">
+                                <h3>Product Demo</h3>
+                                <div class="document-meta">12 min video • Updated Dec 2024</div>
+                            </div>
+                        </div>
+                        <p class="document-description">
+                            Live demonstration of progressive mascot evolution and behavioral intelligence features.
+                        </p>
+                        <div class="document-actions">
+                            <span class="access-level public">Public</span>
+                            <button class="download-btn">Watch Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="content-section contact-section" id="contact">
+            <div class="contact-container">
+                <div class="section-header">
+                    <h2 class="section-title">Request Information</h2>
+                    <p class="section-subtitle">
+                        Connect with our team to learn more about this investment opportunity
+                    </p>
+                </div>
+                
+                <form class="contact-form" id="investorForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company" class="form-label">Company/Fund</label>
+                        <input type="text" id="company" name="company" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role" class="form-label">Role/Title</label>
+                        <input type="text" id="role" name="role" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="investorType" class="form-label">Investor Type *</label>
+                        <select id="investorType" name="investorType" class="form-select" required>
+                            <option value="">Select investor type</option>
+                            <option value="angel">Angel Investor</option>
+                            <option value="vc">Venture Capital</option>
+                            <option value="pe">Private Equity</option>
+                            <option value="family-office">Family Office</option>
+                            <option value="strategic">Strategic Investor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest" class="form-label">Areas of Interest</label>
+                        <textarea id="interest" name="interest" class="form-textarea" 
+                                  placeholder="What aspects of diBoaS interest you most? (e.g., market opportunity, technology, team, etc.)"></textarea>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="accredited" name="accredited" required>
+                        <label for="accredited">
+                            I confirm that I am an accredited investor as defined by applicable securities regulations *
+                        </label>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">
+                            Subscribe to investor updates and company news
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">
+                        Send Information Request
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>diBoaS</h3>
+                    <p>Revolutionary OneFi platform bridging traditional and decentralized finance through Progressive Smart Simplicity.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Investor Relations</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@diboas.com">Investment Inquiries</a></li>
+                        <li><a href="#documents">Due Diligence</a></li>
+                        <li><a href="#projections">Financial Information</a></li>
+                        <li><a href="#contact">Schedule Meeting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="/app">Main Application</a></li>
+                        <li><a href="/docs">Documentation</a></li>
+                        <li><a href="/learn">Learning Center</a></li>
+                        <li><a href="/">Landing Page</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#disclaimer">Investment Disclaimer</a></li>
+                        <li><a href="#compliance">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 diBoaS. All rights reserved. This information is confidential and proprietary. For accredited investors only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="accessModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Document Access Required</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <p>This document requires additional verification. Please contact <strong>hello@diboas.com</strong> with your request and we'll provide access within 24 hours.</p>
+            <div style="margin-top: var(--space-6);">
+                <a href="mailto:hello@diboas.com?subject=Document Access Request" class="cta-primary" style="text-decoration: none;">
+                    Send Email Request
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme or default to light
+        const savedTheme = localStorage.getItem('diBoaS-investor-theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('diBoaS-investor-theme', newTheme);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = ['opportunity', 'projections', 'documents', 'contact'];
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        currentSection = section;
+                    }
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Document download simulation
+        function downloadDocument(docType) {
+            const documents = {
+                'pitch-deck': {
+                    name: 'diBoaS_Pitch_Deck_v2.1.pdf',
+                    size: '8.5 MB'
+                },
+                'market-research': {
+                    name: 'diBoaS_Market_Analysis_2024.pdf',
+                    size: '12.3 MB'
+                },
+                'demo-video': {
+                    name: 'diBoaS_Product_Demo.mp4',
+                    size: '45.7 MB'
+                }
+            };
+            
+            const doc = documents[docType];
+            if (doc) {
+                // Simulate download
+                showNotification(`Downloading ${doc.name} (${doc.size})...`);
+                trackEvent('document_download', {
+                    document: docType,
+                    name: doc.name
+                });
+                
+                // In a real app, this would trigger actual file download
+                setTimeout(() => {
+                    showNotification('Download complete!');
+                }, 2000);
+            }
+        }
+
+        // Modal functionality
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.classList.remove('show');
+            });
+            document.body.style.overflow = '';
+        }
+
+        // Form submission
+        document.getElementById('investorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                showNotification('Information request sent successfully! We\'ll be in touch within 24 hours.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                trackEvent('investor_inquiry', {
+                    investor_type: data.investorType,
+                    company: data.company || 'Individual'
+                });
+            }, 2000);
+        });
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--success-green)' : 'var(--error-red)'};
+                color: white;
+                padding: var(--space-4) var(--space-6);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-xl);
+                z-index: 3000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                font-weight: 500;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
+        // Analytics tracking
+        function trackEvent(eventName, properties = {}) {
+            console.log('Investor Analytics:', eventName, properties);
+            // TODO: Implement actual analytics tracking
+        }
+
+        // Redacted content interaction
+        document.querySelectorAll('.redacted').forEach(element => {
+            element.addEventListener('click', () => {
+                showModal('accessModal');
+                trackEvent('redacted_content_clicked', {
+                    content: element.textContent || element.getAttribute('data-content')
+                });
+            });
+        });
+
+        // Page load analytics
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('diBoaS Investor Portal Loaded');
+            
+            trackEvent('investor_page_loaded', {
+                user_agent: navigator.userAgent,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe sections for animation
+            document.querySelectorAll('.highlight-card, .projections-table, .document-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Click outside modal to close
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+
+        // Service Worker Registration (for PWA)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
