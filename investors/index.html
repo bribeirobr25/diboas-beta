@@ -6,9 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.diboas.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; connect-src 'self' https://api.diboas.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
@@ -82,9 +81,24 @@
   <!-- PWA Manifest -->
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#1E3A8A">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="diBoaS Investors">
+  
+  <!-- Environment Variables -->
+  <script>
+    window.ENV = {
+      NODE_ENV: 'production',
+      API_BASE_URL: 'https://api.diboas.com',
+      FEATURE_FLAGS: {
+        AB_TESTING: false,
+        ADVANCED_ANALYTICS: false,
+        CONVERSION_TRACKING: false,
+        ERROR_MONITORING: false
+      }
+    };
+  </script>
   
   <!-- Preload Critical Resources -->
   <link rel="preload" href="../assets/css/redesign.css" as="style">
@@ -115,24 +129,7 @@
         </button>
         
         <a href="../" class="investor-logo" aria-label="diBoaS Investor Portal Home">
-          <div class="logo-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect width="32" height="32" rx="8" fill="url(#logoGradient)"/>
-              <path d="M8 12h16v8H8z" fill="white" opacity="0.9"/>
-              <path d="M8 8h8v4H8z" fill="white" opacity="0.7"/>
-              <path d="M16 8h8v4h-8z" fill="white" opacity="0.5"/>
-              <defs>
-                <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32">
-                  <stop stopColor="#1E3A8A"/>
-                  <stop offset="1" stopColor="#3B82F6"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div class="logo-text">
-            <div class="logo-name">diBoaS</div>
-            <div class="logo-subtitle">Investors</div>
-          </div>
+          <img src="../assets/images/logo.png" alt="diBoaS Investors" width="120" height="32" loading="eager">
         </a>
       </div>
       

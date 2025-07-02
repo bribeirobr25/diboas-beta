@@ -68,11 +68,11 @@ class DiBoaSDocsApp {
       console.log('✅ Documentation application initialized successfully');
       
       // Track initialization
-      this.trackEvent('docs_app_initialized', {
-        timestamp: Date.now(),
-        user_agent: navigator.userAgent,
-        viewport: `${window.innerWidth}x${window.innerHeight}`
-      });
+      // this.trackEvent('docs_app_initialized', {
+      //   timestamp: Date.now(),
+      //   user_agent: navigator.userAgent,
+      //   viewport: `${window.innerWidth}x${window.innerHeight}`
+      // });
       
     } catch (error) {
       console.error('❌ Failed to initialize documentation application:', error);
@@ -229,11 +229,11 @@ class DiBoaSDocsApp {
     this.displaySearchResults(results, query);
     
     // Track search
-    this.trackEvent('docs_search', {
-      query: query,
-      resultCount: results.length,
-      timestamp: Date.now()
-    });
+    // this.trackEvent('docs_search', {
+    //   query: query,
+    //   resultCount: results.length,
+    //   timestamp: Date.now()
+    // });
   }
   
   /**
@@ -467,10 +467,10 @@ class DiBoaSDocsApp {
     if (resultItem) {
       const url = resultItem.getAttribute('data-url');
       if (url) {
-        this.trackEvent('docs_search_result_click', {
-          url: url,
-          position: Array.from(resultItem.parentNode.children).indexOf(resultItem)
-        });
+        // this.trackEvent('docs_search_result_click', {
+        //   url: url,
+        //   position: Array.from(resultItem.parentNode.children).indexOf(resultItem)
+        // });
         window.location.href = url;
       }
     }
@@ -528,10 +528,10 @@ class DiBoaSDocsApp {
     }
     
     // Track navigation
-    this.trackEvent('docs_navigation_click', {
-      section: link.textContent.trim(),
-      href: href
-    });
+    // this.trackEvent('docs_navigation_click', {
+    //   section: link.textContent.trim(),
+    //   href: href
+    // });
     
     // Handle smooth scrolling for anchor links
     if (href && href.startsWith('#')) {
@@ -549,10 +549,10 @@ class DiBoaSDocsApp {
     
     if (link) {
       const href = link.getAttribute('href');
-      this.trackEvent('docs_help_card_click', {
-        title: card.querySelector('.card-title')?.textContent.trim(),
-        href: href
-      });
+      // this.trackEvent('docs_help_card_click', {
+      //   title: card.querySelector('.card-title')?.textContent.trim(),
+      //   href: href
+      // });
       
       if (href) {
         window.location.href = href;
@@ -652,10 +652,10 @@ class DiBoaSDocsApp {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     this.setTheme(newTheme);
     
-    this.trackEvent('docs_theme_toggle', {
-      from: currentTheme,
-      to: newTheme
-    });
+    // this.trackEvent('docs_theme_toggle', {
+    //   from: currentTheme,
+    //   to: newTheme
+    // });
   }
   
   /**
@@ -717,7 +717,7 @@ class DiBoaSDocsApp {
     this.elements.mobileMenuBtn?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
     
-    this.trackEvent('docs_sidebar_open');
+    // this.trackEvent('docs_sidebar_open');
   }
   
   /**
@@ -730,7 +730,7 @@ class DiBoaSDocsApp {
     this.elements.mobileMenuBtn?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
     
-    this.trackEvent('docs_sidebar_close');
+    // this.trackEvent('docs_sidebar_close');
   }
   
   /**
@@ -764,10 +764,10 @@ class DiBoaSDocsApp {
       this.updateJourneyContent(journey);
       
       // Track selection
-      this.trackEvent('docs_journey_select', {
-        journey: journey,
-        previous: this.state.currentJourney
-      });
+      // this.trackEvent('docs_journey_select', {
+      //   journey: journey,
+      //   previous: this.state.currentJourney
+      // });
       
       this.state.currentJourney = journey;
     }
@@ -1014,12 +1014,12 @@ class DiBoaSDocsApp {
         const perfData = performance.getEntriesByType('navigation')[0];
         const loadTime = perfData.loadEventEnd - perfData.fetchStart;
         
-        this.trackEvent('docs_page_performance', {
-          loadTime: loadTime,
-          domContentLoaded: perfData.domContentLoadedEventEnd - perfData.fetchStart,
-          firstPaint: this.getFirstPaint(),
-          largestContentfulPaint: this.getLargestContentfulPaint()
-        });
+        // this.trackEvent('docs_page_performance', {
+        //   loadTime: loadTime,
+        //   domContentLoaded: perfData.domContentLoadedEventEnd - perfData.fetchStart,
+        //   firstPaint: this.getFirstPaint(),
+        //   largestContentfulPaint: this.getLargestContentfulPaint()
+        // });
       }
     });
     
@@ -1049,10 +1049,10 @@ class DiBoaSDocsApp {
         
         // Track milestone depths
         if ([25, 50, 75, 90].includes(scrollDepth)) {
-          this.trackEvent('docs_scroll_depth', {
-            depth: scrollDepth,
-            timeToDepth: Date.now() - startTime
-          });
+          // this.trackEvent('docs_scroll_depth', {
+          //   depth: scrollDepth,
+          //   timeToDepth: Date.now() - startTime
+          // });
         }
       }
     });
@@ -1063,19 +1063,19 @@ class DiBoaSDocsApp {
       
       // Track time milestones
       if ([60, 180, 300, 600].includes(timeOnPage)) {
-        this.trackEvent('docs_time_on_page', {
-          seconds: timeOnPage,
-          scrollDepth: scrollDepth
-        });
+        // this.trackEvent('docs_time_on_page', {
+        //   seconds: timeOnPage,
+        //   scrollDepth: scrollDepth
+        // });
       }
     }, 30000);
     
     // Track page exit
     window.addEventListener('beforeunload', () => {
-      this.trackEvent('docs_page_exit', {
-        timeOnPage: Math.round((Date.now() - startTime) / 1000),
-        scrollDepth: scrollDepth
-      });
+      // this.trackEvent('docs_page_exit', {
+      //   timeOnPage: Math.round((Date.now() - startTime) / 1000),
+      //   scrollDepth: scrollDepth
+      // });
     });
   }
   
@@ -1223,47 +1223,11 @@ class DiBoaSDocsApp {
   }
   
   /**
-   * Track analytics event
+   * Track analytics event (stubbed for privacy)
    */
   trackEvent(eventName, properties = {}) {
-    try {
-      // Use main app's tracking if available
-      if (window.DiBoaS && window.DiBoaS.trackEvent) {
-        window.DiBoaS.trackEvent(eventName, {
-          ...properties,
-          page: 'documentation',
-          timestamp: Date.now()
-        });
-      }
-      
-      // Local tracking for documentation-specific events
-      const eventData = {
-        event: eventName,
-        properties: {
-          ...properties,
-          page: 'documentation',
-          url: window.location.href,
-          userAgent: navigator.userAgent,
-          timestamp: Date.now()
-        }
-      };
-      
-      // Store locally (in production, send to analytics service)
-      const events = JSON.parse(localStorage.getItem('diboas-docs-analytics') || '[]');
-      events.push(eventData);
-      
-      // Keep only last 100 events
-      if (events.length > 100) {
-        events.splice(0, events.length - 100);
-      }
-      
-      localStorage.setItem('diboas-docs-analytics', JSON.stringify(events));
-      
-      console.log('📊 Analytics Event:', eventName, properties);
-      
-    } catch (error) {
-      console.error('Analytics tracking error:', error);
-    }
+    // Analytics tracking has been disabled for privacy
+    // Would have tracked: eventName, properties
   }
   
   /**
@@ -1272,11 +1236,11 @@ class DiBoaSDocsApp {
   handleError(error, context = 'unknown') {
     console.error(`Documentation App Error (${context}):`, error);
     
-    this.trackEvent('docs_error', {
-      context: context,
-      error: error.message,
-      stack: error.stack?.substring(0, 500)
-    });
+    // this.trackEvent('docs_error', {
+    //   context: context,
+    //   error: error.message,
+    //   stack: error.stack?.substring(0, 500)
+    // });
     
     // Graceful degradation - continue operation
     return false;

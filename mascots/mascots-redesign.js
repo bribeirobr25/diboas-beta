@@ -127,10 +127,10 @@ class DiBoaSMascotsApp {
       console.log('✨ Mascots experience initialized successfully');
       
       // Track initialization
-      this.trackEvent('mascots_page_loaded', {
-        load_time: Date.now() - this.state.interactions.timeOnPage,
-        performance_mode: this.config.performanceMode
-      });
+      // this.trackEvent('mascots_page_loaded', {
+      //   load_time: Date.now() - this.state.interactions.timeOnPage,
+      //   performance_mode: this.config.performanceMode
+      // });
       
     } catch (error) {
       console.error('❌ Mascots page initialization failed:', error);
@@ -344,11 +344,11 @@ class DiBoaSMascotsApp {
     this.updatePageTheme(mascotId);
     
     // Track interaction
-    this.trackEvent('hero_mascot_switch', {
-      from: this.state.currentHeroMascot,
-      to: mascotId,
-      trigger: 'user_click'
-    });
+    // this.trackEvent('hero_mascot_switch', {
+    //   from: this.state.currentHeroMascot,
+    //   to: mascotId,
+    //   trigger: 'user_click'
+    // });
   }
   
   /**
@@ -521,10 +521,10 @@ class DiBoaSMascotsApp {
     this.switchHeroMascot(mascotId);
     
     // Track interaction
-    this.trackEvent('showcase_activated', {
-      mascot: mascotId,
-      method: 'click'
-    });
+    // this.trackEvent('showcase_activated', {
+    //   mascot: mascotId,
+    //   method: 'click'
+    // });
   }
   
   /**
@@ -534,9 +534,9 @@ class DiBoaSMascotsApp {
     showcase.classList.remove('active');
     this.state.activeMascot = null;
     
-    this.trackEvent('showcase_deactivated', {
-      mascot: mascotId
-    });
+    // this.trackEvent('showcase_deactivated', {
+    //   mascot: mascotId
+    // });
   }
   
   /**
@@ -737,7 +737,11 @@ class DiBoaSMascotsApp {
       const mascotId = this.extractMascotIdFromElement(showcase);
       if (mascotId) {
         const mascot = this.state.mascots[mascotId];
-        showcase.setAttribute('aria-label', `Learn about ${mascot.name}, ${mascot.title}`);
+        if (mascot && mascot.name && mascot.title) {
+          showcase.setAttribute('aria-label', `Learn about ${mascot.name}, ${mascot.title}`);
+        } else {
+          showcase.setAttribute('aria-label', `Learn about mascot ${mascotId}`);
+        }
         showcase.setAttribute('tabindex', '0');
       }
     });
@@ -833,12 +837,15 @@ class DiBoaSMascotsApp {
    * Initialize event listeners
    */
   initializeEventListeners() {
+    // Mobile navigation
+    this.initializeMobileNavigation();
+    
     // Scroll to mascots function
     window.scrollToMascots = () => {
       const mascotsSection = document.getElementById('mascots');
       if (mascotsSection) {
         mascotsSection.scrollIntoView({ behavior: 'smooth' });
-        this.trackEvent('scroll_to_mascots', { trigger: 'button_click' });
+        // this.trackEvent('scroll_to_mascots', { trigger: 'button_click' });
       }
     };
     
@@ -868,7 +875,124 @@ class DiBoaSMascotsApp {
         const target = document.getElementById(targetId);
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
+          this.closeMobileNavigation();
         }
+      }
+    });
+  }
+  
+  /**
+   * Initialize mobile navigation functionality
+   */
+  initializeMobileNavigation() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+    
+    if (!mobileMenuBtn || !mobileNavOverlay || !mobileNav || !mobileNavClose) return;
+    
+    // Open mobile navigation
+    mobileMenuBtn.addEventListener('click', () => {
+      this.openMobileNavigation();
+    });
+    
+    // Close mobile navigation
+    mobileNavClose.addEventListener('click', () => {
+      this.closeMobileNavigation();
+    });
+    
+    // Close on overlay click
+    mobileNavOverlay.addEventListener('click', () => {
+      this.closeMobileNavigation();
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+        this.closeMobileNavigation();
+      }
+    });
+    
+    // Active navigation tracking
+    this.updateActiveNavigation();
+    
+    // Update active nav on scroll
+    window.addEventListener('scroll', () => {
+      this.updateActiveNavigation();
+    });
+  }
+  
+  /**
+   * Open mobile navigation
+   */
+  openMobileNavigation() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    mobileNavOverlay.classList.add('active');
+    mobileNav.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // this.trackEvent('mobile_nav_opened');
+  }
+  
+  /**
+   * Close mobile navigation
+   */
+  closeMobileNavigation() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    mobileNavOverlay.classList.remove('active');
+    mobileNav.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // this.trackEvent('mobile_nav_closed');
+  }
+  
+  /**
+   * Update active navigation based on scroll position
+   */
+  updateActiveNavigation() {
+    const sections = ['hero', 'mascots', 'journey', 'science'];
+    const navLinks = document.querySelectorAll('.nav-link[data-section]');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link[data-section]');
+    
+    let activeSection = 'hero';
+    
+    for (const sectionId of sections) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          activeSection = sectionId;
+          break;
+        }
+      }
+    }
+    
+    // Update desktop nav
+    navLinks.forEach(link => {
+      const section = link.getAttribute('data-section');
+      if (section === activeSection) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    
+    // Update mobile nav
+    mobileNavLinks.forEach(link => {
+      const section = link.getAttribute('data-section');
+      if (section === activeSection) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
       }
     });
   }
@@ -1473,33 +1597,11 @@ class DiBoaSMascotsApp {
   }
   
   /**
-   * Track analytics events
+   * Track analytics events (stubbed for privacy)
    */
   trackEvent(eventName, properties = {}) {
-    const event = {
-      event: eventName,
-      properties: {
-        ...properties,
-        timestamp: Date.now(),
-        page: 'mascots',
-        user_agent: navigator.userAgent,
-        viewport: `${window.innerWidth}x${window.innerHeight}`,
-        performance_mode: this.config.performanceMode,
-        ...this.state.interactions
-      }
-    };
-    
-    console.log('📊 Mascots Analytics:', event);
-    
-    // Send to analytics service
-    if (window.gtag) {
-      window.gtag('event', eventName, properties);
-    }
-    
-    // Store locally for offline sync
-    const events = JSON.parse(localStorage.getItem('diboas_mascots_events') || '[]');
-    events.push(event);
-    localStorage.setItem('diboas_mascots_events', JSON.stringify(events.slice(-50)));
+    // Analytics tracking has been disabled for privacy
+    // Would have tracked: eventName, properties
   }
   
   /**
@@ -1520,9 +1622,9 @@ class DiBoaSMascotsApp {
     });
     
     // Track fallback mode
-    this.trackEvent('fallback_mode_activated', {
-      reason: 'initialization_failed'
-    });
+    // this.trackEvent('fallback_mode_activated', {
+    //   reason: 'initialization_failed'
+    // });
   }
   
   /**

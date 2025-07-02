@@ -299,12 +299,12 @@ ol {
 }
 
 .nav {
-  padding: var(--space-4) 0;
+  padding: var(--space-3) 0;
   transition: padding var(--duration-base) var(--ease-out);
 }
 
 .header.scrolled .nav {
-  padding: var(--space-3) 0;
+  padding: var(--space-2) 0;
 }
 
 .nav-content {

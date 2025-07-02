@@ -100,12 +100,12 @@ class DiBoaSInvestorApp {
       console.log('✅ Investor portal initialized successfully');
       
       // Track initialization
-      this.trackEvent('investor_portal_initialized', {
-        timestamp: Date.now(),
-        user_agent: navigator.userAgent,
-        viewport: `${window.innerWidth}x${window.innerHeight}`,
-        theme: this.state.theme
-      });
+      // this.trackEvent('investor_portal_initialized', {
+      //   timestamp: Date.now(),
+      //   user_agent: navigator.userAgent,
+      //   viewport: `${window.innerWidth}x${window.innerHeight}`,
+      //   theme: this.state.theme
+      // });
       
     } catch (error) {
       console.error('❌ Failed to initialize investor portal:', error);
@@ -176,7 +176,7 @@ class DiBoaSInvestorApp {
       this.dom.themeToggle.addEventListener('click', () => {
         const newTheme = this.state.theme === 'light' ? 'dark' : 'light';
         this.setTheme(newTheme);
-        this.trackEvent('theme_toggle', { theme: newTheme });
+        // this.trackEvent('theme_toggle', { theme: newTheme });
       });
     }
     
@@ -236,7 +236,7 @@ class DiBoaSInvestorApp {
             });
             
             this.updateActiveSection(href.substring(1));
-            this.trackEvent('navigation_click', { section: href.substring(1) });
+            // this.trackEvent('navigation_click', { section: href.substring(1) });
           }
         }
       });
@@ -333,10 +333,10 @@ class DiBoaSInvestorApp {
     });
     
     // Track section view
-    this.trackEvent('section_view', {
-      section: sectionId,
-      view_count: this.state.userInteractions.sectionViews[sectionId]
-    });
+    // this.trackEvent('section_view', {
+    //   section: sectionId,
+    //   view_count: this.state.userInteractions.sectionViews[sectionId]
+    // });
   }
   
   /**
@@ -361,7 +361,7 @@ class DiBoaSInvestorApp {
     this.dom.mobileNavOverlay?.classList.add('show');
     document.body.style.overflow = 'hidden';
     
-    this.trackEvent('mobile_nav_open');
+    // this.trackEvent('mobile_nav_open');
   }
   
   /**
@@ -374,7 +374,7 @@ class DiBoaSInvestorApp {
     document.body.style.overflow = '';
     
     if (this.state.mobileNavOpen) {
-      this.trackEvent('mobile_nav_close');
+      // this.trackEvent('mobile_nav_close');
     }
   }
   
@@ -547,17 +547,17 @@ class DiBoaSInvestorApp {
       this.resetFormValidation();
       
       // Track successful submission
-      this.trackEvent('investor_inquiry_submitted', {
-        investor_type: data.investorType,
-        company: data.companyFund || 'Individual',
-        investment_range: data.investmentRange || 'Not specified',
-        timeframe: data.timeframe || 'Not specified'
-      });
+      // this.trackEvent('investor_inquiry_submitted', {
+      //   investor_type: data.investorType,
+      //   company: data.companyFund || 'Individual',
+      //   investment_range: data.investmentRange || 'Not specified',
+      //   timeframe: data.timeframe || 'Not specified'
+      // });
       
     } catch (error) {
       console.error('Form submission error:', error);
       this.showNotification('Failed to send inquiry. Please try again or contact us directly.', 'error');
-      this.trackEvent('form_submission_error', { error: error.message });
+      // this.trackEvent('form_submission_error', { error: error.message });
     } finally {
       this.setFormLoading(false);
     }
@@ -673,7 +673,7 @@ class DiBoaSInvestorApp {
       setTimeout(() => firstFocusable.focus(), 100);
     }
     
-    this.trackEvent('modal_opened', { modal: modalId });
+    // this.trackEvent('modal_opened', { modal: modalId });
   }
   
   /**
@@ -687,7 +687,7 @@ class DiBoaSInvestorApp {
     document.body.style.overflow = '';
     this.state.currentModal = null;
     
-    this.trackEvent('modal_closed', { modal: modalId });
+    // this.trackEvent('modal_closed', { modal: modalId });
   }
   
   /**
@@ -743,10 +743,10 @@ class DiBoaSInvestorApp {
    * Handle document access request
    */
   handleDocumentAccess(documentName, accessLevel) {
-    this.trackEvent('document_access_attempt', {
-      document: documentName,
-      access_level: accessLevel
-    });
+    // this.trackEvent('document_access_attempt', {
+    //   document: documentName,
+    //   access_level: accessLevel
+    // });
     
     if (accessLevel === 'public') {
       this.downloadDocument(documentName);
@@ -762,10 +762,10 @@ class DiBoaSInvestorApp {
     // Simulate download for demo purposes
     this.showNotification(`Downloading ${documentName}...`, 'success');
     
-    this.trackEvent('document_downloaded', {
-      document: documentName,
-      timestamp: Date.now()
-    });
+    // this.trackEvent('document_downloaded', {
+    //   document: documentName,
+    //   timestamp: Date.now()
+    // });
     
     // Add to user interactions
     this.state.userInteractions.documentViews.push({
@@ -794,10 +794,10 @@ class DiBoaSInvestorApp {
       access_level: accessLevel
     });
     
-    this.trackEvent('document_access_requested', {
-      document: documentName,
-      access_level: accessLevel
-    });
+    // this.trackEvent('document_access_requested', {
+    //   document: documentName,
+    //   access_level: accessLevel
+    // });
   }
   
   /**
@@ -849,7 +849,7 @@ class DiBoaSInvestorApp {
       }
     });
     
-    this.trackEvent('intelligence_demo_switched', { persona });
+    // this.trackEvent('intelligence_demo_switched', { persona });
   }
   
   /**
@@ -863,7 +863,7 @@ class DiBoaSInvestorApp {
       }
     });
     
-    this.trackEvent('mascot_card_activated', { mascot });
+    // this.trackEvent('mascot_card_activated', { mascot });
   }
   
   /**
@@ -901,11 +901,11 @@ class DiBoaSInvestorApp {
       this.showNotification('This information requires investor verification. Contact hello@diboas.com for access.', 'info');
     }
     
-    this.trackEvent('redacted_content_clicked', {
-      content_type: element.className.includes('stat-value') ? 'financial_metric' : 'general',
-      click_count: this.state.userInteractions.redactedClicks,
-      element_data: content
-    });
+    // this.trackEvent('redacted_content_clicked', {
+    //   content_type: element.className.includes('stat-value') ? 'financial_metric' : 'general',
+    //   click_count: this.state.userInteractions.redactedClicks,
+    //   element_data: content
+    // });
   }
   
   /**
@@ -1063,7 +1063,7 @@ class DiBoaSInvestorApp {
         first_contentful_paint: paint.find(p => p.name === 'first-contentful-paint')?.startTime || 0
       };
       
-      this.trackEvent('page_load_metrics', metrics);
+      // this.trackEvent('page_load_metrics', metrics);
     });
   }
   
@@ -1076,12 +1076,12 @@ class DiBoaSInvestorApp {
     
     const trackEngagement = () => {
       if (isActive) {
-        this.trackEvent('user_engagement', {
-          timestamp: Date.now(),
-          section: this.state.currentSection,
-          redacted_clicks: this.state.userInteractions.redactedClicks,
-          document_views: this.state.userInteractions.documentViews.length
-        });
+        // this.trackEvent('user_engagement', {
+        //   timestamp: Date.now(),
+        //   section: this.state.currentSection,
+        //   redacted_clicks: this.state.userInteractions.redactedClicks,
+        //   document_views: this.state.userInteractions.documentViews.length
+        // });
       }
     };
     
@@ -1102,11 +1102,11 @@ class DiBoaSInvestorApp {
       if (document.hidden) {
         isActive = false;
         stopEngagementTracking();
-        this.trackEvent('page_hidden');
+        // this.trackEvent('page_hidden');
       } else {
         isActive = true;
         startEngagementTracking();
-        this.trackEvent('page_visible');
+        // this.trackEvent('page_visible');
       }
     });
     
@@ -1135,10 +1135,10 @@ class DiBoaSInvestorApp {
       scrollMilestones.forEach(milestone => {
         if (scrollPercent >= milestone && !reachedMilestones.has(milestone)) {
           reachedMilestones.add(milestone);
-          this.trackEvent('scroll_depth', {
-            milestone: milestone,
-            section: this.state.currentSection
-          });
+          // this.trackEvent('scroll_depth', {
+          //   milestone: milestone,
+          //   section: this.state.currentSection
+          // });
         }
       });
     };
@@ -1155,20 +1155,20 @@ class DiBoaSInvestorApp {
    */
   setupErrorTracking() {
     window.addEventListener('error', (e) => {
-      this.trackEvent('javascript_error', {
-        message: e.message,
-        filename: e.filename,
-        lineno: e.lineno,
-        colno: e.colno,
-        stack: e.error?.stack
-      });
+      // this.trackEvent('javascript_error', {
+      //   message: e.message,
+      //   filename: e.filename,
+      //   lineno: e.lineno,
+      //   colno: e.colno,
+      //   stack: e.error?.stack
+      // });
     });
     
     window.addEventListener('unhandledrejection', (e) => {
-      this.trackEvent('promise_rejection', {
-        reason: e.reason?.toString(),
-        stack: e.reason?.stack
-      });
+      // this.trackEvent('promise_rejection', {
+      //   reason: e.reason?.toString(),
+      //   stack: e.reason?.stack
+      // });
     });
   }
   
@@ -1191,22 +1191,22 @@ class DiBoaSInvestorApp {
     if ('PerformanceObserver' in window) {
       new PerformanceObserver((entryList) => {
         for (const entry of entryList.getEntries()) {
-          this.trackEvent('core_web_vitals', {
-            metric: 'LCP',
-            value: entry.startTime,
-            target: entry.element?.tagName
-          });
+          // this.trackEvent('core_web_vitals', {
+          //   metric: 'LCP',
+          //   value: entry.startTime,
+          //   target: entry.element?.tagName
+          // });
         }
       }).observe({ entryTypes: ['largest-contentful-paint'] });
       
       // First Input Delay
       new PerformanceObserver((entryList) => {
         for (const entry of entryList.getEntries()) {
-          this.trackEvent('core_web_vitals', {
-            metric: 'FID',
-            value: entry.processingStart - entry.startTime,
-            target: entry.target?.tagName
-          });
+          // this.trackEvent('core_web_vitals', {
+          //   metric: 'FID',
+          //   value: entry.processingStart - entry.startTime,
+          //   target: entry.target?.tagName
+          // });
         }
       }).observe({ entryTypes: ['first-input'] });
       
@@ -1219,10 +1219,10 @@ class DiBoaSInvestorApp {
           }
         }
         if (cls > 0) {
-          this.trackEvent('core_web_vitals', {
-            metric: 'CLS',
-            value: cls
-          });
+          // this.trackEvent('core_web_vitals', {
+          //   metric: 'CLS',
+          //   value: cls
+          // });
         }
       }).observe({ entryTypes: ['layout-shift'] });
     }
@@ -1237,14 +1237,14 @@ class DiBoaSInvestorApp {
       const slowResources = resources.filter(r => r.duration > 1000);
       
       if (slowResources.length > 0) {
-        this.trackEvent('slow_resources', {
-          count: slowResources.length,
-          resources: slowResources.map(r => ({
-            name: r.name,
-            duration: r.duration,
-            size: r.transferSize
-          }))
-        });
+        // this.trackEvent('slow_resources', {
+        //   count: slowResources.length,
+        //   resources: slowResources.map(r => ({
+        //     name: r.name,
+        //     duration: r.duration,
+        //     size: r.transferSize
+        //   }))
+        // });
       }
     });
   }
@@ -1277,10 +1277,10 @@ class DiBoaSInvestorApp {
       this.closeMobileNav();
     }
     
-    this.trackEvent('window_resize', {
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
+    // this.trackEvent('window_resize', {
+    //   width: window.innerWidth,
+    //   height: window.innerHeight
+    // });
   }
   
   /**
@@ -1288,12 +1288,12 @@ class DiBoaSInvestorApp {
    */
   handleBeforeUnload() {
     // Send final analytics
-    this.trackEvent('session_end', {
-      duration: Date.now() - (this.state.sessionStart || Date.now()),
-      sections_viewed: Object.keys(this.state.userInteractions.sectionViews),
-      documents_accessed: this.state.userInteractions.documentViews.length,
-      redacted_clicks: this.state.userInteractions.redactedClicks
-    });
+    // this.trackEvent('session_end', {
+    //   duration: Date.now() - (this.state.sessionStart || Date.now()),
+    //   sections_viewed: Object.keys(this.state.userInteractions.sectionViews),
+    //   documents_accessed: this.state.userInteractions.documentViews.length,
+    //   redacted_clicks: this.state.userInteractions.redactedClicks
+    // });
   }
   
   /**
@@ -1369,57 +1369,27 @@ class DiBoaSInvestorApp {
   }
   
   /**
-   * Track analytics event
+   * Track analytics event (stubbed for privacy)
    */
   trackEvent(eventName, properties = {}) {
-    const event = {
-      event: eventName,
-      timestamp: Date.now(),
-      url: window.location.href,
-      user_agent: navigator.userAgent,
-      viewport: `${window.innerWidth}x${window.innerHeight}`,
-      theme: this.state.theme,
-      session_id: this.getSessionId(),
-      ...properties
-    };
-    
-    console.log('📊 Analytics Event:', event);
-    
-    // In a real implementation, send to analytics service
-    this.sendToAnalytics(event);
+    // Analytics tracking has been disabled for privacy
+    // Would have tracked: eventName, properties
   }
   
   /**
-   * Get or create session ID
+   * Get or create session ID (stubbed for privacy)
    */
   getSessionId() {
-    let sessionId = sessionStorage.getItem('diboas-investor-session');
-    if (!sessionId) {
-      sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-      sessionStorage.setItem('diboas-investor-session', sessionId);
-    }
-    return sessionId;
+    // Session tracking has been disabled for privacy
+    return 'privacy_mode';
   }
   
   /**
-   * Send event to analytics service
+   * Send event to analytics service (stubbed for privacy)
    */
   sendToAnalytics(event) {
-    // Mock analytics implementation
-    if (typeof gtag !== 'undefined') {
-      gtag('event', event.event, event);
-    }
-    
-    // Store locally for development
-    const events = JSON.parse(localStorage.getItem('diboas-investor-analytics') || '[]');
-    events.push(event);
-    
-    // Keep only last 100 events
-    if (events.length > 100) {
-      events.splice(0, events.length - 100);
-    }
-    
-    localStorage.setItem('diboas-investor-analytics', JSON.stringify(events));
+    // Analytics tracking has been disabled for privacy
+    // Would have sent: event
   }
   
   /**
@@ -1428,11 +1398,11 @@ class DiBoaSInvestorApp {
   handleError(error, context = 'unknown') {
     console.error(`Error in ${context}:`, error);
     
-    this.trackEvent('application_error', {
-      context,
-      message: error.message,
-      stack: error.stack
-    });
+    // this.trackEvent('application_error', {
+    //   context,
+    //   message: error.message,
+    //   stack: error.stack
+    // });
     
     // Show user-friendly error message
     this.showNotification('Something went wrong. Please refresh the page and try again.', 'error');
@@ -1514,12 +1484,4 @@ if ('serviceWorker' in navigator) {
 // DEVELOPMENT HELPERS
 // ===========================
 
-if (process?.env?.NODE_ENV === 'development') {
-  // Development-only utilities
-  window.investorDebug = {
-    getAnalytics: () => JSON.parse(localStorage.getItem('diboas-investor-analytics') || '[]'),
-    clearAnalytics: () => localStorage.removeItem('diboas-investor-analytics'),
-    getState: () => window.investorApp?.state,
-    simulateError: () => { throw new Error('Test error'); }
-  };
-}
+// Development debug utilities disabled for production

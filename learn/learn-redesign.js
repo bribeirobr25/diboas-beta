@@ -87,13 +87,13 @@ class DiBoaSLearningApp {
       console.log('✅ Learning platform initialized successfully');
       
       // Track initialization
-      this.trackEvent('learning_app_initialized', {
-        timestamp: Date.now(),
-        user_agent: navigator.userAgent,
-        viewport: `${window.innerWidth}x${window.innerHeight}`,
-        lesson: this.state.currentLesson,
-        mascot: this.state.currentMascot
-      });
+      // this.trackEvent('learning_app_initialized', {
+      //   timestamp: Date.now(),
+      //   user_agent: navigator.userAgent,
+      //   viewport: `${window.innerWidth}x${window.innerHeight}`,
+      //   lesson: this.state.currentLesson,
+      //   mascot: this.state.currentMascot
+      // });
       
     } catch (error) {
       console.error('❌ Failed to initialize learning platform:', error);
@@ -216,11 +216,11 @@ class DiBoaSLearningApp {
       this.closeSidebar();
     }
     
-    this.trackEvent('lesson_navigation', {
-      from: this.state.currentLesson,
-      to: lessonId,
-      method: 'sidebar_click'
-    });
+    // this.trackEvent('lesson_navigation', {
+    //   from: this.state.currentLesson,
+    //   to: lessonId,
+    //   method: 'sidebar_click'
+    // });
   }
   
   /**
@@ -239,10 +239,10 @@ class DiBoaSLearningApp {
       this.state.lessonProgress = 0;
       this.updateLessonProgress();
       
-      this.trackEvent('lesson_loaded', {
-        lesson: lessonId,
-        loadTime: 1000 // simulated
-      });
+      // this.trackEvent('lesson_loaded', {
+      //   lesson: lessonId,
+      //   loadTime: 1000 // simulated
+      // });
     }, 1000);
   }
   
@@ -333,11 +333,11 @@ class DiBoaSLearningApp {
     // Enable next lesson
     this.unlockNextLesson();
     
-    this.trackEvent('lesson_completed', {
-      lesson: lessonId,
-      timeSpent: Date.now() - this.lessonStartTime,
-      completionRate: this.state.lessonProgress
-    });
+    // this.trackEvent('lesson_completed', {
+    //   lesson: lessonId,
+    //   timeSpent: Date.now() - this.lessonStartTime,
+    //   completionRate: this.state.lessonProgress
+    // });
   }
   
   /**
@@ -400,10 +400,10 @@ class DiBoaSLearningApp {
     this.updateVideoControls();
     
     // Track video start
-    this.trackEvent('video_started', {
-      lesson: this.state.currentLesson,
-      timestamp: Date.now()
-    });
+    // this.trackEvent('video_started', {
+    //   lesson: this.state.currentLesson,
+    //   timestamp: Date.now()
+    // });
     
     // Update lesson progress
     this.updateLessonProgress(25);
@@ -416,10 +416,10 @@ class DiBoaSLearningApp {
     this.state.videoPlaying = !this.state.videoPlaying;
     this.updateVideoControls();
     
-    this.trackEvent('video_toggle', {
-      action: this.state.videoPlaying ? 'play' : 'pause',
-      currentTime: this.state.currentTime
-    });
+    // this.trackEvent('video_toggle', {
+    //   action: this.state.videoPlaying ? 'play' : 'pause',
+    //   currentTime: this.state.currentTime
+    // });
   }
   
   /**
@@ -432,10 +432,10 @@ class DiBoaSLearningApp {
     
     this.updateVideoProgress();
     
-    this.trackEvent('video_seek', {
-      newTime: this.state.currentTime,
-      percent: percent * 100
-    });
+    // this.trackEvent('video_seek', {
+    //   newTime: this.state.currentTime,
+    //   percent: percent * 100
+    // });
   }
   
   /**
@@ -450,10 +450,10 @@ class DiBoaSLearningApp {
         // Track viewing milestones
         const percent = (this.state.currentTime / this.state.videoDuration) * 100;
         if ([25, 50, 75, 95].includes(Math.floor(percent))) {
-          this.trackEvent('video_progress', {
-            percent: Math.floor(percent),
-            currentTime: this.state.currentTime
-          });
+          // this.trackEvent('video_progress', {
+          //   percent: Math.floor(percent),
+          //   currentTime: this.state.currentTime
+          // });
           
           // Update lesson progress based on video progress
           if (percent >= 95) {
@@ -569,10 +569,10 @@ class DiBoaSLearningApp {
     this.state.simulationData.selectedCrypto = crypto;
     this.updatePurchaseSummary();
     
-    this.trackEvent('simulation_crypto_select', {
-      crypto: crypto,
-      lesson: this.state.currentLesson
-    });
+    // this.trackEvent('simulation_crypto_select', {
+    //   crypto: crypto,
+    //   lesson: this.state.currentLesson
+    // });
   }
   
   /**
@@ -686,17 +686,17 @@ class DiBoaSLearningApp {
       // Update lesson progress
       this.updateLessonProgress(75);
       
-      this.trackEvent('simulation_purchase_complete', {
-        crypto: selectedCrypto,
-        amount: purchaseAmount,
-        lesson: this.state.currentLesson
-      });
+      // this.trackEvent('simulation_purchase_complete', {
+      //   crypto: selectedCrypto,
+      //   amount: purchaseAmount,
+      //   lesson: this.state.currentLesson
+      // });
     }, 2000);
     
-    this.trackEvent('simulation_purchase_started', {
-      crypto: selectedCrypto,
-      amount: purchaseAmount
-    });
+    // this.trackEvent('simulation_purchase_started', {
+    //   crypto: selectedCrypto,
+    //   amount: purchaseAmount
+    // });
   }
   
   /**
@@ -808,11 +808,11 @@ class DiBoaSLearningApp {
       this.elements.quizSubmit.disabled = true;
     }
     
-    this.trackEvent('quiz_submitted', {
-      lesson: this.state.currentLesson,
-      answer: selectedAnswer.value,
-      correct: isCorrect
-    });
+    // this.trackEvent('quiz_submitted', {
+    //   lesson: this.state.currentLesson,
+    //   answer: selectedAnswer.value,
+    //   correct: isCorrect
+    // });
   }
   
   /**
@@ -929,11 +929,11 @@ class DiBoaSLearningApp {
       }
     }
     
-    this.trackEvent('achievement_shown', {
-      type: type,
-      lesson: this.state.currentLesson,
-      ...data
-    });
+    // this.trackEvent('achievement_shown', {
+    //   type: type,
+    //   lesson: this.state.currentLesson,
+    //   ...data
+    // });
   }
   
   /**
@@ -965,10 +965,10 @@ class DiBoaSLearningApp {
       });
     }
     
-    this.trackEvent('achievement_shared', {
-      lesson: this.state.currentLesson,
-      method: navigator.share ? 'native' : 'clipboard'
-    });
+    // this.trackEvent('achievement_shared', {
+    //   lesson: this.state.currentLesson,
+    //   method: navigator.share ? 'native' : 'clipboard'
+    // });
   }
   
   /**
@@ -1005,10 +1005,10 @@ class DiBoaSLearningApp {
     this.state.currentMascot = mascot;
     this.updateMascotUI();
     
-    this.trackEvent('mascot_selected', {
-      mascot: mascot,
-      lesson: this.state.currentLesson
-    });
+    // this.trackEvent('mascot_selected', {
+    //   mascot: mascot,
+    //   lesson: this.state.currentLesson
+    // });
   }
   
   /**
@@ -1082,10 +1082,10 @@ class DiBoaSLearningApp {
     const newTheme = this.state.theme === 'dark' ? 'light' : 'dark';
     this.setTheme(newTheme);
     
-    this.trackEvent('theme_toggle', {
-      from: this.state.theme,
-      to: newTheme
-    });
+    // this.trackEvent('theme_toggle', {
+    //   from: this.state.theme,
+    //   to: newTheme
+    // });
   }
   
   /**
@@ -1302,11 +1302,11 @@ class DiBoaSLearningApp {
       
       // Track engagement milestones
       if ([60, 180, 300, 600].includes(timeOnLesson)) {
-        this.trackEvent('lesson_engagement', {
-          timeOnLesson: timeOnLesson,
-          lesson: this.state.currentLesson,
-          progress: this.state.lessonProgress
-        });
+        // this.trackEvent('lesson_engagement', {
+        //   timeOnLesson: timeOnLesson,
+        //   lesson: this.state.currentLesson,
+        //   progress: this.state.lessonProgress
+        // });
       }
     }, 30000);
     
@@ -1314,11 +1314,11 @@ class DiBoaSLearningApp {
     document.addEventListener('click', (event) => {
       const element = event.target.closest('[data-lesson], [data-crypto], [data-mascot]');
       if (element) {
-        this.trackEvent('interaction', {
-          type: element.tagName.toLowerCase(),
-          target: element.className,
-          lesson: this.state.currentLesson
-        });
+        // this.trackEvent('interaction', {
+        //   type: element.tagName.toLowerCase(),
+        //   target: element.className,
+        //   lesson: this.state.currentLesson
+        // });
       }
     });
   }
@@ -1333,11 +1333,11 @@ class DiBoaSLearningApp {
         const perfData = performance.getEntriesByType('navigation')[0];
         const loadTime = perfData.loadEventEnd - perfData.fetchStart;
         
-        this.trackEvent('learning_page_performance', {
-          loadTime: loadTime,
-          domContentLoaded: perfData.domContentLoadedEventEnd - perfData.fetchStart,
-          lesson: this.state.currentLesson
-        });
+        // this.trackEvent('learning_page_performance', {
+        //   loadTime: loadTime,
+        //   domContentLoaded: perfData.domContentLoadedEventEnd - perfData.fetchStart,
+        //   lesson: this.state.currentLesson
+        // });
       }
     });
   }
@@ -1474,47 +1474,11 @@ class DiBoaSLearningApp {
   }
   
   /**
-   * Track analytics event
+   * Track analytics event (stubbed for privacy)
    */
   trackEvent(eventName, properties = {}) {
-    try {
-      // Use main app's tracking if available
-      if (window.DiBoaS && window.DiBoaS.trackEvent) {
-        window.DiBoaS.trackEvent(eventName, {
-          ...properties,
-          page: 'learning',
-          timestamp: Date.now()
-        });
-      }
-      
-      // Local tracking for learning-specific events
-      const eventData = {
-        event: eventName,
-        properties: {
-          ...properties,
-          page: 'learning',
-          url: window.location.href,
-          userAgent: navigator.userAgent,
-          timestamp: Date.now()
-        }
-      };
-      
-      // Store locally (in production, send to analytics service)
-      const events = JSON.parse(localStorage.getItem('diboas-learning-analytics') || '[]');
-      events.push(eventData);
-      
-      // Keep only last 200 events
-      if (events.length > 200) {
-        events.splice(0, events.length - 200);
-      }
-      
-      localStorage.setItem('diboas-learning-analytics', JSON.stringify(events));
-      
-      console.log('📊 Learning Analytics Event:', eventName, properties);
-      
-    } catch (error) {
-      console.error('Analytics tracking error:', error);
-    }
+    // Analytics tracking has been disabled for privacy
+    // Would have tracked: eventName, properties
   }
   
   /**
@@ -1523,11 +1487,11 @@ class DiBoaSLearningApp {
   handleError(error, context = 'unknown') {
     console.error(`Learning App Error (${context}):`, error);
     
-    this.trackEvent('learning_error', {
-      context: context,
-      error: error.message,
-      stack: error.stack?.substring(0, 500)
-    });
+    // this.trackEvent('learning_error', {
+    //   context: context,
+    //   error: error.message,
+    //   stack: error.stack?.substring(0, 500)
+    // });
     
     // Graceful degradation
     return false;

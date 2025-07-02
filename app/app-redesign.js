@@ -78,7 +78,7 @@ class DiBoaSOneFiApp {
     this.config = {
       apiEndpoint: window.diBoaSConfig?.apiEndpoint || 'https://api.diboas.com',
       wsEndpoint: window.diBoaSConfig?.wsEndpoint || 'wss://ws.diboas.com',
-      behavioralAnalyticsEnabled: true,
+      behavioralAnalyticsEnabled: false, // Analytics disabled
       progressiveDisclosureEnabled: true,
       mascotInteractionEnabled: true,
       realTimeDataEnabled: true,
@@ -147,11 +147,12 @@ class DiBoaSOneFiApp {
       this.initialized = true;
       console.log('✅ OneFi platform initialized successfully');
       
-      // Analytics
-      this.trackEvent('app_initialized', {
-        initialization_time: Date.now() - this.state.performance.navigationStartTime,
-        features_unlocked: this.state.unlockedFeatures.length
-      });
+      // Analytics - disabled
+      // TODO: Replace with actual analytics when needed
+      // this.trackEvent('app_initialized', {
+      //   initialization_time: Date.now() - this.state.performance.navigationStartTime,
+      //   features_unlocked: this.state.unlockedFeatures.length
+      // });
       
     } catch (error) {
       console.error('❌ App initialization failed:', error);
@@ -389,7 +390,8 @@ class DiBoaSOneFiApp {
       
       this.ws.onopen = () => {
         console.log('🔗 WebSocket connected');
-        this.trackEvent('websocket_connected');
+        // TODO: Replace with actual analytics when needed
+        // this.trackEvent('websocket_connected');
       };
       
       this.ws.onmessage = (event) => {
@@ -554,8 +556,9 @@ class DiBoaSOneFiApp {
     if (view) {
       this.navigateToView(view);
       
-      // Track behavioral interaction
-      this.trackInteraction('navigation', { view, source: 'sidebar' });
+      // Track behavioral interaction - disabled
+      // TODO: Replace with actual interaction tracking when needed
+      // this.trackInteraction('navigation', { view, source: 'sidebar' });
     }
   }
   
@@ -591,8 +594,9 @@ class DiBoaSOneFiApp {
     // Update state
     this.state.currentView = view;
     
-    // Track view change
-    this.trackEvent('view_changed', { view, previous_view: this.state.currentView });
+    // Track view change - disabled
+    // TODO: Replace with actual analytics when needed
+    // this.trackEvent('view_changed', { view, previous_view: this.state.currentView });
     
     // Update mascot context
     if (this.components.mascot) {
@@ -601,9 +605,20 @@ class DiBoaSOneFiApp {
   }
   
   /**
-   * Track user interactions for behavioral analysis
+   * Track user interactions for behavioral analysis - STUBBED OUT
+   * TODO: Replace with actual interaction tracking when needed
    */
   trackInteraction(type, data = {}) {
+    // Interaction tracking disabled
+    console.log('Interaction tracking disabled - would track:', type, data);
+    
+    // Still update interaction score for progression (keeping game mechanics)
+    this.updateInteractionScore(type);
+    
+    // Still check for progression triggers (keeping level-up functionality)
+    this.checkProgressionTriggers();
+    
+    /* Original behavioral tracking disabled:
     const interaction = {
       type,
       data,
@@ -616,12 +631,7 @@ class DiBoaSOneFiApp {
     if (this.components.behavioral?.interactionTracker) {
       this.components.behavioral.interactionTracker.track(interaction);
     }
-    
-    // Update interaction score
-    this.updateInteractionScore(type);
-    
-    // Check for progression triggers
-    this.checkProgressionTriggers();
+    */
   }
   
   /**
@@ -689,12 +699,13 @@ class DiBoaSOneFiApp {
     // Update mascot
     this.updateMascotForLevel(newLevel);
     
-    // Track progression event
-    this.trackEvent('level_up', {
-      old_level: oldLevel,
-      new_level: newLevel,
-      interaction_score: this.state.userInteractionScore
-    });
+    // Track progression event - disabled
+    // TODO: Replace with actual analytics when needed
+    // this.trackEvent('level_up', {
+    //   old_level: oldLevel,
+    //   new_level: newLevel,
+    //   interaction_score: this.state.userInteractionScore
+    // });
   }
   
   /**
@@ -816,9 +827,17 @@ class DiBoaSOneFiApp {
   }
   
   /**
-   * Track analytics event
+   * Track analytics event - STUBBED OUT
+   * TODO: Replace with actual analytics implementation when needed
    */
   trackEvent(eventName, properties = {}) {
+    // Analytics functionality disabled
+    console.log('Analytics disabled - would track:', eventName, properties);
+    
+    // Stubbed implementation - no actual tracking
+    return;
+    
+    /* Original implementation disabled:
     const event = {
       event: eventName,
       properties: {
@@ -841,7 +860,7 @@ class DiBoaSOneFiApp {
     const events = JSON.parse(localStorage.getItem('diboas_analytics_events') || '[]');
     events.push(event);
     localStorage.setItem('diboas_analytics_events', JSON.stringify(events.slice(-100))); // Keep last 100 events
-  }
+    */
   
   /**
    * Error handling
@@ -861,11 +880,12 @@ class DiBoaSOneFiApp {
     `;
     document.body.appendChild(errorContainer);
     
-    // Track error
-    this.trackEvent('app_initialization_error', {
-      error_message: error.message,
-      error_stack: error.stack
-    });
+    // Track error - disabled
+    // TODO: Replace with actual analytics when needed
+    // this.trackEvent('app_initialization_error', {
+    //   error_message: error.message,
+    //   error_stack: error.stack
+    // });
   }
   
   // Additional methods would continue here...

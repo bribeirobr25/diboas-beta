@@ -50,21 +50,21 @@ window.DiBoaS = (function() {
       // Initialize core modules in dependency order
       initializePerformanceMonitoring();
       initializeErrorHandling();
-      initializeAnalytics();
+      // initializeAnalytics(); // Removed analytics
       initializeInteractions();
       initializeAccessibility();
       initializeABTesting();
-      initializeConversionTracking();
+      // initializeConversionTracking(); // Removed analytics
       
       state.initialized = true;
       console.log('✅ diBoaS application initialized successfully');
       
-      // Track successful initialization
-      trackEvent('app_initialized', {
-        timestamp: Date.now(),
-        user_agent: navigator.userAgent,
-        viewport: `${window.innerWidth}x${window.innerHeight}`
-      });
+      // Track successful initialization (stubbed)
+      // trackEvent('app_initialized', {
+      //   timestamp: Date.now(),
+      //   user_agent: navigator.userAgent,
+      //   viewport: `${window.innerWidth}x${window.innerHeight}`
+      // });
       
     } catch (error) {
       console.error('❌ Failed to initialize diBoaS application:', error);
@@ -106,9 +106,10 @@ function initializePerformanceMonitoring() {
     const fcp = entries[entries.length - 1];
     performanceData.fcp = fcp.startTime;
     
-    if (window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
-      trackEvent('performance_fcp', { value: Math.round(fcp.startTime) });
-    }
+    // Performance tracking stubbed
+    // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
+    //   trackEvent('performance_fcp', { value: Math.round(fcp.startTime) });
+    // }
   });
   
   try {
@@ -123,9 +124,10 @@ function initializePerformanceMonitoring() {
     const lcp = entries[entries.length - 1];
     performanceData.lcp = lcp.startTime;
     
-    if (window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
-      trackEvent('performance_lcp', { value: Math.round(lcp.startTime) });
-    }
+    // Performance tracking stubbed
+    // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
+    //   trackEvent('performance_lcp', { value: Math.round(lcp.startTime) });
+    // }
   });
   
   try {
@@ -140,9 +142,10 @@ function initializePerformanceMonitoring() {
     entries.forEach((entry) => {
       performanceData.fid = entry.processingStart - entry.startTime;
       
-      if (window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
-        trackEvent('performance_fid', { value: Math.round(performanceData.fid) });
-      }
+      // Performance tracking stubbed
+      // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
+      //   trackEvent('performance_fid', { value: Math.round(performanceData.fid) });
+      // }
     });
   });
   
@@ -175,9 +178,10 @@ function initializePerformanceMonitoring() {
     if (navigation) {
       performanceData.ttfb = navigation.responseStart - navigation.requestStart;
       
-      if (window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
-        trackEvent('performance_ttfb', { value: Math.round(performanceData.ttfb) });
-      }
+      // Performance tracking stubbed
+      // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
+      //   trackEvent('performance_ttfb', { value: Math.round(performanceData.ttfb) });
+      // }
     }
   });
 
@@ -263,8 +267,8 @@ function handleError(error, context = 'unknown') {
     }
   }
 
-  // Send to monitoring service in production
-  if (window.ENV.FEATURE_FLAGS.ERROR_MONITORING && window.ENV.NODE_ENV === 'production') {
+  // Send to monitoring service in production (stubbed)
+  if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ERROR_MONITORING && window.ENV.NODE_ENV === 'production') {
     // This would integrate with your error monitoring service
     // Example: Sentry, Bugsnag, etc.
     try {
@@ -288,14 +292,14 @@ function handleError(error, context = 'unknown') {
 // ===========================
 
 /**
- * Analytics and conversion tracking initialization
+ * Analytics and conversion tracking initialization (STUBBED)
  */
 function initializeAnalytics() {
   // Initialize session tracking
   const sessionId = generateSessionId();
   const userId = getUserId();
   
-  // Set up analytics context
+  // Set up analytics context (minimal for compatibility)
   window.analyticsContext = {
     sessionId,
     userId,
@@ -304,25 +308,31 @@ function initializeAnalytics() {
     theme: document.documentElement.getAttribute('data-theme') || 'default'
   };
 
-  // Track page view
-  trackEvent('page_view', {
-    page: window.location.pathname,
-    title: document.title,
-    referrer: document.referrer,
-    ...window.analyticsContext
-  });
+  // Track page view (stubbed)
+  // trackEvent('page_view', {
+  //   page: window.location.pathname,
+  //   title: document.title,
+  //   referrer: document.referrer,
+  //   ...window.analyticsContext
+  // });
 
-  // Initialize scroll depth tracking
-  initializeScrollDepthTracking();
+  // Initialize scroll depth tracking (stubbed)
+  // initializeScrollDepthTracking();
   
-  // Initialize time on page tracking
-  initializeTimeOnPageTracking();
+  // Initialize time on page tracking (stubbed)
+  // initializeTimeOnPageTracking();
 }
 
 /**
- * Core event tracking function
+ * Core event tracking function (STUBBED)
  */
 function trackEvent(eventName, properties = {}) {
+  // Completely stubbed - no analytics tracking
+  console.log('📊 Analytics Event (stubbed):', eventName, properties);
+  return;
+  
+  // Original code commented out
+  /*
   const event = {
     event: eventName,
     properties: {
@@ -336,12 +346,12 @@ function trackEvent(eventName, properties = {}) {
   };
 
   // Console logging for development
-  if (window.ENV.NODE_ENV !== 'production') {
+  if (window.ENV && window.ENV.NODE_ENV !== 'production') {
     console.log('📊 Analytics Event:', event);
   }
 
   // Send to Google Analytics 4 if available
-  if (typeof gtag !== 'undefined' && window.ENV.FEATURE_FLAGS.CONVERSION_TRACKING) {
+  if (typeof gtag !== 'undefined' && window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.CONVERSION_TRACKING) {
     gtag('event', eventName, {
       ...properties,
       send_to: window.ENV.ANALYTICS_ID
@@ -349,7 +359,7 @@ function trackEvent(eventName, properties = {}) {
   }
 
   // Send to custom analytics endpoint
-  if (window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS && window.ENV.NODE_ENV === 'production') {
+  if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS && window.ENV.NODE_ENV === 'production') {
     try {
       fetch('/api/analytics', {
         method: 'POST',
@@ -376,6 +386,7 @@ function trackEvent(eventName, properties = {}) {
   if (window.analyticsEvents.length > 100) {
     window.analyticsEvents.shift();
   }
+  */
 }
 
 /**
@@ -402,10 +413,10 @@ function initializeScrollDepthTracking() {
     milestones.forEach(milestone => {
       if (scrollPercent >= milestone && !trackedMilestones.has(milestone)) {
         trackedMilestones.add(milestone);
-        trackEvent('scroll_depth', {
-          depth: milestone,
-          max_depth: maxScrollDepth
-        });
+        // trackEvent('scroll_depth', {
+        //   depth: milestone,
+        //   max_depth: maxScrollDepth
+        // });
       }
     });
   }
@@ -467,11 +478,11 @@ function initializeTimeOnPageTracking() {
     timeMilestones.forEach(milestone => {
       if (timeOnPage >= milestone && !trackedTimeMilestones.has(milestone)) {
         trackedTimeMilestones.add(milestone);
-        trackEvent('time_on_page', {
-          duration: milestone,
-          active_time: Math.floor(totalActiveTime / 1000),
-          total_time: timeOnPage
-        });
+        // trackEvent('time_on_page', {
+        //   duration: milestone,
+        //   active_time: Math.floor(totalActiveTime / 1000),
+        //   total_time: timeOnPage
+        // });
       }
     });
   }, 10000);
@@ -482,11 +493,11 @@ function initializeTimeOnPageTracking() {
     const totalTime = Math.floor((endTime - startTime) / 1000);
     const activeTime = Math.floor((totalActiveTime + (isActive ? endTime - lastActiveTime : 0)) / 1000);
     
-    trackEvent('page_exit', {
-      total_time: totalTime,
-      active_time: activeTime,
-      engagement_rate: Math.round((activeTime / totalTime) * 100)
-    });
+    // trackEvent('page_exit', {
+    //   total_time: totalTime,
+    //   active_time: activeTime,
+    //   engagement_rate: Math.round((activeTime / totalTime) * 100)
+    // });
   });
 }
 
@@ -552,7 +563,7 @@ function initializeNavigation() {
         }
       });
 
-      trackEvent('mobile_menu_toggle', { expanded: !isExpanded });
+      // trackEvent('mobile_menu_toggle', { expanded: !isExpanded });
     });
   }
 
@@ -571,10 +582,10 @@ function initializeNavigation() {
           behavior: 'smooth'
         });
 
-        trackEvent('anchor_navigation', {
-          target: this.getAttribute('href'),
-          source_section: this.closest('section')?.id || 'unknown'
-        });
+        // trackEvent('anchor_navigation', {
+        //   target: this.getAttribute('href'),
+        //   source_section: this.closest('section')?.id || 'unknown'
+        // });
       }
     });
   });
@@ -591,13 +602,13 @@ function initializeCTATracking() {
       const crypto = this.getAttribute('data-crypto');
       const section = this.closest('section')?.id || 'unknown';
       
-      trackEvent('cta_click', {
-        action,
-        crypto,
-        section,
-        button_text: this.textContent.trim(),
-        button_type: this.tagName.toLowerCase()
-      });
+      // trackEvent('cta_click', {
+      //   action,
+      //   crypto,
+      //   section,
+      //   button_text: this.textContent.trim(),
+      //   button_type: this.tagName.toLowerCase()
+      // });
 
       // Add visual feedback
       this.style.transform = 'scale(0.98)';
@@ -621,11 +632,11 @@ function initializeCTATracking() {
     element.addEventListener('mouseleave', () => {
       if (hoverStartTime) {
         const hoverDuration = Date.now() - hoverStartTime;
-        trackEvent('cta_hover', {
-          duration: hoverDuration,
-          element_id: element.id || element.className,
-          section: element.closest('section')?.id || 'unknown'
-        });
+        // trackEvent('cta_hover', {
+        //   duration: hoverDuration,
+        //   element_id: element.id || element.className,
+        //   section: element.closest('section')?.id || 'unknown'
+        // });
       }
     });
   });
@@ -644,14 +655,14 @@ function handleCTAAction(action, context) {
         primaryAction: {
           text: 'Start with Aqua',
           action: () => {
-            trackEvent('onboarding_start', context);
+            // trackEvent('onboarding_start', context);
             window.location.href = './app/?flow=onboarding';
           }
         },
         secondaryAction: {
           text: 'Learn More First',
           action: () => {
-            trackEvent('learn_more_selected', context);
+            // trackEvent('learn_more_selected', context);
             window.location.href = './learn/';
           }
         }
@@ -659,24 +670,24 @@ function handleCTAAction(action, context) {
       break;
       
     case 'select-crypto':
-      trackEvent('crypto_selected', {
-        ...context,
-        selection_method: 'decision_matrix'
-      });
+      // trackEvent('crypto_selected', {
+      //   ...context,
+      //   selection_method: 'decision_matrix'
+      // });
       showCryptoConfirmation(context.crypto);
       break;
       
     case 'start-bitcoin':
-      trackEvent('crypto_selected', {
-        ...context,
-        crypto: 'bitcoin',
-        selection_method: 'aqua_recommendation'
-      });
+      // trackEvent('crypto_selected', {
+      //   ...context,
+      //   crypto: 'bitcoin',
+      //   selection_method: 'aqua_recommendation'
+      // });
       showCryptoConfirmation('bitcoin');
       break;
       
     case 'learn-more':
-      trackEvent('learn_more_clicked', context);
+      // trackEvent('learn_more_clicked', context);
       window.location.href = './learn/';
       break;
       
@@ -697,11 +708,11 @@ function initializeCryptoSelection() {
                    this.classList.contains('sol') ? 'solana' :
                    this.classList.contains('sui') ? 'sui' : 'unknown';
       
-      trackEvent('crypto_preview_click', {
-        crypto,
-        section: 'hero',
-        interaction_type: 'preview_card'
-      });
+      // trackEvent('crypto_preview_click', {
+      //   crypto,
+      //   section: 'hero',
+      //   interaction_type: 'preview_card'
+      // });
 
       // Visual feedback
       this.style.transform = 'translateY(-8px) scale(1.05)';
@@ -729,10 +740,10 @@ function initializeCryptoSelection() {
     card.addEventListener('mouseenter', function() {
       hoverTimeout = setTimeout(() => {
         const crypto = this.querySelector('.crypto-result h3')?.textContent.toLowerCase();
-        trackEvent('decision_card_hover', {
-          crypto,
-          hover_duration: 2000
-        });
+        // trackEvent('decision_card_hover', {
+        //   crypto,
+        //   hover_duration: 2000
+        // });
       }, 2000);
     });
     
@@ -754,21 +765,21 @@ function initializeFormInteractions() {
     
     field.addEventListener('focus', () => {
       focusStartTime = Date.now();
-      trackEvent('form_field_focus', {
-        field_name: field.name || field.id,
-        field_type: field.type
-      });
+      // trackEvent('form_field_focus', {
+      //   field_name: field.name || field.id,
+      //   field_type: field.type
+      // });
     });
     
     field.addEventListener('blur', () => {
       if (focusStartTime) {
         const focusDuration = Date.now() - focusStartTime;
-        trackEvent('form_field_blur', {
-          field_name: field.name || field.id,
-          field_type: field.type,
-          focus_duration: focusDuration,
-          has_value: !!field.value
-        });
+        // trackEvent('form_field_blur', {
+        //   field_name: field.name || field.id,
+        //   field_type: field.type,
+        //   focus_duration: focusDuration,
+        //   has_value: !!field.value
+        // });
       }
     });
 
@@ -784,11 +795,11 @@ function initializeFormInteractions() {
       const formData = new FormData(this);
       const data = Object.fromEntries(formData.entries());
       
-      trackEvent('form_submit', {
-        form_id: this.id,
-        form_action: this.action,
-        field_count: formData.keys().length
-      });
+      // trackEvent('form_submit', {
+      //   form_id: this.id,
+      //   form_action: this.action,
+      //   field_count: formData.keys().length
+      // });
     });
   });
 }
@@ -809,11 +820,11 @@ function initializeMascotInteractions() {
         mascot.offsetHeight; // Trigger reflow
         mascot.style.animation = 'gentle-bob 0.6s ease-in-out';
         
-        trackEvent('mascot_interaction', {
-          interaction_type: 'click',
-          mascot_type: 'aqua',
-          section: container.closest('section')?.id || 'unknown'
-        });
+        // trackEvent('mascot_interaction', {
+        //   interaction_type: 'click',
+        //   mascot_type: 'aqua',
+        //   section: container.closest('section')?.id || 'unknown'
+        // });
 
         // Show random encouraging message
         showMascotMessage();
@@ -823,10 +834,10 @@ function initializeMascotInteractions() {
       container.addEventListener('mouseenter', () => {
         mascot.style.transform = 'scale(1.05)';
         
-        trackEvent('mascot_interaction', {
-          interaction_type: 'hover',
-          mascot_type: 'aqua'
-        });
+        // trackEvent('mascot_interaction', {
+        //   interaction_type: 'hover',
+        //   mascot_type: 'aqua'
+        // });
       });
 
       container.addEventListener('mouseleave', () => {
@@ -865,22 +876,22 @@ function initializeResponsiveFeatures() {
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      trackEvent('viewport_resize', {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        device_type: getDeviceType()
-      });
+      // trackEvent('viewport_resize', {
+      //   width: window.innerWidth,
+      //   height: window.innerHeight,
+      //   device_type: getDeviceType()
+      // });
     }, 250);
   });
 
   // Orientation change tracking
   window.addEventListener('orientationchange', () => {
     setTimeout(() => {
-      trackEvent('orientation_change', {
-        orientation: window.orientation,
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+      // trackEvent('orientation_change', {
+      //   orientation: window.orientation,
+      //   width: window.innerWidth,
+      //   height: window.innerHeight
+      // });
     }, 500);
   });
 }
@@ -893,7 +904,7 @@ function initializeResponsiveFeatures() {
  * A/B testing initialization and management
  */
 function initializeABTesting() {
-  if (!window.ENV.FEATURE_FLAGS.AB_TESTING) return;
+  if (!window.ENV || !window.ENV.FEATURE_FLAGS || !window.ENV.FEATURE_FLAGS.AB_TESTING) return;
 
   const userId = getUserId();
   const tests = getActiveTests();
@@ -902,11 +913,11 @@ function initializeABTesting() {
     const variant = assignUserToVariant(userId, test);
     applyTestVariant(test, variant);
     
-    trackEvent('ab_test_assignment', {
-      test_name: test.name,
-      variant,
-      user_id: userId
-    });
+    // trackEvent('ab_test_assignment', {
+    //   test_name: test.name,
+    //   variant,
+    //   user_id: userId
+    // });
   });
 }
 
@@ -1184,7 +1195,7 @@ function showCryptoInfo(crypto) {
     primaryAction: {
       text: `Choose ${data.name}`,
       action: () => {
-        trackEvent('crypto_selection_confirmed', { crypto, source: 'info_modal' });
+        // trackEvent('crypto_selection_confirmed', { crypto, source: 'info_modal' });
         showCryptoConfirmation(crypto);
       }
     },
@@ -1233,7 +1244,7 @@ function showCryptoConfirmation(crypto) {
     primaryAction: {
       text: 'Start My Journey',
       action: () => {
-        trackEvent('crypto_journey_start', { crypto });
+        // trackEvent('crypto_journey_start', { crypto });
         window.location.href = `./app/?crypto=${crypto}&flow=onboarding`;
       }
     },
@@ -1374,10 +1385,10 @@ function showModal(content, actions = {}) {
     firstFocusable.focus();
   }
 
-  trackEvent('modal_opened', {
-    content_type: content.includes('crypto-info') ? 'crypto_info' : 
-                  content.includes('crypto-confirmation') ? 'crypto_confirmation' : 'generic'
-  });
+  // trackEvent('modal_opened', {
+  //   content_type: content.includes('crypto-info') ? 'crypto_info' : 
+  //                 content.includes('crypto-confirmation') ? 'crypto_confirmation' : 'generic'
+  // });
 }
 
 /**
@@ -1387,7 +1398,7 @@ function closeModal() {
   const modal = document.querySelector('.modal-overlay');
   if (modal) {
     modal.remove();
-    trackEvent('modal_closed');
+    // trackEvent('modal_closed');
   }
 }
 
@@ -1523,9 +1534,10 @@ function debounce(func, wait, immediate) {
 // ===========================
 
 /**
- * Initialize conversion tracking for specific elements
+ * Initialize conversion tracking for specific elements (STUBBED)
  */
 function initializeConversionTracking() {
+  return; // Completely disabled
   // Track conversion funnel steps
   const funnelSteps = [
     { element: '.hero-section', step: 'awareness', name: 'landing_page_view' },
@@ -1540,11 +1552,11 @@ function initializeConversionTracking() {
       if (entry.isIntersecting) {
         const step = funnelSteps.find(s => entry.target.matches(s.element));
         if (step) {
-          trackEvent('conversion_funnel', {
-            step: step.step,
-            step_name: step.name,
-            time_to_step: Date.now() - window.analyticsContext.pageLoadTime
-          });
+          // trackEvent('conversion_funnel', {
+          //   step: step.step,
+          //   step_name: step.name,
+          //   time_to_step: Date.now() - window.analyticsContext.pageLoadTime
+          // });
         }
       }
     });
@@ -1569,31 +1581,31 @@ function trackMicroConversions() {
   // Video play tracking (if videos are added)
   document.querySelectorAll('video').forEach(video => {
     video.addEventListener('play', () => {
-      trackEvent('video_play', { video_src: video.src });
+      // trackEvent('video_play', { video_src: video.src });
     });
     
     video.addEventListener('ended', () => {
-      trackEvent('video_complete', { video_src: video.src });
+      // trackEvent('video_complete', { video_src: video.src });
     });
   });
 
   // External link tracking
   document.querySelectorAll('a[href^="http"]').forEach(link => {
     link.addEventListener('click', () => {
-      trackEvent('external_link_click', {
-        url: link.href,
-        text: link.textContent.trim()
-      });
+      // trackEvent('external_link_click', {
+      //   url: link.href,
+      //   text: link.textContent.trim()
+      // });
     });
   });
 
   // Download tracking
   document.querySelectorAll('a[href$=".pdf"], a[href$=".doc"], a[href$=".docx"]').forEach(link => {
     link.addEventListener('click', () => {
-      trackEvent('document_download', {
-        file_url: link.href,
-        file_type: link.href.split('.').pop()
-      });
+      // trackEvent('document_download', {
+      //   file_url: link.href,
+      //   file_type: link.href.split('.').pop()
+      // });
     });
   });
 
@@ -1601,10 +1613,10 @@ function trackMicroConversions() {
   document.addEventListener('copy', () => {
     const selection = window.getSelection().toString();
     if (selection.length > 10) {
-      trackEvent('text_copied', {
-        text_length: selection.length,
-        text_preview: selection.substring(0, 50)
-      });
+      // trackEvent('text_copied', {
+      //   text_length: selection.length,
+      //   text_preview: selection.substring(0, 50)
+      // });
     }
   });
 }
@@ -1618,6 +1630,6 @@ if (document.readyState === 'loading') {
   window.DiBoaS.init();
 }
 
-// Export for global access
+// Export stub trackEvent function and error handler for global access
 window.trackEvent = trackEvent;
 window.handleError = handleError;
