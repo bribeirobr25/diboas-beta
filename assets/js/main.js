@@ -51,6 +51,7 @@ window.DiBoaS = (function () {
       initializePerformanceMonitoring();
       initializeErrorHandling();
       // initializeAnalytics(); // Removed analytics
+      initializeI18n();
       initializeInteractions();
       initializeAccessibility();
       initializeABTesting();
@@ -285,6 +286,93 @@ function handleError(error, context = 'unknown') {
       // Prevent error handling from causing more errors
     }
   }
+}
+
+// ===========================
+// INTERNATIONALIZATION
+// ===========================
+
+/**
+ * Initialize internationalization integration
+ */
+function initializeI18n() {
+  // Wait for i18n to be available
+  if (window.i18n && window.i18n.init) {
+    // Listen for language changes
+    document.addEventListener('languageChanged', (event) => {
+      const { language } = event.detail;
+      console.log('🌍 Language changed to:', language);
+      
+      // Track language change
+      // trackEvent('language_changed', {
+      //   new_language: language,
+      //   previous_language: event.detail.previousLanguage || 'unknown'
+      // });
+      
+      // Update any dynamic content that might need refresh
+      updateDynamicContent(language);
+    });
+  }
+}
+
+/**
+ * Update dynamic content after language change
+ */
+function updateDynamicContent(language) {
+  // Update any JavaScript-generated content
+  updateMascotMessages(language);
+  updateModalContent(language);
+  
+  // Refresh any tooltips or dynamic aria-labels
+  updateAriaLabels(language);
+}
+
+/**
+ * Update mascot messages for new language
+ */
+function updateMascotMessages(language) {
+  // Update encouraging messages array based on language
+  if (window.i18n && window.i18n.t) {
+    // This would be expanded with more messages in the future
+    const messages = [
+      window.i18n.t('mascot.encourage_1') || "You're doing great exploring crypto options!",
+      window.i18n.t('mascot.encourage_2') || "I'm here to help you every step of the way.",
+      window.i18n.t('mascot.encourage_3') || "Small steps lead to big financial growth!",
+      window.i18n.t('mascot.encourage_4') || "Your wealth journey is going to be amazing!",
+      window.i18n.t('mascot.encourage_5') || "Every expert was once a beginner like you."
+    ];
+    
+    // Store updated messages globally for mascot interactions
+    window.mascotMessages = messages;
+  }
+}
+
+/**
+ * Update modal content translations
+ */
+function updateModalContent(language) {
+  // Any existing modals should be updated
+  const existingModal = document.querySelector('.modal-overlay');
+  if (existingModal) {
+    // Close and let user reopen in new language
+    closeModal();
+  }
+}
+
+/**
+ * Update dynamic aria-labels
+ */
+function updateAriaLabels(language) {
+  if (!window.i18n || !window.i18n.t) return;
+  
+  // Update any dynamically created elements with aria-labels
+  document.querySelectorAll('[data-dynamic-aria]').forEach(element => {
+    const key = element.getAttribute('data-dynamic-aria');
+    const translation = window.i18n.t(key);
+    if (translation && translation !== key) {
+      element.setAttribute('aria-label', translation);
+    }
+  });
 }
 
 // ===========================
@@ -1536,7 +1624,8 @@ function showSecurityInfo(securityType) {
  * Show mascot encouraging message
  */
 function showMascotMessage() {
-  const messages = [
+  // Use global mascot messages if available (updated by i18n), otherwise fallback
+  const messages = window.mascotMessages || [
     "You're doing great exploring crypto options!",
     "I'm here to help you every step of the way.",
     "Small steps lead to big financial growth!",
