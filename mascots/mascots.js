@@ -24,11 +24,11 @@ class DiBoaSMascotsApp {
       currentHeroMascot: 'aqua',
       activeMascot: null,
       loadingComplete: false,
-      
+
       // Animation states
       mascotAnimations: new Map(),
       intersectionObserver: null,
-      
+
       // User interaction tracking
       interactions: {
         mascotHovers: 0,
@@ -36,7 +36,7 @@ class DiBoaSMascotsApp {
         carouselInteractions: 0,
         timeOnPage: Date.now()
       },
-      
+
       // Mascot data
       mascots: {
         aqua: {
@@ -47,7 +47,7 @@ class DiBoaSMascotsApp {
           element: 'water',
           personality: 'gentle, patient, encouraging',
           unlockTrigger: 'First platform visit',
-          quote: "I am your first gentle current into crypto. Every expert was once a beginner, and I am here to make that beginning beautiful."
+          quote: "I am your first crypto and wealth-building mascot guide. Every expert was once a beginner, and I am here to make that beginning beautiful."
         },
         verde: {
           name: 'Verde',
@@ -81,35 +81,35 @@ class DiBoaSMascotsApp {
         }
       }
     };
-    
+
     this.config = {
       animationSpeed: 800,
       carouselAutoplay: true,
       carouselInterval: 5000,
       intersectionThreshold: 0.3,
       performanceMode: this.detectPerformanceMode(),
-      
+
       // Accessibility settings
       respectMotionPreference: true,
       keyboardNavigation: true,
       screenReaderOptimized: true
     };
-    
+
     this.init();
   }
-  
+
   /**
    * Initialize the mascots page application
    */
   async init() {
     if (this.initialized) return;
-    
+
     try {
       console.log('🎭 Initializing diBoaS Mascots Experience');
-      
+
       // Wait for DOM ready
       await this.waitForDOM();
-      
+
       // Initialize core systems
       this.initializeLoadingScreen();
       this.initializeIntersectionObserver();
@@ -119,25 +119,25 @@ class DiBoaSMascotsApp {
       this.initializeAccessibility();
       this.initializeEventListeners();
       this.initializePerformanceOptimizations();
-      
+
       // Start experience
       await this.startMascotExperience();
-      
+
       this.initialized = true;
       console.log('✨ Mascots experience initialized successfully');
-      
+
       // Track initialization
       // this.trackEvent('mascots_page_loaded', {
       //   load_time: Date.now() - this.state.interactions.timeOnPage,
       //   performance_mode: this.config.performanceMode
       // });
-      
+
     } catch (error) {
       console.error('❌ Mascots page initialization failed:', error);
       this.initializeFallbackMode();
     }
   }
-  
+
   /**
    * Wait for DOM to be ready
    */
@@ -150,7 +150,7 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Detect device performance mode
    */
@@ -159,7 +159,7 @@ class DiBoaSMascotsApp {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return 'reduced';
     }
-    
+
     // Check for slow connection
     if (navigator.connection) {
       const connection = navigator.connection;
@@ -167,42 +167,42 @@ class DiBoaSMascotsApp {
         return 'low';
       }
     }
-    
+
     // Check for low-end device
     if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
       return 'medium';
     }
-    
+
     return 'high';
   }
-  
+
   /**
    * Initialize loading screen with mascot animations
    */
   initializeLoadingScreen() {
     const loadingScreen = document.getElementById('loadingScreen');
     const loadingProgress = document.getElementById('loadingProgress');
-    
+
     if (!loadingScreen) return;
-    
+
     let progress = 0;
     const interval = setInterval(() => {
       progress += Math.random() * 15;
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         setTimeout(() => {
           this.hideLoadingScreen();
         }, 500);
       }
-      
+
       if (loadingProgress) {
         loadingProgress.style.width = `${progress}%`;
       }
     }, 200);
   }
-  
+
   /**
    * Hide loading screen
    */
@@ -217,7 +217,7 @@ class DiBoaSMascotsApp {
       }, 800);
     }
   }
-  
+
   /**
    * Initialize intersection observer for scroll-triggered animations
    */
@@ -226,7 +226,7 @@ class DiBoaSMascotsApp {
       console.warn('IntersectionObserver not supported, using fallback');
       return;
     }
-    
+
     this.state.intersectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -237,20 +237,20 @@ class DiBoaSMascotsApp {
       threshold: this.config.intersectionThreshold,
       rootMargin: '50px'
     });
-    
+
     // Observe showcase elements
     const showcases = document.querySelectorAll('.mascot-showcase');
     showcases.forEach(showcase => {
       this.state.intersectionObserver.observe(showcase);
     });
-    
+
     // Observe other animated elements
     const animatedElements = document.querySelectorAll('.benefit-card, .timeline-milestone, .science-point');
     animatedElements.forEach(element => {
       this.state.intersectionObserver.observe(element);
     });
   }
-  
+
   /**
    * Handle element coming into view
    */
@@ -261,20 +261,20 @@ class DiBoaSMascotsApp {
     } else {
       this.animateElementEntrance(element);
     }
-    
+
     // Stop observing once animated
     this.state.intersectionObserver.unobserve(element);
   }
-  
+
   /**
    * Initialize hero mascot carousel
    */
   initializeHeroCarousel() {
     const previewCards = document.querySelectorAll('.mascot-preview-card');
     const heroStage = document.getElementById('heroMascotStage');
-    
+
     if (!previewCards.length || !heroStage) return;
-    
+
     // Setup preview card interactions
     previewCards.forEach(card => {
       card.addEventListener('click', (e) => {
@@ -282,7 +282,7 @@ class DiBoaSMascotsApp {
         this.switchHeroMascot(mascot);
         this.state.interactions.carouselInteractions++;
       });
-      
+
       card.addEventListener('mouseenter', () => {
         if (this.config.performanceMode === 'high') {
           const mascot = card.getAttribute('data-mascot');
@@ -290,25 +290,25 @@ class DiBoaSMascotsApp {
         }
       });
     });
-    
+
     // Auto-rotate carousel if enabled
     if (this.config.carouselAutoplay && this.config.performanceMode !== 'low') {
       this.startCarouselAutoplay();
     }
-    
+
     // Keyboard navigation
     this.setupCarouselKeyboardNav();
   }
-  
+
   /**
    * Switch active hero mascot
    */
   switchHeroMascot(mascotId) {
     if (this.state.currentHeroMascot === mascotId) return;
-    
+
     const heroStage = document.getElementById('heroMascotStage');
     const previewCards = document.querySelectorAll('.mascot-preview-card');
-    
+
     // Update preview cards
     previewCards.forEach(card => {
       card.classList.remove('active');
@@ -316,33 +316,33 @@ class DiBoaSMascotsApp {
         card.classList.add('active');
       }
     });
-    
+
     // Update hero mascot
     const currentMascot = heroStage.querySelector('.floating-mascot.active');
     const newMascot = heroStage.querySelector(`[data-mascot="${mascotId}"]`);
-    
+
     if (currentMascot && newMascot) {
       // Animate transition
       currentMascot.style.transform = 'translate(-50%, -50%) scale(0.8) rotate(10deg)';
       currentMascot.style.opacity = '0';
-      
+
       setTimeout(() => {
         currentMascot.classList.remove('active');
         newMascot.classList.add('active');
         newMascot.style.transform = 'translate(-50%, -50%) scale(1.1) rotate(-5deg)';
         newMascot.style.opacity = '1';
-        
+
         setTimeout(() => {
           newMascot.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
         }, 300);
       }, 400);
     }
-    
+
     this.state.currentHeroMascot = mascotId;
-    
+
     // Update page theme
     this.updatePageTheme(mascotId);
-    
+
     // Track interaction
     // this.trackEvent('hero_mascot_switch', {
     //   from: this.state.currentHeroMascot,
@@ -350,7 +350,7 @@ class DiBoaSMascotsApp {
     //   trigger: 'user_click'
     // });
   }
-  
+
   /**
    * Preview mascot on hover
    */
@@ -364,32 +364,32 @@ class DiBoaSMascotsApp {
       }, 2000);
     }
   }
-  
+
   /**
    * Start carousel autoplay
    */
   startCarouselAutoplay() {
     const mascotOrder = ['aqua', 'verde', 'mystic', 'coral'];
     let currentIndex = 0;
-    
+
     setInterval(() => {
       if (document.hidden || this.state.activeMascot) return; // Pause if tab inactive or user interacting
-      
+
       currentIndex = (currentIndex + 1) % mascotOrder.length;
       this.switchHeroMascot(mascotOrder[currentIndex]);
     }, this.config.carouselInterval);
   }
-  
+
   /**
    * Setup carousel keyboard navigation
    */
   setupCarouselKeyboardNav() {
     document.addEventListener('keydown', (e) => {
       if (!e.target.closest('.mascot-preview-carousel')) return;
-      
+
       const mascotOrder = ['aqua', 'verde', 'mystic', 'coral'];
       const currentIndex = mascotOrder.indexOf(this.state.currentHeroMascot);
-      
+
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
         const newIndex = currentIndex > 0 ? currentIndex - 1 : mascotOrder.length - 1;
@@ -401,35 +401,35 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Initialize mascot showcases
    */
   initializeMascotShowcases() {
     const showcases = document.querySelectorAll('.mascot-showcase');
-    
+
     showcases.forEach(showcase => {
       const mascotId = this.extractMascotIdFromElement(showcase);
       if (!mascotId) return;
-      
+
       // Setup hover interactions
       if (this.config.performanceMode === 'high') {
         showcase.addEventListener('mouseenter', () => {
           this.startShowcaseHoverEffect(showcase, mascotId);
         });
-        
+
         showcase.addEventListener('mouseleave', () => {
           this.endShowcaseHoverEffect(showcase, mascotId);
         });
       }
-      
+
       // Setup click interactions for mobile
       showcase.addEventListener('click', () => {
         this.toggleShowcaseInteraction(showcase, mascotId);
       });
     });
   }
-  
+
   /**
    * Extract mascot ID from showcase element
    */
@@ -442,52 +442,52 @@ class DiBoaSMascotsApp {
     }
     return null;
   }
-  
+
   /**
    * Start showcase hover effect
    */
   startShowcaseHoverEffect(showcase, mascotId) {
     const mascot = this.state.mascots[mascotId];
     if (!mascot) return;
-    
+
     // Enhance visual effects
     const stage = showcase.querySelector('.mascot-stage');
     const effects = showcase.querySelector('.stage-effects');
-    
+
     if (stage) {
       stage.style.transform = 'scale(1.05)';
       stage.style.filter = 'brightness(1.1)';
     }
-    
+
     if (effects) {
       effects.style.opacity = '0.3';
       effects.style.transform = 'scale(1.2)';
     }
-    
+
     // Play hover sound (if enabled)
     this.playMascotSound(mascotId, 'hover');
-    
+
     this.state.interactions.mascotHovers++;
   }
-  
+
   /**
    * End showcase hover effect
    */
   endShowcaseHoverEffect(showcase, mascotId) {
     const stage = showcase.querySelector('.mascot-stage');
     const effects = showcase.querySelector('.stage-effects');
-    
+
     if (stage) {
       stage.style.transform = '';
       stage.style.filter = '';
     }
-    
+
     if (effects) {
       effects.style.opacity = '';
       effects.style.transform = '';
     }
   }
-  
+
   /**
    * Toggle showcase interaction (for mobile)
    */
@@ -498,7 +498,7 @@ class DiBoaSMascotsApp {
       this.activateShowcase(showcase, mascotId);
     }
   }
-  
+
   /**
    * Activate showcase
    */
@@ -510,35 +510,35 @@ class DiBoaSMascotsApp {
         s.classList.remove('active');
       }
     });
-    
+
     showcase.classList.add('active');
     this.state.activeMascot = mascotId;
-    
+
     // Enhanced animation
     this.animateMascotShowcase(showcase);
-    
+
     // Update hero to match
     this.switchHeroMascot(mascotId);
-    
+
     // Track interaction
     // this.trackEvent('showcase_activated', {
     //   mascot: mascotId,
     //   method: 'click'
     // });
   }
-  
+
   /**
    * Deactivate showcase
    */
   deactivateShowcase(showcase, mascotId) {
     showcase.classList.remove('active');
     this.state.activeMascot = null;
-    
+
     // this.trackEvent('showcase_deactivated', {
     //   mascot: mascotId
     // });
   }
-  
+
   /**
    * Animate mascot showcase entrance
    */
@@ -546,21 +546,21 @@ class DiBoaSMascotsApp {
     const mascotImage = showcase.querySelector('.showcase-mascot, .mystic-orb');
     const content = showcase.querySelector('.showcase-content');
     const effects = showcase.querySelector('.stage-effects');
-    
+
     if (this.config.performanceMode === 'reduced') {
       // Simple fade-in for reduced motion
       showcase.style.opacity = '0';
       showcase.style.opacity = '1';
       return;
     }
-    
+
     // Staggered animation
     const timeline = [
       { element: mascotImage, delay: 0, animation: 'fadeInUp' },
       { element: content, delay: 200, animation: 'fadeInRight' },
       { element: effects, delay: 400, animation: 'fadeIn' }
     ];
-    
+
     timeline.forEach(({ element, delay, animation }) => {
       if (element) {
         setTimeout(() => {
@@ -569,7 +569,7 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Animate element entrance
    */
@@ -578,26 +578,26 @@ class DiBoaSMascotsApp {
       element.style.opacity = '1';
       return;
     }
-    
+
     element.classList.add('animate-fadeInUp');
   }
-  
+
   /**
    * Initialize all animations
    */
   initializeAnimations() {
     // Create animation stylesheet
     this.createAnimationStyles();
-    
+
     // Setup performance-based animation controls
     if (this.config.performanceMode === 'low') {
       this.disableHeavyAnimations();
     }
-    
+
     // Setup intersection-based animations
     this.setupScrollAnimations();
   }
-  
+
   /**
    * Create animation styles
    */
@@ -653,10 +653,10 @@ class DiBoaSMascotsApp {
         50% { transform: translateY(-10px); }
       }
     `;
-    
+
     document.head.appendChild(style);
   }
-  
+
   /**
    * Disable heavy animations for low performance mode
    */
@@ -678,7 +678,7 @@ class DiBoaSMascotsApp {
     `;
     document.head.appendChild(style);
   }
-  
+
   /**
    * Setup scroll-based animations
    */
@@ -688,7 +688,7 @@ class DiBoaSMascotsApp {
     if (timelinePath) {
       this.animateTimelinePath();
     }
-    
+
     // Science section animation
     const sciencePoints = document.querySelectorAll('.science-point');
     sciencePoints.forEach((point, index) => {
@@ -699,7 +699,7 @@ class DiBoaSMascotsApp {
       }, index * 200);
     });
   }
-  
+
   /**
    * Animate timeline path
    */
@@ -710,24 +710,24 @@ class DiBoaSMascotsApp {
       console.log('Animating timeline path');
     }
   }
-  
+
   /**
    * Initialize accessibility features
    */
   initializeAccessibility() {
     // Setup ARIA labels
     this.setupAriaLabels();
-    
+
     // Setup keyboard navigation
     this.setupKeyboardNavigation();
-    
+
     // Setup screen reader announcements
     this.setupScreenReaderSupport();
-    
+
     // Setup focus management
     this.setupFocusManagement();
   }
-  
+
   /**
    * Setup ARIA labels
    */
@@ -745,7 +745,7 @@ class DiBoaSMascotsApp {
         showcase.setAttribute('tabindex', '0');
       }
     });
-    
+
     // Preview cards
     const previewCards = document.querySelectorAll('.mascot-preview-card');
     previewCards.forEach(card => {
@@ -757,7 +757,7 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Setup keyboard navigation
    */
@@ -770,7 +770,7 @@ class DiBoaSMascotsApp {
           this.deactivateShowcase(activeShowcase, this.state.activeMascot);
         }
       }
-      
+
       // Enter/Space to activate showcases
       if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('mascot-showcase')) {
         e.preventDefault();
@@ -781,7 +781,7 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Setup screen reader support
    */
@@ -797,10 +797,10 @@ class DiBoaSMascotsApp {
     liveRegion.style.height = '1px';
     liveRegion.style.overflow = 'hidden';
     document.body.appendChild(liveRegion);
-    
+
     this.liveRegion = liveRegion;
   }
-  
+
   /**
    * Announce to screen readers
    */
@@ -809,7 +809,7 @@ class DiBoaSMascotsApp {
       this.liveRegion.textContent = message;
     }
   }
-  
+
   /**
    * Setup focus management
    */
@@ -818,7 +818,7 @@ class DiBoaSMascotsApp {
     const focusableElements = document.querySelectorAll(
       'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"]), .mascot-showcase'
     );
-    
+
     focusableElements.forEach((element, index) => {
       element.addEventListener('focus', () => {
         // Announce focus for mascot elements
@@ -832,14 +832,14 @@ class DiBoaSMascotsApp {
       });
     });
   }
-  
+
   /**
    * Initialize event listeners
    */
   initializeEventListeners() {
     // Mobile navigation
     this.initializeMobileNavigation();
-    
+
     // Scroll to mascots function
     window.scrollToMascots = () => {
       const mascotsSection = document.getElementById('mascots');
@@ -848,7 +848,7 @@ class DiBoaSMascotsApp {
         // this.trackEvent('scroll_to_mascots', { trigger: 'button_click' });
       }
     };
-    
+
     // Page visibility change
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
@@ -857,7 +857,7 @@ class DiBoaSMascotsApp {
         this.resumeAnimations();
       }
     });
-    
+
     // Resize handling
     let resizeTimeout;
     window.addEventListener('resize', () => {
@@ -866,7 +866,7 @@ class DiBoaSMascotsApp {
         this.handleResize();
       }, 250);
     });
-    
+
     // Navigation clicks
     document.addEventListener('click', (e) => {
       if (e.target.matches('a[href^="#"]')) {
@@ -880,7 +880,7 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Initialize mobile navigation functionality
    */
@@ -889,40 +889,40 @@ class DiBoaSMascotsApp {
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
     const mobileNav = document.getElementById('mobileNav');
     const mobileNavClose = document.getElementById('mobileNavClose');
-    
+
     if (!mobileMenuBtn || !mobileNavOverlay || !mobileNav || !mobileNavClose) return;
-    
+
     // Open mobile navigation
     mobileMenuBtn.addEventListener('click', () => {
       this.openMobileNavigation();
     });
-    
+
     // Close mobile navigation
     mobileNavClose.addEventListener('click', () => {
       this.closeMobileNavigation();
     });
-    
+
     // Close on overlay click
     mobileNavOverlay.addEventListener('click', () => {
       this.closeMobileNavigation();
     });
-    
+
     // Close on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
         this.closeMobileNavigation();
       }
     });
-    
+
     // Active navigation tracking
     this.updateActiveNavigation();
-    
+
     // Update active nav on scroll
     window.addEventListener('scroll', () => {
       this.updateActiveNavigation();
     });
   }
-  
+
   /**
    * Open mobile navigation
    */
@@ -930,15 +930,15 @@ class DiBoaSMascotsApp {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
     const mobileNav = document.getElementById('mobileNav');
-    
+
     mobileMenuBtn.setAttribute('aria-expanded', 'true');
     mobileNavOverlay.classList.add('active');
     mobileNav.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+
     // this.trackEvent('mobile_nav_opened');
   }
-  
+
   /**
    * Close mobile navigation
    */
@@ -946,15 +946,15 @@ class DiBoaSMascotsApp {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
     const mobileNav = document.getElementById('mobileNav');
-    
+
     mobileMenuBtn.setAttribute('aria-expanded', 'false');
     mobileNavOverlay.classList.remove('active');
     mobileNav.classList.remove('active');
     document.body.style.overflow = '';
-    
+
     // this.trackEvent('mobile_nav_closed');
   }
-  
+
   /**
    * Update active navigation based on scroll position
    */
@@ -962,9 +962,9 @@ class DiBoaSMascotsApp {
     const sections = ['hero', 'mascots', 'journey', 'science'];
     const navLinks = document.querySelectorAll('.nav-link[data-section]');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link[data-section]');
-    
+
     let activeSection = 'hero';
-    
+
     for (const sectionId of sections) {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -975,7 +975,7 @@ class DiBoaSMascotsApp {
         }
       }
     }
-    
+
     // Update desktop nav
     navLinks.forEach(link => {
       const section = link.getAttribute('data-section');
@@ -985,7 +985,7 @@ class DiBoaSMascotsApp {
         link.classList.remove('active');
       }
     });
-    
+
     // Update mobile nav
     mobileNavLinks.forEach(link => {
       const section = link.getAttribute('data-section');
@@ -996,24 +996,24 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Initialize performance optimizations
    */
   initializePerformanceOptimizations() {
     // Lazy load images
     this.setupLazyLoading();
-    
+
     // Optimize animations based on device capabilities
     this.optimizeAnimations();
-    
+
     // Setup efficient event listeners
     this.setupEfficientListeners();
-    
+
     // Monitor performance
     this.monitorPerformance();
   }
-  
+
   /**
    * Setup lazy loading for images
    */
@@ -1031,12 +1031,12 @@ class DiBoaSMascotsApp {
           }
         });
       });
-      
+
       const lazyImages = document.querySelectorAll('img[data-src]');
       lazyImages.forEach(img => imageObserver.observe(img));
     }
   }
-  
+
   /**
    * Optimize animations based on device
    */
@@ -1045,7 +1045,7 @@ class DiBoaSMascotsApp {
     if (window.innerWidth < 768) {
       this.config.performanceMode = 'medium';
     }
-    
+
     // Check for battery API
     if ('getBattery' in navigator) {
       navigator.getBattery().then(battery => {
@@ -1056,7 +1056,7 @@ class DiBoaSMascotsApp {
       });
     }
   }
-  
+
   /**
    * Setup efficient event listeners
    */
@@ -1072,7 +1072,7 @@ class DiBoaSMascotsApp {
       }
     }, { passive: true });
   }
-  
+
   /**
    * Monitor performance metrics
    */
@@ -1088,40 +1088,40 @@ class DiBoaSMascotsApp {
           }
         }, 30000);
       }
-      
+
       // Monitor frame rate
       this.monitorFrameRate();
     }
   }
-  
+
   /**
    * Monitor frame rate
    */
   monitorFrameRate() {
     let frames = 0;
     let lastTime = performance.now();
-    
+
     const checkFrameRate = (currentTime) => {
       frames++;
-      
+
       if (currentTime - lastTime >= 1000) { // Every second
         const fps = Math.round((frames * 1000) / (currentTime - lastTime));
-        
+
         if (fps < 30 && this.config.performanceMode !== 'low') {
           console.warn(`Low FPS detected: ${fps}`);
           this.reduceAnimationComplexity();
         }
-        
+
         frames = 0;
         lastTime = currentTime;
       }
-      
+
       requestAnimationFrame(checkFrameRate);
     };
-    
+
     requestAnimationFrame(checkFrameRate);
   }
-  
+
   /**
    * Reduce animation complexity
    */
@@ -1138,14 +1138,14 @@ class DiBoaSMascotsApp {
     `;
     document.head.appendChild(style);
   }
-  
+
   /**
    * Optimize memory usage
    */
   optimizeMemoryUsage() {
     // Clear unused animation references
     this.state.mascotAnimations.clear();
-    
+
     // Remove hidden elements from DOM temporarily
     const hiddenElements = document.querySelectorAll('[style*="display: none"]');
     hiddenElements.forEach(element => {
@@ -1154,35 +1154,35 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Start the mascot experience
    */
   async startMascotExperience() {
     // Initial hero setup
     this.switchHeroMascot('aqua');
-    
+
     // Trigger entrance animations
     this.triggerEntranceAnimations();
-    
+
     // Start interactive features
     this.startInteractiveFeatures();
   }
-  
+
   /**
    * Trigger entrance animations
    */
   triggerEntranceAnimations() {
     if (!this.state.loadingComplete) return;
-    
+
     const hero = document.querySelector('.hero-section');
     const previewCards = document.querySelectorAll('.mascot-preview-card');
-    
+
     // Animate hero elements
     setTimeout(() => {
       if (hero) hero.classList.add('animate-fadeIn');
     }, 200);
-    
+
     // Animate preview cards
     previewCards.forEach((card, index) => {
       setTimeout(() => {
@@ -1190,23 +1190,23 @@ class DiBoaSMascotsApp {
       }, 400 + (index * 100));
     });
   }
-  
+
   /**
    * Start interactive features
    */
   startInteractiveFeatures() {
     // Enable tooltips
     this.enableTooltips();
-    
+
     // Start ambient effects
     if (this.config.performanceMode === 'high') {
       this.startAmbientEffects();
     }
-    
+
     // Initialize mascot personalities
     this.initializeMascotPersonalities();
   }
-  
+
   /**
    * Enable tooltips
    */
@@ -1217,16 +1217,16 @@ class DiBoaSMascotsApp {
       element.addEventListener('mouseleave', this.hideTooltip.bind(this));
     });
   }
-  
+
   /**
    * Show tooltip
    */
   showTooltip(event) {
     const element = event.target;
     const text = element.getAttribute('title');
-    
+
     if (!text) return;
-    
+
     // Create tooltip
     const tooltip = document.createElement('div');
     tooltip.className = 'mascot-tooltip';
@@ -1243,23 +1243,23 @@ class DiBoaSMascotsApp {
       opacity: 0;
       transition: opacity 0.3s ease;
     `;
-    
+
     document.body.appendChild(tooltip);
-    
+
     // Position tooltip
     const rect = element.getBoundingClientRect();
     tooltip.style.left = `${rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2)}px`;
     tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
-    
+
     // Show tooltip
     requestAnimationFrame(() => {
       tooltip.style.opacity = '1';
     });
-    
+
     // Store reference
     element._tooltip = tooltip;
   }
-  
+
   /**
    * Hide tooltip
    */
@@ -1275,18 +1275,18 @@ class DiBoaSMascotsApp {
       }, 300);
     }
   }
-  
+
   /**
    * Start ambient effects
    */
   startAmbientEffects() {
     // Particle effects
     this.createParticleEffect();
-    
+
     // Subtle background animations
     this.startBackgroundAnimations();
   }
-  
+
   /**
    * Create particle effect
    */
@@ -1302,31 +1302,31 @@ class DiBoaSMascotsApp {
       z-index: 1;
       opacity: 0.3;
     `;
-    
+
     document.body.appendChild(canvas);
-    
+
     const ctx = canvas.getContext('2d');
     const particles = [];
-    
+
     // Simple particle system
     const animate = () => {
       if (document.hidden) {
         requestAnimationFrame(animate);
         return;
       }
-      
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       // Update and draw particles
       particles.forEach((particle, index) => {
         particle.y -= particle.speed;
         particle.opacity -= 0.005;
-        
+
         if (particle.opacity <= 0) {
           particles.splice(index, 1);
           return;
         }
-        
+
         ctx.save();
         ctx.globalAlpha = particle.opacity;
         ctx.fillStyle = particle.color;
@@ -1335,7 +1335,7 @@ class DiBoaSMascotsApp {
         ctx.fill();
         ctx.restore();
       });
-      
+
       // Add new particles occasionally
       if (Math.random() < 0.1 && particles.length < 50) {
         particles.push({
@@ -1347,21 +1347,21 @@ class DiBoaSMascotsApp {
           color: ['#4ECDC4', '#A8E6CF', '#B39DDB', '#FFB3BA'][Math.floor(Math.random() * 4)]
         });
       }
-      
+
       requestAnimationFrame(animate);
     };
-    
+
     // Resize canvas
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     animate();
   }
-  
+
   /**
    * Start background animations
    */
@@ -1376,7 +1376,7 @@ class DiBoaSMascotsApp {
       }, 100);
     }
   }
-  
+
   /**
    * Initialize mascot personalities
    */
@@ -1387,21 +1387,21 @@ class DiBoaSMascotsApp {
       this.setupMascotPersonality(mascotId, mascot);
     });
   }
-  
+
   /**
    * Setup individual mascot personality
    */
   setupMascotPersonality(mascotId, mascot) {
     const showcase = document.querySelector(`.${mascotId}-showcase`);
     if (!showcase) return;
-    
+
     // Add personality-specific interactions
     showcase.addEventListener('mouseenter', () => {
       this.playMascotSound(mascotId, 'greeting');
       this.showMascotThought(mascotId);
     });
   }
-  
+
   /**
    * Play mascot sound
    */
@@ -1409,14 +1409,14 @@ class DiBoaSMascotsApp {
     // Placeholder for sound system
     console.log(`Playing ${type} sound for ${mascotId}`);
   }
-  
+
   /**
    * Show mascot thought bubble
    */
   showMascotThought(mascotId) {
     const mascot = this.state.mascots[mascotId];
     if (!mascot) return;
-    
+
     // Show contextual thought based on mascot personality
     const thoughts = {
       aqua: ["Let's start your journey gently 🌊", "Every expert was once a beginner", "I'm here to help you feel confident"],
@@ -1424,18 +1424,18 @@ class DiBoaSMascotsApp {
       mystic: ["The crypto mysteries await 🔮", "Knowledge is your greatest asset", "Advanced strategies for the prepared mind"],
       coral: ["Community makes us stronger 🌸", "Shared wisdom multiplies wealth", "Together we achieve more"]
     };
-    
+
     const thoughtText = thoughts[mascotId][Math.floor(Math.random() * thoughts[mascotId].length)];
     this.showThoughtBubble(mascotId, thoughtText);
   }
-  
+
   /**
    * Show thought bubble
    */
   showThoughtBubble(mascotId, text) {
     const showcase = document.querySelector(`.${mascotId}-showcase`);
     if (!showcase) return;
-    
+
     // Create thought bubble
     const bubble = document.createElement('div');
     bubble.className = 'thought-bubble';
@@ -1456,16 +1456,16 @@ class DiBoaSMascotsApp {
       transform: translateY(10px);
       transition: all 0.3s ease;
     `;
-    
+
     showcase.style.position = 'relative';
     showcase.appendChild(bubble);
-    
+
     // Animate in
     requestAnimationFrame(() => {
       bubble.style.opacity = '1';
       bubble.style.transform = 'translateY(0)';
     });
-    
+
     // Remove after delay
     setTimeout(() => {
       bubble.style.opacity = '0';
@@ -1477,48 +1477,48 @@ class DiBoaSMascotsApp {
       }, 300);
     }, 3000);
   }
-  
+
   /**
    * Update page theme based on active mascot
    */
   updatePageTheme(mascotId) {
     const mascot = this.state.mascots[mascotId];
     if (!mascot) return;
-    
+
     // Update CSS custom properties
     document.documentElement.style.setProperty('--active-mascot-color', mascot.color);
-    
+
     // Update meta theme color
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (themeColorMeta) {
       themeColorMeta.content = mascot.color;
     }
   }
-  
+
   /**
    * Handle scroll events
    */
   handleScroll() {
     // Update active sections
     this.updateActiveSection();
-    
+
     // Parallax effects for high performance mode
     if (this.config.performanceMode === 'high') {
       this.updateParallaxEffects();
     }
   }
-  
+
   /**
    * Update active section based on scroll position
    */
   updateActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const scrollPosition = window.scrollY + window.innerHeight / 2;
-    
+
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
-      
+
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         // Update navigation if exists
         const navLink = document.querySelector(`a[href="#${section.id}"]`);
@@ -1529,21 +1529,21 @@ class DiBoaSMascotsApp {
       }
     });
   }
-  
+
   /**
    * Update parallax effects
    */
   updateParallaxEffects() {
     const scrollY = window.pageYOffset;
     const heroMascots = document.querySelectorAll('.floating-mascot');
-    
+
     heroMascots.forEach((mascot, index) => {
       const speed = 0.5 + (index * 0.1);
       const yPos = -(scrollY * speed);
       mascot.style.transform = `translate(-50%, calc(-50% + ${yPos}px))`;
     });
   }
-  
+
   /**
    * Handle resize events
    */
@@ -1554,7 +1554,7 @@ class DiBoaSMascotsApp {
       // Reset scroll position if needed
       carousel.scrollLeft = 0;
     }
-    
+
     // Update particle canvas if exists
     const canvas = document.querySelector('canvas');
     if (canvas) {
@@ -1562,7 +1562,7 @@ class DiBoaSMascotsApp {
       canvas.height = window.innerHeight;
     }
   }
-  
+
   /**
    * Pause animations when page is hidden
    */
@@ -1572,7 +1572,7 @@ class DiBoaSMascotsApp {
       element.style.animationPlayState = 'paused';
     });
   }
-  
+
   /**
    * Resume animations when page is visible
    */
@@ -1582,7 +1582,7 @@ class DiBoaSMascotsApp {
       element.style.animationPlayState = 'running';
     });
   }
-  
+
   /**
    * Check if element is in viewport
    */
@@ -1595,7 +1595,7 @@ class DiBoaSMascotsApp {
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   }
-  
+
   /**
    * Track analytics events (stubbed for privacy)
    */
@@ -1603,16 +1603,16 @@ class DiBoaSMascotsApp {
     // Analytics tracking has been disabled for privacy
     // Would have tracked: eventName, properties
   }
-  
+
   /**
    * Initialize fallback mode
    */
   initializeFallbackMode() {
     console.log('🔄 Initializing mascots fallback mode');
-    
+
     // Hide loading screen
     this.hideLoadingScreen();
-    
+
     // Basic functionality only
     const showcases = document.querySelectorAll('.mascot-showcase');
     showcases.forEach(showcase => {
@@ -1620,13 +1620,13 @@ class DiBoaSMascotsApp {
         console.log('Showcase clicked in fallback mode');
       });
     });
-    
+
     // Track fallback mode
     // this.trackEvent('fallback_mode_activated', {
     //   reason: 'initialization_failed'
     // });
   }
-  
+
   /**
    * Get current state for debugging
    */

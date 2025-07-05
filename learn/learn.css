@@ -2,7 +2,7 @@
  * diBoaS Learning Platform Redesign CSS
  * Enterprise-grade interactive learning interface
  * 
- * Extends: ../assets/css/redesign.css
+ * Extends: ../assets/css/main.css
  * Target: Lighthouse 95+, WCAG 2.1 AA
  * Performance: Core Web Vitals optimized
  */
@@ -899,7 +899,7 @@
   gap: var(--space-6);
 }
 
-.crypto-selector h4,
+.asset-selector h4,
 .purchase-form h4 {
   font-family: var(--font-display);
   font-size: var(--text-lg);
@@ -908,13 +908,13 @@
   margin: 0 0 var(--space-4);
 }
 
-.crypto-options {
+.asset-options {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: var(--space-3);
 }
 
-.crypto-option {
+.asset-option {
   background: var(--neutral-50);
   border: 2px solid var(--neutral-200);
   border-radius: var(--radius-lg);
@@ -928,41 +928,41 @@
   gap: var(--space-2);
 }
 
-.crypto-option:hover {
+.asset-option:hover {
   border-color: var(--neutral-300);
   background: var(--bg-primary);
 }
 
-.crypto-option.active {
+.asset-option.active {
   border-color: var(--aqua-primary);
   background: var(--aqua-background);
 }
 
-.crypto-icon {
+.asset-icon {
   font-size: var(--text-2xl);
   font-weight: bold;
   color: var(--text-primary);
 }
 
-.crypto-info {
+.asset-info {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
 }
 
-.crypto-name {
+.asset-name {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--text-primary);
 }
 
-.crypto-symbol {
+.asset-symbol {
   font-size: var(--text-sm);
   color: var(--text-secondary);
   font-family: var(--font-mono);
 }
 
-.crypto-price {
+.asset-price {
   font-size: var(--text-sm);
   color: var(--success-green);
   font-weight: 600;
@@ -979,7 +979,7 @@
   margin-bottom: var(--space-6);
 }
 
-.amount-input > input {
+.amount-input>input {
   width: 100%;
   font-size: var(--text-2xl);
   font-weight: 600;
@@ -993,7 +993,7 @@
   margin-bottom: var(--space-4);
 }
 
-.amount-input > input:focus {
+.amount-input>input:focus {
   outline: none;
   border-color: var(--aqua-primary);
   box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
@@ -1559,11 +1559,14 @@
    =========================== */
 
 @keyframes gentle-float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  50% { 
-    transform: translateY(-6px) rotate(1deg); 
+
+  50% {
+    transform: translateY(-6px) rotate(1deg);
   }
 }
 
@@ -1571,19 +1574,24 @@
   0% {
     transform: scale(0);
   }
+
   50% {
     transform: scale(1.2);
   }
+
   100% {
     transform: scale(1);
   }
 }
 
 @keyframes sparkle-float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.7;
   }
+
   50% {
     transform: translateY(-10px) rotate(180deg);
     opacity: 1;
@@ -1594,6 +1602,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -1607,7 +1616,7 @@
   .learning-dashboard {
     grid-template-columns: 1fr;
   }
-  
+
   .learning-sidebar {
     position: fixed;
     left: -100%;
@@ -1618,11 +1627,11 @@
     z-index: 200;
     box-shadow: var(--shadow-xl);
   }
-  
+
   .learning-sidebar.active {
     left: 0;
   }
-  
+
   .sidebar-overlay {
     position: fixed;
     top: 65px;
@@ -1633,19 +1642,19 @@
     display: none;
     z-index: 150;
   }
-  
+
   .sidebar-overlay.active {
     display: block;
   }
-  
+
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   .breadcrumb {
     display: none;
   }
-  
+
   .learning-content {
     height: auto;
   }
@@ -1655,58 +1664,58 @@
   .header-container {
     padding: var(--space-3) var(--space-4);
   }
-  
+
   .content-container {
     padding: var(--space-6) var(--space-4);
   }
-  
+
   .lesson-title {
     font-size: var(--text-3xl);
   }
-  
+
   .header-right {
     gap: var(--space-2);
   }
-  
+
   .lesson-stats {
     gap: var(--space-4);
   }
-  
+
   .aqua-guidance {
     flex-direction: column;
     text-align: center;
   }
-  
-  .crypto-options {
+
+  .asset-options {
     grid-template-columns: 1fr;
   }
-  
+
   .takeaways-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .lesson-navigation {
     flex-direction: column;
     gap: var(--space-4);
   }
-  
+
   .nav-button {
     width: 100%;
     justify-content: center;
   }
-  
+
   .mascot-grid {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .modal-content {
     padding: var(--space-6);
   }
-  
+
   .modal-actions {
     flex-direction: column;
   }
-  
+
   .continue-learning,
   .share-achievement {
     width: 100%;
@@ -1717,48 +1726,48 @@
   .header-right {
     gap: var(--space-2);
   }
-  
+
   .learning-progress-indicator {
     display: none;
   }
-  
+
   .lesson-meta {
     gap: var(--space-2);
   }
-  
+
   .lesson-stats {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
   }
-  
+
   .section-title {
     font-size: var(--text-lg);
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
   }
-  
+
   .module-section {
     padding: var(--space-6);
   }
-  
+
   .simulation-interface {
     gap: var(--space-4);
   }
-  
+
   .purchase-form {
     padding: var(--space-4);
   }
-  
-  .amount-input > input {
+
+  .amount-input>input {
     font-size: var(--text-xl);
   }
-  
+
   .quick-amounts {
     gap: var(--space-1);
   }
-  
+
   .quick-amount {
     padding: var(--space-1) var(--space-3);
   }
@@ -1800,7 +1809,7 @@
 /* Focus styles */
 .lesson-link:focus,
 .mascot-option:focus,
-.crypto-option:focus,
+.asset-option:focus,
 .quick-amount:focus,
 .quiz-option:focus,
 .quiz-submit:focus,
@@ -1817,16 +1826,17 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .gentle-float,
   .spinner-animation,
   .achievement-bounce,
   .sparkle-float {
     animation: none;
   }
-  
+
   .lesson-link,
   .mascot-option,
-  .crypto-option,
+  .asset-option,
   .nav-button,
   .takeaway-card {
     transition: none;
@@ -1840,10 +1850,10 @@
     --text-secondary: #000000;
     --text-tertiary: #000000;
   }
-  
+
   .lesson-link,
   .mascot-option,
-  .crypto-option,
+  .asset-option,
   .module-section {
     border-width: 3px;
   }
@@ -1851,6 +1861,7 @@
 
 /* Print styles */
 @media print {
+
   .learn-header,
   .learning-sidebar,
   .lesson-navigation,
@@ -1861,24 +1872,24 @@
   .loading-overlay {
     display: none;
   }
-  
+
   .learning-dashboard {
     grid-template-columns: 1fr;
   }
-  
+
   .learning-content {
     height: auto;
   }
-  
+
   .content-container {
     padding: 0;
   }
-  
+
   body {
     background: white;
     color: black;
   }
-  
+
   .module-section,
   .takeaway-card {
     break-inside: avoid;

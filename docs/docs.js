@@ -26,7 +26,7 @@ class DiBoaSDocsApp {
       theme: 'light',
       sidebarOpen: false
     };
-    
+
     this.components = {
       search: null,
       navigation: null,
@@ -34,19 +34,19 @@ class DiBoaSDocsApp {
       sidebar: null,
       journey: null
     };
-    
+
     this.init();
   }
-  
+
   /**
    * Initialize the application
    */
   init() {
     if (this.initialized) return;
-    
+
     try {
       console.log('🚀 Initializing diBoaS Documentation Application');
-      
+
       // Initialize core components
       this.initializeDOM();
       this.initializeSearch();
@@ -57,29 +57,29 @@ class DiBoaSDocsApp {
       this.initializeAccessibility();
       this.initializeAnalytics();
       this.initializeProgressTracking();
-      
+
       // Load user preferences
       this.loadUserPreferences();
-      
+
       // Setup event listeners
       this.setupGlobalEventListeners();
-      
+
       this.initialized = true;
       console.log('✅ Documentation application initialized successfully');
-      
+
       // Track initialization
       // this.trackEvent('docs_app_initialized', {
       //   timestamp: Date.now(),
       //   user_agent: navigator.userAgent,
       //   viewport: `${window.innerWidth}x${window.innerHeight}`
       // });
-      
+
     } catch (error) {
       console.error('❌ Failed to initialize documentation application:', error);
       this.handleError(error, 'initialization');
     }
   }
-  
+
   /**
    * Initialize DOM references
    */
@@ -90,21 +90,21 @@ class DiBoaSDocsApp {
       searchResults: document.getElementById('search-results'),
       themeToggle: document.getElementById('theme-toggle'),
       mobileMenuBtn: document.querySelector('.mobile-menu-btn'),
-      
+
       // Sidebar elements
       sidebar: document.getElementById('docs-sidebar'),
       sidebarOverlay: document.getElementById('sidebar-overlay'),
       navLinks: document.querySelectorAll('.nav-link'),
-      
+
       // Content elements
       journeyOptions: document.querySelectorAll('.journey-option'),
       helpCards: document.querySelectorAll('.help-card'),
-      
+
       // Main containers
       mainContent: document.getElementById('main-content'),
       contentWrapper: document.querySelector('.content-wrapper')
     };
-    
+
     // Validate critical elements
     const requiredElements = ['searchInput', 'themeToggle', 'sidebar'];
     for (const elementName of requiredElements) {
@@ -113,13 +113,13 @@ class DiBoaSDocsApp {
       }
     }
   }
-  
+
   /**
    * Initialize search functionality
    */
   initializeSearch() {
     if (!this.elements.searchInput) return;
-    
+
     // Mock documentation data for search
     this.searchData = [
       {
@@ -131,7 +131,7 @@ class DiBoaSDocsApp {
       },
       {
         title: "Your First $10 Crypto Purchase",
-        url: "#first-purchase", 
+        url: "#first-purchase",
         content: "Buy Bitcoin Ethereum Solana Sui under 2 minutes 10 dollars minimum investment one click purchase",
         category: "Buying",
         keywords: ["buy", "purchase", "$10", "bitcoin", "ethereum", "solana", "sui", "crypto"]
@@ -193,41 +193,41 @@ class DiBoaSDocsApp {
         keywords: ["ai", "defai", "intelligent", "recommendations", "adaptive"]
       }
     ];
-    
+
     // Setup search event listeners
     this.elements.searchInput.addEventListener('input', this.handleSearch.bind(this));
     this.elements.searchInput.addEventListener('focus', this.handleSearchFocus.bind(this));
     this.elements.searchInput.addEventListener('blur', this.handleSearchBlur.bind(this));
     this.elements.searchInput.addEventListener('keydown', this.handleSearchKeydown.bind(this));
-    
+
     // Setup search results interaction
     if (this.elements.searchResults) {
       this.elements.searchResults.addEventListener('click', this.handleSearchResultClick.bind(this));
     }
-    
+
     console.log('🔍 Search functionality initialized');
   }
-  
+
   /**
    * Handle search input
    */
   handleSearch(event) {
     const query = event.target.value.toLowerCase().trim();
-    
+
     if (query.length === 0) {
       this.hideSearchResults();
       return;
     }
-    
+
     if (query.length < 2) {
       this.showSearchSuggestions();
       return;
     }
-    
+
     // Perform search
     const results = this.performSearch(query);
     this.displaySearchResults(results, query);
-    
+
     // Track search
     // this.trackEvent('docs_search', {
     //   query: query,
@@ -235,28 +235,28 @@ class DiBoaSDocsApp {
     //   timestamp: Date.now()
     // });
   }
-  
+
   /**
    * Perform search on documentation data
    */
   performSearch(query) {
     const results = [];
     const queryTerms = query.split(' ').filter(term => term.length > 1);
-    
+
     for (const doc of this.searchData) {
       let score = 0;
       let matches = [];
-      
+
       // Check title matches (higher weight)
       const titleMatches = this.findMatches(doc.title.toLowerCase(), queryTerms);
       score += titleMatches.length * 3;
       matches.push(...titleMatches);
-      
+
       // Check content matches
       const contentMatches = this.findMatches(doc.content.toLowerCase(), queryTerms);
       score += contentMatches.length * 2;
       matches.push(...contentMatches);
-      
+
       // Check keyword matches (highest weight)
       for (const keyword of doc.keywords) {
         for (const term of queryTerms) {
@@ -266,13 +266,13 @@ class DiBoaSDocsApp {
           }
         }
       }
-      
+
       // Check category matches
       if (doc.category.toLowerCase().includes(query)) {
         score += 2;
         matches.push(query);
       }
-      
+
       if (score > 0) {
         results.push({
           ...doc,
@@ -281,11 +281,11 @@ class DiBoaSDocsApp {
         });
       }
     }
-    
+
     // Sort by relevance score
     return results.sort((a, b) => b.score - a.score).slice(0, 8);
   }
-  
+
   /**
    * Find matches in text
    */
@@ -298,13 +298,13 @@ class DiBoaSDocsApp {
     }
     return matches;
   }
-  
+
   /**
    * Display search results
    */
   displaySearchResults(results, query) {
     if (!this.elements.searchResults) return;
-    
+
     if (results.length === 0) {
       this.elements.searchResults.innerHTML = `
         <div class="search-no-results">
@@ -317,7 +317,7 @@ class DiBoaSDocsApp {
       this.elements.searchResults.innerHTML = results.map(result => {
         const highlightedTitle = this.highlightMatches(result.title, result.matches);
         const snippet = this.createSnippet(result.content, result.matches);
-        
+
         return `
           <div class="search-result-item" role="option" data-url="${result.url}" tabindex="0">
             <div class="search-result-header">
@@ -329,10 +329,10 @@ class DiBoaSDocsApp {
         `;
       }).join('');
     }
-    
+
     this.showSearchResults();
   }
-  
+
   /**
    * Create search snippet with highlights
    */
@@ -341,38 +341,38 @@ class DiBoaSDocsApp {
     if (content.length > 120) {
       snippet += '...';
     }
-    
+
     return this.highlightMatches(snippet, matches);
   }
-  
+
   /**
    * Highlight search matches
    */
   highlightMatches(text, matches) {
     if (!matches || matches.length === 0) return text;
-    
+
     let result = text;
     for (const match of matches) {
       const regex = new RegExp(`(${this.escapeRegex(match)})`, 'gi');
       result = result.replace(regex, '<mark class="search-highlight">$1</mark>');
     }
-    
+
     return result;
   }
-  
+
   /**
    * Escape regex special characters
    */
   escapeRegex(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
-  
+
   /**
    * Show search suggestions
    */
   showSearchSuggestions() {
     if (!this.elements.searchResults) return;
-    
+
     const suggestions = [
       { title: "Getting Started", icon: "🚀" },
       { title: "Meet Aqua", icon: "🌊" },
@@ -380,7 +380,7 @@ class DiBoaSDocsApp {
       { title: "Fees & Pricing", icon: "💰" },
       { title: "First Purchase", icon: "⚡" }
     ];
-    
+
     this.elements.searchResults.innerHTML = `
       <div class="search-suggestions">
         <div class="suggestions-title">Popular topics:</div>
@@ -392,10 +392,10 @@ class DiBoaSDocsApp {
         `).join('')}
       </div>
     `;
-    
+
     this.showSearchResults();
   }
-  
+
   /**
    * Show search results
    */
@@ -405,7 +405,7 @@ class DiBoaSDocsApp {
       this.elements.searchResults.setAttribute('aria-expanded', 'true');
     }
   }
-  
+
   /**
    * Hide search results
    */
@@ -415,7 +415,7 @@ class DiBoaSDocsApp {
       this.elements.searchResults.setAttribute('aria-expanded', 'false');
     }
   }
-  
+
   /**
    * Handle search focus
    */
@@ -426,7 +426,7 @@ class DiBoaSDocsApp {
       this.showSearchSuggestions();
     }
   }
-  
+
   /**
    * Handle search blur with delay
    */
@@ -436,7 +436,7 @@ class DiBoaSDocsApp {
       this.hideSearchResults();
     }, 200);
   }
-  
+
   /**
    * Handle search keyboard navigation
    */
@@ -445,7 +445,7 @@ class DiBoaSDocsApp {
       this.hideSearchResults();
       event.target.blur();
     }
-    
+
     if (event.key === 'Enter') {
       const firstResult = this.elements.searchResults?.querySelector('.search-result-item');
       if (firstResult) {
@@ -456,14 +456,14 @@ class DiBoaSDocsApp {
       }
     }
   }
-  
+
   /**
    * Handle search result clicks
    */
   handleSearchResultClick(event) {
     const resultItem = event.target.closest('.search-result-item');
     const suggestionItem = event.target.closest('.suggestion-item');
-    
+
     if (resultItem) {
       const url = resultItem.getAttribute('data-url');
       if (url) {
@@ -474,7 +474,7 @@ class DiBoaSDocsApp {
         window.location.href = url;
       }
     }
-    
+
     if (suggestionItem) {
       const suggestion = suggestionItem.getAttribute('data-suggestion');
       if (suggestion) {
@@ -483,18 +483,18 @@ class DiBoaSDocsApp {
       }
     }
   }
-  
+
   /**
    * Initialize navigation functionality
    */
   initializeNavigation() {
     if (!this.elements.navLinks) return;
-    
+
     // Setup navigation click handlers
     this.elements.navLinks.forEach(link => {
       link.addEventListener('click', this.handleNavClick.bind(this));
     });
-    
+
     // Setup help card interactions
     if (this.elements.helpCards) {
       this.elements.helpCards.forEach(card => {
@@ -502,64 +502,64 @@ class DiBoaSDocsApp {
         card.addEventListener('keydown', this.handleHelpCardKeydown.bind(this));
       });
     }
-    
+
     // Setup scroll spy for active navigation
     this.setupScrollSpy();
-    
+
     console.log('🧭 Navigation functionality initialized');
   }
-  
+
   /**
    * Handle navigation link clicks
    */
   handleNavClick(event) {
     const link = event.currentTarget;
     const href = link.getAttribute('href');
-    
+
     // Update active state
     this.elements.navLinks.forEach(navLink => {
       navLink.classList.remove('active');
     });
     link.classList.add('active');
-    
+
     // Close mobile sidebar if open
     if (this.state.sidebarOpen) {
       this.closeSidebar();
     }
-    
+
     // Track navigation
     // this.trackEvent('docs_navigation_click', {
     //   section: link.textContent.trim(),
     //   href: href
     // });
-    
+
     // Handle smooth scrolling for anchor links
     if (href && href.startsWith('#')) {
       event.preventDefault();
       this.smoothScrollToSection(href);
     }
   }
-  
+
   /**
    * Handle help card interactions
    */
   handleHelpCardClick(event) {
     const card = event.currentTarget;
     const link = card.querySelector('.card-link');
-    
+
     if (link) {
       const href = link.getAttribute('href');
       // this.trackEvent('docs_help_card_click', {
       //   title: card.querySelector('.card-title')?.textContent.trim(),
       //   href: href
       // });
-      
+
       if (href) {
         window.location.href = href;
       }
     }
   }
-  
+
   /**
    * Handle help card keyboard interaction
    */
@@ -569,7 +569,7 @@ class DiBoaSDocsApp {
       this.handleHelpCardClick(event);
     }
   }
-  
+
   /**
    * Setup scroll spy for navigation
    */
@@ -579,7 +579,7 @@ class DiBoaSDocsApp {
       rootMargin: '-20% 0px -80% 0px',
       threshold: 0
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -590,15 +590,15 @@ class DiBoaSDocsApp {
         }
       });
     }, observerOptions);
-    
+
     // Observe all sections with IDs
     document.querySelectorAll('section[id], article[id]').forEach(section => {
       observer.observe(section);
     });
-    
+
     this.scrollSpyObserver = observer;
   }
-  
+
   /**
    * Update active navigation based on scroll position
    */
@@ -612,7 +612,7 @@ class DiBoaSDocsApp {
       }
     });
   }
-  
+
   /**
    * Smooth scroll to section
    */
@@ -621,29 +621,29 @@ class DiBoaSDocsApp {
     if (target) {
       const headerHeight = document.querySelector('.docs-header')?.offsetHeight || 0;
       const targetPosition = target.offsetTop - headerHeight - 20;
-      
+
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
       });
     }
   }
-  
+
   /**
    * Initialize theme functionality
    */
   initializeTheme() {
     if (!this.elements.themeToggle) return;
-    
+
     this.elements.themeToggle.addEventListener('click', this.toggleTheme.bind(this));
-    
+
     // Load saved theme
     const savedTheme = localStorage.getItem('diboas-docs-theme') || 'light';
     this.setTheme(savedTheme);
-    
+
     console.log('🎨 Theme functionality initialized');
   }
-  
+
   /**
    * Toggle theme
    */
@@ -651,13 +651,13 @@ class DiBoaSDocsApp {
     const currentTheme = this.state.theme;
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     this.setTheme(newTheme);
-    
+
     // this.trackEvent('docs_theme_toggle', {
     //   from: currentTheme,
     //   to: newTheme
     // });
   }
-  
+
   /**
    * Set theme
    */
@@ -665,12 +665,12 @@ class DiBoaSDocsApp {
     this.state.theme = theme;
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('diboas-docs-theme', theme);
-    
+
     // Update theme toggle icon
     if (this.elements.themeToggle) {
       const lightIcon = this.elements.themeToggle.querySelector('.theme-icon-light');
       const darkIcon = this.elements.themeToggle.querySelector('.theme-icon-dark');
-      
+
       if (theme === 'dark') {
         if (lightIcon) lightIcon.style.display = 'none';
         if (darkIcon) darkIcon.style.display = 'block';
@@ -680,22 +680,22 @@ class DiBoaSDocsApp {
       }
     }
   }
-  
+
   /**
    * Initialize sidebar functionality
    */
   initializeSidebar() {
     if (!this.elements.mobileMenuBtn || !this.elements.sidebar) return;
-    
+
     this.elements.mobileMenuBtn.addEventListener('click', this.toggleSidebar.bind(this));
-    
+
     if (this.elements.sidebarOverlay) {
       this.elements.sidebarOverlay.addEventListener('click', this.closeSidebar.bind(this));
     }
-    
+
     console.log('📱 Sidebar functionality initialized');
   }
-  
+
   /**
    * Toggle sidebar
    */
@@ -706,7 +706,7 @@ class DiBoaSDocsApp {
       this.openSidebar();
     }
   }
-  
+
   /**
    * Open sidebar
    */
@@ -716,10 +716,10 @@ class DiBoaSDocsApp {
     this.elements.sidebarOverlay?.classList.add('active');
     this.elements.mobileMenuBtn?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    
+
     // this.trackEvent('docs_sidebar_open');
   }
-  
+
   /**
    * Close sidebar
    */
@@ -729,50 +729,50 @@ class DiBoaSDocsApp {
     this.elements.sidebarOverlay?.classList.remove('active');
     this.elements.mobileMenuBtn?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
-    
+
     // this.trackEvent('docs_sidebar_close');
   }
-  
+
   /**
    * Initialize journey selector
    */
   initializeJourneySelector() {
     if (!this.elements.journeyOptions) return;
-    
+
     this.elements.journeyOptions.forEach(option => {
       option.addEventListener('click', this.handleJourneySelect.bind(this));
     });
-    
+
     console.log('🎯 Journey selector initialized');
   }
-  
+
   /**
    * Handle journey selection
    */
   handleJourneySelect(event) {
     const option = event.currentTarget;
     const journey = option.getAttribute('data-journey');
-    
+
     if (journey) {
       // Update active state
       this.elements.journeyOptions.forEach(opt => {
         opt.classList.remove('active');
       });
       option.classList.add('active');
-      
+
       // Update journey content
       this.updateJourneyContent(journey);
-      
+
       // Track selection
       // this.trackEvent('docs_journey_select', {
       //   journey: journey,
       //   previous: this.state.currentJourney
       // });
-      
+
       this.state.currentJourney = journey;
     }
   }
-  
+
   /**
    * Update journey content based on selection
    */
@@ -851,10 +851,10 @@ class DiBoaSDocsApp {
         ]
       }
     };
-    
+
     const content = journeyContents[journey];
     if (!content) return;
-    
+
     // Update the journey content in the DOM
     const journeyContainer = document.getElementById('journey-beginner');
     if (journeyContainer) {
@@ -888,23 +888,23 @@ class DiBoaSDocsApp {
       `;
     }
   }
-  
+
   /**
    * Initialize accessibility features
    */
   initializeAccessibility() {
     // Setup keyboard navigation
     this.setupKeyboardShortcuts();
-    
+
     // Setup focus management
     this.setupFocusManagement();
-    
+
     // Setup reduced motion preferences
     this.setupReducedMotion();
-    
+
     console.log('♿ Accessibility features initialized');
   }
-  
+
   /**
    * Setup keyboard shortcuts
    */
@@ -915,36 +915,36 @@ class DiBoaSDocsApp {
         event.preventDefault();
         this.elements.searchInput?.focus();
       }
-      
+
       // Escape: Close modals/overlays
       if (event.key === 'Escape') {
         this.hideSearchResults();
         this.closeSidebar();
       }
-      
+
       // Navigation: Arrow keys in search results
       if (event.key === 'ArrowDown' && this.elements.searchResults?.style.display === 'block') {
         event.preventDefault();
         this.navigateSearchResults('down');
       }
-      
+
       if (event.key === 'ArrowUp' && this.elements.searchResults?.style.display === 'block') {
         event.preventDefault();
         this.navigateSearchResults('up');
       }
     });
   }
-  
+
   /**
    * Navigate search results with keyboard
    */
   navigateSearchResults(direction) {
     const results = this.elements.searchResults?.querySelectorAll('.search-result-item');
     if (!results || results.length === 0) return;
-    
+
     const currentFocus = this.elements.searchResults.querySelector('.search-result-item:focus');
     let nextIndex = 0;
-    
+
     if (currentFocus) {
       const currentIndex = Array.from(results).indexOf(currentFocus);
       if (direction === 'down') {
@@ -953,10 +953,10 @@ class DiBoaSDocsApp {
         nextIndex = currentIndex > 0 ? currentIndex - 1 : results.length - 1;
       }
     }
-    
+
     results[nextIndex].focus();
   }
-  
+
   /**
    * Setup focus management
    */
@@ -969,7 +969,7 @@ class DiBoaSDocsApp {
         if (focusableElements.length > 0) {
           const firstElement = focusableElements[0];
           const lastElement = focusableElements[focusableElements.length - 1];
-          
+
           if (event.shiftKey && document.activeElement === firstElement) {
             event.preventDefault();
             lastElement.focus();
@@ -981,18 +981,18 @@ class DiBoaSDocsApp {
       }
     });
   }
-  
+
   /**
    * Setup reduced motion preferences
    */
   setupReducedMotion() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    
+
     if (prefersReducedMotion.matches) {
       document.documentElement.style.setProperty('--animation-duration', '0s');
       document.documentElement.style.setProperty('--transition-duration', '0s');
     }
-    
+
     prefersReducedMotion.addEventListener('change', (event) => {
       if (event.matches) {
         document.documentElement.style.setProperty('--animation-duration', '0s');
@@ -1003,7 +1003,7 @@ class DiBoaSDocsApp {
       }
     });
   }
-  
+
   /**
    * Initialize analytics
    */
@@ -1013,7 +1013,7 @@ class DiBoaSDocsApp {
       if ('performance' in window) {
         const perfData = performance.getEntriesByType('navigation')[0];
         const loadTime = perfData.loadEventEnd - perfData.fetchStart;
-        
+
         // this.trackEvent('docs_page_performance', {
         //   loadTime: loadTime,
         //   domContentLoaded: perfData.domContentLoadedEventEnd - perfData.fetchStart,
@@ -1022,13 +1022,13 @@ class DiBoaSDocsApp {
         // });
       }
     });
-    
+
     // Track user engagement
     this.setupEngagementTracking();
-    
+
     console.log('📊 Analytics initialized');
   }
-  
+
   /**
    * Setup engagement tracking
    */
@@ -1036,17 +1036,17 @@ class DiBoaSDocsApp {
     let scrollDepth = 0;
     let timeOnPage = 0;
     let startTime = Date.now();
-    
+
     // Track scroll depth
     window.addEventListener('scroll', () => {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const currentDepth = Math.round(((scrollTop + windowHeight) / documentHeight) * 100);
-      
+
       if (currentDepth > scrollDepth) {
         scrollDepth = currentDepth;
-        
+
         // Track milestone depths
         if ([25, 50, 75, 90].includes(scrollDepth)) {
           // this.trackEvent('docs_scroll_depth', {
@@ -1056,11 +1056,11 @@ class DiBoaSDocsApp {
         }
       }
     });
-    
+
     // Track time on page
     setInterval(() => {
       timeOnPage += 30;
-      
+
       // Track time milestones
       if ([60, 180, 300, 600].includes(timeOnPage)) {
         // this.trackEvent('docs_time_on_page', {
@@ -1069,7 +1069,7 @@ class DiBoaSDocsApp {
         // });
       }
     }, 30000);
-    
+
     // Track page exit
     window.addEventListener('beforeunload', () => {
       // this.trackEvent('docs_page_exit', {
@@ -1078,7 +1078,7 @@ class DiBoaSDocsApp {
       // });
     });
   }
-  
+
   /**
    * Get First Paint timing
    */
@@ -1087,7 +1087,7 @@ class DiBoaSDocsApp {
     const firstPaint = paintEntries.find(entry => entry.name === 'first-paint');
     return firstPaint ? firstPaint.startTime : null;
   }
-  
+
   /**
    * Get Largest Contentful Paint timing
    */
@@ -1099,9 +1099,9 @@ class DiBoaSDocsApp {
         resolve(lastEntry.startTime);
         observer.disconnect();
       });
-      
+
       observer.observe({ entryTypes: ['largest-contentful-paint'] });
-      
+
       // Timeout after 10 seconds
       setTimeout(() => {
         observer.disconnect();
@@ -1109,30 +1109,30 @@ class DiBoaSDocsApp {
       }, 10000);
     });
   }
-  
+
   /**
    * Initialize progress tracking
    */
   initializeProgressTracking() {
     this.loadReadingProgress();
     this.setupProgressSaving();
-    
+
     console.log('📖 Progress tracking initialized');
   }
-  
+
   /**
    * Load reading progress
    */
   loadReadingProgress() {
     const progress = JSON.parse(localStorage.getItem('diboas-docs-progress') || '{}');
-    
+
     // Restore scroll position if available
     if (progress.scrollPosition && progress.lastVisit > Date.now() - 86400000) { // 24 hours
       setTimeout(() => {
         window.scrollTo(0, progress.scrollPosition);
       }, 100);
     }
-    
+
     // Mark completed sections
     if (progress.completedSections) {
       progress.completedSections.forEach(section => {
@@ -1143,7 +1143,7 @@ class DiBoaSDocsApp {
       });
     }
   }
-  
+
   /**
    * Setup progress saving
    */
@@ -1156,7 +1156,7 @@ class DiBoaSDocsApp {
       progress.currentJourney = this.state.currentJourney;
       localStorage.setItem('diboas-docs-progress', JSON.stringify(progress));
     }, 10000);
-    
+
     // Save progress on page unload
     window.addEventListener('beforeunload', () => {
       const progress = JSON.parse(localStorage.getItem('diboas-docs-progress') || '{}');
@@ -1166,26 +1166,26 @@ class DiBoaSDocsApp {
       localStorage.setItem('diboas-docs-progress', JSON.stringify(progress));
     });
   }
-  
+
   /**
    * Setup global event listeners
    */
   setupGlobalEventListeners() {
     // Handle clicks outside search to close results
     document.addEventListener('click', (event) => {
-      if (!this.elements.searchInput?.contains(event.target) && 
-          !this.elements.searchResults?.contains(event.target)) {
+      if (!this.elements.searchInput?.contains(event.target) &&
+        !this.elements.searchResults?.contains(event.target)) {
         this.hideSearchResults();
       }
     });
-    
+
     // Handle window resize
     window.addEventListener('resize', () => {
       if (window.innerWidth > 1024 && this.state.sidebarOpen) {
         this.closeSidebar();
       }
     });
-    
+
     // Handle orientation change on mobile
     window.addEventListener('orientationchange', () => {
       setTimeout(() => {
@@ -1195,19 +1195,19 @@ class DiBoaSDocsApp {
       }, 100);
     });
   }
-  
+
   /**
    * Load user preferences
    */
   loadUserPreferences() {
     // Theme is already loaded in initializeTheme
-    
+
     // Load search preferences
     const searchPrefs = JSON.parse(localStorage.getItem('diboas-docs-search-prefs') || '{}');
     if (searchPrefs.recentSearches) {
       this.recentSearches = searchPrefs.recentSearches;
     }
-    
+
     // Load journey preference
     const progress = JSON.parse(localStorage.getItem('diboas-docs-progress') || '{}');
     if (progress.currentJourney) {
@@ -1221,7 +1221,7 @@ class DiBoaSDocsApp {
       }
     }
   }
-  
+
   /**
    * Track analytics event (stubbed for privacy)
    */
@@ -1229,23 +1229,23 @@ class DiBoaSDocsApp {
     // Analytics tracking has been disabled for privacy
     // Would have tracked: eventName, properties
   }
-  
+
   /**
    * Handle errors
    */
   handleError(error, context = 'unknown') {
     console.error(`Documentation App Error (${context}):`, error);
-    
+
     // this.trackEvent('docs_error', {
     //   context: context,
     //   error: error.message,
     //   stack: error.stack?.substring(0, 500)
     // });
-    
+
     // Graceful degradation - continue operation
     return false;
   }
-  
+
   /**
    * Get application state
    */
@@ -1265,12 +1265,12 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     // Initialize the documentation app
     window.DiBoasDocsApp = new DiBoaSDocsApp();
-    
+
     // Make it globally accessible
     window.diboasDocsApp = window.DiBoasDocsApp;
-    
+
     console.log('✅ diBoaS Documentation application loaded successfully');
-    
+
   } catch (error) {
     console.error('❌ Failed to initialize documentation application:', error);
   }
@@ -1309,14 +1309,14 @@ if ('performance' in window) {
       console.log('📊 LCP:', entry.startTime);
     }
   }).observe({ entryTypes: ['largest-contentful-paint'] });
-  
+
   // Monitor First Input Delay
   new PerformanceObserver((entryList) => {
     for (const entry of entryList.getEntries()) {
       console.log('📊 FID:', entry.processingStart - entry.startTime);
     }
   }).observe({ entryTypes: ['first-input'] });
-  
+
   // Monitor Cumulative Layout Shift
   new PerformanceObserver((entryList) => {
     for (const entry of entryList.getEntries()) {

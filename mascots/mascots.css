@@ -18,25 +18,25 @@
   --aqua-dark: #26A69A;
   --aqua-background: #F0FDFC;
   --aqua-gradient: linear-gradient(135deg, #4ECDC4, #26A69A);
-  
+
   --verde-primary: #A8E6CF;
   --verde-light: #C8F7C5;
   --verde-dark: #66BB6A;
   --verde-background: #F1F8E9;
   --verde-gradient: linear-gradient(135deg, #A8E6CF, #66BB6A);
-  
+
   --mystic-primary: #B39DDB;
   --mystic-light: #D1C4E9;
   --mystic-dark: #7E57C2;
   --mystic-background: #F3E5F5;
   --mystic-gradient: linear-gradient(135deg, #B39DDB, #7E57C2);
-  
+
   --coral-primary: #FFB3BA;
   --coral-light: #FFCDD2;
   --coral-dark: #E57373;
   --coral-background: #FFF3E0;
   --coral-gradient: linear-gradient(135deg, #FFB3BA, #E57373);
-  
+
   /* Shapeshifting effects */
   --transform-speed: 0.8s;
   --morph-bezier: cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -433,18 +433,29 @@ body {
 }
 
 @keyframes loadingBounce {
-  0%, 100% { 
+
+  0%,
+  100% {
     transform: translateY(0) scale(1);
   }
-  50% { 
+
+  50% {
     transform: translateY(-20px) scale(1.1);
   }
 }
 
 @keyframes loadingProgress {
-  0% { width: 0; }
-  50% { width: 70%; }
-  100% { width: 100%; }
+  0% {
+    width: 0;
+  }
+
+  50% {
+    width: 70%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 /* ===========================
@@ -453,11 +464,11 @@ body {
 
 .hero-section {
   min-height: 100vh;
-  background: linear-gradient(135deg, 
-    var(--aqua-background) 0%,
-    var(--verde-background) 25%,
-    var(--mystic-background) 75%,
-    var(--coral-background) 100%);
+  background: linear-gradient(135deg,
+      var(--aqua-background) 0%,
+      var(--verde-background) 25%,
+      var(--mystic-background) 75%,
+      var(--coral-background) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -608,7 +619,7 @@ body {
   width: 300px;
   height: 300px;
   object-fit: contain;
-  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
   animation: heroFloat 6s ease-in-out infinite;
 }
 
@@ -746,8 +757,8 @@ body {
   direction: rtl;
 }
 
-.verde-showcase > *,
-.coral-showcase > * {
+.verde-showcase>*,
+.coral-showcase>* {
   direction: ltr;
 }
 
@@ -770,7 +781,7 @@ body {
   width: 400px;
   height: 400px;
   object-fit: contain;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
   animation: showcaseFloat 5s ease-in-out infinite;
 }
 
@@ -999,11 +1010,11 @@ body {
   top: 60px;
   bottom: 60px;
   width: 4px;
-  background: linear-gradient(to bottom, 
-    var(--aqua-primary) 0%,
-    var(--verde-primary) 33%,
-    var(--mystic-primary) 66%,
-    var(--coral-primary) 100%);
+  background: linear-gradient(to bottom,
+      var(--aqua-primary) 0%,
+      var(--verde-primary) 33%,
+      var(--mystic-primary) 66%,
+      var(--coral-primary) 100%);
   border-radius: var(--radius-full);
 }
 
@@ -1294,36 +1305,36 @@ body {
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   .investor-nav {
     display: none;
   }
-  
+
   .header-actions .contact-btn span {
     display: none;
   }
-  
+
   .hero-content {
     grid-template-columns: 1fr;
     gap: var(--space-8);
     text-align: center;
   }
-  
+
   .mascot-showcase {
     grid-template-columns: 1fr;
     gap: var(--space-8);
   }
-  
+
   .verde-showcase,
   .coral-showcase {
     direction: ltr;
   }
-  
+
   .science-content {
     grid-template-columns: 1fr;
     gap: var(--space-8);
   }
-  
+
   .mascot-details {
     grid-template-columns: 1fr;
   }
@@ -1333,59 +1344,59 @@ body {
   .mascot-preview-track {
     gap: var(--space-2);
   }
-  
+
   .mascot-preview-card {
     flex: 0 0 100px;
     padding: var(--space-3);
   }
-  
+
   .preview-mascot {
     font-size: 2rem;
   }
-  
+
   .hero-mascot-stage {
     height: 400px;
   }
-  
+
   .mascot-image,
   .mystic-placeholder {
     width: 200px;
     height: 200px;
   }
-  
+
   .mystic-placeholder {
     font-size: 6rem;
   }
-  
+
   .showcase-mascot {
     width: 300px;
     height: 300px;
   }
-  
+
   .mystic-orb {
     width: 300px;
     height: 300px;
     font-size: 8rem;
   }
-  
+
   .timeline-path::before {
     left: 40px;
   }
-  
+
   .milestone-marker {
     flex: 0 0 80px;
     height: 80px;
   }
-  
+
   .milestone-mascot {
     font-size: 2rem;
   }
-  
+
   .cta-actions {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .cta-trust {
     gap: var(--space-4);
   }
@@ -1396,33 +1407,33 @@ body {
     flex: 0 0 80px;
     padding: var(--space-2);
   }
-  
+
   .preview-name {
     font-size: var(--text-base);
   }
-  
+
   .preview-role {
     font-size: var(--text-xs);
   }
-  
+
   .benefits-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .science-point {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .demo-stage {
     flex-direction: column;
     gap: var(--space-2);
   }
-  
+
   .demo-progression {
     justify-content: center;
   }
-  
+
   .prog-step {
     width: 40px;
     height: 40px;
@@ -1434,40 +1445,53 @@ body {
    =========================== */
 
 @keyframes gentleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes heroFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   33% {
     transform: translateY(-15px) rotate(2deg);
   }
+
   66% {
     transform: translateY(-5px) rotate(-1deg);
   }
 }
 
 @keyframes mysticGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: drop-shadow(0 0 20px rgba(179, 157, 219, 0.5));
   }
+
   50% {
     filter: drop-shadow(0 0 40px rgba(179, 157, 219, 0.8));
   }
 }
 
 @keyframes auraGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: var(--glow-intensity);
   }
+
   50% {
     transform: translate(-50%, -50%) scale(1.1);
     opacity: calc(var(--glow-intensity) * 1.5);
@@ -1475,21 +1499,28 @@ body {
 }
 
 @keyframes iconPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
 }
 
 @keyframes showcaseFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   25% {
     transform: translateY(-20px) rotate(1deg);
   }
+
   75% {
     transform: translateY(-10px) rotate(-0.5deg);
   }
@@ -1499,16 +1530,20 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes rippleEffect {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.1;
   }
+
   50% {
     transform: scale(1.2);
     opacity: 0.2;
@@ -1516,9 +1551,12 @@ body {
 }
 
 @keyframes growthPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.15);
   }
@@ -1528,16 +1566,20 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes coralBloom {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.15;
   }
+
   50% {
     transform: scale(1.1) rotate(180deg);
     opacity: 0.25;
@@ -1545,36 +1587,48 @@ body {
 }
 
 @keyframes milestoneFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-8px);
   }
 }
 
 @keyframes userPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
 }
 
 @keyframes arrowMove {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0px);
   }
+
   50% {
     transform: translateX(10px);
   }
 }
 
 @keyframes stepGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
   }
+
   50% {
     box-shadow: 0 0 20px rgba(78, 205, 196, 0.8);
   }
@@ -1616,11 +1670,11 @@ body {
   .mascot-preview-card {
     border-width: 3px;
   }
-  
+
   .benefit-card {
     border-width: 2px;
   }
-  
+
   .mascot-essence {
     border-left-width: 6px;
   }

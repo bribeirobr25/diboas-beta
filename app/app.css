@@ -2,7 +2,7 @@
  * diBoaS OneFi Platform App-Specific CSS
  * Progressive Smart Simplicity UI/UX Design System
  * 
- * Extends: ../assets/css/redesign.css
+ * Extends: ../assets/css/main.css
  * Target: Lighthouse 95+, WCAG 2.1 AA, Core Web Vitals optimized
  * Philosophy: Adaptive complexity - interface grows with user confidence
  */
@@ -16,7 +16,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -24,13 +25,28 @@ html, body {
 }
 
 /* Prevent layout breaking elements */
-img, svg, video, canvas, audio, iframe, embed, object {
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
   max-width: 100%;
   height: auto;
 }
 
 /* Ensure text doesn't break layout */
-p, h1, h2, h3, h4, h5, h6, span, div {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -42,28 +58,28 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   --bg-tertiary: var(--neutral-100);
   --bg-sidebar: #ffffff;
   --bg-card: #ffffff;
-  
+
   --text-primary: var(--neutral-800);
   --text-secondary: var(--neutral-600);
   --text-tertiary: var(--neutral-500);
   --text-inverse: #ffffff;
-  
+
   --border-color: var(--neutral-200);
   --border-hover: var(--neutral-300);
   --border-focus: var(--aqua-primary);
-  
+
   --primary-color: var(--aqua-primary);
   --primary-gradient: linear-gradient(135deg, var(--aqua-primary), var(--aqua-dark));
   --primary-light: var(--aqua-background);
   --primary-dark: var(--aqua-dark);
-  
+
   --status-positive: var(--success-green);
   --status-negative: var(--error-red);
   --status-warning: var(--warning-orange);
-  
+
   /* Font mappings */
   --font-heading: var(--font-display);
-  
+
   /* Dark theme mappings */
   --dark-bg-primary: #1a1a1a;
   --dark-bg-secondary: #2a2a2a;
@@ -129,7 +145,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.9) 100%);
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.9) 100%);
   z-index: 1;
   transition: opacity 0.3s ease;
 }
@@ -150,9 +166,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     transform: scale(0.8) translateY(20px);
     filter: blur(5px);
   }
+
   50% {
     transform: scale(1.05) translateY(-5px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -242,13 +260,28 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   animation: wave 1.5s ease-in-out infinite;
 }
 
-.wave-1 { animation-delay: 0s; }
-.wave-2 { animation-delay: 0.1s; }
-.wave-3 { animation-delay: 0.2s; }
+.wave-1 {
+  animation-delay: 0s;
+}
+
+.wave-2 {
+  animation-delay: 0.1s;
+}
+
+.wave-3 {
+  animation-delay: 0.2s;
+}
 
 @keyframes wave {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(1.5); }
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(1.5);
+  }
 }
 
 .loading-title {
@@ -285,8 +318,15 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 @keyframes progressGlow {
-  0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
 }
 
 .progress-text {
@@ -450,8 +490,17 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 @keyframes mascotPulse {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.1); opacity: 0.6; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
 }
 
 .mascot-info {
@@ -526,13 +575,18 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
   animation: progressShimmer 2s ease-in-out infinite;
 }
 
 @keyframes progressShimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .progress-milestone {
@@ -693,8 +747,15 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 @keyframes badgePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .nav-indicator {
@@ -1372,6 +1433,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1672,14 +1734,14 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 /* Portfolio Assets */
-.assets-header {
+.asset-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-4);
 }
 
-.assets-header h4 {
+.asset-header h4 {
   font-size: var(--text-base);
   font-weight: var(--font-semibold);
   color: var(--text-primary);
@@ -1728,7 +1790,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   flex-shrink: 0;
 }
 
-.crypto-icon {
+.asset-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -1739,12 +1801,12 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   font-size: var(--text-lg);
 }
 
-.crypto-icon.btc {
+.asset-icon.btc {
   background: linear-gradient(135deg, #f7931a, #ff6600);
   color: white;
 }
 
-.crypto-icon.eth {
+.asset-icon.eth {
   background: linear-gradient(135deg, #627eea, #8a92b2);
   color: white;
 }
@@ -2023,7 +2085,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
    =========================== */
 
 /* Simplified Portfolio Assets */
-.portfolio-assets-simple {
+.portfolio-asset-simple {
   margin-top: var(--space-4);
 }
 
@@ -2426,11 +2488,13 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 /* Minimalist header adjustments */
 .header-widgets {
-  display: none; /* Hide market ticker and quick stats for cleaner look */
+  display: none;
+  /* Hide market ticker and quick stats for cleaner look */
 }
 
 .search-container {
-  max-width: 400px; /* Reduce search bar size */
+  max-width: 400px;
+  /* Reduce search bar size */
 }
 
 /* ===========================
@@ -2609,6 +2673,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -2620,6 +2685,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     transform: translateY(100%);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -2630,6 +2696,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -2643,16 +2710,16 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   .header-center {
     flex: 1;
   }
-  
+
   .header-widgets {
     display: none;
   }
-  
+
   .dashboard-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }
-  
+
   .guidance-content {
     flex-direction: column;
     text-align: center;
@@ -2671,54 +2738,54 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     width: 280px;
     max-width: 280px;
   }
-  
+
   .app-sidebar.mobile-open {
     transform: translateX(0);
   }
-  
+
   .app-container {
     padding-left: 0;
   }
-  
+
   .app-content {
     padding: var(--space-4);
   }
-  
+
   .dashboard-container {
     min-height: calc(100vh - 120px);
   }
-  
+
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   .breadcrumb {
     display: none;
   }
-  
+
   .header-content {
     padding: 1rem;
     gap: 1rem;
   }
-  
+
   .page-title {
     font-size: 1.25rem;
   }
-  
+
   .search-container {
     order: 3;
     width: 100%;
   }
-  
+
   .header-right {
     flex: none;
     order: 2;
   }
-  
+
   .profile-info {
     display: none;
   }
-  
+
   .profile-dropdown {
     width: 240px;
   }
@@ -2728,22 +2795,22 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   .header-content {
     flex-wrap: wrap;
   }
-  
+
   .header-left {
     flex-basis: 100%;
     order: 1;
     margin-bottom: 1rem;
   }
-  
+
   .header-right {
     order: 2;
   }
-  
+
   .search-container {
     order: 3;
     flex-basis: 100%;
   }
-  
+
   .profile-dropdown {
     right: auto;
     left: 0;
@@ -2804,6 +2871,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

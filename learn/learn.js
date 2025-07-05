@@ -31,17 +31,17 @@ class DiBoaSLearningApp {
       currentTime: 0,
       videoDuration: 225, // 3:45 in seconds
       simulationData: {
-        selectedCrypto: 'btc',
+        selectedAsset: 'btc',
         purchaseAmount: 10,
-        cryptoPrices: {
-          btc: 43250,
+        assetPrices: {
+          btc: 109250,
           eth: 2650,
           sol: 98,
           sui: 1.85
         }
       }
     };
-    
+
     this.components = {
       navigation: null,
       video: null,
@@ -50,19 +50,19 @@ class DiBoaSLearningApp {
       progress: null,
       achievements: null
     };
-    
+
     this.init();
   }
-  
+
   /**
    * Initialize the application
    */
   init() {
     if (this.initialized) return;
-    
+
     try {
       console.log('🚀 Initializing diBoaS Learning Platform');
-      
+
       // Initialize core components
       this.initializeDOM();
       this.initializeNavigation();
@@ -76,16 +76,16 @@ class DiBoaSLearningApp {
       this.initializeSidebar();
       this.initializeAccessibility();
       this.initializeAnalytics();
-      
+
       // Load user state
       this.loadUserState();
-      
+
       // Setup global event listeners
       this.setupGlobalEventListeners();
-      
+
       this.initialized = true;
       console.log('✅ Learning platform initialized successfully');
-      
+
       // Track initialization
       // this.trackEvent('learning_app_initialized', {
       //   timestamp: Date.now(),
@@ -94,13 +94,13 @@ class DiBoaSLearningApp {
       //   lesson: this.state.currentLesson,
       //   mascot: this.state.currentMascot
       // });
-      
+
     } catch (error) {
       console.error('❌ Failed to initialize learning platform:', error);
       this.handleError(error, 'initialization');
     }
   }
-  
+
   /**
    * Initialize DOM references
    */
@@ -111,14 +111,14 @@ class DiBoaSLearningApp {
       themeToggle: document.getElementById('theme-toggle'),
       progressCircle: document.querySelector('.progress-ring-fill'),
       progressText: document.querySelector('.progress-text'),
-      
+
       // Sidebar elements
       sidebar: document.getElementById('learning-sidebar'),
       sidebarOverlay: document.getElementById('sidebar-overlay'),
       mascotOptions: document.querySelectorAll('.mascot-option'),
       lessonLinks: document.querySelectorAll('.lesson-link'),
       currentGuide: document.querySelector('.current-guide'),
-      
+
       // Content elements
       lessonProgress: document.getElementById('lesson-progress'),
       videoPlayer: document.getElementById('lesson-video'),
@@ -128,36 +128,36 @@ class DiBoaSLearningApp {
       videoProgress: document.getElementById('video-progress'),
       videoProgressFill: document.getElementById('video-progress-fill'),
       timeDisplay: document.getElementById('time-display'),
-      
+
       // Simulation elements
-      cryptoOptions: document.querySelectorAll('.crypto-option'),
+      assetOptions: document.querySelectorAll('.asset-option'),
       purchaseAmountInput: document.getElementById('purchase-amount'),
       quickAmounts: document.querySelectorAll('.quick-amount'),
       summaryAmount: document.getElementById('summary-amount'),
       summaryFee: document.getElementById('summary-fee'),
       summaryTotal: document.getElementById('summary-total'),
-      summaryCrypto: document.getElementById('summary-crypto'),
+      summaryAsset: document.getElementById('summary-asset'),
       simulateBtn: document.getElementById('simulate-purchase'),
-      
+
       // Quiz elements
       quizSubmit: document.getElementById('submit-quiz'),
       quizFeedback: document.getElementById('quiz-feedback'),
       feedbackCorrect: document.getElementById('feedback-correct'),
       feedbackIncorrect: document.getElementById('feedback-incorrect'),
-      
+
       // Navigation elements
       completeBtn: document.getElementById('complete-lesson'),
       nextLessonBtn: document.getElementById('next-lesson'),
-      
+
       // Modal elements
       achievementModal: document.getElementById('achievement-modal'),
       continueBtn: document.getElementById('continue-learning'),
       shareBtn: document.getElementById('share-achievement'),
-      
+
       // Loading elements
       loadingOverlay: document.getElementById('loading-overlay')
     };
-    
+
     // Validate critical elements
     const requiredElements = ['sidebar', 'themeToggle', 'lessonProgress'];
     for (const elementName of requiredElements) {
@@ -166,7 +166,7 @@ class DiBoaSLearningApp {
       }
     }
   }
-  
+
   /**
    * Initialize navigation functionality
    */
@@ -177,20 +177,20 @@ class DiBoaSLearningApp {
         link.addEventListener('click', this.handleLessonClick.bind(this));
       });
     }
-    
+
     // Lesson completion
     if (this.elements.completeBtn) {
       this.elements.completeBtn.addEventListener('click', this.handleLessonComplete.bind(this));
     }
-    
+
     // Next lesson navigation
     if (this.elements.nextLessonBtn) {
       this.elements.nextLessonBtn.addEventListener('click', this.handleNextLesson.bind(this));
     }
-    
+
     console.log('🧭 Navigation functionality initialized');
   }
-  
+
   /**
    * Handle lesson navigation click
    */
@@ -198,81 +198,81 @@ class DiBoaSLearningApp {
     event.preventDefault();
     const link = event.currentTarget;
     const lessonId = link.getAttribute('data-lesson');
-    
+
     if (link.classList.contains('locked') || link.getAttribute('aria-disabled') === 'true') {
       this.showLockedLessonMessage();
       return;
     }
-    
+
     // Update active state
     this.elements.lessonLinks.forEach(l => l.classList.remove('active', 'current'));
     link.classList.add('active', 'current');
-    
+
     // Load lesson
     this.loadLesson(lessonId);
-    
+
     // Close mobile sidebar if open
     if (this.state.sidebarOpen) {
       this.closeSidebar();
     }
-    
+
     // this.trackEvent('lesson_navigation', {
     //   from: this.state.currentLesson,
     //   to: lessonId,
     //   method: 'sidebar_click'
     // });
   }
-  
+
   /**
    * Load lesson content
    */
   loadLesson(lessonId) {
     this.showLoading();
-    
+
     // Simulate loading time
     setTimeout(() => {
       this.state.currentLesson = lessonId;
       this.updateLessonContent(lessonId);
       this.hideLoading();
-      
+
       // Reset lesson progress
       this.state.lessonProgress = 0;
       this.updateLessonProgress();
-      
+
       // this.trackEvent('lesson_loaded', {
       //   lesson: lessonId,
       //   loadTime: 1000 // simulated
       // });
     }, 1000);
   }
-  
+
   /**
    * Update lesson content based on lesson ID
    */
   updateLessonContent(lessonId) {
     // In a real implementation, this would load actual lesson content
     // For now, we'll update the progress and simulate content changes
-    
+
     const lessonData = this.getLessonData(lessonId);
-    
+
     // Update lesson header
     const lessonTitle = document.querySelector('.lesson-title');
     if (lessonTitle && lessonData) {
       lessonTitle.textContent = lessonData.title;
     }
-    
+
     // Update breadcrumb
     const breadcrumbCurrent = document.querySelector('.breadcrumb-current');
     if (breadcrumbCurrent && lessonData) {
       breadcrumbCurrent.textContent = lessonData.phase;
     }
-    
+
     // Reset interactive elements
     this.resetQuiz();
     this.resetSimulation();
     this.resetVideo();
   }
-  
+
   /**
    * Get lesson data by ID
    */
@@ -283,8 +283,8 @@ class DiBoaSLearningApp {
         phase: 'Aqua Phase',
         duration: 2
       },
-      'crypto-basics': {
-        title: 'Crypto Fundamentals', 
+      'asset-basics': {
+        title: 'Finance Fundamentals',
         phase: 'Aqua Phase',
         duration: 5
       },
@@ -304,68 +304,68 @@ class DiBoaSLearningApp {
         duration: 10
       }
     };
-    
+
     return lessons[lessonId] || null;
   }
-  
+
   /**
    * Handle lesson completion
    */
   handleLessonComplete() {
     const lessonId = this.state.currentLesson;
-    
+
     // Mark lesson as completed
     if (!this.state.completedLessons.includes(lessonId)) {
       this.state.completedLessons.push(lessonId);
       this.saveUserProgress();
     }
-    
+
     // Update UI
     this.updateLessonCompletionUI();
-    
+
     // Show achievement
     this.showAchievement('lesson_complete', {
       title: 'Lesson Complete!',
       description: `Great job! You've mastered "${this.getLessonData(lessonId)?.title}". Aqua is proud of your progress!`,
       points: 50
     });
-    
+
     // Enable next lesson
     this.unlockNextLesson();
-    
+
     // this.trackEvent('lesson_completed', {
     //   lesson: lessonId,
     //   timeSpent: Date.now() - this.lessonStartTime,
     //   completionRate: this.state.lessonProgress
     // });
   }
-  
+
   /**
    * Handle next lesson navigation
    */
   handleNextLesson(event) {
     event.preventDefault();
-    
+
     const nextLessonId = this.getNextLessonId();
     if (nextLessonId) {
       this.loadLesson(nextLessonId);
     }
   }
-  
+
   /**
    * Get next lesson ID
    */
   getNextLessonId() {
-    const lessonOrder = ['welcome', 'crypto-basics', 'first-purchase', 'wallet-security', 'reading-charts'];
+    const lessonOrder = ['welcome', 'asset-basics', 'first-purchase', 'wallet-security', 'reading-charts'];
     const currentIndex = lessonOrder.indexOf(this.state.currentLesson);
-    
+
     if (currentIndex >= 0 && currentIndex < lessonOrder.length - 1) {
       return lessonOrder[currentIndex + 1];
     }
-    
+
     return null;
   }
-  
+
   /**
    * Initialize video functionality
    */
@@ -373,21 +373,21 @@ class DiBoaSLearningApp {
     if (this.elements.playButton) {
       this.elements.playButton.addEventListener('click', this.handleVideoPlay.bind(this));
     }
-    
+
     if (this.elements.playPauseBtn) {
       this.elements.playPauseBtn.addEventListener('click', this.handleVideoToggle.bind(this));
     }
-    
+
     if (this.elements.videoProgress) {
       this.elements.videoProgress.addEventListener('click', this.handleVideoSeek.bind(this));
     }
-    
+
     // Start video progress simulation
     this.startVideoProgress();
-    
+
     console.log('🎥 Video functionality initialized');
   }
-  
+
   /**
    * Handle video play
    */
@@ -395,33 +395,33 @@ class DiBoaSLearningApp {
     if (this.elements.videoControls) {
       this.elements.videoControls.style.display = 'flex';
     }
-    
+
     this.state.videoPlaying = true;
     this.updateVideoControls();
-    
+
     // Track video start
     // this.trackEvent('video_started', {
     //   lesson: this.state.currentLesson,
     //   timestamp: Date.now()
     // });
-    
+
     // Update lesson progress
     this.updateLessonProgress(25);
   }
-  
+
   /**
    * Handle video play/pause toggle
    */
   handleVideoToggle() {
     this.state.videoPlaying = !this.state.videoPlaying;
     this.updateVideoControls();
-    
+
     // this.trackEvent('video_toggle', {
     //   action: this.state.videoPlaying ? 'play' : 'pause',
     //   currentTime: this.state.currentTime
     // });
   }
-  
+
   /**
    * Handle video seek
    */
@@ -429,15 +429,15 @@ class DiBoaSLearningApp {
     const rect = this.elements.videoProgress.getBoundingClientRect();
     const percent = (event.clientX - rect.left) / rect.width;
     this.state.currentTime = Math.floor(this.state.videoDuration * percent);
-    
+
     this.updateVideoProgress();
-    
+
     // this.trackEvent('video_seek', {
     //   newTime: this.state.currentTime,
     //   percent: percent * 100
     // });
   }
-  
+
   /**
    * Start video progress simulation
    */
@@ -446,7 +446,7 @@ class DiBoaSLearningApp {
       if (this.state.videoPlaying && this.state.currentTime < this.state.videoDuration) {
         this.state.currentTime++;
         this.updateVideoProgress();
-        
+
         // Track viewing milestones
         const percent = (this.state.currentTime / this.state.videoDuration) * 100;
         if ([25, 50, 75, 95].includes(Math.floor(percent))) {
@@ -454,7 +454,7 @@ class DiBoaSLearningApp {
           //   percent: Math.floor(percent),
           //   currentTime: this.state.currentTime
           // });
-          
+
           // Update lesson progress based on video progress
           if (percent >= 95) {
             this.updateLessonProgress(50);
@@ -463,7 +463,7 @@ class DiBoaSLearningApp {
       }
     }, 1000);
   }
-  
+
   /**
    * Update video controls
    */
@@ -471,7 +471,7 @@ class DiBoaSLearningApp {
     if (this.elements.playPauseBtn) {
       const playIcon = this.elements.playPauseBtn.querySelector('.play-icon');
       const pauseIcon = this.elements.playPauseBtn.querySelector('.pause-icon');
-      
+
       if (this.state.videoPlaying) {
         if (playIcon) playIcon.style.display = 'none';
         if (pauseIcon) pauseIcon.style.display = 'inline';
@@ -481,22 +481,22 @@ class DiBoaSLearningApp {
       }
     }
   }
-  
+
   /**
    * Update video progress
    */
   updateVideoProgress() {
     const percent = (this.state.currentTime / this.state.videoDuration) * 100;
-    
+
     if (this.elements.videoProgressFill) {
       this.elements.videoProgressFill.style.width = `${percent}%`;
     }
-    
+
     if (this.elements.timeDisplay) {
       this.elements.timeDisplay.textContent = `${this.formatTime(this.state.currentTime)} / ${this.formatTime(this.state.videoDuration)}`;
     }
   }
-  
+
   /**
    * Format time in MM:SS format
    */
@@ -505,7 +505,7 @@ class DiBoaSLearningApp {
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
-  
+
   /**
    * Reset video state
    */
@@ -514,74 +514,74 @@ class DiBoaSLearningApp {
     this.state.currentTime = 0;
     this.updateVideoProgress();
     this.updateVideoControls();
-    
+
     if (this.elements.videoControls) {
       this.elements.videoControls.style.display = 'none';
     }
   }
-  
+
   /**
    * Initialize simulation functionality
    */
   initializeSimulation() {
-    // Crypto selection
-    if (this.elements.cryptoOptions) {
-      this.elements.cryptoOptions.forEach(option => {
-        option.addEventListener('click', this.handleCryptoSelect.bind(this));
+    // Asset selection
+    if (this.elements.assetOptions) {
+      this.elements.assetOptions.forEach(option => {
+        option.addEventListener('click', this.handleAssetSelect.bind(this));
       });
     }
-    
+
     // Amount input
     if (this.elements.purchaseAmountInput) {
       this.elements.purchaseAmountInput.addEventListener('input', this.handleAmountChange.bind(this));
     }
-    
+
     // Quick amounts
     if (this.elements.quickAmounts) {
       this.elements.quickAmounts.forEach(btn => {
         btn.addEventListener('click', this.handleQuickAmount.bind(this));
       });
     }
-    
+
     // Simulate purchase
     if (this.elements.simulateBtn) {
       this.elements.simulateBtn.addEventListener('click', this.handleSimulatePurchase.bind(this));
     }
-    
+
     // Initialize with default values
     this.updatePurchaseSummary();
-    
+
     console.log('🎮 Simulation functionality initialized');
   }
-  
+
   /**
-   * Handle crypto selection
+   * Handle asset selection
    */
-  handleCryptoSelect(event) {
+  handleAssetSelect(event) {
     const option = event.currentTarget;
-    const crypto = option.getAttribute('data-crypto');
-    
+    const asset = option.getAttribute('data-asset');
+
     // Update active state
-    this.elements.cryptoOptions.forEach(opt => opt.classList.remove('active'));
+    this.elements.assetOptions.forEach(opt => opt.classList.remove('active'));
     option.classList.add('active');
-    
+
     // Update state
-    this.state.simulationData.selectedCrypto = crypto;
+    this.state.simulationData.selectedAsset = asset;
     this.updatePurchaseSummary();
-    
-    // this.trackEvent('simulation_crypto_select', {
-    //   crypto: crypto,
+
+    // this.trackEvent('simulation_asset_select', {
+    //   asset: asset,
     //   lesson: this.state.currentLesson
     // });
   }
-  
+
   /**
    * Handle amount change
    */
   handleAmountChange(event) {
     const amount = parseFloat(event.target.value) || 10;
     this.state.simulationData.purchaseAmount = Math.max(10, Math.min(1000, amount));
-    
+
     // Update quick amount buttons
     this.elements.quickAmounts.forEach(btn => {
       btn.classList.remove('active');
@@ -589,75 +589,75 @@ class DiBoaSLearningApp {
         btn.classList.add('active');
       }
     });
-    
+
     this.updatePurchaseSummary();
   }
-  
+
   /**
    * Handle quick amount selection
    */
   handleQuickAmount(event) {
     const btn = event.currentTarget;
     const amount = parseInt(btn.getAttribute('data-amount'));
-    
+
     // Update active state
     this.elements.quickAmounts.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    
+
     // Update input and state
     if (this.elements.purchaseAmountInput) {
       this.elements.purchaseAmountInput.value = amount;
     }
     this.state.simulationData.purchaseAmount = amount;
-    
+
     this.updatePurchaseSummary();
   }
-  
+
   /**
    * Update purchase summary
    */
   updatePurchaseSummary() {
-    const { selectedCrypto, purchaseAmount, cryptoPrices } = this.state.simulationData;
-    const cryptoPrice = cryptoPrices[selectedCrypto];
+    const { selectedAsset, purchaseAmount, assetPrices } = this.state.simulationData;
+    const assetPrice = assetPrices[selectedAsset];
     const fee = purchaseAmount * 0.0009; // 0.09% fee
     const total = purchaseAmount + fee;
-    const cryptoAmount = purchaseAmount / cryptoPrice;
-    
+    const assetAmount = purchaseAmount / assetPrice;
+
     // Update summary display
     if (this.elements.summaryAmount) {
       this.elements.summaryAmount.textContent = `$${purchaseAmount.toFixed(2)}`;
     }
-    
+
     if (this.elements.summaryFee) {
       this.elements.summaryFee.textContent = `$${fee.toFixed(2)}`;
     }
-    
+
     if (this.elements.summaryTotal) {
       this.elements.summaryTotal.textContent = `$${total.toFixed(2)}`;
     }
-    
-    if (this.elements.summaryCrypto) {
-      const symbol = selectedCrypto.toUpperCase();
+
+    if (this.elements.summaryAsset) {
+      const symbol = selectedAsset.toUpperCase();
       let formatted;
-      
-      if (cryptoAmount >= 1) {
-        formatted = cryptoAmount.toFixed(4);
-      } else if (cryptoAmount >= 0.01) {
-        formatted = cryptoAmount.toFixed(6);
+
+      if (assetAmount >= 1) {
+        formatted = assetAmount.toFixed(4);
+      } else if (assetAmount >= 0.01) {
+        formatted = assetAmount.toFixed(6);
       } else {
-        formatted = cryptoAmount.toFixed(8);
+        formatted = assetAmount.toFixed(8);
       }
-      
-      this.elements.summaryCrypto.textContent = `${formatted} ${symbol}`;
+
+      this.elements.summaryAsset.textContent = `${formatted} ${symbol}`;
     }
   }
-  
+
   /**
    * Handle simulate purchase
    */
   handleSimulatePurchase() {
-    const { selectedCrypto, purchaseAmount } = this.state.simulationData;
-    
+    const { selectedAsset, purchaseAmount } = this.state.simulationData;
+
     // Show loading state
     if (this.elements.simulateBtn) {
       this.elements.simulateBtn.disabled = true;
@@ -666,7 +666,7 @@ class DiBoaSLearningApp {
         Processing...
       `;
     }
-    
+
     // Simulate processing time
     setTimeout(() => {
       // Reset button
@@ -679,26 +679,26 @@ class DiBoaSLearningApp {
           </svg>
         `;
       }
-      
+
       // Show success message
       this.showSimulationSuccess();
-      
+
       // Update lesson progress
       this.updateLessonProgress(75);
-      
+
       // this.trackEvent('simulation_purchase_complete', {
-      //   crypto: selectedCrypto,
+      //   asset: selectedAsset,
       //   amount: purchaseAmount,
       //   lesson: this.state.currentLesson
       // });
     }, 2000);
-    
+
     // this.trackEvent('simulation_purchase_started', {
-    //   crypto: selectedCrypto,
+    //   asset: selectedAsset,
     //   amount: purchaseAmount
     // });
   }
-  
+
   /**
    * Show simulation success message
    */
@@ -712,44 +712,44 @@ class DiBoaSLearningApp {
         <p style="margin: 0; color: var(--text-secondary);">Great job! You've learned how to make a crypto purchase. In the real app, your crypto would now be in your portfolio.</p>
       </div>
     `;
-    
+
     const simulationContainer = document.querySelector('.simulation-container');
     if (simulationContainer) {
       simulationContainer.appendChild(successMessage);
-      
+
       // Remove after 5 seconds
       setTimeout(() => {
         successMessage.remove();
       }, 5000);
     }
   }
-  
+
   /**
    * Reset simulation state
    */
   resetSimulation() {
-    this.state.simulationData.selectedCrypto = 'btc';
+    this.state.simulationData.selectedAsset = 'btc';
     this.state.simulationData.purchaseAmount = 10;
-    
+
     // Reset UI
-    this.elements.cryptoOptions?.forEach((opt, index) => {
+    this.elements.assetOptions?.forEach((opt, index) => {
       opt.classList.toggle('active', index === 0);
     });
-    
+
     this.elements.quickAmounts?.forEach((btn, index) => {
       btn.classList.toggle('active', index === 0);
     });
-    
+
     if (this.elements.purchaseAmountInput) {
       this.elements.purchaseAmountInput.value = 10;
     }
-    
+
     this.updatePurchaseSummary();
-    
+
     // Remove any success messages
     document.querySelectorAll('.simulation-success').forEach(el => el.remove());
   }
-  
+
   /**
    * Initialize quiz functionality
    */
@@ -757,28 +757,28 @@ class DiBoaSLearningApp {
     if (this.elements.quizSubmit) {
       this.elements.quizSubmit.addEventListener('click', this.handleQuizSubmit.bind(this));
     }
-    
+
     console.log('🧠 Quiz functionality initialized');
   }
-  
+
   /**
    * Handle quiz submission
    */
   handleQuizSubmit() {
     const selectedAnswer = document.querySelector('input[name="quiz-purchase"]:checked');
-    
+
     if (!selectedAnswer) {
       alert('Please select an answer first!');
       return;
     }
-    
+
     const isCorrect = selectedAnswer.value === 'b';
-    
+
     // Show feedback
     if (this.elements.quizFeedback) {
       this.elements.quizFeedback.style.display = 'block';
     }
-    
+
     if (isCorrect) {
       if (this.elements.feedbackCorrect) {
         this.elements.feedbackCorrect.style.display = 'block';
@@ -786,10 +786,10 @@ class DiBoaSLearningApp {
       if (this.elements.feedbackIncorrect) {
         this.elements.feedbackIncorrect.style.display = 'none';
       }
-      
+
       // Update lesson progress
       this.updateLessonProgress(100);
-      
+
       // Enable lesson completion
       if (this.elements.completeBtn) {
         this.elements.completeBtn.disabled = false;
@@ -802,19 +802,19 @@ class DiBoaSLearningApp {
         this.elements.feedbackIncorrect.style.display = 'block';
       }
     }
-    
+
     // Disable submit button
     if (this.elements.quizSubmit) {
       this.elements.quizSubmit.disabled = true;
     }
-    
+
     // this.trackEvent('quiz_submitted', {
     //   lesson: this.state.currentLesson,
     //   answer: selectedAnswer.value,
     //   correct: isCorrect
     // });
   }
-  
+
   /**
    * Reset quiz state
    */
@@ -823,23 +823,23 @@ class DiBoaSLearningApp {
     document.querySelectorAll('input[name="quiz-purchase"]').forEach(input => {
       input.checked = false;
     });
-    
+
     // Hide feedback
     if (this.elements.quizFeedback) {
       this.elements.quizFeedback.style.display = 'none';
     }
-    
+
     // Re-enable submit button
     if (this.elements.quizSubmit) {
       this.elements.quizSubmit.disabled = false;
     }
-    
+
     // Disable completion button
     if (this.elements.completeBtn) {
       this.elements.completeBtn.disabled = true;
     }
   }
-  
+
   /**
    * Initialize progress tracking
    */
@@ -847,10 +847,10 @@ class DiBoaSLearningApp {
     this.lessonStartTime = Date.now();
     this.updateLessonProgress(0);
     this.updateOverallProgress();
-    
+
     console.log('📊 Progress tracking initialized');
   }
-  
+
   /**
    * Update lesson progress
    */
@@ -858,19 +858,19 @@ class DiBoaSLearningApp {
     if (progress !== null) {
       this.state.lessonProgress = progress;
     }
-    
+
     // Update progress bar
     if (this.elements.lessonProgress) {
       this.elements.lessonProgress.style.width = `${this.state.lessonProgress}%`;
     }
-    
+
     // Update progress label
     const progressLabel = document.querySelector('.progress-label');
     if (progressLabel) {
       progressLabel.textContent = `${this.state.lessonProgress}% Complete`;
     }
   }
-  
+
   /**
    * Update overall learning progress
    */
@@ -878,20 +878,20 @@ class DiBoaSLearningApp {
     const totalLessons = 8; // Aqua phase lessons
     const completedCount = this.state.completedLessons.length;
     const overallProgress = Math.round((completedCount / totalLessons) * 100);
-    
+
     // Update progress circle
     if (this.elements.progressCircle) {
       const circumference = 2 * Math.PI * 16; // radius = 16
       const offset = circumference - (overallProgress / 100) * circumference;
       this.elements.progressCircle.style.strokeDashoffset = offset;
     }
-    
+
     // Update progress text
     if (this.elements.progressText) {
       this.elements.progressText.textContent = `${overallProgress}%`;
     }
   }
-  
+
   /**
    * Initialize achievement system
    */
@@ -899,14 +899,14 @@ class DiBoaSLearningApp {
     if (this.elements.continueBtn) {
       this.elements.continueBtn.addEventListener('click', this.hideAchievement.bind(this));
     }
-    
+
     if (this.elements.shareBtn) {
       this.elements.shareBtn.addEventListener('click', this.shareAchievement.bind(this));
     }
-    
+
     console.log('🏆 Achievement system initialized');
   }
-  
+
   /**
    * Show achievement modal
    */
@@ -915,27 +915,27 @@ class DiBoaSLearningApp {
       // Update content
       const title = this.elements.achievementModal.querySelector('.achievement-title');
       const description = this.elements.achievementModal.querySelector('.achievement-description');
-      
+
       if (title) title.textContent = data.title;
       if (description) description.textContent = data.description;
-      
+
       // Show modal
       this.elements.achievementModal.classList.add('show');
       this.elements.achievementModal.setAttribute('aria-hidden', 'false');
-      
+
       // Focus management
       if (this.elements.continueBtn) {
         this.elements.continueBtn.focus();
       }
     }
-    
+
     // this.trackEvent('achievement_shown', {
     //   type: type,
     //   lesson: this.state.currentLesson,
     //   ...data
     // });
   }
-  
+
   /**
    * Hide achievement modal
    */
@@ -945,13 +945,13 @@ class DiBoaSLearningApp {
       this.elements.achievementModal.setAttribute('aria-hidden', 'true');
     }
   }
-  
+
   /**
    * Share achievement
    */
   shareAchievement() {
     const text = `🎉 Just completed "${this.getLessonData(this.state.currentLesson)?.title}" on diBoaS Learning! Learning crypto with Aqua is amazing! 🌊`;
-    
+
     if (navigator.share) {
       navigator.share({
         title: 'diBoaS Learning Achievement',
@@ -964,13 +964,13 @@ class DiBoaSLearningApp {
         alert('Achievement text copied to clipboard!');
       });
     }
-    
+
     // this.trackEvent('achievement_shared', {
     //   lesson: this.state.currentLesson,
     //   method: navigator.share ? 'native' : 'clipboard'
     // });
   }
-  
+
   /**
    * Initialize mascot system
    */
@@ -980,19 +980,19 @@ class DiBoaSLearningApp {
         option.addEventListener('click', this.handleMascotSelect.bind(this));
       });
     }
-    
+
     this.updateMascotUI();
-    
+
     console.log('🌊 Mascot system initialized');
   }
-  
+
   /**
    * Handle mascot selection
    */
   handleMascotSelect(event) {
     const option = event.currentTarget;
     const mascot = option.getAttribute('data-mascot');
-    
+
     // Update active state
     this.elements.mascotOptions.forEach(opt => {
       opt.classList.remove('active');
@@ -1000,17 +1000,17 @@ class DiBoaSLearningApp {
     });
     option.classList.add('active');
     option.setAttribute('aria-pressed', 'true');
-    
+
     // Update state
     this.state.currentMascot = mascot;
     this.updateMascotUI();
-    
+
     // this.trackEvent('mascot_selected', {
     //   mascot: mascot,
     //   lesson: this.state.currentLesson
     // });
   }
-  
+
   /**
    * Update mascot UI
    */
@@ -1018,7 +1018,7 @@ class DiBoaSLearningApp {
     const mascotData = {
       aqua: {
         name: 'Aqua',
-        message: 'Ready to master crypto basics? Let\'s build your confidence step by step!',
+        message: 'Ready to master crypto and finance basics? Let\'s build your confidence step by step!',
         color: 'var(--aqua-primary)',
         level: 'Beginner Level'
       },
@@ -1041,25 +1041,25 @@ class DiBoaSLearningApp {
         level: 'Community Level'
       }
     };
-    
+
     const data = mascotData[this.state.currentMascot];
-    
+
     // Update current guide section
     if (this.elements.currentGuide) {
       const guideName = this.elements.currentGuide.querySelector('.guide-name');
       const guideMessage = this.elements.currentGuide.querySelector('.guide-message');
-      
+
       if (guideName) guideName.textContent = `Learning with ${data.name}`;
       if (guideMessage) guideMessage.textContent = `"${data.message}"`;
     }
-    
+
     // Update CSS custom property for accent color
     document.documentElement.style.setProperty('--platform-accent', data.color);
-    
+
     // Update data attribute on html element
     document.documentElement.setAttribute('data-mascot', this.state.currentMascot);
   }
-  
+
   /**
    * Initialize theme functionality
    */
@@ -1067,27 +1067,27 @@ class DiBoaSLearningApp {
     if (this.elements.themeToggle) {
       this.elements.themeToggle.addEventListener('click', this.toggleTheme.bind(this));
     }
-    
+
     // Load saved theme
     const savedTheme = localStorage.getItem('diboas-learn-theme') || 'light';
     this.setTheme(savedTheme);
-    
+
     console.log('🎨 Theme functionality initialized');
   }
-  
+
   /**
    * Toggle theme
    */
   toggleTheme() {
     const newTheme = this.state.theme === 'dark' ? 'light' : 'dark';
     this.setTheme(newTheme);
-    
+
     // this.trackEvent('theme_toggle', {
     //   from: this.state.theme,
     //   to: newTheme
     // });
   }
-  
+
   /**
    * Set theme
    */
@@ -1095,12 +1095,12 @@ class DiBoaSLearningApp {
     this.state.theme = theme;
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('diboas-learn-theme', theme);
-    
+
     // Update theme toggle icon
     if (this.elements.themeToggle) {
       const lightIcon = this.elements.themeToggle.querySelector('.theme-icon-light');
       const darkIcon = this.elements.themeToggle.querySelector('.theme-icon-dark');
-      
+
       if (theme === 'dark') {
         if (lightIcon) lightIcon.style.display = 'none';
         if (darkIcon) darkIcon.style.display = 'block';
@@ -1110,7 +1110,7 @@ class DiBoaSLearningApp {
       }
     }
   }
-  
+
   /**
    * Initialize sidebar functionality
    */
@@ -1118,14 +1118,14 @@ class DiBoaSLearningApp {
     if (this.elements.mobileMenuBtn) {
       this.elements.mobileMenuBtn.addEventListener('click', this.toggleSidebar.bind(this));
     }
-    
+
     if (this.elements.sidebarOverlay) {
       this.elements.sidebarOverlay.addEventListener('click', this.closeSidebar.bind(this));
     }
-    
+
     console.log('📱 Sidebar functionality initialized');
   }
-  
+
   /**
    * Toggle sidebar
    */
@@ -1136,49 +1136,49 @@ class DiBoaSLearningApp {
       this.openSidebar();
     }
   }
-  
+
   /**
    * Open sidebar
    */
   openSidebar() {
     this.state.sidebarOpen = true;
-    
+
     if (this.elements.sidebar) {
       this.elements.sidebar.classList.add('active');
     }
-    
+
     if (this.elements.sidebarOverlay) {
       this.elements.sidebarOverlay.classList.add('active');
     }
-    
+
     if (this.elements.mobileMenuBtn) {
       this.elements.mobileMenuBtn.setAttribute('aria-expanded', 'true');
     }
-    
+
     document.body.style.overflow = 'hidden';
   }
-  
+
   /**
    * Close sidebar
    */
   closeSidebar() {
     this.state.sidebarOpen = false;
-    
+
     if (this.elements.sidebar) {
       this.elements.sidebar.classList.remove('active');
     }
-    
+
     if (this.elements.sidebarOverlay) {
       this.elements.sidebarOverlay.classList.remove('active');
     }
-    
+
     if (this.elements.mobileMenuBtn) {
       this.elements.mobileMenuBtn.setAttribute('aria-expanded', 'false');
     }
-    
+
     document.body.style.overflow = '';
   }
-  
+
   /**
    * Initialize accessibility features
    */
@@ -1186,10 +1186,10 @@ class DiBoaSLearningApp {
     this.setupKeyboardShortcuts();
     this.setupFocusManagement();
     this.setupReducedMotion();
-    
+
     console.log('♿ Accessibility features initialized');
   }
-  
+
   /**
    * Setup keyboard shortcuts
    */
@@ -1200,13 +1200,13 @@ class DiBoaSLearningApp {
         this.hideAchievement();
         this.closeSidebar();
       }
-      
+
       // Space: Play/pause video when focused
       if (event.key === ' ' && event.target === this.elements.playPauseBtn) {
         event.preventDefault();
         this.handleVideoToggle();
       }
-      
+
       // Arrow keys: Navigate lessons (when sidebar focused)
       if (event.target.closest('.learning-nav')) {
         if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
@@ -1216,23 +1216,23 @@ class DiBoaSLearningApp {
       }
     });
   }
-  
+
   /**
    * Navigate lessons with keyboard
    */
   navigateLessons(direction) {
     const currentLink = document.querySelector('.lesson-link.active');
     if (!currentLink) return;
-    
+
     const allLinks = Array.from(this.elements.lessonLinks);
     const currentIndex = allLinks.indexOf(currentLink);
     const nextIndex = currentIndex + direction;
-    
+
     if (nextIndex >= 0 && nextIndex < allLinks.length) {
       allLinks[nextIndex].focus();
     }
   }
-  
+
   /**
    * Setup focus management
    */
@@ -1243,11 +1243,11 @@ class DiBoaSLearningApp {
         const focusableElements = this.elements.achievementModal.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
-        
+
         if (focusableElements.length > 0) {
           const firstElement = focusableElements[0];
           const lastElement = focusableElements[focusableElements.length - 1];
-          
+
           if (event.shiftKey && document.activeElement === firstElement) {
             event.preventDefault();
             lastElement.focus();
@@ -1259,17 +1259,17 @@ class DiBoaSLearningApp {
       }
     });
   }
-  
+
   /**
    * Setup reduced motion preferences
    */
   setupReducedMotion() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    
+
     if (prefersReducedMotion.matches) {
       document.documentElement.style.setProperty('--animation-duration', '0s');
     }
-    
+
     prefersReducedMotion.addEventListener('change', (event) => {
       if (event.matches) {
         document.documentElement.style.setProperty('--animation-duration', '0s');
@@ -1278,28 +1278,28 @@ class DiBoaSLearningApp {
       }
     });
   }
-  
+
   /**
    * Initialize analytics
    */
   initializeAnalytics() {
     this.setupEngagementTracking();
     this.setupPerformanceMonitoring();
-    
+
     console.log('📊 Analytics initialized');
   }
-  
+
   /**
    * Setup engagement tracking
    */
   setupEngagementTracking() {
     let timeOnLesson = 0;
     let engagementStartTime = Date.now();
-    
+
     // Track time on lesson
     setInterval(() => {
       timeOnLesson += 30;
-      
+
       // Track engagement milestones
       if ([60, 180, 300, 600].includes(timeOnLesson)) {
         // this.trackEvent('lesson_engagement', {
@@ -1309,10 +1309,10 @@ class DiBoaSLearningApp {
         // });
       }
     }, 30000);
-    
+
     // Track interactions
     document.addEventListener('click', (event) => {
-      const element = event.target.closest('[data-lesson], [data-crypto], [data-mascot]');
+      const element = event.target.closest('[data-lesson], [data-asset], [data-mascot]');
       if (element) {
         // this.trackEvent('interaction', {
         //   type: element.tagName.toLowerCase(),
@@ -1322,7 +1322,7 @@ class DiBoaSLearningApp {
       }
     });
   }
-  
+
   /**
    * Setup performance monitoring
    */
@@ -1332,7 +1332,7 @@ class DiBoaSLearningApp {
       if ('performance' in window) {
         const perfData = performance.getEntriesByType('navigation')[0];
         const loadTime = perfData.loadEventEnd - perfData.fetchStart;
-        
+
         // this.trackEvent('learning_page_performance', {
         //   loadTime: loadTime,
         //   domContentLoaded: perfData.domContentLoadedEventEnd - perfData.fetchStart,
@@ -1341,7 +1341,7 @@ class DiBoaSLearningApp {
       }
     });
   }
-  
+
   /**
    * Setup global event listeners
    */
@@ -1352,7 +1352,7 @@ class DiBoaSLearningApp {
         this.closeSidebar();
       }
     });
-    
+
     // Handle orientation change
     window.addEventListener('orientationchange', () => {
       setTimeout(() => {
@@ -1361,7 +1361,7 @@ class DiBoaSLearningApp {
         }
       }, 100);
     });
-    
+
     // Handle page visibility changes
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
@@ -1373,7 +1373,7 @@ class DiBoaSLearningApp {
       }
     });
   }
-  
+
   /**
    * Load user state
    */
@@ -1387,14 +1387,14 @@ class DiBoaSLearningApp {
       this.state.currentMascot = progress.currentMascot;
       this.updateMascotUI();
     }
-    
+
     // Update UI based on completed lessons
     this.updateLessonCompletionUI();
     this.updateOverallProgress();
-    
+
     console.log('💾 User state loaded');
   }
-  
+
   /**
    * Save user progress
    */
@@ -1405,11 +1405,11 @@ class DiBoaSLearningApp {
       completedLessons: this.state.completedLessons,
       lastActivity: Date.now()
     };
-    
+
     localStorage.setItem('diboas-user-progress', JSON.stringify(progressData));
     localStorage.setItem('diboas-completed-lessons', JSON.stringify(this.state.completedLessons));
   }
-  
+
   /**
    * Update lesson completion UI
    */
@@ -1417,7 +1417,7 @@ class DiBoaSLearningApp {
     this.elements.lessonLinks?.forEach(link => {
       const lessonId = link.getAttribute('data-lesson');
       const statusIcon = link.querySelector('.status-icon');
-      
+
       if (this.state.completedLessons.includes(lessonId)) {
         link.classList.add('completed');
         if (statusIcon) {
@@ -1427,7 +1427,7 @@ class DiBoaSLearningApp {
       }
     });
   }
-  
+
   /**
    * Unlock next lesson
    */
@@ -1438,21 +1438,21 @@ class DiBoaSLearningApp {
       if (nextLink) {
         nextLink.classList.remove('locked');
         nextLink.removeAttribute('aria-disabled');
-        
+
         if (this.elements.nextLessonBtn) {
           this.elements.nextLessonBtn.classList.remove('disabled');
         }
       }
     }
   }
-  
+
   /**
    * Show locked lesson message
    */
   showLockedLessonMessage() {
     alert('Complete the previous lessons to unlock this content!');
   }
-  
+
   /**
    * Show loading overlay
    */
@@ -1462,7 +1462,7 @@ class DiBoaSLearningApp {
       this.elements.loadingOverlay.setAttribute('aria-hidden', 'false');
     }
   }
-  
+
   /**
    * Hide loading overlay
    */
@@ -1472,7 +1472,7 @@ class DiBoaSLearningApp {
       this.elements.loadingOverlay.setAttribute('aria-hidden', 'true');
     }
   }
-  
+
   /**
    * Track analytics event (stubbed for privacy)
    */
@@ -1480,23 +1480,23 @@ class DiBoaSLearningApp {
     // Analytics tracking has been disabled for privacy
     // Would have tracked: eventName, properties
   }
-  
+
   /**
    * Handle errors
    */
   handleError(error, context = 'unknown') {
     console.error(`Learning App Error (${context}):`, error);
-    
+
     // this.trackEvent('learning_error', {
     //   context: context,
     //   error: error.message,
     //   stack: error.stack?.substring(0, 500)
     // });
-    
+
     // Graceful degradation
     return false;
   }
-  
+
   /**
    * Get application state
    */
@@ -1516,12 +1516,12 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     // Initialize the learning app
     window.DiBoaSLearningApp = new DiBoaSLearningApp();
-    
+
     // Make it globally accessible
     window.diboasLearningApp = window.DiBoaSLearningApp;
-    
+
     console.log('✅ diBoaS Learning Platform loaded successfully');
-    
+
   } catch (error) {
     console.error('❌ Failed to initialize learning platform:', error);
   }
@@ -1560,14 +1560,14 @@ if ('performance' in window) {
       console.log('📊 Learning LCP:', entry.startTime);
     }
   }).observe({ entryTypes: ['largest-contentful-paint'] });
-  
+
   // Monitor First Input Delay
   new PerformanceObserver((entryList) => {
     for (const entry of entryList.getEntries()) {
       console.log('📊 Learning FID:', entry.processingStart - entry.startTime);
     }
   }).observe({ entryTypes: ['first-input'] });
-  
+
   // Monitor Cumulative Layout Shift
   new PerformanceObserver((entryList) => {
     for (const entry of entryList.getEntries()) {

@@ -17,8 +17,8 @@
 /**
  * Main diBoaS namespace and application entry point
  */
-window.DiBoaS = (function() {
-  
+window.DiBoaS = (function () {
+
   // Private state management
   const state = {
     initialized: false,
@@ -43,10 +43,10 @@ window.DiBoaS = (function() {
    */
   function init() {
     if (state.initialized) return;
-    
+
     try {
       console.log('🚀 Initializing diBoaS Enterprise Application');
-      
+
       // Initialize core modules in dependency order
       initializePerformanceMonitoring();
       initializeErrorHandling();
@@ -55,17 +55,17 @@ window.DiBoaS = (function() {
       initializeAccessibility();
       initializeABTesting();
       // initializeConversionTracking(); // Removed analytics
-      
+
       state.initialized = true;
       console.log('✅ diBoaS application initialized successfully');
-      
+
       // Track successful initialization (stubbed)
       // trackEvent('app_initialized', {
       //   timestamp: Date.now(),
       //   user_agent: navigator.userAgent,
       //   viewport: `${window.innerWidth}x${window.innerHeight}`
       // });
-      
+
     } catch (error) {
       console.error('❌ Failed to initialize diBoaS application:', error);
       handleError(error, 'initialization');
@@ -105,13 +105,13 @@ function initializePerformanceMonitoring() {
     const entries = list.getEntries();
     const fcp = entries[entries.length - 1];
     performanceData.fcp = fcp.startTime;
-    
+
     // Performance tracking stubbed
     // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
     //   trackEvent('performance_fcp', { value: Math.round(fcp.startTime) });
     // }
   });
-  
+
   try {
     fcpObserver.observe({ type: 'paint', buffered: true });
   } catch (e) {
@@ -123,13 +123,13 @@ function initializePerformanceMonitoring() {
     const entries = list.getEntries();
     const lcp = entries[entries.length - 1];
     performanceData.lcp = lcp.startTime;
-    
+
     // Performance tracking stubbed
     // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
     //   trackEvent('performance_lcp', { value: Math.round(lcp.startTime) });
     // }
   });
-  
+
   try {
     lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
   } catch (e) {
@@ -141,14 +141,14 @@ function initializePerformanceMonitoring() {
     const entries = list.getEntries();
     entries.forEach((entry) => {
       performanceData.fid = entry.processingStart - entry.startTime;
-      
+
       // Performance tracking stubbed
       // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
       //   trackEvent('performance_fid', { value: Math.round(performanceData.fid) });
       // }
     });
   });
-  
+
   try {
     fidObserver.observe({ type: 'first-input', buffered: true });
   } catch (e) {
@@ -165,7 +165,7 @@ function initializePerformanceMonitoring() {
     }
     performanceData.cls = clsValue;
   });
-  
+
   try {
     clsObserver.observe({ type: 'layout-shift', buffered: true });
   } catch (e) {
@@ -177,7 +177,7 @@ function initializePerformanceMonitoring() {
     const navigation = performance.getEntriesByType('navigation')[0];
     if (navigation) {
       performanceData.ttfb = navigation.responseStart - navigation.requestStart;
-      
+
       // Performance tracking stubbed
       // if (window.ENV && window.ENV.FEATURE_FLAGS && window.ENV.FEATURE_FLAGS.ADVANCED_ANALYTICS) {
       //   trackEvent('performance_ttfb', { value: Math.round(performanceData.ttfb) });
@@ -209,7 +209,7 @@ function initializeErrorHandling() {
       url: window.location.href,
       userAgent: navigator.userAgent
     };
-    
+
     handleError(error, 'javascript_error');
   });
 
@@ -222,13 +222,13 @@ function initializeErrorHandling() {
       url: window.location.href,
       userAgent: navigator.userAgent
     };
-    
+
     handleError(error, 'unhandled_promise_rejection');
   });
 
   // Network error monitoring
   const originalFetch = window.fetch;
-  window.fetch = function(...args) {
+  window.fetch = function (...args) {
     return originalFetch.apply(this, args)
       .catch(error => {
         handleError({
@@ -247,7 +247,7 @@ function initializeErrorHandling() {
  */
 function handleError(error, context = 'unknown') {
   console.error(`[diBoaS Error - ${context}]:`, error);
-  
+
   // Store error locally
   const errorEntry = {
     error,
@@ -256,11 +256,11 @@ function handleError(error, context = 'unknown') {
     url: window.location.href,
     userAgent: navigator.userAgent
   };
-  
+
   if (window.DiBoaS && window.DiBoaS.getState) {
     const state = window.DiBoaS.getState();
     state.errors.push(errorEntry);
-    
+
     // Limit error storage to prevent memory issues
     if (state.errors.length > 50) {
       state.errors.shift();
@@ -298,7 +298,7 @@ function initializeAnalytics() {
   // Initialize session tracking
   const sessionId = generateSessionId();
   const userId = getUserId();
-  
+
   // Set up analytics context (minimal for compatibility)
   window.analyticsContext = {
     sessionId,
@@ -318,7 +318,7 @@ function initializeAnalytics() {
 
   // Initialize scroll depth tracking (stubbed)
   // initializeScrollDepthTracking();
-  
+
   // Initialize time on page tracking (stubbed)
   // initializeTimeOnPageTracking();
 }
@@ -330,7 +330,7 @@ function trackEvent(eventName, properties = {}) {
   // Completely stubbed - no analytics tracking
   console.log('📊 Analytics Event (stubbed):', eventName, properties);
   return;
-  
+
   // Original code commented out
   /*
   const event = {
@@ -401,9 +401,9 @@ function initializeScrollDepthTracking() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    
+
     const scrollPercent = Math.round((scrollTop + windowHeight) / documentHeight * 100);
-    
+
     if (scrollPercent > maxScrollDepth) {
       maxScrollDepth = scrollPercent;
       document.body.setAttribute('data-scroll-depth', maxScrollDepth);
@@ -445,7 +445,7 @@ function initializeTimeOnPageTracking() {
 
   // Track user activity
   const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-  
+
   function updateActivity() {
     if (!isActive) {
       isActive = true;
@@ -474,7 +474,7 @@ function initializeTimeOnPageTracking() {
   setInterval(() => {
     const currentTime = Date.now();
     const timeOnPage = Math.floor((currentTime - startTime) / 1000);
-    
+
     timeMilestones.forEach(milestone => {
       if (timeOnPage >= milestone && !trackedTimeMilestones.has(milestone)) {
         trackedTimeMilestones.add(milestone);
@@ -492,7 +492,7 @@ function initializeTimeOnPageTracking() {
     const endTime = Date.now();
     const totalTime = Math.floor((endTime - startTime) / 1000);
     const activeTime = Math.floor((totalActiveTime + (isActive ? endTime - lastActiveTime : 0)) / 1000);
-    
+
     // trackEvent('page_exit', {
     //   total_time: totalTime,
     //   active_time: activeTime,
@@ -511,7 +511,7 @@ function initializeTimeOnPageTracking() {
 function initializeInteractions() {
   initializeNavigation();
   initializeCTATracking();
-  initializeCryptoSelection();
+  initializeAssetSelection();
   initializeFormInteractions();
   initializeMascotInteractions();
   initializeResponsiveFeatures();
@@ -527,13 +527,13 @@ function initializeNavigation() {
   // Header scroll behavior
   function updateHeader() {
     const currentScrollY = window.scrollY;
-    
+
     if (currentScrollY > 50) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
-    
+
     lastScrollY = currentScrollY;
   }
 
@@ -542,14 +542,14 @@ function initializeNavigation() {
   // Mobile menu toggle
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
   const navMenu = document.getElementById('nav-menu');
-  
+
   if (mobileMenuToggle && navMenu) {
     mobileMenuToggle.addEventListener('click', () => {
       const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-      
+
       mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
       navMenu.classList.toggle('open');
-      
+
       // Animate hamburger lines
       const lines = mobileMenuToggle.querySelectorAll('.hamburger-line');
       lines.forEach((line, index) => {
@@ -569,14 +569,14 @@ function initializeNavigation() {
 
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
-      
+
       if (target) {
         const headerHeight = header.offsetHeight;
         const targetPosition = target.offsetTop - headerHeight - 20;
-        
+
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
@@ -597,14 +597,14 @@ function initializeNavigation() {
 function initializeCTATracking() {
   // Track all CTA interactions
   document.querySelectorAll('[data-action]').forEach(element => {
-    element.addEventListener('click', function(e) {
+    element.addEventListener('click', function (e) {
       const action = this.getAttribute('data-action');
-      const crypto = this.getAttribute('data-crypto');
+      const asset = this.getAttribute('data-asset');
       const section = this.closest('section')?.id || 'unknown';
-      
+
       // trackEvent('cta_click', {
       //   action,
-      //   crypto,
+      //   asset,
       //   section,
       //   button_text: this.textContent.trim(),
       //   button_type: this.tagName.toLowerCase()
@@ -617,18 +617,18 @@ function initializeCTATracking() {
       }, 150);
 
       // Handle specific actions
-      handleCTAAction(action, { crypto, section, element: this });
+      handleCTAAction(action, { asset, section, element: this });
     });
   });
 
   // Track hover events on primary CTAs
   document.querySelectorAll('.cta-primary-hero, .cta-primary-large').forEach(element => {
     let hoverStartTime;
-    
+
     element.addEventListener('mouseenter', () => {
       hoverStartTime = Date.now();
     });
-    
+
     element.addEventListener('mouseleave', () => {
       if (hoverStartTime) {
         const hoverDuration = Date.now() - hoverStartTime;
@@ -651,7 +651,7 @@ function handleCTAAction(action, context) {
     case 'get-started':
     case 'get-started-main':
       // Redirect to app with onboarding flow
-      showModal('Welcome! Ready to start your crypto journey?', {
+      showModal('Welcome! Ready to start your wealth journey?', {
         primaryAction: {
           text: 'Start with Aqua',
           action: () => {
@@ -668,48 +668,51 @@ function handleCTAAction(action, context) {
         }
       });
       break;
-      
-    case 'select-crypto':
-      // trackEvent('crypto_selected', {
+
+    case 'select-asset':
+      // trackEvent('asset_selected', {
       //   ...context,
       //   selection_method: 'decision_matrix'
       // });
-      showCryptoConfirmation(context.crypto);
+      showAssetConfirmation(context.asset);
       break;
-      
+
     case 'start-bitcoin':
-      // trackEvent('crypto_selected', {
+      // trackEvent('asset_selected', {
       //   ...context,
-      //   crypto: 'bitcoin',
+      //   asset: 'bitcoin',
       //   selection_method: 'aqua_recommendation'
       // });
-      showCryptoConfirmation('bitcoin');
+      showAssetConfirmation('bitcoin');
       break;
-      
+
     case 'learn-more':
       // trackEvent('learn_more_clicked', context);
       window.location.href = './learn/';
       break;
-      
+
     default:
       console.log('Unhandled CTA action:', action);
   }
 }
 
 /**
- * Crypto selection interactions
+ * Asset selection interactions
  */
-function initializeCryptoSelection() {
-  // Crypto card interactions in hero section
-  document.querySelectorAll('.crypto-card').forEach(card => {
-    card.addEventListener('click', function() {
-      const crypto = this.classList.contains('btc') ? 'bitcoin' :
-                   this.classList.contains('eth') ? 'ethereum' :
-                   this.classList.contains('sol') ? 'solana' :
-                   this.classList.contains('sui') ? 'sui' : 'unknown';
-      
-      // trackEvent('crypto_preview_click', {
-      //   crypto,
+function initializeAssetSelection() {
+  // Asset card interactions in hero section
+  document.querySelectorAll('.asset-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const asset = this.classList.contains('btc') ? 'bitcoin' :
+        this.classList.contains('eth') ? 'ethereum' :
+          this.classList.contains('sol') ? 'solana' :
+            this.classList.contains('sui') ? 'sui' :
+              this.classList.contains('gold') ? 'gold' :
+                this.classList.contains('stocks') ? 'stocks' :
+                  this.classList.contains('defi') ? 'defi' : 'unknown';
+
+      // trackEvent('asset_preview_click', {
+      //   asset,
       //   section: 'hero',
       //   interaction_type: 'preview_card'
       // });
@@ -720,12 +723,12 @@ function initializeCryptoSelection() {
         this.style.transform = '';
       }, 300);
 
-      // Show crypto information
-      showCryptoInfo(crypto);
+      // Show asset information
+      showAssetInfo(asset);
     });
 
     // Add keyboard support
-    card.addEventListener('keydown', function(e) {
+    card.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         this.click();
@@ -736,18 +739,18 @@ function initializeCryptoSelection() {
   // Decision card interactions
   document.querySelectorAll('.decision-card').forEach(card => {
     let hoverTimeout;
-    
-    card.addEventListener('mouseenter', function() {
+
+    card.addEventListener('mouseenter', function () {
       hoverTimeout = setTimeout(() => {
-        const crypto = this.querySelector('.crypto-result h3')?.textContent.toLowerCase();
+        const asset = this.querySelector('.asset-result h3')?.textContent.toLowerCase();
         // trackEvent('decision_card_hover', {
-        //   crypto,
+        //   asset,
         //   hover_duration: 2000
         // });
       }, 2000);
     });
-    
-    card.addEventListener('mouseleave', function() {
+
+    card.addEventListener('mouseleave', function () {
       if (hoverTimeout) {
         clearTimeout(hoverTimeout);
       }
@@ -762,7 +765,7 @@ function initializeFormInteractions() {
   // Track form field interactions
   document.querySelectorAll('input, textarea, select').forEach(field => {
     let focusStartTime;
-    
+
     field.addEventListener('focus', () => {
       focusStartTime = Date.now();
       // trackEvent('form_field_focus', {
@@ -770,7 +773,7 @@ function initializeFormInteractions() {
       //   field_type: field.type
       // });
     });
-    
+
     field.addEventListener('blur', () => {
       if (focusStartTime) {
         const focusDuration = Date.now() - focusStartTime;
@@ -791,10 +794,10 @@ function initializeFormInteractions() {
 
   // Form submission tracking
   document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
       const formData = new FormData(this);
       const data = Object.fromEntries(formData.entries());
-      
+
       // trackEvent('form_submit', {
       //   form_id: this.id,
       //   form_action: this.action,
@@ -809,17 +812,17 @@ function initializeFormInteractions() {
  */
 function initializeMascotInteractions() {
   const mascotContainers = document.querySelectorAll('.mascot-container, .mascot-small');
-  
+
   mascotContainers.forEach(container => {
     const mascot = container.querySelector('img');
-    
+
     if (mascot) {
       // Click interaction
       container.addEventListener('click', () => {
         mascot.style.animation = 'none';
         mascot.offsetHeight; // Trigger reflow
         mascot.style.animation = 'gentle-bob 0.6s ease-in-out';
-        
+
         // trackEvent('mascot_interaction', {
         //   interaction_type: 'click',
         //   mascot_type: 'aqua',
@@ -833,7 +836,7 @@ function initializeMascotInteractions() {
       // Hover effects
       container.addEventListener('mouseenter', () => {
         mascot.style.transform = 'scale(1.05)';
-        
+
         // trackEvent('mascot_interaction', {
         //   interaction_type: 'hover',
         //   mascot_type: 'aqua'
@@ -853,17 +856,17 @@ function initializeMascotInteractions() {
 function initializeResponsiveFeatures() {
   // Detect touch devices
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  
+
   if (isTouchDevice) {
     document.body.classList.add('touch-device');
-    
+
     // Optimize touch interactions
-    document.querySelectorAll('.crypto-card, .decision-card, .trust-pillar').forEach(element => {
-      element.addEventListener('touchstart', function() {
+    document.querySelectorAll('.asset-card, .decision-card, .trust-pillar').forEach(element => {
+      element.addEventListener('touchstart', function () {
         this.classList.add('touch-active');
       }, { passive: true });
-      
-      element.addEventListener('touchend', function() {
+
+      element.addEventListener('touchend', function () {
         setTimeout(() => {
           this.classList.remove('touch-active');
         }, 150);
@@ -908,11 +911,11 @@ function initializeABTesting() {
 
   const userId = getUserId();
   const tests = getActiveTests();
-  
+
   tests.forEach(test => {
     const variant = assignUserToVariant(userId, test);
     applyTestVariant(test, variant);
-    
+
     // trackEvent('ab_test_assignment', {
     //   test_name: test.name,
     //   variant,
@@ -930,7 +933,7 @@ function getActiveTests() {
       name: 'hero_cta_text',
       variants: {
         control: 'Meet Aqua & Choose Your First Crypto',
-        variant_a: 'Start Your Crypto Journey with Aqua',
+        variant_a: 'Start Your Wealth Journey with Aqua',
         variant_b: 'Get Started - It Takes 2 Minutes'
       },
       traffic: 100, // Percentage of users to include
@@ -955,11 +958,11 @@ function getActiveTests() {
 function assignUserToVariant(userId, test) {
   const hash = simpleHash(userId + test.name);
   const bucket = hash % 100;
-  
+
   if (bucket >= test.traffic) {
     return null; // User not in test
   }
-  
+
   const variants = Object.keys(test.variants);
   const variantIndex = hash % variants.length;
   return variants[variantIndex];
@@ -970,7 +973,7 @@ function assignUserToVariant(userId, test) {
  */
 function applyTestVariant(test, variant) {
   if (!variant || !test.variants[variant]) return;
-  
+
   const element = document.querySelector(test.selector);
   if (element) {
     element.textContent = test.variants[variant];
@@ -989,13 +992,13 @@ function applyTestVariant(test, variant) {
 function initializeAccessibility() {
   // Enhanced focus management
   initializeFocusManagement();
-  
+
   // Keyboard navigation
   initializeKeyboardNavigation();
-  
+
   // Screen reader announcements
   initializeScreenReaderSupport();
-  
+
   // Motion preferences
   handleMotionPreferences();
 }
@@ -1005,7 +1008,7 @@ function initializeAccessibility() {
  */
 function initializeFocusManagement() {
   let isTabbing = false;
-  
+
   // Detect tab navigation
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
@@ -1013,7 +1016,7 @@ function initializeFocusManagement() {
       document.body.classList.add('user-is-tabbing');
     }
   });
-  
+
   document.addEventListener('mousedown', () => {
     isTabbing = false;
     document.body.classList.remove('user-is-tabbing');
@@ -1034,32 +1037,32 @@ function initializeFocusManagement() {
  * Keyboard navigation enhancements
  */
 function initializeKeyboardNavigation() {
-  // Enhanced arrow key navigation for crypto cards
-  const cryptoCards = document.querySelectorAll('.crypto-card, .decision-card');
-  
-  cryptoCards.forEach((card, index) => {
+  // Enhanced arrow key navigation for asset cards
+  const assetCards = document.querySelectorAll('.asset-card, .decision-card');
+
+  assetCards.forEach((card, index) => {
     card.addEventListener('keydown', (e) => {
       let targetIndex;
-      
+
       switch (e.key) {
         case 'ArrowRight':
-          targetIndex = (index + 1) % cryptoCards.length;
+          targetIndex = (index + 1) % assetCards.length;
           break;
         case 'ArrowLeft':
-          targetIndex = (index - 1 + cryptoCards.length) % cryptoCards.length;
+          targetIndex = (index - 1 + assetCards.length) % assetCards.length;
           break;
         case 'Home':
           targetIndex = 0;
           break;
         case 'End':
-          targetIndex = cryptoCards.length - 1;
+          targetIndex = assetCards.length - 1;
           break;
         default:
           return;
       }
-      
+
       e.preventDefault();
-      cryptoCards[targetIndex].focus();
+      assetCards[targetIndex].focus();
     });
   });
 }
@@ -1077,12 +1080,12 @@ function initializeScreenReaderSupport() {
   document.body.appendChild(liveRegion);
 
   // Announce important state changes
-  window.announceToScreenReader = function(message, priority = 'polite') {
+  window.announceToScreenReader = function (message, priority = 'polite') {
     const liveRegion = document.getElementById('live-announcements');
     if (liveRegion) {
       liveRegion.setAttribute('aria-live', priority);
       liveRegion.textContent = message;
-      
+
       // Clear after announcement
       setTimeout(() => {
         liveRegion.textContent = '';
@@ -1096,7 +1099,7 @@ function initializeScreenReaderSupport() {
  */
 function handleMotionPreferences() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  
+
   function handleMotionChange(e) {
     if (e.matches) {
       document.body.classList.add('reduce-motion');
@@ -1108,7 +1111,7 @@ function handleMotionPreferences() {
       document.body.classList.remove('reduce-motion');
     }
   }
-  
+
   handleMotionChange(prefersReducedMotion);
   prefersReducedMotion.addEventListener('change', handleMotionChange);
 }
@@ -1118,140 +1121,412 @@ function handleMotionPreferences() {
 // ===========================
 
 /**
- * Show crypto information modal
+ * Show Asset information modal
  */
-function showCryptoInfo(crypto) {
-  const cryptoData = {
+function showAssetInfo(asset) {
+  const assetData = {
     bitcoin: {
       name: 'Bitcoin',
       symbol: 'BTC',
-      description: 'The original cryptocurrency and digital store of value.',
-      pros: ['Most established crypto', 'Limited supply (21M coins)', 'Widely accepted'],
-      cons: ['Higher transaction fees', 'Slower transaction times'],
-      goodFor: 'Long-term wealth storage and getting started with crypto'
+      description: 'The world first cryptocurrency, like digital gold you can own and trade easily.',
+      pros: ['Trusted by millions, from startups to global brands', 'Only 21 million coins – a rare asset that grows in value', 'Pay anywhere, from online shops to real-world stores'],
+      cons: ['Fees can be higher for small transactions', 'Transfers may take a few minutes'],
+      goodFor: 'Investors wanting a trusted, long-term asset and Beginners starting their crypto journey'
     },
     ethereum: {
       name: 'Ethereum',
       symbol: 'ETH',
-      description: 'Smart contract platform and foundation for DeFi.',
-      pros: ['Smart contract capability', 'Large ecosystem', 'Staking rewards'],
-      cons: ['Higher volatility', 'Gas fees can be expensive'],
-      goodFor: 'DeFi participation and smart contract interactions'
+      description: 'A powerful platform for digital apps and wealth-building tools, like the internet of finance',
+      pros: ['Fuels NFTs, games, and lending apps you can join', 'Backed by a massive global community', 'Earn passive income through staking', 'Strong foundation for DeFi growth'],
+      cons: ['Prices may swing more than traditional investments', 'Fees can rise during high network demand'],
+      goodFor: 'Investors excited to explore digital finance or grow wealth passively.'
     },
     solana: {
       name: 'Solana',
       symbol: 'SOL',
-      description: 'High-speed blockchain with low transaction fees.',
-      pros: ['Very fast transactions', 'Low fees', 'Growing ecosystem'],
-      cons: ['Newer technology', 'Network outages in past'],
-      goodFor: 'Fast transactions and emerging DeFi applications'
+      description: ' A super-fast platform for affordable crypto investments and cutting-edge apps',
+      pros: ['Lightning-fast transactions – seconds, not minutes', 'Low fees let you keep more of your money', 'Hub for new DeFi apps and NFT opportunities'],
+      cons: ['Newer, so it is still building its track record', 'Rare network hiccups in the past'],
+      goodFor: 'Investors who want fast, affordable trades and new DeFi possibilities'
     },
     sui: {
       name: 'Sui',
       symbol: 'SUI',
-      description: 'Next-generation blockchain with advanced performance.',
-      pros: ['Cutting-edge technology', 'Parallel execution', 'Developer-friendly'],
-      cons: ['Very new', 'Smaller ecosystem', 'Higher risk'],
-      goodFor: 'Early adoption of next-gen blockchain technology'
+      description: 'A next-gen platform for fast, future-focused crypto investments',
+      pros: ['Blazing-fast tech for effortless investing', 'Powers innovative apps, from NFTs to DeFi', 'Early investors can lead the crypto future'],
+      cons: ['Newer, so it carries higher risk', 'Smaller community, still growing'],
+      goodFor: 'Bold investors ready to bet on crypto next big thing'
+    },
+    gold: {
+      name: 'Gold',
+      symbol: 'XAU',
+      description: 'A timeless asset you can own, like a golden safety net for your wealth',
+      pros: ['Trusted for centuries as a store of value', 'Protects your wealth during economic uncertainty', 'Easy to buy and hold with Aqua’s AI guidance'],
+      cons: ['Prices can fluctuate with market trends', 'No income like dividends or staking'],
+      goodFor: 'Investors seeking a safe, long-term way to preserve wealth.'
+    },
+    stocks: {
+      name: 'Stocks',
+      symbol: 'Stocks',
+      description: 'Own a piece of top companies and easily diversify your investment',
+      pros: ['Invest in brands you know, like Apple or Tesla', 'Potential for growth and dividend income', 'Diversify easily'],
+      cons: ['Prices can vary with market ups and downs', 'Requires some research to pick winners'],
+      goodFor: 'Investors wanting to grow wealth with familiar companies or diversify their portfolio.'
+    },
+    defi: {
+      name: 'DeFi',
+      symbol: 'DeFi',
+      description: 'A new way to grow money through digital finance, powered by blockchain technology and crypto',
+      pros: ['Earn high returns through lending, staking and more', 'Access cutting-edge finance apps and tools', 'Take control with decentralized investments'],
+      cons: ['Higher risk due to new technology and smart contract issues', 'Can be complex without proper guidance'],
+      goodFor: 'Adventurous investors eager to explore digital finance and high-growth opportunities.'
     }
   };
 
-  const data = cryptoData[crypto];
+  const data = assetData[asset];
   if (!data) return;
 
+  const assetSymbols = {
+    bitcoin: '₿',
+    gold: 'ⓐu', 
+    stocks: 'Ⓢ',
+    defi: 'Ⓓ'
+  };
+
   const content = `
-    <div class="crypto-info-modal">
-      <div class="crypto-header">
-        <h2>${data.name} (${data.symbol})</h2>
-        <p>${data.description}</p>
+    <div class="asset-info">
+      <button class="asset-close-btn" onclick="closeModal()" aria-label="Close asset information">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <div class="asset-info-header">
+        <div class="asset-header">
+          <div class="asset-icon">
+            ${assetSymbols[asset] || data.symbol}
+          </div>
+          <h1 class="asset-title">${data.name}</h1>
+          <p class="asset-subtitle">${data.symbol} • Digital Asset</p>
+        </div>
       </div>
       
-      <div class="crypto-details">
-        <div class="pros-cons">
-          <div class="pros">
-            <h4>Advantages:</h4>
+      <div class="asset-info-content">
+        <div class="asset-description">
+          ${data.description}
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="asset-features">
+          <div class="feature-section advantages">
+            <h4>Advantages</h4>
             <ul>
               ${data.pros.map(pro => `<li>${pro}</li>`).join('')}
             </ul>
           </div>
           
-          <div class="cons">
-            <h4>Considerations:</h4>
+          <div class="feature-section considerations">
+            <h4>Considerations</h4>
             <ul>
               ${data.cons.map(con => `<li>${con}</li>`).join('')}
             </ul>
           </div>
         </div>
         
-        <div class="good-for">
-          <h4>Good for:</h4>
+        <div class="asset-recommendation">
+          <h4>Good For</h4>
           <p>${data.goodFor}</p>
+        </div>
+        
+        <div class="asset-actions">
+          <button class="asset-primary-btn" onclick="closeModal(); showAssetConfirmation('${asset}')">
+            Choose ${data.name}
+          </button>
+          <button class="asset-secondary-btn" onclick="closeModal()">
+            Compare Others
+          </button>
         </div>
       </div>
     </div>
   `;
 
   showModal(content, {
-    primaryAction: {
-      text: `Choose ${data.name}`,
-      action: () => {
-        // trackEvent('crypto_selection_confirmed', { crypto, source: 'info_modal' });
-        showCryptoConfirmation(crypto);
-      }
+    customClass: `asset-modal-${asset}`,
+    primaryAction: null, // We handle actions in the content
+    secondaryAction: null
+  });
+}
+
+/**
+ * Show asset selection confirmation with personalized content
+ */
+function showAssetConfirmation(asset) {
+  const assetData = {
+    bitcoin: {
+      name: 'Bitcoin',
+      message: 'Oh you want to join the 50+ million people owning BTC. I can help you. Got 5 mins for a quick and secure signup?',
+      mascotImage: './assets/images/aqua_mascot_pose1.png',
+      themeColor: '#FF8F00',
+      glowColor: 'rgba(255, 143, 0, 0.4)'
     },
+    gold: {
+      name: 'Gold', 
+      message: 'You want safety. I get that! Gold has been around for centuries. Let me help you to protect your wealth. First you need 5 mins for a quick and secure signup.',
+      mascotImage: './assets/images/aqua_mascot_pose2.png',
+      themeColor: '#FFC107',
+      glowColor: 'rgba(255, 193, 7, 0.4)'
+    },
+    stocks: {
+      name: 'Stocks',
+      message: 'I see you are more into traditional finance. That is fine! I guess you already have a company in mind you would like to buy a share. We can make it happen by creating your account in just 2 mins.',
+      mascotImage: './assets/images/aqua_mascot_pose3.png',
+      themeColor: '#3F51B5',
+      glowColor: 'rgba(63, 81, 181, 0.4)'
+    },
+    defi: {
+      name: 'DeFi',
+      message: 'Wow you are really All-in. Awesome! We just need to create your account, it only takes a minute.',
+      mascotImage: './assets/images/aqua_mascot_pose.png',
+      themeColor: '#9575CD',
+      glowColor: 'rgba(149, 117, 205, 0.4)'
+    }
+  };
+
+  const data = assetData[asset];
+  if (!data) return;
+
+  const content = `
+    <div class="asset-confirmation themed-${asset}">
+      <div class="mascot-celebration">
+        <div class="mascot-glow-wrapper">
+          <img src="${data.mascotImage}" alt="Aqua helping with ${data.name} choice">
+          <div class="themed-glow" style="background: radial-gradient(circle, ${data.glowColor} 0%, transparent 70%);"></div>
+        </div>
+      </div>
+      
+      <h2>${data.name}</h2>
+      <p class="aqua-message">${data.message}</p>
+      
+      <div class="cta-section">
+        <a href="./app/" class="themed-cta-button" style="background: ${data.themeColor};">
+          Get Started with ${data.name}
+        </a>
+      </div>
+    </div>
+  `;
+
+  showModal(content, {
+    customClass: `asset-modal-${asset}`,
+    primaryAction: null, // We handle the action in the content
     secondaryAction: {
-      text: 'Compare Others',
+      text: 'Maybe Later',
       action: () => {
         closeModal();
-        document.querySelector('.crypto-decision-matrix')?.scrollIntoView({ behavior: 'smooth' });
       }
     }
   });
 }
 
 /**
- * Show crypto selection confirmation
+ * Show legal information popup with detailed content
  */
-function showCryptoConfirmation(crypto) {
-  const cryptoNames = {
-    bitcoin: 'Bitcoin',
-    ethereum: 'Ethereum',
-    solana: 'Solana',
-    sui: 'Sui'
+function showLegalInfo(legalType) {
+  const legalData = {
+    'privacy': {
+      title: 'Privacy Policy',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>`,
+      description: 'Your privacy is our top priority. We protect your personal information with the highest standards of data security and transparency.',
+      details: [
+        'We collect only essential information required for platform functionality',
+        'Your personal data is encrypted and stored securely in compliance with GDPR',
+        'We never sell, rent, or share your personal information with third parties',
+        'You maintain full control over your data and can request deletion at any time',
+        'All data processing activities are logged and auditable for transparency',
+        'We use industry-standard security measures to protect against data breaches'
+      ],
+      themeColor: '#4ECDC4'
+    },
+    'terms': {
+      title: 'Terms of Service',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14,2 14,8 20,8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+      </svg>`,
+      description: 'Clear, fair terms that protect both you and diBoaS. We believe in transparency and user-friendly policies that you can actually understand.',
+      details: [
+        'Non-custodial service - you always maintain control of your assets',
+        'Transparent fee structure: 0.09% trading, 0.9% transfers, no hidden costs',
+        'Educational guidance only - we provide information, not financial advice',
+        'You are responsible for your investment decisions and risk management',
+        'Platform availability may vary by jurisdiction due to regulatory requirements',
+        'Account security is a shared responsibility between you and diBoaS'
+      ],
+      themeColor: '#A8E6CF'
+    },
+    'compliance': {
+      title: 'Regulatory Compliance',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22,4 12,14.01 9,11.01" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>`,
+      description: 'diBoaS operates under strict regulatory oversight across multiple jurisdictions to ensure the highest standards of financial compliance.',
+      details: [
+        'EU MiCA regulation compliance for all European Union operations',
+        'US Bank Secrecy Act (BSA) compliance and state money transmitter licenses',
+        'Brazil Law 14.478 compliance with Central Bank of Brazil coordination',
+        'Anti-Money Laundering (AML) and Know Your Customer (KYC) procedures',
+        'Regular compliance audits by independent third-party firms',
+        'Ongoing regulatory reporting and transparent fee disclosure requirements'
+      ],
+      themeColor: '#B39DDB'
+    }
   };
 
+  const data = legalData[legalType];
+  if (!data) return;
+
   const content = `
-    <div class="crypto-confirmation">
-      <div class="mascot-celebration">
-        <img src="./assets/images/aqua_mascot.png" alt="Aqua celebrating" style="width: 80px; height: 80px;">
+    <div class="legal-info-modal">
+      <div class="legal-header">
+        <div class="legal-icon" style="color: ${data.themeColor};">
+          ${data.icon}
+        </div>
+        <h2 style="color: ${data.themeColor};">${data.title}</h2>
       </div>
       
-      <h2>Great Choice!</h2>
-      <p>Aqua thinks ${cryptoNames[crypto]} is perfect for you!</p>
+      <p class="legal-description">${data.description}</p>
       
-      <div class="next-steps">
-        <h4>What happens next:</h4>
-        <ol>
-          <li>Quick 2-minute signup</li>
-          <li>Start with just $10</li>
-          <li>Aqua guides every step</li>
-        </ol>
+      <div class="legal-details">
+        <h3>Key Points:</h3>
+        <ul class="legal-list">
+          ${data.details.map(detail => `<li>${detail}</li>`).join('')}
+        </ul>
+      </div>
+      
+      <div class="legal-note">
+        <p><strong>Note:</strong> This is a summary of our ${data.title}. For complete legal text and detailed terms, please contact us at <a href="mailto:legal@diboas.com">legal@diboas.com</a></p>
+      </div>
+      
+      <div class="legal-cta">
+        <a href="./app/" class="legal-cta-button" style="background: ${data.themeColor}; border-color: ${data.themeColor};">
+          Continue to diBoaS
+        </a>
       </div>
     </div>
   `;
 
   showModal(content, {
-    primaryAction: {
-      text: 'Start My Journey',
-      action: () => {
-        // trackEvent('crypto_journey_start', { crypto });
-        window.location.href = `./app/?crypto=${crypto}&flow=onboarding`;
-      }
-    },
+    customClass: `legal-modal-${legalType}`,
+    primaryAction: null, // We handle the action in the content
     secondaryAction: {
-      text: 'Learn More First',
+      text: 'Close',
       action: () => {
-        window.location.href = './learn/';
+        closeModal();
+      }
+    }
+  });
+}
+
+/**
+ * Show security information popup with detailed explanations
+ */
+function showSecurityInfo(securityType) {
+  const securityData = {
+    'bank-grade': {
+      title: 'Bank-Grade Security',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>`,
+      description: 'Your wealth is protected with military-grade encryption and the same security standards used by major financial institutions.',
+      details: [
+        'Military-grade encryption safeguards all your data and transactions',
+        'Multi-layered security protocols protect against unauthorized access',
+        'Regular security audits by independent cybersecurity firms',
+        'Advanced authentication systems including 2FA protection',
+        'Compliance with international security standards and regulations'
+      ],
+      themeColor: '#4ECDC4'
+    },
+    'non-custodial': {
+      title: 'Non-Custodial Control',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <circle cx="12" cy="16" r="1" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>`,
+      description: 'You always maintain complete ownership and control of your assets. diBoaS never holds or touches your funds.',
+      details: [
+        'You own your private keys and maintain full control of your assets',
+        'diBoaS cannot access, freeze, or confiscate your investments',
+        'Your funds remain secure even if diBoaS ceases operations',
+        'Non-custody wallets automatically created behind the scenes',
+        'Complete transparency - you can verify your ownership at any time'
+      ],
+      themeColor: '#A8E6CF'
+    },
+    'regulated-compliance': {
+      title: 'Regulated Compliance',
+      icon: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22,4 12,14.01 9,11.01" />
+      </svg>`,
+      description: 'Fully regulated and compliant across multiple jurisdictions to ensure your investments meet the highest legal standards.',
+      details: [
+        'EU MiCA regulation compliance for European operations',
+        'US BSA and state money transmitter licenses',
+        'Brazil Law 14.478 compliance with Central Bank coordination',
+        'Transparent fee structure with no hidden costs (0.09% trading, 0.9% transfers)',
+        'Regular compliance audits and regulatory reporting'
+      ],
+      themeColor: '#B39DDB'
+    }
+  };
+
+  const data = securityData[securityType];
+  if (!data) return;
+
+  const content = `
+    <div class="security-info-modal">
+      <div class="security-header">
+        <div class="security-icon" style="color: ${data.themeColor};">
+          ${data.icon}
+        </div>
+        <h2 style="color: ${data.themeColor};">${data.title}</h2>
+      </div>
+      
+      <p class="security-description">${data.description}</p>
+      
+      <div class="security-details">
+        <h3>How We Protect You:</h3>
+        <ul class="security-list">
+          ${data.details.map(detail => `<li>${detail}</li>`).join('')}
+        </ul>
+      </div>
+      
+      <div class="security-cta">
+        <a href="./app/" class="security-cta-button" style="background: ${data.themeColor}; border-color: ${data.themeColor};">
+          Start Your Secure Journey
+        </a>
+      </div>
+    </div>
+  `;
+
+  showModal(content, {
+    customClass: `security-modal-${securityType}`,
+    primaryAction: null, // We handle the action in the content
+    secondaryAction: {
+      text: 'Close',
+      action: () => {
+        closeModal();
       }
     }
   });
@@ -1265,13 +1540,13 @@ function showMascotMessage() {
     "You're doing great exploring crypto options!",
     "I'm here to help you every step of the way.",
     "Small steps lead to big financial growth!",
-    "Your crypto journey is going to be amazing!",
+    "Your wealth journey is going to be amazing!",
     "Every expert was once a beginner like you."
   ];
 
   const randomMessage = messages[Math.floor(Math.random() * messages.length)];
   window.announceToScreenReader && window.announceToScreenReader(`Aqua says: ${randomMessage}`);
-  
+
   // Show temporary message bubble
   const messageEl = document.createElement('div');
   messageEl.className = 'mascot-temp-message';
@@ -1295,7 +1570,7 @@ function showMascotMessage() {
   `;
 
   document.body.appendChild(messageEl);
-  
+
   setTimeout(() => {
     messageEl.remove();
   }, 3000);
@@ -1357,14 +1632,14 @@ function showModal(content, actions = {}) {
 
   // Event listeners
   modalOverlay.querySelector('.modal-close').addEventListener('click', closeModal);
-  
+
   if (actions.primaryAction) {
     modalOverlay.querySelector('.modal-primary').addEventListener('click', () => {
       actions.primaryAction.action();
       closeModal();
     });
   }
-  
+
   if (actions.secondaryAction) {
     modalOverlay.querySelector('.modal-secondary').addEventListener('click', () => {
       actions.secondaryAction.action();
@@ -1386,8 +1661,8 @@ function showModal(content, actions = {}) {
   }
 
   // trackEvent('modal_opened', {
-  //   content_type: content.includes('crypto-info') ? 'crypto_info' : 
-  //                 content.includes('crypto-confirmation') ? 'crypto_confirmation' : 'generic'
+  //   content_type: content.includes('asset-info') ? 'asset_info' : 
+  //                 content.includes('asset-confirmation') ? 'asset_confirmation' : 'generic'
   // });
 }
 
@@ -1419,12 +1694,12 @@ function validateField(field) {
       isValid = emailRegex.test(field.value);
       message = isValid ? '' : 'Please enter a valid email address';
       break;
-      
+
     case 'password':
       isValid = field.value.length >= 8;
       message = isValid ? '' : 'Password must be at least 8 characters';
       break;
-      
+
     default:
       isValid = field.value.trim() !== '';
       message = isValid ? '' : 'This field is required';
@@ -1432,7 +1707,7 @@ function validateField(field) {
 
   // Apply validation state
   field.classList.add(isValid ? 'valid' : 'invalid');
-  
+
   // Show/hide validation message
   let messageElement = field.parentNode.querySelector('.validation-message');
   if (!messageElement && message) {
@@ -1440,7 +1715,7 @@ function validateField(field) {
     messageElement.className = 'validation-message';
     field.parentNode.appendChild(messageElement);
   }
-  
+
   if (messageElement) {
     messageElement.textContent = message;
     messageElement.style.display = message ? 'block' : 'none';
@@ -1500,7 +1775,7 @@ function getDeviceType() {
  */
 function throttle(func, limit) {
   let inThrottle;
-  return function() {
+  return function () {
     const args = arguments;
     const context = this;
     if (!inThrottle) {
@@ -1516,9 +1791,9 @@ function throttle(func, limit) {
  */
 function debounce(func, wait, immediate) {
   let timeout;
-  return function() {
+  return function () {
     const context = this, args = arguments;
-    const later = function() {
+    const later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
@@ -1541,7 +1816,7 @@ function initializeConversionTracking() {
   // Track conversion funnel steps
   const funnelSteps = [
     { element: '.hero-section', step: 'awareness', name: 'landing_page_view' },
-    { element: '.crypto-selection-section', step: 'interest', name: 'crypto_options_viewed' },
+    { element: '.asset-selection-section', step: 'interest', name: 'asset_options_viewed' },
     { element: '.trust-building-section', step: 'consideration', name: 'trust_factors_viewed' },
     { element: '.final-cta-section', step: 'intent', name: 'final_cta_viewed' }
   ];
@@ -1583,7 +1858,7 @@ function trackMicroConversions() {
     video.addEventListener('play', () => {
       // trackEvent('video_play', { video_src: video.src });
     });
-    
+
     video.addEventListener('ended', () => {
       // trackEvent('video_complete', { video_src: video.src });
     });
