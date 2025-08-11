@@ -1,6 +1,7 @@
 # Cloudflare Pages Configuration for diBoaS Platform
 name = "diboas-platform"
 compatibility_date = "2023-12-01"
+pages_build_output_dir = "dist"
 
 [env.production]
 name = "diboas-platform"

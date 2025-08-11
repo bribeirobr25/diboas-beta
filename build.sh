@@ -94,25 +94,23 @@ fi
 echo "🔀 Creating redirect rules..."
 cat > dist/_redirects << 'EOF'
 # Cloudflare Pages Redirects for diBoaS subdomains
+# Note: Subdomain redirects will be configured in Cloudflare dashboard
 
-# Subdomain to path redirects  
-https://dapp.diboas.com/* https://diboas.com/app/:splat 301
-https://docs.diboas.com/* https://diboas.com/docs/:splat 301
-https://learn.diboas.com/* https://diboas.com/learn/:splat 301
-https://mascots.diboas.com/* https://diboas.com/mascots/:splat 301
-https://investors.diboas.com/* https://diboas.com/investors/:splat 301
-https://b2b.diboas.com/* https://diboas.com/b2b/:splat 301
+# SPA fallbacks - avoid infinite loops
+/app/assets/* /assets/:splat 200
+/docs/assets/* /assets/:splat 200  
+/learn/assets/* /assets/:splat 200
+/mascots/assets/* /assets/:splat 200
+/investors/assets/* /assets/:splat 200
+/b2b/assets/* /assets/:splat 200
 
-# SPA fallbacks
+# Handle missing files in subdomains
 /app/* /app/index.html 200
 /docs/* /docs/index.html 200  
 /learn/* /learn/index.html 200
 /mascots/* /mascots/index.html 200
 /investors/* /investors/index.html 200
 /b2b/* /b2b/index.html 200
-
-# Root fallback
-/* /index.html 200
 EOF
 
 echo "✅ Build completed successfully!"
