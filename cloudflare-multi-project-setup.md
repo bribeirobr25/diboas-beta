@@ -123,9 +123,10 @@ Click **Add variable** and add:
 ```
 Variable name: NODE_ENV
 Value: production
-```
 
-(No SUBDOMAIN variable needed since this serves the root domain)
+Variable name: CLOUDFLARE_PAGES
+Value: true
+```
 
 Click **Save and Deploy**
 
@@ -158,6 +159,7 @@ Root directory: (leave empty)
 **Environment Variables:**
 ```
 NODE_ENV = production
+CLOUDFLARE_PAGES = true
 SUBDOMAIN = dapp
 ```
 
@@ -179,6 +181,7 @@ Build output directory: docs/dist
 **Environment Variables:**
 ```
 NODE_ENV = production
+CLOUDFLARE_PAGES = true
 SUBDOMAIN = docs
 ```
 
@@ -200,6 +203,7 @@ Build output directory: learn/dist
 **Environment Variables:**
 ```
 NODE_ENV = production
+CLOUDFLARE_PAGES = true
 SUBDOMAIN = learn
 ```
 
@@ -221,6 +225,7 @@ Build output directory: mascots/dist
 **Environment Variables:**
 ```
 NODE_ENV = production
+CLOUDFLARE_PAGES = true
 SUBDOMAIN = mascots
 ```
 
@@ -242,6 +247,7 @@ Build output directory: investors/dist
 **Environment Variables:**
 ```
 NODE_ENV = production
+CLOUDFLARE_PAGES = true
 SUBDOMAIN = investors
 ```
 
@@ -263,6 +269,7 @@ Build output directory: b2b/dist
 **Environment Variables:**
 ```
 NODE_ENV = production
+CLOUDFLARE_PAGES = true
 SUBDOMAIN = b2b
 ```
 
