@@ -142,6 +142,8 @@ Click **Save and Deploy**
 6. Cloudflare will automatically verify ownership
 7. Wait for SSL certificate (15-30 minutes)
 
+### Step 9: Create dApp Project (dapp.diboas.com)
+
 1. Go back to **Workers & Pages** → **Pages** → **Create a project**
 2. **Connect to Git** → Select `bribeirobr25/diboas-beta` → **Begin setup**
 
