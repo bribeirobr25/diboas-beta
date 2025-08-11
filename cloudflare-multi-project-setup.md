@@ -123,10 +123,9 @@ Click **Add variable** and add:
 ```
 Variable name: NODE_ENV
 Value: production
-
-Variable name: SUBDOMAIN  
-Value: landing
 ```
+
+(No SUBDOMAIN variable needed since this serves the root domain)
 
 Click **Save and Deploy**
 
