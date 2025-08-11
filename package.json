@@ -8,7 +8,7 @@
     "dev": "node server/dev-server.js",
     "build": "node scripts/build.js",
     "build:github-pages": "node scripts/github-pages-build.js",
-    "build:cloudflare": "node scripts/cloudflare-build.js",
+    "build:cloudflare": "./build.sh",
     "build:landing": "node scripts/build-subdomain.js --subdomain=landing",
     "build:dapp": "node scripts/build-subdomain.js --subdomain=dapp",
     "build:docs": "node scripts/build-subdomain.js --subdomain=docs",

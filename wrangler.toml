@@ -1,0 +1,9 @@
+# Cloudflare Pages Configuration for diBoaS Platform
+name = "diboas-platform"
+compatibility_date = "2023-12-01"
+
+[env.production]
+name = "diboas-platform"
+
+[env.preview]  
+name = "diboas-platform-preview"
