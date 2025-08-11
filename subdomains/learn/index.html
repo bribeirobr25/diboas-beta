@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default" data-persona="learning" data-mascot="aqua">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://www.youtube.com https://youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; connect-src 'self' https://api.diboas.com; frame-src 'self' https://www.youtube.com https://youtube.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+  <!-- Primary Meta Tags -->
+  <title>diBoaS Learning Center - Master Wealthy-building by Doing, Not Watching | Interactive Education</title>
+  <meta name="title"
+    content="diBoaS Learning Center - Master Wealth-bulding by Doing, Not Watching | Interactive Education">
+  <meta name="description"
+    content="While other platforms dump 500 hours of boring videos, we teach finance through interactive experiences. Learn with Aqua in bite-sized adventures that build real skills.">
+  <meta name="keywords"
+    content="crypto education, interactive learning, Aqua AI guide, crypto investing course, blockchain tutorial, DeFi education, hands-on learning">
+  <meta name="author" content="diBoaS">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://learn.diboas.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://learn.diboas.com/">
+  <meta property="og:title" content="diBoaS Learning Center - Master Wealth-building by Doing, Not Watching">
+  <meta property="og:description"
+    content="Interactive financial education with AI guides. Learn through hands-on experiences, not endless lectures.">
+  <meta property="og:image" content="https://learn.diboas.com/assets/images/social_cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="diBoaS Learning Center">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://learn.diboas.com/">
+  <meta property="twitter:title" content="diBoaS Learning Center - Master Wealth-building by Doing, Not Watching">
+  <meta property="twitter:description"
+    content="Interactive financial education with AI guides. Learn through hands-on experiences, not endless lectures.">
+  <meta property="twitter:image" content="https://learn.diboas.com/assets/images/social_cover.png">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "diBoaS Learning Center",
+    "description": "Interactive financial and wealth-building education platform with AI-guided learning experiences",
+    "url": "https://learn.diboas.com",
+    "logo": "https://learn.diboas.com/assets/icons/favicon-192x192.png",
+    "sameAs": [
+      "https://twitter.com/diboas",
+      "https://linkedin.com/company/diboas"
+    ],
+    "offers": {
+      "@type": "Course",
+      "name": "Cryptocurrency Investment Mastery",
+      "description": "Learn finance investing through interactive experiences with AI guide Aqua",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "diBoaS Learning Center"
+      },
+      "educationalLevel": "Beginner to Advanced",
+      "teaches": [
+        "Finance fundamentals",
+        "Investment strategies", 
+        "DeFi protocols",
+        "Portfolio management",
+        "Risk assessment"
+      ]
+    },
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Crypto Investment Proficiency",
+      "description": "Certification in cryptocurrency investment fundamentals"
+    }
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/icons/android-chrome-512x512.png">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#4ECDC4">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="diBoaS Learn">
+
+  <!-- Environment Variables -->
+  <script>
+    window.ENV = {
+      NODE_ENV: 'production',
+      API_BASE_URL: 'https://api.diboas.com',
+      FEATURE_FLAGS: {
+        AB_TESTING: false,
+        ADVANCED_ANALYTICS: false,
+        CONVERSION_TRACKING: false,
+        ERROR_MONITORING: false
+      }
+    };
+  </script>
+
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="../assets/css/main.css" as="style">
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.youtube.com">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="./learn.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+</head>
+
+<body>
+  <!-- Skip Links for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#learning-nav" class="skip-link">Skip to learning navigation</a>
+
+  <!-- Learning Platform Layout -->
+  <div class="learn-layout" role="main">
+
+    <!-- Header -->
+    <header class="learn-header" role="banner">
+      <div class="header-container">
+        <div class="header-left">
+          <button class="mobile-menu-btn" aria-label="Toggle learning menu" aria-expanded="false"
+            aria-controls="learning-sidebar">
+            <span class="hamburger"></span>
+            <span class="hamburger"></span>
+            <span class="hamburger"></span>
+          </button>
+
+          <a href="../" class="learn-logo" aria-label="diBoaS Home">
+            <img src="../assets/images/logo.png" alt="diBoaS Learning Center" width="120" height="32">
+          </a>
+
+          <nav class="breadcrumb" aria-label="Learning path navigation">
+            <a href="../" class="breadcrumb-link">Home</a>
+            <span class="breadcrumb-separator" aria-hidden="true">→</span>
+            <a href="#" class="breadcrumb-link">Learning</a>
+            <span class="breadcrumb-separator" aria-hidden="true">→</span>
+            <span class="breadcrumb-current" aria-current="page">Aqua Phase</span>
+          </nav>
+        </div>
+
+        <div class="header-right">
+          <div class="learning-progress-indicator">
+            <div class="progress-circle" aria-label="Overall learning progress: 25%">
+              <svg class="progress-ring" width="40" height="40">
+                <circle class="progress-ring-bg" cx="20" cy="20" r="16" fill="transparent" stroke="var(--neutral-200)"
+                  stroke-width="4" />
+                <circle class="progress-ring-fill" cx="20" cy="20" r="16" fill="transparent"
+                  stroke="var(--aqua-primary)" stroke-width="4" stroke-dasharray="100.53" stroke-dashoffset="75.4" />
+              </svg>
+              <span class="progress-text">25%</span>
+            </div>
+          </div>
+
+          <div class="streak-counter" aria-label="Learning streak: 3 days">
+            <span class="streak-icon">🔥</span>
+            <span class="streak-count">3</span>
+          </div>
+
+          <button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle" type="button">
+            <svg class="theme-icon-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+              </path>
+            </svg>
+            <svg class="theme-icon-dark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" aria-hidden="true" style="display: none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <a href="../app/" class="cta-button" aria-label="Start investing with diBoaS">
+            <span>Get Started</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Learning Dashboard -->
+    <div class="learning-dashboard">
+
+      <!-- Sidebar Navigation -->
+      <aside class="learning-sidebar" id="learning-sidebar" role="navigation" aria-label="Learning navigation">
+        <div class="sidebar-content">
+
+          <!-- Current Mascot Guide -->
+          <div class="current-guide">
+            <div class="guide-avatar aqua">
+              <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="50" cy="50" r="45" fill="var(--aqua-primary)" opacity="0.1" />
+                <circle cx="50" cy="50" r="30" fill="var(--aqua-primary)" opacity="0.3" />
+                <circle cx="50" cy="50" r="15" fill="var(--aqua-primary)" />
+                <path d="M35 45 Q50 35 65 45 Q50 55 35 45" fill="white" opacity="0.8" />
+              </svg>
+            </div>
+            <div class="guide-info">
+              <h3 class="guide-name">Learning with Aqua</h3>
+              <p class="guide-message">"Ready to master finance basics? Let's build your confidence step by step!"</p>
+              <div class="guide-level">
+                <span class="level-indicator beginner">Beginner Level</span>
+                <span class="level-progress">3 of 8 lessons</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mascot Selector -->
+          <div class="mascot-selector">
+            <h4 class="selector-title">Switch Your Guide</h4>
+            <div class="mascot-grid">
+              <button class="mascot-option active" data-mascot="aqua" aria-pressed="true">
+                <span class="mascot-emoji">🌊</span>
+                <span class="mascot-name">Aqua</span>
+                <span class="mascot-level">Beginner</span>
+              </button>
+              <button class="mascot-option" data-mascot="verde" aria-pressed="false">
+                <span class="mascot-emoji">🌱</span>
+                <span class="mascot-name">Verde</span>
+                <span class="mascot-level">Growth</span>
+              </button>
+              <button class="mascot-option" data-mascot="mystic" aria-pressed="false">
+                <span class="mascot-emoji">🔮</span>
+                <span class="mascot-name">Mystic</span>
+                <span class="mascot-level">Advanced</span>
+              </button>
+              <button class="mascot-option" data-mascot="coral" aria-pressed="false">
+                <span class="mascot-emoji">🌸</span>
+                <span class="mascot-name">Coral</span>
+                <span class="mascot-level">Community</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Learning Navigation -->
+          <nav class="learning-nav" id="learning-nav" aria-label="Lesson navigation">
+
+            <div class="nav-section">
+              <h4 class="section-title">
+                <span class="section-icon">🌊</span>
+                <span>Aqua Phase - Finance Basics</span>
+                <span class="section-progress">3/8</span>
+              </h4>
+              <ul class="lesson-list" role="list">
+                <li class="lesson-item">
+                  <a href="#lesson-welcome" class="lesson-link completed" role="menuitem" data-lesson="welcome">
+                    <div class="lesson-status">
+                      <span class="status-icon completed" aria-hidden="true">✓</span>
+                    </div>
+                    <div class="lesson-content">
+                      <span class="lesson-title">Welcome to Welath-building</span>
+                      <span class="lesson-duration">2 min</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="lesson-item">
+                  <a href="#lesson-basics" class="lesson-link completed" role="menuitem" data-lesson="asset-basics">
+                    <div class="lesson-status">
+                      <span class="status-icon completed" aria-hidden="true">✓</span>
+                    </div>
+                    <div class="lesson-content">
+                      <span class="lesson-title">Finance Fundamentals</span>
+                      <span class="lesson-duration">5 min</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="lesson-item">
+                  <a href="#lesson-purchase" class="lesson-link active current" role="menuitem"
+                    data-lesson="first-purchase" aria-current="page">
+                    <div class="lesson-status">
+                      <span class="status-icon in-progress" aria-hidden="true">◐</span>
+                    </div>
+                    <div class="lesson-content">
+                      <span class="lesson-title">Your First Purchase</span>
+                      <span class="lesson-duration">8 min</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="lesson-item">
+                  <a href="#lesson-security" class="lesson-link locked" role="menuitem" data-lesson="wallet-security"
+                    aria-disabled="true">
+                    <div class="lesson-status">
+                      <span class="status-icon locked" aria-hidden="true">🔒</span>
+                    </div>
+                    <div class="lesson-content">
+                      <span class="lesson-title">Wallet Security</span>
+                      <span class="lesson-duration">6 min</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="lesson-item">
+                  <a href="#lesson-charts" class="lesson-link locked" role="menuitem" data-lesson="reading-charts"
+                    aria-disabled="true">
+                    <div class="lesson-status">
+                      <span class="status-icon locked" aria-hidden="true">🔒</span>
+                    </div>
+                    <div class="lesson-content">
+                      <span class="lesson-title">Reading Price Charts</span>
+                      <span class="lesson-duration">10 min</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="nav-section locked">
+              <h4 class="section-title">
+                <span class="section-icon">🌱</span>
+                <span>Verde Phase - Portfolio Growth</span>
+                <span class="section-progress">0/6</span>
+              </h4>
+              <div class="section-unlock">
+                <p class="unlock-message">Complete Aqua Phase to unlock Verde's growth strategies</p>
+                <div class="unlock-progress">
+                  <div class="unlock-bar">
+                    <div class="unlock-fill" style="width: 37.5%;"></div>
+                  </div>
+                  <span class="unlock-text">3 of 8 lessons complete</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="nav-section locked">
+              <h4 class="section-title">
+                <span class="section-icon">🔮</span>
+                <span>Mystic Phase - Advanced DeFi</span>
+                <span class="section-progress">0/5</span>
+              </h4>
+              <div class="section-unlock">
+                <p class="unlock-message">Master Verde Phase to access Mystic's advanced wisdom</p>
+              </div>
+            </div>
+
+            <div class="nav-section locked">
+              <h4 class="section-title">
+                <span class="section-icon">🌸</span>
+                <span>Coral Phase - Community & Leadership</span>
+                <span class="section-progress">0/4</span>
+              </h4>
+              <div class="section-unlock">
+                <p class="unlock-message">Complete all phases to join Coral's teaching community</p>
+              </div>
+            </div>
+
+          </nav>
+
+        </div>
+      </aside>
+
+      <!-- Main Learning Content -->
+      <main class="learning-content" id="main-content" role="main">
+        <div class="content-container">
+
+          <!-- Lesson Header -->
+          <header class="lesson-header">
+            <div class="lesson-meta">
+              <span class="lesson-phase">Aqua Phase</span>
+              <span class="lesson-type">Interactive Tutorial</span>
+              <span class="lesson-difficulty">Beginner</span>
+            </div>
+
+            <h1 class="lesson-title">Your First $10 Crypto Purchase</h1>
+
+            <div class="lesson-intro">
+              <p class="lesson-description">
+                Learn to buy your first cryptocurrency with confidence. We'll walk through the entire process
+                step-by-step,
+                starting with just $10 to build your skills safely.
+              </p>
+
+              <div class="lesson-stats">
+                <div class="stat-item">
+                  <span class="stat-icon">⏱️</span>
+                  <span class="stat-label">8 minutes</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-icon">🎯</span>
+                  <span class="stat-label">Hands-on</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-icon">💡</span>
+                  <span class="stat-label">3 key concepts</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson-progress-bar">
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 0%;" id="lesson-progress"></div>
+              </div>
+              <span class="progress-label">0% Complete</span>
+            </div>
+          </header>
+
+          <!-- Aqua Guidance -->
+          <div class="aqua-guidance">
+            <div class="guidance-avatar">
+              <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="50" cy="50" r="45" fill="var(--aqua-primary)" opacity="0.1" />
+                <circle cx="50" cy="50" r="30" fill="var(--aqua-primary)" opacity="0.3" />
+                <circle cx="50" cy="50" r="15" fill="var(--aqua-primary)" />
+                <path d="M35 45 Q50 35 65 45 Q50 55 35 45" fill="white" opacity="0.8" />
+              </svg>
+            </div>
+            <div class="guidance-message">
+              <h3 class="guidance-title">Aqua's Introduction</h3>
+              <p class="guidance-text">
+                "Perfect! You've learned the basics, now let's make your first purchase together.
+                Remember, we're starting small to build confidence, not to get rich quick.
+                Every expert was once a beginner - you're taking the right first step!"
+              </p>
+            </div>
+          </div>
+
+          <!-- Interactive Learning Module -->
+          <div class="learning-module">
+
+            <!-- Video Tutorial -->
+            <section class="module-section video-section">
+              <h2 class="section-title">
+                <span class="title-icon">🎥</span>
+                Watch: Step-by-Step Purchase Process
+              </h2>
+
+              <div class="video-container">
+                <div class="video-player" id="lesson-video">
+                  <div class="video-thumbnail">
+                    <img src="../assets/images/lesson-thumbnail.jpg" alt="First crypto purchase tutorial"
+                      loading="lazy">
+                    <button class="play-button" aria-label="Play video tutorial">
+                      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" fill="var(--aqua-primary)" />
+                        <polygon points="10,8 16,12 10,16" fill="white" />
+                      </svg>
+                    </button>
+                    <div class="video-duration">3:45</div>
+                  </div>
+                </div>
+
+                <div class="video-controls" style="display: none;">
+                  <button class="control-btn play-pause" id="play-pause">
+                    <span class="play-icon">▶️</span>
+                    <span class="pause-icon" style="display: none;">⏸️</span>
+                  </button>
+                  <div class="progress-bar video-progress" id="video-progress">
+                    <div class="progress-fill" id="video-progress-fill"></div>
+                  </div>
+                  <span class="time-display" id="time-display">0:00 / 3:45</span>
+                  <button class="control-btn fullscreen" aria-label="Toggle fullscreen">
+                    <span>⛶</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Interactive Simulation -->
+            <section class="module-section simulation-section">
+              <h2 class="section-title">
+                <span class="title-icon">🎮</span>
+                Practice: Simulated Purchase Experience
+              </h2>
+
+              <div class="simulation-container">
+                <div class="simulation-header">
+                  <h3>diBoaS Purchase Simulator</h3>
+                  <p>Practice buying crypto in a safe environment with fake money</p>
+                </div>
+
+                <div class="simulation-interface">
+                  <div class="asset-selector">
+                    <h4>Choose Your First Crypto</h4>
+                    <div class="asset-options">
+                      <button class="asset-option active" data-asset="btc">
+                        <div class="asset-icon">₿</div>
+                        <div class="asset-info">
+                          <span class="asset-name">Bitcoin</span>
+                          <span class="asset-symbol">BTC</span>
+                          <span class="asset-price">$43,250</span>
+                        </div>
+                      </button>
+                      <button class="asset-option" data-asset="eth">
+                        <div class="asset-icon">⟠</div>
+                        <div class="asset-info">
+                          <span class="asset-name">Ethereum</span>
+                          <span class="asset-symbol">ETH</span>
+                          <span class="asset-price">$2,650</span>
+                        </div>
+                      </button>
+                      <button class="asset-option" data-asset="sol">
+                        <div class="asset-icon">◎</div>
+                        <div class="asset-info">
+                          <span class="asset-name">Solana</span>
+                          <span class="asset-symbol">SOL</span>
+                          <span class="asset-price">$98</span>
+                        </div>
+                      </button>
+                      <button class="asset-option" data-asset="sui">
+                        <div class="asset-icon">🌊</div>
+                        <div class="asset-info">
+                          <span class="asset-name">Sui</span>
+                          <span class="asset-symbol">SUI</span>
+                          <span class="asset-price">$1.85</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="purchase-form">
+                    <h4>Purchase Amount</h4>
+                    <div class="amount-input">
+                      <span class="currency-symbol">$</span>
+                      <input type="number" id="purchase-amount" value="10" min="10" max="1000" step="1"
+                        aria-label="Purchase amount in dollars">
+                      <div class="quick-amounts">
+                        <button class="quick-amount active" data-amount="10">$10</button>
+                        <button class="quick-amount" data-amount="25">$25</button>
+                        <button class="quick-amount" data-amount="50">$50</button>
+                        <button class="quick-amount" data-amount="100">$100</button>
+                      </div>
+                    </div>
+
+                    <div class="purchase-summary">
+                      <div class="summary-row">
+                        <span>Amount:</span>
+                        <span id="summary-amount">$10.00</span>
+                      </div>
+                      <div class="summary-row">
+                        <span>Fee (0.09%):</span>
+                        <span id="summary-fee">$0.01</span>
+                      </div>
+                      <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="summary-total">$10.01</span>
+                      </div>
+                      <div class="summary-row">
+                        <span>You'll receive:</span>
+                        <span id="summary-asset">0.00023 BTC</span>
+                      </div>
+                    </div>
+
+                    <button class="purchase-button" id="simulate-purchase">
+                      <span>Simulate Purchase</span>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Knowledge Check -->
+            <section class="module-section quiz-section">
+              <h2 class="section-title">
+                <span class="title-icon">🧠</span>
+                Knowledge Check: Purchase Process
+              </h2>
+
+              <div class="quiz-container">
+                <div class="quiz-question">
+                  <h3>What's the most important thing to remember when making your first crypto purchase?</h3>
+                  <div class="quiz-options">
+                    <label class="quiz-option">
+                      <input type="radio" name="quiz-purchase" value="a">
+                      <span class="option-text">Buy as much as possible to maximize gains</span>
+                    </label>
+                    <label class="quiz-option">
+                      <input type="radio" name="quiz-purchase" value="b">
+                      <span class="option-text">Start small to learn and build confidence</span>
+                    </label>
+                    <label class="quiz-option">
+                      <input type="radio" name="quiz-purchase" value="c">
+                      <span class="option-text">Only buy during market dips</span>
+                    </label>
+                    <label class="quiz-option">
+                      <input type="radio" name="quiz-purchase" value="d">
+                      <span class="option-text">Wait for expert recommendations</span>
+                    </label>
+                  </div>
+                  <button class="quiz-submit" id="submit-quiz">Check Answer</button>
+                </div>
+
+                <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
+                  <div class="feedback-correct" id="feedback-correct">
+                    <div class="feedback-icon">✅</div>
+                    <h4>Excellent!</h4>
+                    <p>That's exactly right! Starting small helps you learn the process and build confidence without
+                      risking significant money.</p>
+                  </div>
+                  <div class="feedback-incorrect" id="feedback-incorrect">
+                    <div class="feedback-icon">❌</div>
+                    <h4>Not quite right</h4>
+                    <p>Remember, the goal of your first purchase is to learn and build confidence, not to maximize
+                      profits. Start small and grow gradually!</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section class="module-section takeaways-section">
+              <h2 class="section-title">
+                <span class="title-icon">🎯</span>
+                Key Takeaways
+              </h2>
+
+              <div class="takeaways-grid">
+                <div class="takeaway-card">
+                  <div class="takeaway-icon">💡</div>
+                  <h3>Start Small, Think Big</h3>
+                  <p>$10 is enough to learn the fundamentals. Focus on understanding the process, not maximizing
+                    returns.</p>
+                </div>
+                <div class="takeaway-card">
+                  <div class="takeaway-icon">🔒</div>
+                  <h3>Fees Are Transparent</h3>
+                  <p>diBoaS charges 0.09% trading fees with no hidden costs. You always know exactly what you're paying.
+                  </p>
+                </div>
+                <div class="takeaway-card">
+                  <div class="takeaway-icon">⚡</div>
+                  <h3>It's Fast & Simple</h3>
+                  <p>From selection to confirmation takes under 2 minutes. No complex forms or confusing interfaces.</p>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <!-- Lesson Navigation -->
+          <footer class="lesson-navigation">
+            <a href="#lesson-basics" class="nav-button secondary">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path d="M19 12H5M12 19l-7-7 7-7"></path>
+              </svg>
+              <span>Previous: Finance Basics</span>
+            </a>
+
+            <div class="lesson-completion">
+              <button class="complete-lesson" id="complete-lesson" disabled>
+                <span class="completion-icon">✓</span>
+                <span>Mark Complete</span>
+              </button>
+            </div>
+
+            <a href="#lesson-security" class="nav-button primary disabled" id="next-lesson">
+              <span>Next: Wallet Security</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </footer>
+
+        </div>
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- Achievement Modal -->
+  <div class="achievement-modal" id="achievement-modal" role="dialog" aria-labelledby="achievement-title"
+    aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="achievement-animation">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-sparkles" aria-hidden="true">
+          <span class="sparkle">✨</span>
+          <span class="sparkle">⭐</span>
+          <span class="sparkle">💫</span>
+        </div>
+      </div>
+      <h2 id="achievement-title" class="achievement-title">Lesson Complete!</h2>
+      <p class="achievement-description">
+        Great job! You've mastered the crypto purchase process. Aqua is proud of your progress!
+      </p>
+      <div class="achievement-rewards">
+        <div class="reward-item">
+          <span class="reward-icon">⚡</span>
+          <span class="reward-text">+50 Learning Points</span>
+        </div>
+        <div class="reward-item">
+          <span class="reward-icon">🔥</span>
+          <span class="reward-text">Streak Maintained</span>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="continue-learning" id="continue-learning">Continue Learning</button>
+        <button class="share-achievement" id="share-achievement">Share Achievement</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading States -->
+  <div class="loading-overlay" id="loading-overlay" aria-hidden="true">
+    <div class="loading-content">
+      <div class="loading-spinner" role="status" aria-label="Loading lesson content">
+        <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+          class="spinner-animation">
+          <circle cx="50" cy="50" r="45" fill="var(--aqua-primary)" opacity="0.1" />
+          <circle cx="50" cy="50" r="30" fill="var(--aqua-primary)" opacity="0.3" />
+          <circle cx="50" cy="50" r="15" fill="var(--aqua-primary)" />
+        </svg>
+      </div>
+      <p class="loading-text">Loading your next learning adventure...</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/main.js" defer></script>
+  <script src="./learn.js" defer></script>
+
+
+  <!-- Footer -->
+  <footer role="contentinfo" class="footer" id="footer">
+    <div class="container">
+      <div class="footer-content">
+        <!-- Brand and Journey -->
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <img src="../assets/images/logo.png" alt="diBoaS" width="100" height="26" loading="lazy">
+          </div>
+          <p class="footer-tagline">Your Journey to Wealth Begins with Endless Possibilities</p>
+          <div class="journey-indicator">
+            <span>Foundation Phase • Guided by Aqua</span>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Platform</h4>
+            <a href="../docs/">Documentation</a>
+            <a href="../learn/">Learning Center</a>
+            <a href="../mascots/">Mascots</a>
+            <a href="../app/">Get Started</a>
+          </div>
+
+          <div class="link-group">
+            <h4>Company</h4>
+            <a href="../investors/">Investors</a>
+            <a href="#about">About Us</a>
+            <a href="#careers">Careers</a>
+          </div>
+
+          <div class="link-group">
+            <h4>Support</h4>
+            <a href="#help">Help Center</a>
+            <a href="#contact">Contact</a>
+            <a href="#security">Security</a>
+          </div>
+
+          <div class="link-group">
+            <h4>Legal</h4>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#compliance">Compliance</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="footer-left">
+          <p>&copy; 2025 diBoaS. All rights reserved.</p>
+          <p class="disclaimer">
+            Investing involve risk. Not financial advice. Do your own research.
+          </p>
+        </div>
+
+        <div class="footer-right">
+          <div class="social-links" role="list" aria-label="Social media links">
+            <a href="https://twitter.com/diboasfi" aria-label="Follow diBoaS on Twitter" role="listitem">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+              </svg>
+            </a>
+
+            <a href="https://linkedin.com/company/diboasfi" aria-label="Follow diBoaS on LinkedIn" role="listitem">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

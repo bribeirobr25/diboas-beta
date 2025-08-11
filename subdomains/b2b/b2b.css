@@ -1,0 +1,315 @@
+/* 
+ * diBoaS B2B Subdomain Styles
+ * Enterprise-focused design with professional aesthetics
+ */
+
+/* B2B Color Overrides */
+:root {
+  --b2b-primary: #2E7D5B;    /* Professional green */
+  --b2b-accent: #4A90E2;     /* Business blue */
+  --b2b-dark: #1A4C3A;       /* Deep green */
+  --b2b-light: #E8F5E8;      /* Light green background */
+}
+
+/* B2B Hero Section */
+.b2b-hero {
+  background: linear-gradient(135deg, var(--b2b-light) 0%, var(--neutral-50) 100%);
+  padding: var(--space-10) 0;
+}
+
+.b2b-hero .headline-primary {
+  font-size: var(--text-4xl);
+  color: var(--b2b-dark);
+  margin-bottom: var(--space-6);
+}
+
+.b2b-hero .headline-secondary {
+  font-size: var(--text-xl);
+  color: var(--neutral-600);
+  margin-bottom: var(--space-8);
+}
+
+.b2b-hero .highlight-gradient {
+  background: linear-gradient(90deg, var(--b2b-primary), var(--b2b-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* B2B Features Preview */
+.b2b-features-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.feature-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: white;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--neutral-200);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--b2b-dark);
+  box-shadow: var(--shadow-base);
+}
+
+.feature-pill .feature-icon {
+  font-size: 1.2em;
+}
+
+/* B2B Mascot Container */
+.b2b-mascot-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.b2b-mascot-container .mascot-image {
+  filter: sepia(0.2) hue-rotate(90deg) brightness(1.1);
+}
+
+.b2b-mascot-container .mascot-dialogue-bubble {
+  background: var(--b2b-primary);
+  color: white;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  max-width: 250px;
+  text-align: center;
+  position: relative;
+}
+
+.b2b-mascot-container .mascot-dialogue-bubble::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--b2b-primary);
+}
+
+/* Solutions Section */
+.solutions-section {
+  padding: var(--space-10) 0;
+  background: white;
+}
+
+.solutions-section .section-title {
+  text-align: center;
+  color: var(--b2b-dark);
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-8);
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.solution-card {
+  background: var(--b2b-light);
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--neutral-200);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.solution-card .solution-icon {
+  background: var(--b2b-primary);
+  color: white;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
+
+.solution-card h3 {
+  font-size: var(--text-xl);
+  color: var(--b2b-dark);
+  margin-bottom: var(--space-4);
+  font-weight: var(--font-semibold);
+}
+
+.solution-card p {
+  color: var(--neutral-600);
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+.solution-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.solution-card ul li {
+  color: var(--neutral-700);
+  padding: var(--space-2) 0;
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.solution-card ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--b2b-primary);
+  font-weight: bold;
+}
+
+/* Demo Form */
+.demo-form {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.demo-form h3 {
+  font-size: var(--text-2xl);
+  color: var(--b2b-dark);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-row {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  padding: var(--space-4);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  font-family: var(--font-primary);
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--b2b-primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 91, 0.1);
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* B2B CTA Buttons */
+.cta-primary-large {
+  background: var(--b2b-primary);
+  color: white;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-semibold);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: var(--text-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-primary-large:hover {
+  background: var(--b2b-dark);
+}
+
+.cta-secondary {
+  background: transparent;
+  color: var(--b2b-primary);
+  padding: var(--space-4) var(--space-8);
+  border: 2px solid var(--b2b-primary);
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-semibold);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-secondary:hover {
+  background: var(--b2b-primary);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .b2b-features-preview {
+    flex-direction: column;
+  }
+  
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .solutions-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+}
+
+/* Professional animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.solution-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.solution-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.solution-card:nth-child(3) {
+  animation-delay: 0.4s;
+}

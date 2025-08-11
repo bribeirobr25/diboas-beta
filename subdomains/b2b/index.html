@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default" data-persona="business">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+  <!-- Primary Meta Tags -->
+  <title>diBoaS for Business - Enterprise OneFi Solutions | B2B Wealth Platform</title>
+  <meta name="title" content="diBoaS for Business - Enterprise OneFi Solutions | B2B Wealth Platform">
+  <meta name="description"
+    content="Empower your business with diBoaS OneFi platform. Multi-tenant wealth management, employee financial wellness, and enterprise-grade crypto investing solutions.">
+  <meta name="keywords"
+    content="diBoaS B2B, enterprise crypto, business wealth management, employee benefits, corporate OneFi, enterprise DeFi, business financial wellness">
+  <meta name="author" content="diBoaS">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://b2b.diboas.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://b2b.diboas.com/">
+  <meta property="og:title" content="diBoaS for Business - Enterprise OneFi Solutions">
+  <meta property="og:description"
+    content="Enterprise wealth management platform with AI-guided investing for businesses and employees.">
+  <meta property="og:image" content="https://b2b.diboas.com/assets/images/social_cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="diBoaS for Business">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://b2b.diboas.com/">
+  <meta property="twitter:title" content="diBoaS for Business - Enterprise OneFi Solutions">
+  <meta property="twitter:description"
+    content="Enterprise wealth management platform with AI-guided investing for businesses and employees.">
+  <meta property="twitter:image" content="https://b2b.diboas.com/assets/images/social_cover.png">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "diBoaS for Business",
+    "description": "Enterprise OneFi platform for business wealth management",
+    "url": "https://b2b.diboas.com",
+    "applicationCategory": "FinancialApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "category": "B2B SaaS",
+      "businessFunction": "Financial Management"
+    }
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="./b2b.css">
+
+  <!-- Environment Configuration -->
+  <script>
+    window.ENV = {
+      NODE_ENV: 'production',
+      SUBDOMAIN: 'b2b',
+      API_BASE_URL: 'https://api.diboas.com',
+      FEATURE_FLAGS: {
+        MULTI_TENANT: true,
+        ADMIN_DASHBOARD: true,
+        ENTERPRISE_FEATURES: true,
+        WHITE_LABELING: true
+      }
+    };
+  </script>
+</head>
+
+<body data-subdomain="b2b">
+  <!-- Header -->
+  <header role="banner" class="header" id="header">
+    <nav role="navigation" aria-label="Main navigation" class="nav">
+      <div class="container">
+        <div class="nav-content">
+          <!-- Brand -->
+          <div class="nav-brand">
+            <a href="/" class="brand-link">
+              <div class="brand-logo">
+                <img src="/assets/images/logo_full.png" alt="diBoaS for Business" width="120" height="32">
+              </div>
+            </a>
+          </div>
+
+          <!-- Navigation -->
+          <div class="nav-menu">
+            <a href="#solutions" class="nav-link">Solutions</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="/docs" class="nav-link">Documentation</a>
+          </div>
+
+          <!-- CTA -->
+          <div class="nav-actions">
+            <a href="#demo" class="cta-nav">
+              Schedule Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main role="main" id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section b2b-hero" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <h1 class="headline-primary">
+              Empower Your Business with <span class="highlight-gradient">OneFi Solutions</span>
+            </h1>
+            <h2 class="headline-secondary">
+              Enterprise-grade wealth management platform for modern businesses
+            </h2>
+
+            <div class="b2b-features-preview">
+              <div class="feature-pill">
+                <span class="feature-icon">🏢</span>
+                Multi-tenant Architecture
+              </div>
+              <div class="feature-pill">
+                <span class="feature-icon">👥</span>
+                Employee Financial Wellness
+              </div>
+              <div class="feature-pill">
+                <span class="feature-icon">📊</span>
+                Enterprise Analytics
+              </div>
+              <div class="feature-pill">
+                <span class="feature-icon">🔐</span>
+                Bank-grade Security
+              </div>
+            </div>
+
+            <div class="cta-buttons">
+              <a href="#demo" class="cta-primary-large">
+                Schedule Demo
+              </a>
+              <a href="#contact" class="cta-secondary">
+                Contact Sales
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="b2b-mascot-container">
+              <img src="/assets/images/verde_mascot_pose.png" alt="Verde business guide" 
+                   class="mascot-image" width="150" height="150">
+              <div class="mascot-dialogue-bubble">
+                <p class="mascot-dialogue">
+                  "Ready to transform your business finances? Let's explore enterprise solutions together!"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions-section" id="solutions">
+      <div class="container">
+        <h2 class="section-title">Enterprise Solutions</h2>
+        
+        <div class="solutions-grid">
+          <div class="solution-card">
+            <div class="solution-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Employee Financial Wellness</h3>
+            <p>Provide your employees with AI-guided wealth-building tools. Improve retention and satisfaction with financial benefits that matter.</p>
+            <ul>
+              <li>Individual investment accounts</li>
+              <li>Financial education modules</li>
+              <li>Progress tracking and goals</li>
+              <li>Emergency fund building</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <div class="solution-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3>Corporate Treasury Management</h3>
+            <p>Manage your company's treasury with diversified asset allocation across crypto, gold, stocks, and DeFi protocols.</p>
+            <ul>
+              <li>Multi-asset portfolio management</li>
+              <li>Risk assessment tools</li>
+              <li>Compliance reporting</li>
+              <li>Treasury optimization</li>
+            </ul>
+          </div>
+
+          <div class="solution-card">
+            <div class="solution-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3>White-Label Solutions</h3>
+            <p>Launch your own branded OneFi platform. Perfect for financial advisors, wealth managers, and fintech companies.</p>
+            <ul>
+              <li>Custom branding and domains</li>
+              <li>API integration capabilities</li>
+              <li>Multi-tenant architecture</li>
+              <li>Revenue sharing models</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="demo">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-headline">Ready to Transform Your Business?</h2>
+          <p class="cta-subtext">
+            Join forward-thinking companies using diBoaS to empower their teams and optimize their treasury.
+          </p>
+          
+          <div class="demo-form">
+            <h3>Schedule Your Demo</h3>
+            <form class="contact-form" id="demo-form">
+              <div class="form-row">
+                <input type="text" name="company" placeholder="Company Name" required>
+                <input type="email" name="email" placeholder="Work Email" required>
+              </div>
+              <div class="form-row">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <select name="employees" required>
+                  <option value="">Company Size</option>
+                  <option value="1-10">1-10 employees</option>
+                  <option value="11-50">11-50 employees</option>
+                  <option value="51-200">51-200 employees</option>
+                  <option value="201-1000">201-1000 employees</option>
+                  <option value="1000+">1000+ employees</option>
+                </select>
+              </div>
+              <textarea name="message" placeholder="Tell us about your needs..."></textarea>
+              <button type="submit" class="cta-primary-large">
+                Schedule Demo
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="/assets/images/logo.png" alt="diBoaS" width="100" height="26">
+          <p class="footer-tagline">Enterprise OneFi Solutions</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Solutions</h4>
+            <a href="#solutions">Employee Wellness</a>
+            <a href="#solutions">Treasury Management</a>
+            <a href="#solutions">White-Label</a>
+          </div>
+          
+          <div class="link-group">
+            <h4>Company</h4>
+            <a href="/investors">Investors</a>
+            <a href="/docs">Documentation</a>
+            <a href="mailto:enterprise@diboas.com">Contact</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 diBoaS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script src="./b2b.js"></script>
+</body>
+
+</html>
