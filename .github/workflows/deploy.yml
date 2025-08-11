@@ -1,0 +1,67 @@
+name: Deploy diBoaS Platform
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Build for GitHub Pages
+      run: |
+        # Create GitHub Pages compatible structure
+        mkdir -p dist
+        
+        # Copy root landing page
+        cp index.html dist/
+        cp -r assets dist/
+        cp manifest.json dist/
+        cp sw.js dist/
+        
+        # Copy subdomain content to paths
+        cp -r app dist/
+        cp -r docs dist/
+        cp -r learn dist/
+        cp -r mascots dist/
+        cp -r investors dist/
+        
+        # Create new B2B directory from subdomain
+        mkdir -p dist/b2b
+        cp -r subdomains/b2b/* dist/b2b/ || echo "B2B subdomain not ready yet"
+        
+        # Update paths to work with GitHub Pages
+        find dist -name "*.html" -exec sed -i 's|/assets/|./assets/|g' {} \;
+        find dist -name "*.html" -exec sed -i 's|href="/app"|href="./app"|g' {} \;
+        find dist -name "*.html" -exec sed -i 's|href="/docs"|href="./docs"|g' {} \;
+        find dist -name "*.html" -exec sed -i 's|href="/learn"|href="./learn"|g' {} \;
+        find dist -name "*.html" -exec sed -i 's|href="/mascots"|href="./mascots"|g' {} \;
+        find dist -name "*.html" -exec sed -i 's|href="/investors"|href="./investors"|g' {} \;
+        find dist -name "*.html" -exec sed -i 's|href="/b2b"|href="./b2b"|g' {} \;
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        cname: diboas.com
