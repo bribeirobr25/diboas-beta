@@ -84,6 +84,8 @@ gail.ns.cloudflare.com
 3. Wait for Cloudflare to detect the nameserver change
 4. You should see "✅ Great! Cloudflare is now protecting your site"
 
+⚠️ **IMPORTANT:** Do NOT configure DNS records yet. We'll do that after creating the Pages projects.
+
 ---
 
 ### Step 5: Access Cloudflare Pages
@@ -269,6 +271,8 @@ SUBDOMAIN = b2b
 ---
 
 ### Step 15: Configure DNS Records
+
+⚠️ **CRITICAL:** Only do this step AFTER all 7 projects are successfully created and deployed.
 
 Now that all projects are created, you need to update DNS to point each domain to its respective project:
 
