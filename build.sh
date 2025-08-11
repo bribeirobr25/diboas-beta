@@ -94,23 +94,10 @@ fi
 echo "🔀 Creating redirect rules..."
 cat > dist/_redirects << 'EOF'
 # Cloudflare Pages Redirects for diBoaS subdomains
-# Note: Subdomain redirects will be configured in Cloudflare dashboard
+# Since we're using direct subdomain URLs, we don't need path redirects
 
-# SPA fallbacks - avoid infinite loops
-/app/assets/* /assets/:splat 200
-/docs/assets/* /assets/:splat 200  
-/learn/assets/* /assets/:splat 200
-/mascots/assets/* /assets/:splat 200
-/investors/assets/* /assets/:splat 200
-/b2b/assets/* /assets/:splat 200
-
-# Handle missing files in subdomains
-/app/* /app/index.html 200
-/docs/* /docs/index.html 200  
-/learn/* /learn/index.html 200
-/mascots/* /mascots/index.html 200
-/investors/* /investors/index.html 200
-/b2b/* /b2b/index.html 200
+# Just handle SPA routing for each subdomain
+/* /index.html 200
 EOF
 
 echo "✅ Build completed successfully!"

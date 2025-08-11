@@ -172,41 +172,38 @@ Repeat for: `learn`, `mascots`, `investors`, `b2b`
 
 ---
 
-## Step 7: Set Up Subdomain Redirects
+## Step 7: Configure Cloudflare Pages for Subdomains
 
-### Option A: Redirect Rules (Recommended)
+### No Redirect Rules Needed!
 
-1. Go to **Rules** → **Redirect Rules**
-2. Click **Create rule**
+Since you want users to access the subdomains directly (e.g., `dapp.diboas.com` instead of `diboas.com/app`), you don't need redirect rules. 
 
-**Example Rule for dApp:**
-```
-Rule name: dApp Subdomain
-When incoming requests match:
-  Field: Hostname
-  Operator: equals
-  Value: dapp.diboas.com
+### What Cloudflare Pages Does:
 
-Then:
-  Type: Dynamic
-  Expression: concat("https://diboas.com/app", http.request.uri.path)
-  Status code: 301
-  Preserve query string: ✓
-```
+Cloudflare Pages automatically serves the correct content based on the URL path:
+- `dapp.diboas.com` → Serves content from `/app` directory
+- `docs.diboas.com` → Serves content from `/docs` directory
+- `b2b.diboas.com` → Serves content from `/b2b` directory
 
-Create similar rules for each subdomain:
-- `docs.diboas.com` → `/docs`
-- `learn.diboas.com` → `/learn`
-- `mascots.diboas.com` → `/mascots`
-- `investors.diboas.com` → `/investors`
-- `b2b.diboas.com` → `/b2b`
+### Update Your Navigation:
 
-### Option B: Cloudflare Workers (Advanced)
+All navigation links have been updated to use subdomain URLs:
+- "Get Started" button → `https://dapp.diboas.com`
+- "Documentation" link → `https://docs.diboas.com`
+- "Learn" link → `https://learn.diboas.com`
+- etc.
 
-1. Go to **Workers & Pages** → **Create application** → **Create Worker**
-2. Name it `diboas-router`
-3. Use the worker code from `cloudflare-worker.js`
-4. Deploy and add subdomains as triggers
+### Test Your Setup:
+
+Visit each subdomain directly:
+- https://dapp.diboas.com
+- https://docs.diboas.com
+- https://learn.diboas.com
+- https://mascots.diboas.com
+- https://investors.diboas.com
+- https://b2b.diboas.com
+
+Each should display the appropriate content without any redirects!
 
 ---
 
