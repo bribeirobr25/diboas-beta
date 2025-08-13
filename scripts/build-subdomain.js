@@ -79,7 +79,8 @@ async function copyDirectory(src, dest) {
 async function buildSubdomain() {
   console.log(`Building ${subdomain} subdomain...`);
   
-  const distDir = path.join(projectRoot, 'dist');
+  // Cloudflare expects output in subdomain/dist structure
+  const distDir = path.join(projectRoot, subdomain, 'dist');
   await ensureDirectory(distDir);
   
   if (subdomain === 'landing') {
