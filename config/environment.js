@@ -49,7 +49,7 @@ export const ENVIRONMENTS = {
     name: 'production',
     host: 'diboas.com',
     protocol: 'https',
-    cdnUrl: 'https://cdn.diboas.com',
+    cdnUrl: '{{CDN_URL}}',
     apiUrl: 'https://api.diboas.com',
     routing: 'subdomain-based',
     subdomains: {

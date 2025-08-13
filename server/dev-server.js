@@ -13,6 +13,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 import fs from 'fs';
 import chalk from 'chalk';
+import { replaceUrlPlaceholders } from '../config/build-urls.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.join(__dirname, '..');
@@ -23,6 +24,11 @@ const ENV = {
   PORT: process.env.PORT || 3000,
   HOST: process.env.HOST || 'localhost'
 };
+
+// Ensure NODE_ENV is set for URL processing
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'development';
+}
 
 // Frontend application configuration
 const FRONTEND_APPS = {
@@ -118,6 +124,23 @@ app.use('/assets/icons', (req, res, next) => {
 // DDD source files for module loading
 app.use('/src', express.static(path.join(PROJECT_ROOT, 'src')));
 
+// Helper function to serve HTML with processed placeholders
+function serveProcessedHtml(filePath, res) {
+  try {
+    if (fs.existsSync(filePath)) {
+      const htmlContent = fs.readFileSync(filePath, 'utf8');
+      const processedContent = replaceUrlPlaceholders(htmlContent);
+      res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+      res.send(processedContent);
+    } else {
+      res.status(404).send('File not found');
+    }
+  } catch (error) {
+    console.error(chalk.red('Error processing HTML placeholders:'), error);
+    res.status(500).send('Error processing file');
+  }
+}
+
 // Development: Path-based routing
 if (ENV.NODE_ENV === 'development') {
   console.log(chalk.cyan('🔧 Development Mode: Path-based routing'));
@@ -137,32 +160,40 @@ if (ENV.NODE_ENV === 'development') {
     
     // Serve static files for this subdomain
     if (config.path === '/') {
-      // Landing page at root
-      app.use('/', express.static(staticDir, staticOptions));
+      // Landing page at root - serve processed HTML
       app.get('/', (req, res) => {
-        res.sendFile(path.join(staticDir, 'index.html'));
+        serveProcessedHtml(path.join(staticDir, 'index.html'), res);
       });
+      // Serve other static files normally
+      app.use('/', express.static(staticDir, staticOptions));
     } else {
-      // Other subdomains on their paths
-      app.use(config.path, express.static(staticDir, staticOptions));
+      // Other subdomains on their paths - serve processed HTML
       app.get(config.path, (req, res) => {
-        res.sendFile(path.join(staticDir, 'index.html'));
+        serveProcessedHtml(path.join(staticDir, 'index.html'), res);
       });
       
       // Handle nested routes within frontend app
       app.get(`${config.path}/*`, (req, res) => {
         const filePath = path.join(staticDir, req.params[0]);
         if (fs.existsSync(filePath)) {
-          // Apply correct MIME type for CSS files
-          if (filePath.endsWith('.css')) {
-            res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+          // Process HTML files with placeholders
+          if (filePath.endsWith('.html')) {
+            serveProcessedHtml(filePath, res);
+          } else {
+            // Apply correct MIME type for CSS files
+            if (filePath.endsWith('.css')) {
+              res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+            }
+            res.sendFile(filePath);
           }
-          res.sendFile(filePath);
         } else {
-          // SPA fallback to index.html
-          res.sendFile(path.join(staticDir, 'index.html'));
+          // SPA fallback to processed index.html
+          serveProcessedHtml(path.join(staticDir, 'index.html'), res);
         }
       });
+      
+      // Serve other static files normally
+      app.use(config.path, express.static(staticDir, staticOptions));
     }
     
     console.log(chalk.green(`📁 ${config.title}: ${chalk.yellow(`http://${ENV.HOST}:${ENV.PORT}${config.path}`)}`));

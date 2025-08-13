@@ -1,0 +1,56 @@
+{
+  "name": "diBoaS OneFi Platform",
+  "short_name": "diBoaS",
+  "description": "Progressive smart simplicity for cryptocurrency investing and wealth-building",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#4ECDC4",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "./assets/images/logo.png",
+      "sizes": "120x32",
+      "type": "image/png"
+    }
+  ],
+  "categories": [
+    "finance",
+    "education",
+    "productivity"
+  ],
+  "shortcuts": [
+    {
+      "name": "Learning Center",
+      "short_name": "Learn",
+      "description": "Access interactive finance learning modules",
+      "url": "{{LEARN_URL}}"
+    },
+    {
+      "name": "Documentation",
+      "short_name": "Docs",
+      "description": "Browse platform documentation",
+      "url": "{{DOCS_URL}}"
+    },
+    {
+      "name": "Investors",
+      "short_name": "Investors",
+      "description": "Investor's documentation page",
+      "url": "{{INVESTORS_URL}}"
+    },
+    {
+      "name": "Mascots",
+      "short_name": "Mascots",
+      "description": "Page introducing the AI-powered mascot guides",
+      "url": "{{MASCOTS_URL}}"
+    },
+    {
+      "name": "App",
+      "short_name": "App",
+      "description": "diBoaS application page",
+      "url": "{{APP_URL}}"
+    }
+  ]
+}

@@ -106,10 +106,10 @@ async function copyDirectory(src, dest) {
     if (entry.isDirectory()) {
       await copyDirectory(srcPath, destPath);
     } else {
-      // Process HTML and JSON files to replace URL placeholders
+      // Process HTML, JSON, and webmanifest files to replace URL placeholders
       if (entry.name.endsWith('.html')) {
         await copyAndProcessHtml(srcPath, destPath);
-      } else if (entry.name.endsWith('.json')) {
+      } else if (entry.name.endsWith('.json') || entry.name.endsWith('.webmanifest')) {
         await copyAndProcessJson(srcPath, destPath);
       } else {
         await copyFile(srcPath, destPath);

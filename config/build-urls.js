@@ -36,7 +36,18 @@ const urlMappings = {
   '{{INVESTORS_URL}}': isDevelopment ? '/investors' : 'https://investors.diboas.com',
   
   // B2B portal subdomain
-  '{{B2B_URL}}': isDevelopment ? '/b2b' : 'https://b2b.diboas.com'
+  '{{B2B_URL}}': isDevelopment ? '/b2b' : 'https://b2b.diboas.com',
+  
+  // API and CDN URLs
+  '{{API_URL}}': isDevelopment ? 'http://localhost:3000' : 'https://api.diboas.com',
+  '{{CDN_URL}}': isDevelopment ? 'http://localhost:3000' : 'https://cdn.diboas.com',
+  
+  // Social Media URLs
+  '{{TWITTER_URL}}': 'https://twitter.com/diboasfi',
+  '{{LINKEDIN_URL}}': 'https://linkedin.com/company/diboasfi',
+  
+  // Repository URL
+  '{{GITHUB_URL}}': 'https://github.com/bribeirobr25/diboas-beta'
 };
 
 /**

@@ -55,7 +55,7 @@ const URL_CONFIG = {
   },
   production: {
     base: 'https://diboas.com',
-    assets: 'https://cdn.diboas.com',
+    assets: '{{CDN_URL}}',
     api: 'https://api.diboas.com',
     subdomains: {
       landing: 'https://diboas.com',

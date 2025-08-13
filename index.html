@@ -53,8 +53,8 @@
     "url": "https://diboas.com",
     "logo": "https://diboas.com/assets/icons/favicon-192x192.png",
     "sameAs": [
-      "https://twitter.com/diboasfi",
-      "https://linkedin.com/company/diboasfi"
+      "{{TWITTER_URL}}",
+      "{{LINKEDIN_URL}}"
     ],
     "offers": {
       "@type": "Service",
@@ -225,7 +225,7 @@
   <script>
     window.ENV = {
       NODE_ENV: 'production',
-      API_BASE_URL: 'https://api.diboas.com',
+      API_BASE_URL: '{{API_URL}}',
       FEATURE_FLAGS: {
         AB_TESTING: false,
         ADVANCED_ANALYTICS: false,
@@ -704,7 +704,7 @@
             <h4 data-i18n="footer.company">Company</h4>
             <a href="{{INVESTORS_URL}}" data-i18n="nav.investors">Investors</a>
             <a href="{{DOCS_URL}}" data-i18n="footer.about">About Us</a>
-            <a href="https://www.linkedin.com/company/diboasfi/jobs/" data-i18n-aria="footer.careers" role="listitem"
+            <a href="{{LINKEDIN_URL}}/jobs/" data-i18n-aria="footer.careers" role="listitem"
               target="_blank" rel="noopener noreferrer" data-i18n="footer.careers">Careers</a>
           </div>
 
@@ -736,7 +736,7 @@
 
         <div class="footer-right">
           <div class="social-links" role="list" aria-label="Social media links">
-            <a href="https://twitter.com/diboasfi" data-i18n-aria="footer.social_twitter" role="listitem" target="_blank"
+            <a href="{{TWITTER_URL}}" data-i18n-aria="footer.social_twitter" role="listitem" target="_blank"
               rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path
@@ -744,7 +744,7 @@
               </svg>
             </a>
 
-            <a href="https://linkedin.com/company/diboasfi" data-i18n-aria="footer.social_linkedin" role="listitem"
+            <a href="{{LINKEDIN_URL}}" data-i18n-aria="footer.social_linkedin" role="listitem"
               target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path
