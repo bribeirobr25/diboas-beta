@@ -494,3 +494,6 @@ export function getGlobalEventBus() {
 export function setGlobalEventBus(eventBus) {
   globalEventBus = eventBus
 }
+
+// Alias for compatibility
+export { SecureEventBus as EventBus }

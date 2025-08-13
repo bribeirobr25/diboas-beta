@@ -1,6 +1,11 @@
 /**
- * diBoaS Environment Configuration
- * Centralized configuration for all subdomains and environments
+ * diBoaS Environment Configuration - BUILD-TIME
+ * 
+ * Purpose: Server-side/build-time environment configuration
+ * Used by: Build scripts, URL processors, server configuration
+ * 
+ * Note: Client-side environment utilities are in assets/utils/environment.js
+ * This separation maintains clean architecture between build-time and runtime concerns.
  */
 
 export const ENVIRONMENTS = {
@@ -84,7 +89,8 @@ export function isSubdomainRouting(currentEnv = null) {
 }
 
 /**
- * Generate environment-aware URLs for client-side use
+ * Generate static configuration object for build-time injection
+ * Note: Client-side navigation logic is handled by assets/utils/environment.js
  */
 export function generateClientConfig(currentEnv = null) {
   const env = currentEnv || getCurrentEnvironment();
@@ -94,52 +100,7 @@ export function generateClientConfig(currentEnv = null) {
     routing: env.routing,
     cdnUrl: env.cdnUrl,
     apiUrl: env.apiUrl,
-    subdomains: env.subdomains,
-    navigation: {
-      // Cross-subdomain navigation helpers
-      goToDapp: () => {
-        if (env.routing === 'path-based') {
-          window.location.href = '/app';
-        } else {
-          window.location.href = env.subdomains.dapp.url;
-        }
-      },
-      goToDocs: () => {
-        if (env.routing === 'path-based') {
-          window.location.href = '/docs';
-        } else {
-          window.location.href = env.subdomains.docs.url;
-        }
-      },
-      goToLearn: () => {
-        if (env.routing === 'path-based') {
-          window.location.href = '/learn';
-        } else {
-          window.location.href = env.subdomains.learn.url;
-        }
-      },
-      goToMascots: () => {
-        if (env.routing === 'path-based') {
-          window.location.href = '/mascots';
-        } else {
-          window.location.href = env.subdomains.mascots.url;
-        }
-      },
-      goToInvestors: () => {
-        if (env.routing === 'path-based') {
-          window.location.href = '/investors';
-        } else {
-          window.location.href = env.subdomains.investors.url;
-        }
-      },
-      goToB2B: () => {
-        if (env.routing === 'path-based') {
-          window.location.href = '/b2b';
-        } else {
-          window.location.href = env.subdomains.b2b.url;
-        }
-      }
-    }
+    subdomains: env.subdomains
   };
 }
 

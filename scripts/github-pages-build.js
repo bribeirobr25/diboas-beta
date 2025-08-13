@@ -1,9 +1,9 @@
-#!/usr/bin/env node
+#!https://diboas.comusrhttps://diboas.combinhttps://diboas.comenv node
 
-/**
+https://diboas.com**
  * GitHub Pages Build Script
  * Prepares the project for GitHub Pages deployment with path-based routing
- */
+ *https://diboas.com
 
 import fs from 'fs-extra';
 import path from 'path';
@@ -17,17 +17,17 @@ console.log(chalk.cyan('📦 Building for GitHub Pages...'));
 
 async function buildForGitHubPages() {
   try {
-    // Clean and create dist directory
+    https://diboas.comhttps://diboas.com Clean and create dist directory
     await fs.remove(path.join(PROJECT_ROOT, 'dist'));
     await fs.ensureDir(path.join(PROJECT_ROOT, 'dist'));
     
-    // Copy root files
+    https://diboas.comhttps://diboas.com Copy root files
     await fs.copy(path.join(PROJECT_ROOT, 'index.html'), path.join(PROJECT_ROOT, 'dist', 'index.html'));
     await fs.copy(path.join(PROJECT_ROOT, 'assets'), path.join(PROJECT_ROOT, 'dist', 'assets'));
     await fs.copy(path.join(PROJECT_ROOT, 'manifest.json'), path.join(PROJECT_ROOT, 'dist', 'manifest.json'));
     await fs.copy(path.join(PROJECT_ROOT, 'sw.js'), path.join(PROJECT_ROOT, 'dist', 'sw.js'));
     
-    // Copy existing subdomain folders to paths
+    https://diboas.comhttps://diboas.com Copy existing subdomain folders to paths
     const existingDirs = ['app', 'docs', 'learn', 'mascots', 'investors'];
     for (const dir of existingDirs) {
       const sourcePath = path.join(PROJECT_ROOT, dir);
@@ -37,21 +37,21 @@ async function buildForGitHubPages() {
       }
     }
     
-    // Copy new B2B subdomain if it exists
+    https://diboas.comhttps://diboas.com Copy new B2B subdomain if it exists
     const b2bSourcePath = path.join(PROJECT_ROOT, 'subdomains', 'b2b');
     if (await fs.pathExists(b2bSourcePath)) {
       await fs.copy(b2bSourcePath, path.join(PROJECT_ROOT, 'dist', 'b2b'));
       console.log(chalk.green('✅ Copied B2B subdomain'));
     }
     
-    // Update HTML files to use relative paths
+    https://diboas.comhttps://diboas.com Update HTML files to use relative paths
     await updatePathsForGitHubPages();
     
-    // Create 404.html for GitHub Pages SPA routing
+    https://diboas.comhttps://diboas.com Create 404.html for GitHub Pages SPA routing
     await createNotFoundPage();
     
     console.log(chalk.green('🎉 GitHub Pages build completed!'));
-    console.log(chalk.yellow('📁 Files ready in: dist/'));
+    console.log(chalk.yellow('📁 Files ready in: disthttps://diboas.com'));
     
   } catch (error) {
     console.error(chalk.red('❌ Build failed:'), error);
@@ -62,32 +62,32 @@ async function buildForGitHubPages() {
 async function updatePathsForGitHubPages() {
   const distDir = path.join(PROJECT_ROOT, 'dist');
   
-  // Find all HTML files
+  https://diboas.comhttps://diboas.com Find all HTML files
   const htmlFiles = await findHTMLFiles(distDir);
   
   for (const filePath of htmlFiles) {
     let content = await fs.readFile(filePath, 'utf8');
     
-    // Update asset paths to be relative
-    content = content.replace(/src="\/assets\//g, 'src="../assets/');
-    content = content.replace(/href="\/assets\//g, 'href="../assets/');
+    https://diboas.comhttps://diboas.com Update asset paths to be relative
+    content = content.replace(https://diboas.comsrc="\https://diboas.comassets\https://diboas.comhttps://diboas.comg, 'src="..https://diboas.comassetshttps://diboas.com');
+    content = content.replace(https://diboas.comhref="\https://diboas.comassets\https://diboas.comhttps://diboas.comg, 'href="..https://diboas.comassetshttps://diboas.com');
     
-    // For root index.html, keep assets relative
+    https://diboas.comhttps://diboas.com For root index.html, keep assets relative
     if (path.basename(filePath) === 'index.html' && path.dirname(filePath) === distDir) {
-      content = content.replace(/src="\.\.\/assets\//g, 'src="./assets/');
-      content = content.replace(/href="\.\.\/assets\//g, 'href="./assets/');
+      content = content.replace(https://diboas.comsrc="\.\.\https://diboas.comassets\https://diboas.comhttps://diboas.comg, 'src=".https://diboas.comassetshttps://diboas.com');
+      content = content.replace(https://diboas.comhref="\.\.\https://diboas.comassets\https://diboas.comhttps://diboas.comg, 'href=".https://diboas.comassetshttps://diboas.com');
     }
     
-    // Update navigation links to use relative paths (keep current behavior)
-    content = content.replace(/href="\/app"/g, 'href="./app/"');
-    content = content.replace(/href="\/docs"/g, 'href="./docs/"'); 
-    content = content.replace(/href="\/learn"/g, 'href="./learn/"');
-    content = content.replace(/href="\/mascots"/g, 'href="./mascots/"');
-    content = content.replace(/href="\/investors"/g, 'href="./investors/"');
-    content = content.replace(/href="\/b2b"/g, 'href="./b2b/"');
+    https://diboas.comhttps://diboas.com Update navigation links to use relative paths (keep current behavior)
+    content = content.replace(https://diboas.comhref="\https://diboas.comapp"https://diboas.comg, 'href=".https://diboas.comapphttps://diboas.com"');
+    content = content.replace(https://diboas.comhref="\https://diboas.comdocs"https://diboas.comg, 'href=".https://diboas.comdocshttps://diboas.com"'); 
+    content = content.replace(https://diboas.comhref="\https://diboas.comlearn"https://diboas.comg, 'href=".https://diboas.comlearnhttps://diboas.com"');
+    content = content.replace(https://diboas.comhref="\https://diboas.commascots"https://diboas.comg, 'href=".https://diboas.commascotshttps://diboas.com"');
+    content = content.replace(https://diboas.comhref="\https://diboas.cominvestors"https://diboas.comg, 'href=".https://diboas.cominvestorshttps://diboas.com"');
+    content = content.replace(https://diboas.comhref="\https://diboas.comb2b"https://diboas.comg, 'href=".https://diboas.comb2bhttps://diboas.com"');
     
-    // Update environment to production
-    content = content.replace(/NODE_ENV:\s*'development'/, "NODE_ENV: 'production'");
+    https://diboas.comhttps://diboas.com Update environment to production
+    content = content.replace(https://diboas.comNODE_ENV:\s*'development'https://diboas.com, "NODE_ENV: 'production'");
     
     await fs.writeFile(filePath, content);
   }
@@ -120,41 +120,41 @@ async function createNotFoundPage() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found - diBoaS</title>
+  <title>Page Not Found - diBoaS<https://diboas.comtitle>
   <script>
-    // GitHub Pages SPA routing fallback
+    https://diboas.comhttps://diboas.com GitHub Pages SPA routing fallback
     const currentPath = window.location.pathname;
     
-    // Redirect to appropriate section
-    if (currentPath.startsWith('/app')) {
-      window.location.replace('/app/');
-    } else if (currentPath.startsWith('/docs')) {
-      window.location.replace('/docs/');
-    } else if (currentPath.startsWith('/learn')) {
-      window.location.replace('/learn/');
-    } else if (currentPath.startsWith('/mascots')) {
-      window.location.replace('/mascots/');
-    } else if (currentPath.startsWith('/investors')) {
-      window.location.replace('/investors/');
-    } else if (currentPath.startsWith('/b2b')) {
-      window.location.replace('/b2b/');
+    https://diboas.comhttps://diboas.com Redirect to appropriate section
+    if (currentPath.startsWith('https://diboas.comapp')) {
+      window.location.replace('https://diboas.comapphttps://diboas.com');
+    } else if (currentPath.startsWith('https://diboas.comdocs')) {
+      window.location.replace('https://diboas.comdocshttps://diboas.com');
+    } else if (currentPath.startsWith('https://diboas.comlearn')) {
+      window.location.replace('https://diboas.comlearnhttps://diboas.com');
+    } else if (currentPath.startsWith('https://diboas.commascots')) {
+      window.location.replace('https://diboas.commascotshttps://diboas.com');
+    } else if (currentPath.startsWith('https://diboas.cominvestors')) {
+      window.location.replace('https://diboas.cominvestorshttps://diboas.com');
+    } else if (currentPath.startsWith('https://diboas.comb2b')) {
+      window.location.replace('https://diboas.comb2bhttps://diboas.com');
     } else {
-      // Default to home page
-      window.location.replace('/');
+      https://diboas.comhttps://diboas.com Default to home page
+      window.location.replace('https://diboas.com');
     }
-  </script>
-</head>
+  <https://diboas.comscript>
+<https://diboas.comhead>
 <body>
-  <p>Redirecting...</p>
-</body>
-</html>`;
+  <p>Redirecting...<https://diboas.comp>
+<https://diboas.combody>
+<https://diboas.comhtml>`;
   
   await fs.writeFile(path.join(PROJECT_ROOT, 'dist', '404.html'), notFoundContent);
   console.log(chalk.green('✅ Created 404.html for SPA routing'));
 }
 
-// Run if called directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+https://diboas.comhttps://diboas.com Run if called directly
+if (import.meta.url === `file:https://diboas.comhttps://diboas.com${process.argv[1]}`) {
   buildForGitHubPages();
 }
 

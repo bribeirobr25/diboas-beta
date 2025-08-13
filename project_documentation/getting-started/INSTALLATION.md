@@ -91,8 +91,15 @@ node --version  # Should be 18+
 # Verify pnpm
 pnpm --version
 
-# Run tests
-pnpm test
+# Run module tests  
+npm test
+
+# Run development server tests (requires dev server)
+pnpm run dev  # In separate terminal
+npm run test:server
+
+# Verify application
+npm run verify
 
 # Build project
 pnpm build
@@ -100,8 +107,10 @@ pnpm build
 
 ### Expected Output
 
-- Development server runs on `http://localhost:5173`
-- All tests pass
+- Development server runs on `http://localhost:3000`
+- All module tests pass (8/8)
+- Development server tests pass (8/8)
+- Application verification succeeds
 - Build completes without errors
 - Console shows no critical errors
 

@@ -1,7 +1,7 @@
 {
   "name": "diboas-platform",
   "version": "1.0.0",
-  "description": "diBoaS OneFi Platform - Subdomain Architecture with Environment Routing",
+  "description": "diBoaS OneFi Platform - Pure DDD, Event-Driven, Service Agnostic Financial Platform",
   "main": "server/index.js",
   "type": "module",
   "scripts": {
@@ -18,8 +18,15 @@
     "build:b2b": "node scripts/build-subdomain.js --subdomain=b2b",
     "preview": "node server/preview-server.js",
     "clean": "rimraf dist",
+    "process-urls:dev": "node src/application/navigation/UrlProcessorCLI.js --env development --verbose",
+    "process-urls:prod": "node src/application/navigation/UrlProcessorCLI.js --env production --verbose",
+    "process-urls:dry": "node src/application/navigation/UrlProcessorCLI.js --dry-run --verbose",
+    "process-urls:test": "node src/application/navigation/UrlProcessorCLI.js --env development --dry-run",
     "lint": "echo 'Linting not configured yet'",
-    "test": "echo 'Tests not configured yet'"
+    "test": "node tests/integration/test-modules.js",
+    "test:modules": "node tests/integration/test-modules.js",
+    "test:server": "node tests/integration/test-dev-server.js",
+    "verify": "node scripts/verify-running.js"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -46,7 +53,9 @@
     "defi",
     "investment",
     "AI",
-    "subdomain-architecture"
+    "domain-driven-design",
+    "event-driven-architecture",
+    "service-agnostic"
   ],
   "author": "diBoaS",
   "license": "MIT",

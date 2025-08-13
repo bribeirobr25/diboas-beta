@@ -225,31 +225,73 @@ test('should load dashboard with all key elements', async ({ page }) => {
 
 ## Running Tests
 
+### Current Test Structure
+
+diBoaS uses a well-organized testing framework with the following structure:
+
+```
+tests/
+├── browser/                 # Browser-based testing
+│   ├── test-browser.html   # Complete browser application test
+│   └── test-ddd.html       # DDD architecture verification test
+└── integration/            # Integration and module testing
+    ├── test-dev-server.js  # Development server tests  
+    └── test-modules.js     # Module loading tests
+```
+
 ### Development Commands
 
 ```bash
-# Run all tests once
-npm run test
+# Run module dependency tests (validates DDD architecture)
+npm test
+npm run test:modules
 
-# Run tests in watch mode (development)
-npm run test:watch
+# Run development server tests (requires dev server running)
+pnpm run dev  # In separate terminal
+npm run test:server
 
-# Run tests with interactive UI
-npm run test:ui
+# Run application verification
+npm run verify
 
-# Generate coverage report
-npm run test:coverage
+# Browser-based testing (open in browser)
+# Option 1: Direct file access
+open tests/browser/test-browser.html
+open tests/browser/test-ddd.html
 
-# Run specific test categories
-npm run test:unit
-npm run test:integration
-npm run test:e2e
+# Option 2: Via development server
+pnpm run dev
+# Then visit: http://localhost:3000/tests/browser/test-browser.html
+```
 
-# Run E2E tests with UI
-npm run test:e2e:ui
+### Architecture Testing
 
-# Run E2E tests in headed mode (visible browser)
-npm run test:e2e:headed
+Our tests specifically validate the Pure DDD, Event-Driven, Service Agnostic architecture:
+
+```bash
+# Module Loading Tests - Validates:
+# ✅ Core Web Vitals Monitor
+# ✅ Global Error Handler  
+# ✅ A/B Testing Service
+# ✅ Domain Events
+# ✅ Event Bus
+# ✅ Application Service
+# ✅ UI Manager
+# ✅ Integration Layer
+npm run test:modules
+
+# Development Server Tests - Validates:
+# ✅ Asset serving with correct MIME types
+# ✅ CSS and JavaScript module loading
+# ✅ Image and icon availability
+# ✅ Frontend application serving
+npm run test:server
+
+# Application Verification - Validates:
+# ✅ File structure integrity
+# ✅ DDD architecture compliance
+# ✅ Legacy code removal
+# ✅ Bootstrap loading
+npm run verify
 ```
 
 ### Test Configuration

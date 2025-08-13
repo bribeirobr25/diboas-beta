@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>diBoaS Browser Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .warning { background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; }
+        .info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        #console { background: #000; color: #0f0; padding: 15px; font-family: monospace; height: 300px; overflow-y: auto; margin: 20px 0; }
+        .test-section { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>🧪 diBoaS Application Test</h1>
+    
+    <div class="test-section">
+        <h2>System Status</h2>
+        <div id="status-checks"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Output</h2>
+        <div id="console"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Actions</h2>
+        <button onclick="testUserSession()">Start User Session</button>
+        <button onclick="testAssetSelection()">Test Asset Selection</button>
+        <button onclick="testEventBus()">Test Event Bus</button>
+        <button onclick="testPerformance()">Test Performance Monitor</button>
+    </div>
+    
+    <script>
+        const consoleDiv = document.getElementById('console');
+        const statusDiv = document.getElementById('status-checks');
+        
+        // Capture console output
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        function addConsole(type, ...args) {
+            const time = new Date().toLocaleTimeString();
+            const msg = args.map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+            ).join(' ');
+            consoleDiv.innerHTML += `<div>[${time}] ${type.toUpperCase()}: ${msg}</div>`;
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addConsole('log', ...args);
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addConsole('error', ...args);
+        };
+        
+        function addStatus(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            statusDiv.appendChild(div);
+        }
+        
+        // Test functions
+        async function testUserSession() {
+            try {
+                addStatus('Testing user session...', 'info');
+                if (window._diBoaSDebug) {
+                    const integration = await window._diBoaSDebug.getIntegration();
+                    const result = await integration.startUserSession('test_user_' + Date.now());
+                    addStatus('✅ User session started successfully', 'success');
+                    console.log('User session result:', result);
+                } else {
+                    addStatus('❌ Debug interface not available', 'error');
+                }
+            } catch (error) {
+                addStatus(`❌ User session test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testAssetSelection() {
+            try {
+                addStatus('Testing asset selection...', 'info');
+                if (window._diBoaSDebug) {
+                    const integration = await window._diBoaSDebug.getIntegration();
+                    const result = await integration.handleUserAction('select_asset', {
+                        assetSymbol: 'BTC',
+                        context: { source: 'test' }
+                    });
+                    addStatus('✅ Asset selection test passed', 'success');
+                    console.log('Asset selection result:', result);
+                } else {
+                    addStatus('❌ Debug interface not available', 'error');
+                }
+            } catch (error) {
+                addStatus(`❌ Asset selection test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testEventBus() {
+            try {
+                addStatus('Testing event bus...', 'info');
+                if (window._diBoaSDebug) {
+                    const eventBus = await window._diBoaSDebug.getEventBus();
+                    
+                    // Subscribe to test event
+                    eventBus.subscribe('TestEvent', (event) => {
+                        console.log('Test event received:', event);
+                        addStatus('✅ Event received successfully', 'success');
+                    });
+                    
+                    // Publish test event
+                    await eventBus.publish('TestEvent', { test: true, timestamp: Date.now() });
+                    addStatus('✅ Event bus test passed', 'success');
+                } else {
+                    addStatus('❌ Debug interface not available', 'error');
+                }
+            } catch (error) {
+                addStatus(`❌ Event bus test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testPerformance() {
+            try {
+                addStatus('Testing performance monitor...', 'info');
+                if (window._diBoaSDebug) {
+                    const metrics = await window._diBoaSDebug.getPerformanceMetrics();
+                    if (metrics) {
+                        addStatus('✅ Performance metrics available', 'success');
+                        console.log('Performance metrics:', metrics);
+                    } else {
+                        addStatus('⚠️ Performance metrics not yet collected', 'warning');
+                    }
+                } else {
+                    addStatus('❌ Debug interface not available', 'error');
+                }
+            } catch (error) {
+                addStatus(`❌ Performance test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        // Initial status check
+        window.addEventListener('load', () => {
+            addStatus('Page loaded', 'info');
+            
+            // Check for DDD initialization
+            window.addEventListener('diBoaSInitialized', (event) => {
+                addStatus('✅ DDD Architecture initialized', 'success');
+                addStatus(`Features: ${event.detail.features.join(', ')}`, 'info');
+                
+                // Run automatic tests after initialization
+                setTimeout(() => {
+                    addStatus('Running automatic tests...', 'info');
+                    checkSystemStatus();
+                }, 1000);
+            });
+            
+            // Check if already initialized
+            setTimeout(() => {
+                if (window._diBoaSDebug) {
+                    addStatus('✅ Debug interface already available', 'success');
+                    checkSystemStatus();
+                }
+            }, 500);
+        });
+        
+        async function checkSystemStatus() {
+            try {
+                // Check integration
+                if (window._diBoaSDebug) {
+                    const integration = await window._diBoaSDebug.getIntegration();
+                    if (integration) {
+                        addStatus('✅ Integration service active', 'success');
+                    }
+                    
+                    // Check event bus
+                    const eventBus = await window._diBoaSDebug.getEventBus();
+                    if (eventBus) {
+                        addStatus('✅ Event bus active', 'success');
+                    }
+                    
+                    // Check application
+                    const application = await window._diBoaSDebug.getApplication();
+                    if (application) {
+                        addStatus('✅ Application service active', 'success');
+                    }
+                    
+                    // Check repositories
+                    const repos = await window._diBoaSDebug.getRepositories();
+                    if (repos) {
+                        addStatus(`✅ ${Object.keys(repos).length} repositories loaded`, 'success');
+                    }
+                }
+            } catch (error) {
+                addStatus(`⚠️ System check error: ${error.message}`, 'warning');
+            }
+        }
+    </script>
+    
+    <!-- Load the DDD Architecture -->
+    <script type="module" src="../../assets/js/bootstrap.js"></script>
+</body>
+</html>

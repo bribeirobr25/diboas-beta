@@ -100,5 +100,9 @@ cat > dist/_redirects << 'EOF'
 /* /index.html 200
 EOF
 
+# Process URL placeholders
+echo "🔗 Processing URL placeholders..."
+NODE_ENV=production node scripts/url-processor.js
+
 echo "✅ Build completed successfully!"
 echo "📁 Output directory: dist/"

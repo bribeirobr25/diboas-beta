@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDD Architecture Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        #console-output { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; margin: 20px 0; font-family: monospace; white-space: pre-wrap; max-height: 400px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 diBoaS DDD Architecture Test</h1>
+    <div id="test-results"></div>
+    
+    <h2>Console Output:</h2>
+    <div id="console-output"></div>
+    
+    <script>
+        // Capture console output
+        const consoleOutput = document.getElementById('console-output');
+        const testResults = document.getElementById('test-results');
+        
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        function addToConsole(type, message) {
+            const timestamp = new Date().toLocaleTimeString();
+            consoleOutput.textContent += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole('log', args.join(' '));
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole('error', args.join(' '));
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToConsole('warn', args.join(' '));
+        };
+        
+        function addTestResult(message, isSuccess) {
+            const div = document.createElement('div');
+            div.className = `test-result ${isSuccess ? 'success' : 'error'}`;
+            div.innerHTML = `${isSuccess ? '✅' : '❌'} ${message}`;
+            testResults.appendChild(div);
+        }
+        
+        function addTestInfo(message) {
+            const div = document.createElement('div');
+            div.className = 'test-result info';
+            div.innerHTML = `ℹ️ ${message}`;
+            testResults.appendChild(div);
+        }
+        
+        // Test script loading
+        addTestInfo('Starting DDD architecture tests...');
+        
+        // Test bootstrap.js availability
+        try {
+            addTestResult('Test script loaded successfully', true);
+        } catch (e) {
+            addTestResult(`Test script loading failed: ${e.message}`, false);
+        }
+        
+        // Listen for DDD initialization
+        let initializationComplete = false;
+        
+        window.addEventListener('diBoaSInitialized', (event) => {
+            initializationComplete = true;
+            addTestResult('DDD Architecture initialized successfully', true);
+            addTestInfo(`Features: ${event.detail.features.join(', ')}`);
+            addTestInfo(`Version: ${event.detail.version}`);
+            
+            // Test debug interface
+            setTimeout(() => {
+                if (window._diBoaSDebug) {
+                    addTestResult('Debug interface available', true);
+                    testDebugInterface();
+                } else {
+                    addTestResult('Debug interface not found', false);
+                }
+            }, 1000);
+        });
+        
+        async function testDebugInterface() {
+            try {
+                const integration = await window._diBoaSDebug.getIntegration();
+                addTestResult('Integration service accessible', true);
+                
+                const performanceMetrics = await window._diBoaSDebug.getPerformanceMetrics();
+                if (performanceMetrics) {
+                    addTestResult('Performance monitoring active', true);
+                } else {
+                    addTestResult('Performance monitoring not ready (may need time)', true);
+                }
+                
+                const errorStats = await window._diBoaSDebug.getErrorStats();
+                if (errorStats) {
+                    addTestResult('Error monitoring active', true);
+                } else {
+                    addTestResult('Error monitoring not ready', true);
+                }
+                
+                const abTestingAssignments = await window._diBoaSDebug.getABTestingAssignments();
+                addTestResult(`A/B Testing assignments: ${abTestingAssignments.length} active`, true);
+                
+            } catch (error) {
+                addTestResult(`Debug interface test failed: ${error.message}`, false);
+            }
+        }
+        
+        // Check if initialization fails after 10 seconds
+        setTimeout(() => {
+            if (!initializationComplete) {
+                addTestResult('DDD Architecture initialization timeout (possible error)', false);
+            }
+        }, 10000);
+        
+        addTestInfo('Loading DDD bootstrap script...');
+    </script>
+    
+    <!-- Load the DDD Architecture -->
+    <script type="module" src="../../assets/js/bootstrap.js"></script>
+</body>
+</html>

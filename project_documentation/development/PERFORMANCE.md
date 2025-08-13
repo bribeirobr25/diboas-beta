@@ -775,7 +775,7 @@ const STATIC_ASSETS = [
   '/',
   '/assets/diboas-logo.png',
   '/assets/css/main.css',
-  '/assets/js/main.js'
+  '/assets/js/bootstrap.js'
 ]
 
 self.addEventListener('install', (event) => {

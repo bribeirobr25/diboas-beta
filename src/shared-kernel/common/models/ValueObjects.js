@@ -4,6 +4,46 @@
  */
 
 /**
+ * Base Aggregate Root class for Domain-Driven Design
+ */
+export class AggregateRoot {
+  constructor(id) {
+    this._id = id;
+    this._domainEvents = [];
+  }
+
+  get id() { return this._id; }
+
+  /**
+   * Add domain event to aggregate
+   */
+  addDomainEvent(event) {
+    this._domainEvents.push(event);
+  }
+
+  /**
+   * Get all domain events
+   */
+  getDomainEvents() {
+    return [...this._domainEvents];
+  }
+
+  /**
+   * Clear domain events
+   */
+  clearDomainEvents() {
+    this._domainEvents = [];
+  }
+
+  /**
+   * Check if aggregate has uncommitted domain events
+   */
+  hasUncommittedEvents() {
+    return this._domainEvents.length > 0;
+  }
+}
+
+/**
  * Represents monetary values with currency
  */
 export class Money {

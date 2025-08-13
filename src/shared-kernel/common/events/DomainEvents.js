@@ -3,14 +3,21 @@
  * Event-Driven Architecture Foundation
  */
 
-import { v4 as uuidv4 } from 'uuid'
+// Simple UUID v4 implementation to avoid external dependency
+function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 /**
  * Base class for all domain events
  */
 export class BaseDomainEvent {
   constructor(eventType, aggregateId, eventData = {}, userId = null) {
-    this.eventId = uuidv4()
+    this.eventId = generateUUID()
     this.eventType = eventType
     this.aggregateId = aggregateId
     this.userId = userId
@@ -221,6 +228,41 @@ export class MascotPersonalityAdaptedEvent extends BaseDomainEvent {
 }
 
 // ============================================
+// PERFORMANCE & MONITORING EVENTS
+// ============================================
+
+/**
+ * Performance metrics event
+ */
+export class PerformanceMetricsEvent extends BaseDomainEvent {
+  constructor(metricType, metricsData) {
+    super('PerformanceMetrics', metricType, {
+      metricType,
+      sessionId: metricsData.sessionId,
+      metrics: metricsData.metrics || metricsData,
+      timestamp: Date.now()
+    }, metricsData.userId || 'system')
+  }
+}
+
+/**
+ * System error event
+ */
+export class SystemErrorEvent extends BaseDomainEvent {
+  constructor(errorCategory, errorMessage, errorData) {
+    super('SystemError', errorCategory, {
+      category: errorCategory,
+      message: errorMessage,
+      errorId: errorData.errorInfo?.errorId,
+      severity: errorData.severity || 'medium',
+      stack: errorData.errorInfo?.stack,
+      url: errorData.errorInfo?.url,
+      timestamp: Date.now()
+    }, errorData.errorInfo?.userId || 'system')
+  }
+}
+
+// ============================================
 // LEARNING EVENTS
 // ============================================
 
@@ -347,20 +389,6 @@ export class PerformanceMetricRecordedEvent extends BaseDomainEvent {
   }
 }
 
-/**
- * Error occurred in system
- */
-export class SystemErrorEvent extends BaseDomainEvent {
-  constructor(errorType, errorData, userId = null) {
-    super('SystemError', errorData.id || uuidv4(), {
-      errorType,
-      message: errorData.message,
-      stack: errorData.stack,
-      context: errorData.context,
-      severity: errorData.severity || 'error'
-    }, userId)
-  }
-}
 
 /**
  * Cache operation performed

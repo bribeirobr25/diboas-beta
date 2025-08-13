@@ -42,7 +42,7 @@ src/
 │   │   ├── liquidity/         # Liquidity pool management
 │   │   └── governance/        # DAO participation
 │   │
-│   └── shared/                # Shared Kernel
+│   └── assets/                # Shared Kernel
 │       ├── user-management/   # User accounts and profiles
 │       ├── risk-management/   # Risk assessment and monitoring
 │       ├── portfolio/         # Cross-domain portfolio view

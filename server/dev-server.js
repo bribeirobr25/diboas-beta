@@ -24,41 +24,41 @@ const ENV = {
   HOST: process.env.HOST || 'localhost'
 };
 
-// Subdomain configuration
-const SUBDOMAINS = {
+// Frontend application configuration
+const FRONTEND_APPS = {
   landing: { 
     path: '/', 
-    dir: 'subdomains/landing',
+    dir: '.', // Root directory for landing page
     title: 'diBoaS Landing' 
   },
   dapp: { 
     path: '/app', 
-    dir: 'subdomains/dapp',
+    dir: 'frontend/dapp',
     title: 'diBoaS dApp' 
   },
   docs: { 
     path: '/docs', 
-    dir: 'subdomains/docs',
+    dir: 'frontend/docs',
     title: 'diBoaS Docs' 
   },
   learn: { 
     path: '/learn', 
-    dir: 'subdomains/learn',
+    dir: 'frontend/learn',
     title: 'diBoaS Learn' 
   },
   mascots: { 
     path: '/mascots', 
-    dir: 'subdomains/mascots',
+    dir: 'frontend/mascots',
     title: 'diBoaS Mascots' 
   },
   investors: { 
     path: '/investors', 
-    dir: 'subdomains/investors',
+    dir: 'frontend/investors',
     title: 'diBoaS Investors' 
   },
   b2b: { 
     path: '/b2b', 
-    dir: 'subdomains/b2b',
+    dir: 'frontend/b2b',
     title: 'diBoaS B2B' 
   }
 };
@@ -73,53 +73,93 @@ app.use(helmet({
 app.use(compression());
 app.use(cors());
 
-// Static assets (shared across all subdomains)
-app.use('/assets', express.static(path.join(PROJECT_ROOT, 'shared/assets')));
+// Configure static file serving with correct MIME types
+const staticOptions = {
+  setHeaders: (res, filePath) => {
+    // Set correct MIME types for CSS files
+    if (filePath.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+    }
+    // Set correct MIME types for JavaScript files
+    else if (filePath.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+    }
+    // Set correct MIME types for images
+    else if (filePath.match(/\.(jpg|jpeg|png|gif|svg|ico)$/i)) {
+      const ext = path.extname(filePath).toLowerCase();
+      const mimeTypes = {
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.png': 'image/png',
+        '.gif': 'image/gif',
+        '.svg': 'image/svg+xml',
+        '.ico': 'image/x-icon'
+      };
+      res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+    }
+  }
+};
+
+// Static assets (shared across all frontend applications)
+app.use('/assets', express.static(path.join(PROJECT_ROOT, 'assets'), staticOptions));
+
+// Handle missing icons directory - fallback to favicon.png in images
+app.use('/assets/icons', (req, res, next) => {
+  // For any icon request, serve the favicon.png from images directory
+  const faviconPath = path.join(PROJECT_ROOT, 'assets', 'images', 'favicon.png');
+  if (fs.existsSync(faviconPath)) {
+    res.setHeader('Content-Type', 'image/png');
+    res.sendFile(faviconPath);
+  } else {
+    res.status(404).send('Icon not found');
+  }
+});
+
+// DDD source files for module loading
+app.use('/src', express.static(path.join(PROJECT_ROOT, 'src')));
 
 // Development: Path-based routing
 if (ENV.NODE_ENV === 'development') {
   console.log(chalk.cyan('🔧 Development Mode: Path-based routing'));
   
-  // Serve each subdomain on its path
-  Object.entries(SUBDOMAINS).forEach(([name, config]) => {
+  // Serve each frontend application on its path
+  Object.entries(FRONTEND_APPS).forEach(([name, config]) => {
     const subdomainDir = path.join(PROJECT_ROOT, config.dir);
     
-    // Check if subdomain directory exists, fallback to current structure
-    let staticDir = subdomainDir;
-    if (!fs.existsSync(subdomainDir)) {
-      // Fallback to current structure during migration
-      switch(name) {
-        case 'landing':
-          staticDir = PROJECT_ROOT;
-          break;
-        case 'dapp':
-          staticDir = path.join(PROJECT_ROOT, 'app');
-          break;
-        default:
-          staticDir = path.join(PROJECT_ROOT, name);
-      }
+    // Use the frontend directory structure
+    const staticDir = path.join(PROJECT_ROOT, config.dir);
+    
+    // Ensure directory exists
+    if (!fs.existsSync(staticDir)) {
+      console.warn(chalk.yellow(`⚠️  Directory not found: ${staticDir}`));
+      return;
     }
     
     // Serve static files for this subdomain
     if (config.path === '/') {
       // Landing page at root
-      app.use('/', express.static(staticDir));
+      app.use('/', express.static(staticDir, staticOptions));
       app.get('/', (req, res) => {
         res.sendFile(path.join(staticDir, 'index.html'));
       });
     } else {
       // Other subdomains on their paths
-      app.use(config.path, express.static(staticDir));
+      app.use(config.path, express.static(staticDir, staticOptions));
       app.get(config.path, (req, res) => {
         res.sendFile(path.join(staticDir, 'index.html'));
       });
       
-      // Handle nested routes within subdomain
+      // Handle nested routes within frontend app
       app.get(`${config.path}/*`, (req, res) => {
         const filePath = path.join(staticDir, req.params[0]);
         if (fs.existsSync(filePath)) {
+          // Apply correct MIME type for CSS files
+          if (filePath.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+          }
           res.sendFile(filePath);
         } else {
+          // SPA fallback to index.html
           res.sendFile(path.join(staticDir, 'index.html'));
         }
       });
@@ -129,34 +169,34 @@ if (ENV.NODE_ENV === 'development') {
   });
 }
 
-// Production: Subdomain-based routing
+// Production: Subdomain-based routing for frontend applications
 else {
   console.log(chalk.magenta('🚀 Production Mode: Subdomain-based routing'));
   
   app.use((req, res, next) => {
     const subdomain = req.hostname.split('.')[0];
     
-    // Find matching subdomain config
-    const subdomainConfig = Object.values(SUBDOMAINS).find(config => 
+    // Find matching frontend app config
+    const appConfig = Object.values(FRONTEND_APPS).find(config => 
       req.hostname.includes(subdomain) || config.path === `/${subdomain}`
     );
     
-    if (subdomainConfig) {
-      const staticDir = path.join(PROJECT_ROOT, subdomainConfig.dir);
-      express.static(staticDir)(req, res, next);
+    if (appConfig) {
+      const staticDir = path.join(PROJECT_ROOT, appConfig.dir);
+      express.static(staticDir, staticOptions)(req, res, next);
     } else {
       // Default to landing
-      express.static(path.join(PROJECT_ROOT, SUBDOMAINS.landing.dir))(req, res, next);
+      express.static(path.join(PROJECT_ROOT, FRONTEND_APPS.landing.dir), staticOptions)(req, res, next);
     }
   });
 }
 
-// API routes (shared across all subdomains)
+// API routes (shared across all frontend applications)
 app.use('/api', (req, res) => {
   res.json({ 
     message: 'diBoaS API', 
     environment: ENV.NODE_ENV,
-    subdomain: req.headers.host 
+    host: req.headers.host 
   });
 });
 
@@ -195,8 +235,8 @@ app.listen(ENV.PORT, ENV.HOST, () => {
   console.log(chalk.gray('─'.repeat(50)));
   
   if (ENV.NODE_ENV === 'development') {
-    console.log(chalk.yellow('\n📍 Available Routes:'));
-    Object.entries(SUBDOMAINS).forEach(([name, config]) => {
+    console.log(chalk.yellow('\n📍 Available Frontend Applications:'));
+    Object.entries(FRONTEND_APPS).forEach(([name, config]) => {
       console.log(`   ${chalk.cyan(config.title)}: http://${ENV.HOST}:${ENV.PORT}${config.path}`);
     });
   }

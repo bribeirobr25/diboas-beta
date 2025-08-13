@@ -4,6 +4,27 @@
  */
 
 /**
+ * Repository Interface for Service Agnostic pattern
+ */
+export class RepositoryInterface {
+  async findById(id) {
+    throw new Error('findById must be implemented by concrete repository');
+  }
+
+  async save(entity) {
+    throw new Error('save must be implemented by concrete repository');
+  }
+
+  async delete(id) {
+    throw new Error('delete must be implemented by concrete repository');
+  }
+
+  async findAll() {
+    throw new Error('findAll must be implemented by concrete repository');
+  }
+}
+
+/**
  * Base repository interface with common operations
  */
 export class BaseRepository {
@@ -363,5 +384,186 @@ export class ConfigurationRepositoryContract extends BaseRepository {
    */
   async getLocalizationStrings(language) {
     throw new Error('getLocalizationStrings must be implemented by concrete repository')
+  }
+}
+
+/**
+ * Contract for audit logger interface
+ */
+export class AuditLoggerInterface {
+  /**
+   * Log business action
+   * @param {string} userId - User ID
+   * @param {string} action - Action name
+   * @param {Object} data - Action data
+   * @returns {Promise<void>}
+   */
+  async logBusinessAction(userId, action, data) {
+    throw new Error('logBusinessAction must be implemented by concrete logger')
+  }
+
+  /**
+   * Log info message
+   * @param {string} message - Log message
+   * @param {Object} data - Additional data
+   * @returns {Promise<void>}
+   */
+  async info(message, data = {}) {
+    throw new Error('info must be implemented by concrete logger')
+  }
+
+  /**
+   * Log warning message
+   * @param {string} message - Log message
+   * @param {Object} data - Additional data
+   * @returns {Promise<void>}
+   */
+  async warn(message, data = {}) {
+    throw new Error('warn must be implemented by concrete logger')
+  }
+
+  /**
+   * Log error message
+   * @param {string} message - Log message
+   * @param {Object} data - Additional data
+   * @returns {Promise<void>}
+   */
+  async error(message, data = {}) {
+    throw new Error('error must be implemented by concrete logger')
+  }
+
+  /**
+   * Log debug message
+   * @param {string} message - Log message
+   * @param {Object} data - Additional data
+   * @returns {Promise<void>}
+   */
+  async debug(message, data = {}) {
+    throw new Error('debug must be implemented by concrete logger')
+  }
+}
+
+/**
+ * Contract for performance monitor interface
+ */
+export class PerformanceMonitorInterface {
+  /**
+   * Start a timer
+   * @param {string} metricName - Metric name
+   * @returns {Object} Timer object with end() method
+   */
+  startTimer(metricName) {
+    throw new Error('startTimer must be implemented by concrete monitor')
+  }
+
+  /**
+   * Record a metric
+   * @param {string} metricName - Metric name
+   * @param {number} value - Metric value
+   * @param {Object} tags - Optional tags
+   * @returns {Promise<void>}
+   */
+  async recordMetric(metricName, value, tags = {}) {
+    throw new Error('recordMetric must be implemented by concrete monitor')
+  }
+
+  /**
+   * Increment a counter
+   * @param {string} metricName - Counter name
+   * @param {number} value - Increment value
+   * @param {Object} tags - Optional tags
+   * @returns {Promise<void>}
+   */
+  async increment(metricName, value = 1, tags = {}) {
+    throw new Error('increment must be implemented by concrete monitor')
+  }
+
+  /**
+   * Record histogram value
+   * @param {string} metricName - Histogram name
+   * @param {number} value - Value to record
+   * @param {Object} tags - Optional tags
+   * @returns {Promise<void>}
+   */
+  async histogram(metricName, value, tags = {}) {
+    throw new Error('histogram must be implemented by concrete monitor')
+  }
+
+  /**
+   * Get performance statistics
+   * @returns {Object} Performance statistics
+   */
+  getStatistics() {
+    throw new Error('getStatistics must be implemented by concrete monitor')
+  }
+}
+
+/**
+ * Contract for cache interface
+ */
+export class CacheInterface {
+  /**
+   * Get value from cache
+   * @param {string} key - Cache key
+   * @returns {Promise<any>} Cached value or null
+   */
+  async get(key) {
+    throw new Error('get must be implemented by concrete cache')
+  }
+
+  /**
+   * Set value in cache
+   * @param {string} key - Cache key
+   * @param {any} value - Value to cache
+   * @param {number} ttlSeconds - Time to live in seconds
+   * @returns {Promise<void>}
+   */
+  async set(key, value, ttlSeconds = null) {
+    throw new Error('set must be implemented by concrete cache')
+  }
+
+  /**
+   * Delete value from cache
+   * @param {string} key - Cache key
+   * @returns {Promise<boolean>} True if deleted
+   */
+  async delete(key) {
+    throw new Error('delete must be implemented by concrete cache')
+  }
+
+  /**
+   * Check if key exists in cache
+   * @param {string} key - Cache key
+   * @returns {Promise<boolean>} True if exists
+   */
+  async exists(key) {
+    throw new Error('exists must be implemented by concrete cache')
+  }
+
+  /**
+   * Clear all cached values
+   * @returns {Promise<number>} Number of cleared entries
+   */
+  async clear() {
+    throw new Error('clear must be implemented by concrete cache')
+  }
+
+  /**
+   * Get multiple values from cache
+   * @param {Array<string>} keys - Cache keys
+   * @returns {Promise<Object>} Object with key-value pairs
+   */
+  async getMultiple(keys) {
+    throw new Error('getMultiple must be implemented by concrete cache')
+  }
+
+  /**
+   * Set multiple values in cache
+   * @param {Object} values - Object with key-value pairs
+   * @param {number} ttlSeconds - Time to live in seconds
+   * @returns {Promise<void>}
+   */
+  async setMultiple(values, ttlSeconds = null) {
+    throw new Error('setMultiple must be implemented by concrete cache')
   }
 }

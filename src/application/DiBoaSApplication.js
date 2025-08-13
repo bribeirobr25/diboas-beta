@@ -9,6 +9,7 @@ import { createRepositories } from '../infrastructure/persistence/LocalStorageRe
 import { createSecurityContext } from '../infrastructure/security/SecurityContext.js'
 import { createPerformanceMonitor } from '../infrastructure/performance/PerformanceMonitor.js'
 import { MascotPersonalityFactory } from '../domains/mascot-ai/models/MascotPersonality.js'
+import { ConsoleAuditLogger } from '../infrastructure/adapters/ConsoleAuditLogger.js'
 
 /**
  * Main application class that bootstraps the entire diBoaS platform
@@ -23,7 +24,7 @@ export class DiBoaSApplication {
     this._eventBus = null
     this._securityContext = null
     this._performanceMonitor = null
-    this._auditLogger = options.auditLogger || console
+    this._auditLogger = options.auditLogger || new ConsoleAuditLogger()
     
     // Repositories
     this._repositories = null
@@ -458,11 +459,20 @@ export class DiBoaSApplication {
     
     // Test event bus
     try {
-      await this._eventBus.publish({ 
+      // Create a simple health check event object with toJSON method
+      const healthCheckEvent = {
         eventType: 'HealthCheck', 
         eventId: 'health_' + Date.now(),
-        timestamp: new Date()
-      })
+        timestamp: new Date(),
+        toJSON() {
+          return {
+            eventType: this.eventType,
+            eventId: this.eventId,
+            timestamp: this.timestamp.toISOString()
+          }
+        }
+      }
+      await this._eventBus.publish(healthCheckEvent)
     } catch (error) {
       throw new Error(`Event bus health check failed: ${error.message}`)
     }

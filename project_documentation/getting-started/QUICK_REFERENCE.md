@@ -17,8 +17,14 @@ pnpm format            # Format code with Prettier
 
 ### Testing
 ```bash
+npm test               # Module dependency tests  
+npm run test:modules   # Module loading validation
+npm run test:server    # Development server tests
+npm run verify         # Application verification
+
+# Advanced testing (if configured):
 pnpm test:unit         # Unit tests only
-pnpm test:integration  # Integration tests
+pnpm test:integration  # Integration tests  
 pnpm test:e2e          # End-to-end tests
 pnpm test:coverage     # Test coverage report
 ```

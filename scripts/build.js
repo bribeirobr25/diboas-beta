@@ -9,16 +9,17 @@ import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
+import UrlProcessor from './url-processor.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.join(__dirname, '..');
 
 // Build configuration
 const BUILD_CONFIG = {
-  source: path.join(PROJECT_ROOT, 'subdomains'),
+  source: path.join(PROJECT_ROOT, 'frontend'),
   output: path.join(PROJECT_ROOT, 'dist'),
-  shared: path.join(PROJECT_ROOT, 'shared'),
-  subdomains: ['landing', 'dapp', 'docs', 'learn', 'mascots', 'investors', 'b2b']
+  assets: path.join(PROJECT_ROOT, 'assets'),
+  frontendApps: ['landing', 'dapp', 'docs', 'learn', 'mascots', 'investors', 'b2b']
 };
 
 /**
@@ -32,13 +33,13 @@ async function build() {
     // Clean previous build
     await cleanBuild();
     
-    // Build all subdomains
-    for (const subdomain of BUILD_CONFIG.subdomains) {
-      await buildSubdomain(subdomain);
+    // Build all frontend applications
+    for (const app of BUILD_CONFIG.frontendApps) {
+      await buildFrontendApp(app);
     }
     
     // Copy shared assets
-    await copySharedAssets();
+    await copyAssets();
     
     // Generate deployment configuration
     await generateDeploymentConfig();
@@ -47,6 +48,12 @@ async function build() {
     console.log(chalk.gray('─'.repeat(50)));
     console.log(chalk.yellow('📁 Output directory: dist/'));
     console.log(chalk.yellow('🚀 Ready for deployment'));
+    
+    // List built applications
+    console.log(chalk.cyan('\n📱 Built Frontend Applications:'));
+    BUILD_CONFIG.frontendApps.forEach(app => {
+      console.log(chalk.gray(`   • ${app}`));
+    });
     
   } catch (error) {
     console.error(chalk.red('❌ Build failed:'), error.message);
@@ -64,47 +71,80 @@ async function cleanBuild() {
 }
 
 /**
- * Build a specific subdomain
+ * Build a specific frontend application
  */
-async function buildSubdomain(subdomain) {
-  console.log(chalk.blue(`📦 Building ${subdomain} subdomain...`));
+async function buildFrontendApp(appName) {
+  console.log(chalk.blue(`📦 Building ${appName} frontend app...`));
   
-  const sourceDir = path.join(BUILD_CONFIG.source, subdomain);
-  const outputDir = path.join(BUILD_CONFIG.output, subdomain);
+  const sourceDir = path.join(BUILD_CONFIG.source, appName);
+  const outputDir = path.join(BUILD_CONFIG.output, appName);
   
-  // Check if subdomain exists
+  // Check if frontend app exists
   if (!await fs.pathExists(sourceDir)) {
-    console.log(chalk.gray(`   ⚠️  ${subdomain} subdomain not found, skipping...`));
+    console.log(chalk.gray(`   ⚠️  ${appName} frontend app not found, skipping...`));
     return;
   }
   
-  // Copy subdomain files
+  // Copy frontend app files
   await fs.copy(sourceDir, outputDir);
   
-  // Update paths for production
-  await updateProductionPaths(outputDir, subdomain);
+  // Process URL placeholders for production
+  await processURLsForProduction(outputDir, appName);
   
-  console.log(chalk.green(`   ✅ ${subdomain} built successfully`));
+  // Update paths for production
+  await updateProductionPaths(outputDir, appName);
+  
+  console.log(chalk.green(`   ✅ ${appName} built successfully`));
+}
+
+/**
+ * Process URL placeholders for production deployment
+ */
+async function processURLsForProduction(appDir, appName) {
+  console.log(chalk.blue(`   🔗 Processing URLs for ${appName}...`));
+  
+  // Set NODE_ENV to production for URL processing
+  const originalEnv = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'production';
+  
+  try {
+    const processor = new UrlProcessor();
+    const results = processor.processDirectory(subdomainDir, ['.html', '.js']);
+    
+    const processedCount = results.filter(r => r.processed).length;
+    console.log(chalk.green(`   ✅ Processed ${processedCount} files with URL placeholders`));
+    
+    if (processor.errors.length > 0) {
+      console.log(chalk.yellow(`   ⚠️  ${processor.errors.length} warnings during URL processing`));
+      processor.errors.forEach(error => console.log(chalk.gray(`      ${error}`)));
+    }
+  } finally {
+    // Restore original NODE_ENV
+    process.env.NODE_ENV = originalEnv;
+  }
 }
 
 /**
  * Copy shared assets
  */
-async function copySharedAssets() {
+async function copyAssets() {
   console.log(chalk.blue('📁 Copying shared assets...'));
   
-  // Copy assets to each subdomain's build output
-  for (const subdomain of BUILD_CONFIG.subdomains) {
-    const subdomainOutput = path.join(BUILD_CONFIG.output, subdomain);
-    const assetsOutput = path.join(subdomainOutput, 'assets');
+  // Copy assets to each frontend app's build output
+  for (const app of BUILD_CONFIG.frontendApps) {
+    const appOutput = path.join(BUILD_CONFIG.output, app);
+    const assetsOutput = path.join(appOutput, 'assets');
     
-    if (await fs.pathExists(subdomainOutput)) {
-      await fs.copy(path.join(BUILD_CONFIG.shared, 'assets'), assetsOutput);
+    if (await fs.pathExists(appOutput)) {
+      await fs.copy(path.join(BUILD_CONFIG.assets, 'assets'), assetsOutput);
       
       // Copy shared utilities
       const utilsOutput = path.join(assetsOutput, 'js', 'utils');
       await fs.ensureDir(utilsOutput);
-      await fs.copy(path.join(BUILD_CONFIG.shared, 'utils'), utilsOutput);
+      await fs.copy(path.join(BUILD_CONFIG.assets, 'utils'), utilsOutput);
+      
+      // Process URL placeholders in shared assets
+      await processURLsForProduction(assetsOutput, app);
     }
   }
   
@@ -114,8 +154,8 @@ async function copySharedAssets() {
 /**
  * Update paths for production deployment
  */
-async function updateProductionPaths(subdomainDir, subdomain) {
-  const indexPath = path.join(subdomainDir, 'index.html');
+async function updateProductionPaths(appDir, appName) {
+  const indexPath = path.join(appDir, 'index.html');
   
   if (await fs.pathExists(indexPath)) {
     let html = await fs.readFile(indexPath, 'utf8');
