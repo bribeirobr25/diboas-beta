@@ -56,15 +56,6 @@ build/
 *.tgz
 *.tar.gz
 
-# Cloudflare Pages build output
-b2b/dist/
-dapp/dist/
-docs/dist/
-learn/dist/
-mascots/dist/
-investors/dist/
-landing/dist/
-
 # Log files
 *.log
 logs/
