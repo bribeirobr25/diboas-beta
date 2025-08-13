@@ -78,6 +78,23 @@ async function copyAndProcessHtml(src, dest) {
   }
 }
 
+async function copyAndProcessJson(src, dest) {
+  try {
+    // Read the JSON file
+    const content = await fs.readFile(src, 'utf8');
+    
+    // Process URL placeholders for production
+    const processedContent = replaceUrlPlaceholders(content);
+    
+    // Write the processed content
+    await fs.writeFile(dest, processedContent, 'utf8');
+    console.log(`Processed: ${src} → ${dest}`);
+  } catch (error) {
+    console.error(`Error processing ${src} to ${dest}:`, error);
+    throw error;
+  }
+}
+
 async function copyDirectory(src, dest) {
   await ensureDirectory(dest);
   const entries = await fs.readdir(src, { withFileTypes: true });
@@ -89,9 +106,11 @@ async function copyDirectory(src, dest) {
     if (entry.isDirectory()) {
       await copyDirectory(srcPath, destPath);
     } else {
-      // Process HTML files to replace URL placeholders
+      // Process HTML and JSON files to replace URL placeholders
       if (entry.name.endsWith('.html')) {
         await copyAndProcessHtml(srcPath, destPath);
+      } else if (entry.name.endsWith('.json')) {
+        await copyAndProcessJson(srcPath, destPath);
       } else {
         await copyFile(srcPath, destPath);
       }

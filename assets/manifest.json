@@ -26,31 +26,31 @@
       "name": "Learning Center",
       "short_name": "Learn",
       "description": "Access interactive finance learning modules",
-      "url": "/learn/"
+      "url": "{{LEARN_URL}}"
     },
     {
       "name": "Documentation",
       "short_name": "Docs",
       "description": "Browse platform documentation",
-      "url": "/docs/"
+      "url": "{{DOCS_URL}}"
     },
     {
       "name": "Investors",
       "short_name": "Investors",
       "description": "Investor's documentation page",
-      "url": "/investors/"
+      "url": "{{INVESTORS_URL}}"
     },
     {
       "name": "Mascots",
       "short_name": "Mascots",
       "description": "Page introducing the AI-powered mascot guides",
-      "url": "/mascots/"
+      "url": "{{MASCOTS_URL}}"
     },
     {
       "name": "App",
       "short_name": "App",
       "description": "diBoaS application page",
-      "url": "/app/"
+      "url": "{{APP_URL}}"
     }
   ]
 }
