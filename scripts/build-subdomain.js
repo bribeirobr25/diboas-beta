@@ -8,6 +8,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { replaceUrlPlaceholders } from '../config/build-urls.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,6 +61,23 @@ async function copyFile(src, dest) {
   }
 }
 
+async function copyAndProcessHtml(src, dest) {
+  try {
+    // Read the HTML file
+    const content = await fs.readFile(src, 'utf8');
+    
+    // Process URL placeholders for production
+    const processedContent = replaceUrlPlaceholders(content);
+    
+    // Write the processed content
+    await fs.writeFile(dest, processedContent, 'utf8');
+    console.log(`Processed: ${src} → ${dest}`);
+  } catch (error) {
+    console.error(`Error processing ${src} to ${dest}:`, error);
+    throw error;
+  }
+}
+
 async function copyDirectory(src, dest) {
   await ensureDirectory(dest);
   const entries = await fs.readdir(src, { withFileTypes: true });
@@ -71,7 +89,12 @@ async function copyDirectory(src, dest) {
     if (entry.isDirectory()) {
       await copyDirectory(srcPath, destPath);
     } else {
-      await copyFile(srcPath, destPath);
+      // Process HTML files to replace URL placeholders
+      if (entry.name.endsWith('.html')) {
+        await copyAndProcessHtml(srcPath, destPath);
+      } else {
+        await copyFile(srcPath, destPath);
+      }
     }
   }
 }
@@ -86,7 +109,7 @@ async function buildSubdomain() {
   if (subdomain === 'landing') {
     // Special case for landing page (root index.html)
     const indexPath = path.join(projectRoot, 'index.html');
-    await copyFile(indexPath, path.join(distDir, 'index.html'));
+    await copyAndProcessHtml(indexPath, path.join(distDir, 'index.html'));
     
     // Copy shared assets for landing page
     const assetsSource = path.join(projectRoot, 'assets');
