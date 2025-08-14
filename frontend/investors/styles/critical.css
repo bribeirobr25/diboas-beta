@@ -1,0 +1,306 @@
+/* 
+ * diBoaS Investor Portal - Critical CSS
+ * Above-the-fold styles loaded immediately
+ * Target: First meaningful paint optimization
+ */
+
+/* ===========================
+   CSS CUSTOM PROPERTIES
+   =========================== */
+
+:root {
+  /* Professional Investor Colors */
+  --investor-primary: #1E3A8A;
+  --investor-secondary: #3B82F6;
+  --investor-accent: #60A5FA;
+  --investor-light: #DBEAFE;
+  --investor-dark: #0F172A;
+  --investor-gradient: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+
+  /* Professional Backgrounds */
+  --bg-investor: #FAFBFF;
+  --bg-investor-secondary: #F1F5F9;
+  --bg-investor-card: #FFFFFF;
+  --bg-investor-hover: #F8FAFC;
+
+  /* Professional Text */
+  --text-investor-primary: #0F172A;
+  --text-investor-secondary: #475569;
+  --text-investor-tertiary: #64748B;
+  --text-investor-inverse: #FFFFFF;
+  --text-investor-muted: #94A3B8;
+
+  /* Professional Borders */
+  --border-investor: #E2E8F0;
+  --border-investor-hover: #CBD5E1;
+  --border-investor-focus: #3B82F6;
+  --border-investor-strong: #94A3B8;
+
+  /* Status Colors for Investor Context */
+  --status-positive: #059669;
+  --status-negative: #DC2626;
+  --status-neutral: #6B7280;
+  --status-warning: #D97706;
+  --status-info: #0284C7;
+
+  /* Security & Privacy */
+  --security-green: #10B981;
+  --privacy-blue: #3B82F6;
+  --confidential-red: #EF4444;
+
+  /* Redaction System */
+  --redacted-bg: #64748B;
+  --redacted-text: #FFFFFF;
+  --redacted-hover: #475569;
+}
+
+/* Dark Theme Overrides for Investor Portal */
+[data-theme="dark"] {
+  --bg-investor: #0F172A;
+  --bg-investor-secondary: #1E293B;
+  --bg-investor-card: #1E293B;
+  --bg-investor-hover: #334155;
+  --text-investor-primary: #F8FAFC;
+  --text-investor-secondary: #CBD5E1;
+  --text-investor-tertiary: #94A3B8;
+  --border-investor: #334155;
+  --border-investor-hover: #475569;
+}
+
+/* ===========================
+   LAYOUT STRUCTURE
+   =========================== */
+
+.investor-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--neutral-50);
+  font-family: var(--font-primary);
+}
+
+/* ===========================
+   HEADER STYLES (CRITICAL)
+   =========================== */
+
+.investor-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-investor);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .investor-header {
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex: 1;
+}
+
+.investor-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--text-investor-primary);
+  transition: opacity 0.2s ease;
+}
+
+.investor-logo:hover {
+  opacity: 0.8;
+}
+
+.logo-icon svg {
+  display: block;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--investor-primary);
+}
+
+.logo-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-investor-secondary);
+  font-weight: 500;
+}
+
+/* ===========================
+   HERO SECTION (CRITICAL)
+   =========================== */
+
+.hero-section {
+  padding: calc(var(--header-height, 80px) + var(--space-16)) 0 var(--space-16);
+  background: var(--bg-investor);
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--investor-light);
+  color: var(--investor-primary);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  width: fit-content;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-investor-primary);
+  margin: 0;
+}
+
+.hero-title .highlight {
+  background: var(--investor-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: var(--text-xl);
+  color: var(--text-investor-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--bg-investor-card);
+  border: 1px solid var(--border-investor);
+  border-radius: var(--radius-xl);
+}
+
+.metric-item {
+  text-align: center;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--investor-primary);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.metric-label {
+  font-size: var(--text-sm);
+  color: var(--text-investor-tertiary);
+  font-weight: 500;
+}
+
+/* ===========================
+   CTA BUTTONS (CRITICAL)
+   =========================== */
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.cta-primary {
+  background: var(--investor-gradient);
+  color: var(--text-investor-inverse);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 200px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cta-primary:hover {
+  background: var(--investor-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  color: var(--text-investor-inverse);
+}
+
+.cta-secondary {
+  background: var(--bg-investor-card);
+  color: var(--text-investor-primary);
+  border: 2px solid var(--border-investor);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 200px;
+  justify-content: center;
+}
+
+.cta-secondary:hover {
+  border-color: var(--investor-primary);
+  color: var(--investor-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}

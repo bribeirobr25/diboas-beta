@@ -101,48 +101,190 @@ function detectEnvironment() {
   
   // Subdomain detection for specialized features
   const subdomainConfig = {
-    'app': { type: 'application', features: ['trading', 'portfolio', 'analytics'] },
-    'dapp': { type: 'application', features: ['trading', 'portfolio', 'analytics'] }, 
-    'learn': { type: 'educational', features: ['courses', 'tutorials', 'assessment'] },
-    'docs': { type: 'documentation', features: ['api-docs', 'guides', 'examples'] },
-    'api': { type: 'backend', features: ['rest-api', 'websockets', 'auth'] }
+    'app': { 
+      type: 'application', 
+      features: ['trading', 'portfolio', 'analytics'],
+      domains: ['portfolio', 'trading', 'user-journey', 'security'],
+      criticalServices: ['UserJourneyService', 'PortfolioService', 'TradingService']
+    },
+    'dapp': { 
+      type: 'application', 
+      features: ['trading', 'portfolio', 'analytics'],
+      domains: ['portfolio', 'trading', 'user-journey', 'security'],
+      criticalServices: ['UserJourneyService', 'PortfolioService', 'TradingService']
+    }, 
+    'learn': { 
+      type: 'educational', 
+      features: ['courses', 'tutorials', 'assessment'],
+      domains: ['education', 'content', 'progress'],
+      criticalServices: ['EducationService', 'ContentService']
+    },
+    'docs': { 
+      type: 'documentation', 
+      features: ['api-docs', 'guides', 'examples'],
+      domains: ['documentation', 'search'],
+      criticalServices: ['DocumentationService', 'SearchService']
+    },
+    'api': { 
+      type: 'backend', 
+      features: ['rest-api', 'websockets', 'auth'],
+      domains: ['api', 'auth', 'monitoring'],
+      criticalServices: ['ApiService', 'AuthService']
+    }
   }
   
   return {
     environment,
     subdomain,
-    config: subdomainConfig[subdomain] || { type: 'main', features: ['landing', 'marketing'] }
+    config: subdomainConfig[subdomain] || { 
+      type: 'main', 
+      features: ['landing', 'marketing'],
+      domains: ['marketing', 'navigation'],
+      criticalServices: ['NavigationService']
+    }
   }
 }
 
 /**
- * Initialize based on detected environment
+ * DDD-Compliant Lazy Loading of Domain Services
+ */
+async function loadDomainServices(config) {
+  const loadedServices = new Map()
+  
+  console.log(`🎯 Loading domain services for ${config.type} context:`, config.domains)
+  
+  try {
+    // Load only relevant domain services based on context
+    const servicePromises = config.domains.map(async (domain) => {
+      switch (domain) {
+        case 'portfolio':
+          const { PortfolioService } = await import('../../src/domains/portfolio/services/PortfolioService.js')
+          loadedServices.set('PortfolioService', PortfolioService)
+          break
+          
+        case 'trading':
+          const { TradingService } = await import('../../src/domains/trading/services/TradingService.js')
+          loadedServices.set('TradingService', TradingService)
+          break
+          
+        case 'user-journey':
+          const { UserJourneyService } = await import('../../src/domains/user-journey/services/UserJourneyService.js')
+          loadedServices.set('UserJourneyService', UserJourneyService)
+          break
+          
+        case 'education':
+          // Educational domain services (lazy loaded)
+          console.log('📚 Educational domain services available when needed')
+          break
+          
+        case 'documentation':
+          // Documentation domain services (lazy loaded)
+          console.log('📖 Documentation domain services available when needed')
+          break
+          
+        case 'marketing':
+          // Marketing domain services (lightweight)
+          console.log('🏠 Marketing domain services loaded')
+          break
+          
+        case 'navigation':
+          const { NavigationService } = await import('../../src/domains/navigation/services/NavigationService.js')
+          loadedServices.set('NavigationService', NavigationService)
+          break
+          
+        default:
+          console.log(`⚠️  Unknown domain: ${domain}`)
+      }
+    })
+    
+    await Promise.all(servicePromises)
+    console.log(`✅ Loaded ${loadedServices.size} domain services for ${config.type}`)
+    
+    return loadedServices
+    
+  } catch (error) {
+    console.error('❌ Failed to load domain services:', error)
+    // Graceful fallback - load core services only
+    return loadCoreServicesOnly()
+  }
+}
+
+/**
+ * Fallback: Load only essential core services
+ */
+async function loadCoreServicesOnly() {
+  console.log('🔄 Loading core services only (fallback mode)')
+  const coreServices = new Map()
+  
+  try {
+    // Always load essential shared kernel services
+    const { EventBus } = await import('../../src/shared-kernel/common/events/EventBus.js')
+    const { NavigationService } = await import('../../src/domains/navigation/services/NavigationService.js')
+    
+    coreServices.set('EventBus', EventBus)
+    coreServices.set('NavigationService', NavigationService)
+    
+    return coreServices
+  } catch (error) {
+    console.error('💥 Critical: Even core services failed to load', error)
+    return new Map()
+  }
+}
+
+/**
+ * Initialize based on detected environment with DDD-Compliant Lazy Loading
  */
 async function initializeForEnvironment() {
   const envConfig = detectEnvironment()
   console.log('🌐 Detected environment:', envConfig)
   
-  // Initialize core system
-  const result = await initializeDiBoaS()
-  
-  // Apply environment-specific configurations
-  switch (envConfig.config.type) {
-    case 'application':
-      console.log('📱 Application mode: Full trading features enabled')
-      break
-    case 'educational':
-      console.log('📚 Educational mode: Learning features enabled')
-      break
-    case 'documentation':
-      console.log('📖 Documentation mode: API docs features enabled')
-      break
-    default:
-      console.log('🏠 Main site mode: Marketing features enabled')
-  }
-  
-  return {
-    ...result,
-    environment: envConfig
+  try {
+    // Step 1: Load only relevant domain services for this context
+    const domainServices = await loadDomainServices(envConfig.config)
+    
+    // Step 2: Initialize core system with minimal footprint
+    const result = await initializeDiBoaS()
+    
+    // Step 3: Apply environment-specific configurations
+    switch (envConfig.config.type) {
+      case 'application':
+        console.log('📱 Application mode: Trading features loaded on-demand')
+        console.log('✅ Available domains:', envConfig.config.domains)
+        break
+      case 'educational':
+        console.log('📚 Educational mode: Learning features loaded on-demand')
+        console.log('✅ Available domains:', envConfig.config.domains)
+        break
+      case 'documentation':
+        console.log('📖 Documentation mode: Help features loaded on-demand')
+        console.log('✅ Available domains:', envConfig.config.domains)
+        break
+      default:
+        console.log('🏠 Main site mode: Minimal footprint')
+        console.log('✅ Available domains:', envConfig.config.domains)
+    }
+    
+    return {
+      ...result,
+      environment: envConfig,
+      domainServices,
+      optimizedFor: envConfig.config.type,
+      loadedDomains: envConfig.config.domains
+    }
+    
+  } catch (error) {
+    console.error('❌ Environment initialization failed:', error)
+    
+    // Graceful degradation - load minimal core only
+    const fallbackServices = await loadCoreServicesOnly()
+    
+    return {
+      success: false,
+      environment: envConfig,
+      domainServices: fallbackServices,
+      optimizedFor: 'fallback',
+      error: error.message
+    }
   }
 }
 

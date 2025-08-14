@@ -123,7 +123,19 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../assets/css/main.css">
-  <link rel="stylesheet" href="./learn.css">
+  
+  <!-- Learn Platform Critical CSS - Loaded immediately -->
+  <link rel="stylesheet" href="./styles/critical.css">
+  
+  <!-- Non-critical CSS - Lazy loaded -->
+  <link rel="stylesheet" href="./styles/components.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="./styles/interactive.css" media="print" onload="this.media='all'">
+  
+  <!-- Fallback for browsers without JS -->
+  <noscript>
+    <link rel="stylesheet" href="./styles/components.css">
+    <link rel="stylesheet" href="./styles/interactive.css">
+  </noscript>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 </head>

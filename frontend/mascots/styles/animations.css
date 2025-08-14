@@ -1,0 +1,537 @@
+/*
+ * diBoaS Mascots Page - Animations CSS
+ * Shapeshifting animations and interactive effects
+ */
+
+/* ===========================
+   FLOATING ANIMATIONS
+   =========================== */
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes float-active {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-20px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-10px) scale(0.95);
+  }
+  75% {
+    transform: translateY(-15px) scale(1.02);
+  }
+}
+
+.mascot-float-gentle {
+  animation: float-gentle var(--float-duration) ease-in-out infinite;
+}
+
+.mascot-float-medium {
+  animation: float-medium calc(var(--float-duration) * 1.2) ease-in-out infinite;
+}
+
+.mascot-float-active {
+  animation: float-active calc(var(--float-duration) * 0.8) ease-in-out infinite;
+}
+
+/* ===========================
+   MORPHING ANIMATIONS
+   =========================== */
+
+@keyframes morph-circle-to-square {
+  0% {
+    border-radius: 50%;
+    transform: rotate(0deg);
+  }
+  50% {
+    border-radius: 25%;
+    transform: rotate(180deg);
+  }
+  100% {
+    border-radius: var(--radius-xl);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes morph-scale-breath {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes morph-rotate-gentle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.mascot-morph-circle {
+  animation: morph-circle-to-square 8s ease-in-out infinite;
+}
+
+.mascot-breath {
+  animation: morph-scale-breath 3s ease-in-out infinite;
+}
+
+.mascot-rotate {
+  animation: morph-rotate-gentle 20s linear infinite;
+}
+
+/* ===========================
+   GLOW EFFECTS
+   =========================== */
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(78, 205, 196, var(--glow-intensity));
+  }
+}
+
+@keyframes glow-aqua {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(78, 205, 196, 0.4);
+  }
+}
+
+@keyframes glow-verde {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 230, 207, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(168, 230, 207, 0.4);
+  }
+}
+
+@keyframes glow-mystic {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(179, 157, 219, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(179, 157, 219, 0.4);
+  }
+}
+
+@keyframes glow-coral {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 179, 186, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 179, 186, 0.4);
+  }
+}
+
+.glow-effect {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+.glow-aqua {
+  animation: glow-aqua 4s ease-in-out infinite;
+}
+
+.glow-verde {
+  animation: glow-verde 4s ease-in-out infinite;
+}
+
+.glow-mystic {
+  animation: glow-mystic 4s ease-in-out infinite;
+}
+
+.glow-coral {
+  animation: glow-coral 4s ease-in-out infinite;
+}
+
+/* ===========================
+   PARTICLE EFFECTS
+   =========================== */
+
+.particle-container {
+  position: relative;
+  overflow: visible;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--aqua-primary);
+  border-radius: 50%;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-50px) scale(0.5);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) scale(0);
+    opacity: 0;
+  }
+}
+
+.particle.floating {
+  animation: particle-float 3s ease-out infinite;
+}
+
+.particle.aqua {
+  background: var(--aqua-primary);
+}
+
+.particle.verde {
+  background: var(--verde-primary);
+}
+
+.particle.mystic {
+  background: var(--mystic-primary);
+}
+
+.particle.coral {
+  background: var(--coral-primary);
+}
+
+/* ===========================
+   INTERACTIVE HOVER EFFECTS
+   =========================== */
+
+.mascot-card-interactive {
+  transition: all var(--transform-speed) var(--morph-bezier);
+}
+
+.mascot-card-interactive:hover {
+  transform: translateY(-15px) rotate(2deg);
+}
+
+.mascot-card-interactive:hover .mascot-avatar {
+  transform: scale(1.2) rotate(-2deg);
+}
+
+.mascot-card-interactive:hover .mascot-name {
+  color: var(--aqua-primary);
+  transform: scale(1.05);
+}
+
+.mascot-card-interactive.aqua:hover .mascot-name {
+  color: var(--aqua-primary);
+}
+
+.mascot-card-interactive.verde:hover .mascot-name {
+  color: var(--verde-primary);
+}
+
+.mascot-card-interactive.mystic:hover .mascot-name {
+  color: var(--mystic-primary);
+}
+
+.mascot-card-interactive.coral:hover .mascot-name {
+  color: var(--coral-primary);
+}
+
+/* ===========================
+   ENTRANCE ANIMATIONS
+   =========================== */
+
+@keyframes slide-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-in-up 0.8s var(--morph-bezier);
+}
+
+.animate-slide-left {
+  animation: slide-in-left 0.8s var(--morph-bezier);
+}
+
+.animate-slide-right {
+  animation: slide-in-right 0.8s var(--morph-bezier);
+}
+
+.animate-fade-scale {
+  animation: fade-in-scale 0.6s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.8s var(--morph-bezier);
+}
+
+/* ===========================
+   STAGGERED ANIMATIONS
+   =========================== */
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+.stagger-6 {
+  animation-delay: 0.6s;
+}
+
+/* ===========================
+   THEME TRANSITION ANIMATIONS
+   =========================== */
+
+@keyframes theme-morph-aqua {
+  0% {
+    background: var(--neutral-50);
+    border-color: var(--neutral-200);
+  }
+  100% {
+    background: var(--aqua-background);
+    border-color: var(--aqua-primary);
+  }
+}
+
+@keyframes theme-morph-verde {
+  0% {
+    background: var(--neutral-50);
+    border-color: var(--neutral-200);
+  }
+  100% {
+    background: var(--verde-background);
+    border-color: var(--verde-primary);
+  }
+}
+
+@keyframes theme-morph-mystic {
+  0% {
+    background: var(--neutral-50);
+    border-color: var(--neutral-200);
+  }
+  100% {
+    background: var(--mystic-background);
+    border-color: var(--mystic-primary);
+  }
+}
+
+@keyframes theme-morph-coral {
+  0% {
+    background: var(--neutral-50);
+    border-color: var(--neutral-200);
+  }
+  100% {
+    background: var(--coral-background);
+    border-color: var(--coral-primary);
+  }
+}
+
+.theme-transition-aqua {
+  animation: theme-morph-aqua 1s ease-in-out forwards;
+}
+
+.theme-transition-verde {
+  animation: theme-morph-verde 1s ease-in-out forwards;
+}
+
+.theme-transition-mystic {
+  animation: theme-morph-mystic 1s ease-in-out forwards;
+}
+
+.theme-transition-coral {
+  animation: theme-morph-coral 1s ease-in-out forwards;
+}
+
+/* ===========================
+   PERFORMANCE OPTIMIZATIONS
+   =========================== */
+
+.mascot-card,
+.mascot-avatar,
+.preview-mascot {
+  will-change: transform;
+}
+
+.particle {
+  will-change: transform, opacity;
+}
+
+.glow-effect,
+.glow-aqua,
+.glow-verde,
+.glow-mystic,
+.glow-coral {
+  will-change: box-shadow;
+}
+
+/* Reduce animations for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .mascot-float-gentle,
+  .mascot-float-medium,
+  .mascot-float-active {
+    animation: none;
+  }
+  
+  .glow-effect,
+  .glow-aqua,
+  .glow-verde,
+  .glow-mystic,
+  .glow-coral {
+    animation: none;
+    box-shadow: none;
+  }
+}
+
+/* ===========================
+   CLICK RIPPLE EFFECTS
+   =========================== */
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+.ripple-aqua::after {
+  background: rgba(78, 205, 196, 0.6);
+}
+
+.ripple-verde::after {
+  background: rgba(168, 230, 207, 0.6);
+}
+
+.ripple-mystic::after {
+  background: rgba(179, 157, 219, 0.6);
+}
+
+.ripple-coral::after {
+  background: rgba(255, 179, 186, 0.6);
+}

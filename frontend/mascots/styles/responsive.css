@@ -1,0 +1,526 @@
+/*
+ * diBoaS Mascots Page - Responsive CSS
+ * Mobile and tablet adaptations for mascot experience
+ */
+
+/* ===========================
+   TABLET BREAKPOINT (1024px and below)
+   =========================== */
+
+@media (max-width: 1024px) {
+  .hero-section {
+    padding: var(--space-16) 0;
+    min-height: 60vh;
+  }
+
+  .hero-title {
+    font-size: clamp(var(--text-2xl), 6vw, var(--text-4xl));
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-lg);
+  }
+
+  .hero-mascots-preview {
+    gap: var(--space-4);
+  }
+
+  .preview-mascot {
+    width: 60px;
+    height: 60px;
+  }
+
+  .mascots-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .mascot-card {
+    padding: var(--space-5);
+  }
+
+  .mascot-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .mascot-name {
+    font-size: var(--text-xl);
+  }
+
+  /* Reduce animation intensity on tablets */
+  .mascot-card-interactive:hover {
+    transform: translateY(-8px) rotate(1deg);
+  }
+
+  .mascot-card-interactive:hover .mascot-avatar {
+    transform: scale(1.1) rotate(-1deg);
+  }
+}
+
+/* ===========================
+   MOBILE BREAKPOINT (768px and below)
+   =========================== */
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .logo-text {
+    font-size: var(--text-lg);
+  }
+
+  .hero-section {
+    padding: var(--space-12) 0;
+    min-height: 50vh;
+  }
+
+  .hero-container {
+    padding: 0 var(--space-4);
+  }
+
+  .hero-title {
+    font-size: clamp(var(--text-xl), 8vw, var(--text-3xl));
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-mascots-preview {
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .preview-mascot {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+  }
+
+  .mascots-grid-preview {
+    padding: var(--space-12) 0;
+  }
+
+  .grid-container {
+    padding: 0 var(--space-4);
+  }
+
+  .grid-title {
+    font-size: var(--text-2xl);
+  }
+
+  .grid-description {
+    font-size: var(--text-base);
+  }
+
+  .mascots-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .mascot-card {
+    padding: var(--space-4);
+  }
+
+  .mascot-avatar {
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--space-3);
+  }
+
+  .mascot-name {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  .mascot-role {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-3);
+  }
+
+  .mascot-description {
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-3);
+  }
+
+  .mascot-specialties {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .specialty-badge {
+    padding: var(--space-1) var(--space-2);
+    font-size: 10px;
+  }
+
+  /* Disable complex animations on mobile for performance */
+  .mascot-card-interactive:hover {
+    transform: translateY(-4px);
+  }
+
+  .mascot-card-interactive:hover .mascot-avatar {
+    transform: scale(1.05);
+  }
+
+  /* Simplify floating animations */
+  .mascot-float-gentle,
+  .mascot-float-medium,
+  .mascot-float-active {
+    animation-duration: calc(var(--float-duration) * 1.5);
+  }
+}
+
+/* ===========================
+   SMALL MOBILE BREAKPOINT (480px and below)
+   =========================== */
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .mascots-logo {
+    gap: var(--space-2);
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    font-size: var(--text-base);
+  }
+
+  .logo-text {
+    font-size: var(--text-base);
+  }
+
+  .hero-section {
+    padding: var(--space-8) 0;
+  }
+
+  .hero-container {
+    padding: 0 var(--space-3);
+  }
+
+  .hero-title {
+    font-size: clamp(var(--text-lg), 10vw, var(--text-2xl));
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-5);
+  }
+
+  .hero-mascots-preview {
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .preview-mascot {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    max-width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .mascots-grid-preview {
+    padding: var(--space-8) 0;
+  }
+
+  .grid-container {
+    padding: 0 var(--space-3);
+  }
+
+  .grid-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .grid-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .grid-description {
+    font-size: var(--text-sm);
+  }
+
+  .mascots-grid {
+    gap: var(--space-4);
+  }
+
+  .mascot-card {
+    padding: var(--space-3);
+  }
+
+  .mascot-avatar {
+    width: 60px;
+    height: 60px;
+    margin-bottom: var(--space-2);
+  }
+
+  .mascot-name {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-1);
+  }
+
+  .mascot-role {
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-2);
+  }
+
+  .mascot-description {
+    font-size: 10px;
+    line-height: 1.4;
+    margin-bottom: var(--space-2);
+  }
+
+  .specialty-badge {
+    padding: 2px var(--space-2);
+    font-size: 8px;
+  }
+
+  /* Minimal animations for small screens */
+  .mascot-float-gentle,
+  .mascot-float-medium,
+  .mascot-float-active {
+    animation: none;
+  }
+
+  .glow-effect,
+  .glow-aqua,
+  .glow-verde,
+  .glow-mystic,
+  .glow-coral {
+    animation: none;
+  }
+
+  .mascot-card-interactive:hover {
+    transform: translateY(-2px);
+  }
+
+  .mascot-card-interactive:hover .mascot-avatar {
+    transform: scale(1.02);
+  }
+}
+
+/* ===========================
+   TOUCH DEVICE OPTIMIZATIONS
+   =========================== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Touch-friendly adjustments */
+  .mascot-card {
+    cursor: default;
+  }
+
+  .preview-mascot {
+    cursor: default;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    min-height: 48px; /* Larger touch target */
+  }
+
+  /* Reduce hover effects that don't work well on touch */
+  .mascot-card:hover {
+    transform: none;
+  }
+
+  .mascot-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .preview-mascot:hover {
+    transform: none;
+  }
+
+  .preview-mascot:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* ===========================
+   LANDSCAPE PHONE ORIENTATION
+   =========================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    padding: var(--space-6) 0;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-mascots-preview {
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-cta {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: auto;
+    max-width: none;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .mascots-grid-preview {
+    padding: var(--space-6) 0;
+  }
+}
+
+/* ===========================
+   HIGH DPI DISPLAYS
+   =========================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .mascot-image,
+  .preview-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* ===========================
+   DARK MODE RESPONSIVE
+   =========================== */
+
+@media (prefers-color-scheme: dark) {
+  .mascots-layout {
+    background: linear-gradient(135deg, 
+      rgba(78, 205, 196, 0.1) 0%, 
+      rgba(168, 230, 207, 0.1) 50%, 
+      rgba(179, 157, 219, 0.1) 100%);
+  }
+
+  .mascots-header {
+    background: rgba(30, 30, 30, 0.95);
+  }
+
+  .mascot-card {
+    background: rgba(30, 30, 30, 0.95);
+    border-color: rgba(78, 205, 196, 0.3);
+  }
+
+  .mascots-grid-preview {
+    background: rgba(30, 30, 30, 0.8);
+  }
+}
+
+/* ===========================
+   PRINT STYLES
+   =========================== */
+
+@media print {
+  .mascots-header,
+  .hero-cta,
+  .particle,
+  .glow-effect,
+  .glow-aqua,
+  .glow-verde,
+  .glow-mystic,
+  .glow-coral {
+    display: none !important;
+  }
+
+  .mascots-layout {
+    background: white !important;
+  }
+
+  .mascot-card {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+
+  .mascot-name {
+    color: black !important;
+  }
+
+  .mascot-role,
+  .mascot-description {
+    color: #666 !important;
+  }
+}
+
+/* ===========================
+   ACCESSIBILITY ENHANCEMENTS
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title {
+    animation: none;
+  }
+
+  .mascot-card-interactive:hover {
+    transform: none;
+  }
+
+  .preview-mascot:hover {
+    transform: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.mascot-card:focus,
+.preview-mascot:focus,
+.cta-primary:focus,
+.cta-secondary:focus {
+  outline: 3px solid var(--aqua-primary);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .mascot-card {
+    border-width: 2px;
+  }
+
+  .specialty-badge {
+    border: 1px solid currentColor;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    border-width: 2px;
+  }
+}
